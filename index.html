@@ -4,7 +4,7 @@
   <meta charset="utf-8">
   <meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover">
   <meta name="referrer" content="no-referrer">
-  <meta name="theme-color" content="#1F3864">
+  <meta name="theme-color" content="#820A28">
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Avance FORDEMUN">
   <title>Avance FORDEMUN 2026</title>
@@ -13,10 +13,12 @@
   <link href="https://fonts.googleapis.com/css2?family=Noto+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <style>
     :root {
-      --fondo: #F4F6F9; --tarjeta: #FFFFFF; --borde: #DDE2E8; --texto: #1F2933; --tenue: #616E7C; --pista: #E6E9EE;
-      --azul: #1F3864; --rojo: #D64545; --amarillo: #E8A317; --amarillo-txt: #9A6B00; --verde: #2E9E5B; --gris: #9AA5B1;
+      /* identidad FORDEMUN 2026 (logos Tamaulipas / Victoria y membrete): guinda, guinda oscuro, dorado, crema */
+      --guinda: #AB1638; --guinda-osc: #820A28; --dorado: #C0A278; --crema: #F3EEE1;
+      --fondo: #F7F4EE; --tarjeta: #FFFFFF; --borde: #E3DCD0; --texto: #231F20; --tenue: #6B635B; --pista: #ECE6DC;
+      --azul: var(--guinda-osc);                            /* color principal (antes azul) */ --rojo: #D64545; --amarillo: #E8A317; --amarillo-txt: #9A6B00; --verde: #2E9E5B; --gris: #9AA5B1;
       --pve: #028090; --pvj: #C98A2B; --pvg: #A26769;
-      --prog: #C9D0D9;                                      /* relleno secundario = programado */
+      --prog: #D3C7B4;                                      /* relleno secundario = programado */
       --sp: 20px;                                           /* margen lateral */
       --sl: max(var(--sp), env(safe-area-inset-left)); --sr: max(var(--sp), env(safe-area-inset-right));
     }
@@ -26,11 +28,11 @@
       font-family: "Noto Sans", system-ui, -apple-system, "Segoe UI", Roboto, "DejaVu Sans", sans-serif;
       -webkit-font-smoothing: antialiased; }
     body { min-width: 0; }
-    .cab { background: var(--azul); color: #fff; padding: calc(18px + env(safe-area-inset-top)) var(--sr) 0 var(--sl);
+    .cab { background: var(--guinda-osc); color: #fff; border-bottom: 3px solid var(--dorado); padding: calc(18px + env(safe-area-inset-top)) var(--sr) 0 var(--sl);
       position: sticky; top: calc(env(safe-area-inset-top, 0px) - var(--oc, 0px)); z-index: 5; box-shadow: 0 2px 8px rgba(0,0,0,.15); }
     .cab-in, main, footer > div, footer > hr { max-width: 1200px; margin-left: auto; margin-right: auto; }
     .cab h1 { margin: 0; font-size: clamp(21px, 4.2vw, 32px); line-height: 1.2; font-weight: 700; letter-spacing: -.2px; overflow-wrap: anywhere; }
-    .cab .sub { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; color: #C9D3E6;
+    .cab .sub { display: flex; flex-wrap: wrap; gap: 6px 16px; align-items: center; color: #F3E3D8;
       font-size: clamp(13px, 2.4vw, 15px); margin-top: 6px; }
     .vivo { display: inline-flex; align-items: center; gap: 7px; min-width: 0; }
     .vivo i { flex: 0 0 auto; width: 9px; height: 9px; border-radius: 50%; background: #5ED08F; box-shadow: 0 0 0 0 rgba(94,208,143,.6);
@@ -44,9 +46,30 @@
     nav.tabs { display: flex; gap: 4px; margin-top: 12px; overflow-x: auto; overscroll-behavior-x: contain; -webkit-overflow-scrolling: touch;
       scrollbar-width: none; }
     nav.tabs::-webkit-scrollbar { display: none; }
-    nav.tabs button { flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 600; color: #C9D3E6; background: transparent; white-space: nowrap;
+    nav.tabs button { flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 600; color: #EED5CB; background: transparent; white-space: nowrap;
       border: 0; padding: 10px 16px 12px; border-bottom: 3px solid transparent; cursor: pointer; -webkit-tap-highlight-color: transparent; }
-    nav.tabs button.on { color: #fff; border-bottom-color: #fff; }
+    nav.tabs button.on { color: #fff; border-bottom-color: var(--dorado); }
+    /* franja de logos oficiales (sobre crema, como el membrete) */
+    .marca { background: var(--crema); padding: calc(8px + env(safe-area-inset-top)) var(--sr) 8px var(--sl); }
+    .marca-in { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
+    .marca img { display: block; height: 50px; width: auto; }
+    .marca .centro { flex: 1 1 auto; text-align: center; color: var(--guinda-osc); font-weight: 700; letter-spacing: .6px; font-size: 14px; }
+    .marca .centro::before, .marca .centro::after { content: ""; display: inline-block; vertical-align: middle; width: 40px; height: 1px; background: var(--dorado); margin: 0 10px; }
+    @media (max-width: 720px) { .marca img { height: 40px; } .marca .centro { display: none; } }
+    @media (max-width: 380px) { .marca img { height: 34px; } }
+    .marca + .cab { padding-top: 14px; }
+    /* barra única del proyecto (pestañas A-PVE / B-PVJ / C-PVG) */
+    .tarjetas.uno { display: block; }
+    .resumen { background: var(--tarjeta); border: 1px solid var(--borde); border-left: 6px solid var(--c); border-radius: 12px; padding: 12px 16px; }
+    .resumen .r-top { display: flex; flex-wrap: wrap; align-items: center; gap: 6px 12px; }
+    .resumen .r-tit { font-weight: 700; font-size: 17px; min-width: 0; }
+    .resumen .r-tit small { font-weight: 500; color: var(--tenue); font-size: 14px; margin-left: 4px; }
+    .resumen .r-num { margin-left: auto; display: flex; align-items: baseline; gap: 8px; white-space: nowrap; }
+    .resumen .r-num b { font-size: 26px; line-height: 1; }
+    .resumen .r-num span, .resumen .r-num em { color: var(--tenue); font-size: 13.5px; font-style: normal; }
+    .resumen .barra { margin: 10px 0 6px; }
+    .resumen .t-stats { font-size: 13px; }
+    .barra .mk { position: absolute; top: -3px; bottom: -3px; width: 2px; margin-left: -1px; background: var(--texto); opacity: .55; border-radius: 1px; }
     nav.tabs button .sm { display: none; }
     @media (max-width: 480px) {  /* que las 5 pestañas quepan sin esconder «Documentos» */
       nav.tabs { gap: 0; }
@@ -124,7 +147,7 @@
     .alertas li.vacio { display: block; color: var(--tenue); }
     footer { color: var(--tenue); font-size: 13px; line-height: 1.55; padding: 8px var(--sr) calc(36px + env(safe-area-inset-bottom)) var(--sl); overflow-wrap: anywhere; }
     footer hr { border: 0; border-top: 1px solid var(--borde); margin-top: 0; margin-bottom: 12px; }
-    footer a { color: var(--azul); }
+    footer a { color: var(--guinda-osc); }
 
     /* tableta */
     @media (max-width: 1024px) {
@@ -176,12 +199,12 @@
     .act[data-act]:focus-visible, .doc:focus-visible { outline: 2px solid var(--azul); outline-offset: 2px; border-radius: 6px; }
     .act[aria-expanded="true"], .doc[aria-expanded="true"] { border-bottom-color: transparent; }
     .tags { display: inline-flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; margin-left: 6px; vertical-align: 0; }
-    .tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600; line-height: 1.2; color: var(--azul);
-      background: #E6ECF5; border-radius: 999px; padding: 3px 8px; white-space: nowrap; }
+    .tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600; line-height: 1.2; color: var(--guinda-osc);
+      background: #F6E6E9; border-radius: 999px; padding: 3px 8px; white-space: nowrap; }
     .tag.min { color: #5B3E8A; background: #EEE8F7; } .tag.obs { color: #7A5500; background: #FCEFD2; }
     .chev { display: inline-block; font-size: 12px; color: var(--tenue); transition: transform .15s; }
     [aria-expanded="true"] .chev { transform: rotate(90deg); }
-    .det { margin: 0 0 10px 30px; padding: 12px 16px 6px; background: #F8FAFC; border: 1px solid var(--borde); border-left: 4px solid var(--gc, var(--azul));
+    .det { margin: 0 0 10px 30px; padding: 12px 16px 6px; background: #FCFAF6; border: 1px solid var(--borde); border-left: 4px solid var(--gc, var(--azul));
       border-radius: 10px; font-size: 14.5px; line-height: 1.45; min-width: 0; overflow-wrap: anywhere; }
     .det h4 { margin: 2px 0 6px; font-size: 12px; letter-spacing: .5px; text-transform: uppercase; color: var(--tenue); }
     .det section { margin-bottom: 12px; }
@@ -193,6 +216,29 @@
     .det .vacio { color: var(--tenue); margin: 0; }
     .det .sub2 { display: block; color: var(--tenue); font-size: 12.5px; font-weight: 400; margin-top: 1px; }
     .det .u { font-weight: 700; margin-right: 6px; }
+    .det li.o { overflow-wrap: anywhere; }
+    .det .nt { display: block; padding: 3px 0; } .det .nt + .nt { border-top: 1px dashed var(--pista); }
+    .det .nt .au { font-weight: 700; } .det .nt .fe { color: var(--tenue); font-size: 12.5px; margin-left: 6px; }
+    .act .subu { font-size: 13px; color: var(--texto); opacity: .85; line-height: 1.35; margin-top: 2px; overflow-wrap: anywhere; }
+    .act .subu span + span::before { content: " • "; color: var(--dorado); font-weight: 700; }
+    .act .subu b { font-weight: 600; }
+    .det .un { display: grid; grid-template-columns: 10px minmax(0, 1fr) auto; column-gap: 8px; align-items: baseline; }
+    .det .un .dot { width: 9px; height: 9px; align-self: center; } .det .un .p { font-weight: 700; font-variant-numeric: tabular-nums; }
+    .fobs { display: grid; gap: 8px; }
+    .fobs .fila2 { display: grid; grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); gap: 8px; }
+    .fobs input, .fobs select, .fobs textarea { font: inherit; font-size: 16px; color: var(--texto); background: #fff; border: 1px solid var(--borde);
+      border-radius: 8px; padding: 8px 10px; width: 100%; box-sizing: border-box; min-width: 0; }
+    .fobs textarea { min-height: 76px; resize: vertical; line-height: 1.4; }
+    .fobs input:focus, .fobs select:focus, .fobs textarea:focus { outline: 2px solid var(--gc, var(--azul)); outline-offset: -1px; border-color: transparent; }
+    .fobs .pie2 { display: flex; align-items: center; justify-content: space-between; gap: 10px; }
+    .fobs .cuenta { color: var(--tenue); font-size: 12.5px; }
+    .fobs button { font: inherit; font-size: 15px; font-weight: 600; color: #fff; background: var(--gc, var(--azul)); border: 0; border-radius: 999px;
+      padding: 9px 20px; cursor: pointer; min-height: 40px; }
+    .fobs button:disabled { opacity: .55; cursor: default; }
+    .fobs .est { margin: 0; font-size: 13.5px; min-height: 1em; }
+    .fobs .est.ok { color: var(--verde); font-weight: 600; } .fobs .est.err { color: var(--rojo); font-weight: 600; }
+    .fobs .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    @media (max-width: 480px) { .fobs .fila2 { grid-template-columns: minmax(0, 1fr); } }
     .det .ir { font-size: 12.5px; font-weight: 600; margin-left: 6px; white-space: nowrap; }
     .det .lk-act { display: grid; grid-template-columns: 10px 88px minmax(0, 1fr) auto; column-gap: 10px; align-items: baseline; }
     .det .lk-act .dot { width: 9px; height: 9px; align-self: center; }
@@ -221,6 +267,13 @@
   </style>
 </head>
 <body>
+  <div class="marca" role="banner">
+    <div class="marca-in">
+      <img src="img/logo_tamaulipas.png" width="163" height="50" alt="Tamaulipas · Gobierno del Estado">
+      <span class="centro">FORDEMUN 2026</span>
+      <img src="img/logo_victoria.png" width="124" height="50" alt="Victoria · La Capital de Tamaulipas · Administración 2024-2027">
+    </div>
+  </div>
   <header class="cab" id="cab">
     <div class="cab-in">
       <h1 id="titulo">FORDEMUN 2026 · Avance</h1>
@@ -240,7 +293,7 @@
     <div class="leyenda-wrap" id="leyWrap">
       <div>
         <h2>Avance por actividad</h2>
-        <p class="nota">Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver observaciones, documentos y minutas.</p>
+        <p class="nota">Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver sus observaciones, documentos, minutas y el avance por unidad, y para agregar una nota.</p>
       </div>
       <div class="leyenda" id="leyenda"></div>
     </div>
@@ -266,7 +319,9 @@
   var SEM = { Rojo: 'var(--rojo)', Amarillo: 'var(--amarillo)', Verde: 'var(--verde)', 'Sin datos': 'var(--gris)' };
   var EST = { vencida: 'var(--rojo)', proxima: 'var(--amarillo)', avance: 'var(--verde)', sin_avance: 'var(--gris)' };
   var datos = null, tab = 'General', timer = null, ultimaOk = 0, pidiendo = false;
-  var links = null, linksErr = '', abiertas = {}, docsAbiertos = {}, pendienteHash = location.hash;
+  var links = null, linksErr = '', linksVivo = false, abiertas = {}, docsAbiertos = {}, pendienteHash = location.hash;
+  var borr = {}, estObs = {};                              // borradores y mensajes del cuadro «Agregar observación»
+  function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k) || ''; localStorage.setItem(k, v); } catch (e) { return ''; } }
   var TIPOS = ['Minuta', 'Instrumento', 'Guía', 'Evidencia'], TIPOS_PL = { Minuta: 'Minutas', Instrumento: 'Instrumentos', 'Guía': 'Guías', Evidencia: 'Evidencias' };
 
   var q = new URLSearchParams(location.search);          // solo vista previa: ?tab=B-PVJ
@@ -281,17 +336,18 @@
   function dias(n) { return n < 0 ? 'hace ' + (-n) + ' d' : n === 0 ? 'hoy' : 'en ' + n + ' d'; }
   function nombreCorto(n) { return String(n || '').replace(/\s*\(.*?\)\s*/g, ' ').replace(/^Prevención de\s+/, '').trim().replace(/^./, function (c) { return c.toUpperCase(); }); }
 
-  function barra(p, color, prog) {
+  function barra(p, color, prog, mk) {
     var w = Math.max(0, Math.min(1, p || 0)) * 100;
     var g = prog == null ? 0 : Math.max(0, Math.min(1, prog)) * 100;
     var h = '<div class="barra" role="img" aria-label="' + pct(p) + ' real' + (prog != null ? ', ' + pct(prog) + ' programado' : '') + '"><div class="pista">';
     if (g > 0) h += '<div class="prog" style="width:' + g + '%"></div>';
     if (w > 0) h += '<div class="f" style="width:' + w + '%;background:' + color + '"></div>';
     h += '</div>';
+    if (mk && g > 0) h += '<i class="mk" style="left:' + g + '%" title="programado ' + pct(prog) + '"></i>';
     return h + '</div>';
   }
 
-  // ---- notas y documentos (links.json: copia estática de la pestaña Documentos y de Observaciones)
+  // ---- notas y documentos: en vivo desde el JSON de la app web (vinculos); respaldo: links.json (copia estática)
   function docsDe(cod) { return ((links && links.documentos) || []).filter(function (x) { return x.actividades.indexOf(cod) >= 0; }); }
   function infoAct(cod) {
     var ds = docsDe(cod);
@@ -315,13 +371,35 @@
     var i = infoAct(a.codigo), h = '';
     if (!links) return '<p class="vacio">' + (linksErr ? 'No se pudo cargar el índice de documentos.' : 'Cargando documentos…') + '</p>';
     h += '<section><h4>Observaciones</h4>' + (i.obs.length ? '<ul>' + i.obs.map(function (o) {
-      return '<li>' + (o.unidad && a.n > 1 ? '<span class="u">' + esc(o.unidad) + '</span>' : '') + esc(o.texto) + '</li>'; }).join('') + '</ul>' : '<p class="vacio">Sin observaciones registradas.</p>') + '</section>';
+      return '<li class="o">' + (o.unidad && a.n > 1 ? '<span class="u">' + esc(o.unidad) + '</span>' : '') + notas(o.texto) + '</li>'; }).join('') + '</ul>' : '<p class="vacio">Sin observaciones registradas.</p>') + '</section>';
+    var pu = (datos.porUnidad || {})[a.codigo];
+    if (pu && pu.length > 1) {
+      var nm = {}; unidadesDe(a).forEach(function (u) { nm[u.c] = u; });
+      h += '<section><h4>Avance por unidad</h4><ul>' + pu.map(function (x) {
+        var u = nm[x.u] || { t: x.u, n: '' }, col = x.alerta === 'Vencida' ? EST.vencida : x.alerta === 'Próxima' ? EST.proxima : x.pct > 0 ? EST.avance : EST.sin_avance;
+        return '<li class="un"><i class="dot" style="background:' + col + '"></i><span><b>' + esc(u.t) + '</b>' + (u.n ? ' · ' + esc(u.n) : '') +
+               '<span class="sub2">' + esc([x.estado || 'sin estado', x.fin ? 'fin ' + fecha(x.fin) : ''].filter(Boolean).join(' · ')) + '</span></span><span class="p">' + pct(x.pct) + '</span></li>';
+      }).join('') + '</ul></section>';
+    }
+    if (linksVivo) h += formObs(a);
     var ds = i.docs.map(function (x) { return '<li>' + enlaceDoc(x) + '</li>'; }).concat(i.extra.map(function (x) {
       return '<li><a href="' + esc(x.url) + '" target="_blank" rel="noopener">Liga de Drive ↗</a><span class="sub2">' + esc(x.unidad || '') + ' · escrita en la hoja</span></li>'; }));
     h += '<section><h4>Documentos</h4>' + (ds.length ? '<ul>' + ds.join('') + '</ul>' : '<p class="vacio">Sin documentos ligados.</p>') + '</section>';
     h += '<section><h4>Mencionada en</h4>' + (i.mins.length ? '<ul>' + i.mins.map(function (x) {
       return '<li>' + enlaceDoc(x) + '<a class="ir" href="#doc=' + encodeURIComponent(x.codigo) + '" data-ir-doc="' + esc(x.codigo) + '">Ver actividades de la minuta ›</a></li>'; }).join('') + '</ul>' : '<p class="vacio">Ninguna minuta la cita.</p>') + '</section>';
     return h;
+  }
+  function formObs(a) {
+    var b = borr[a.codigo] || {}, e = estObs[a.codigo] || {}, us = unidadesDe(a);
+    var sel = us.length > 1 ? '<select name="unidad" aria-label="Unidad"><option value="">Unidad (plantel, colonia o localidad)…</option>' + us.map(function (u) {
+      return '<option value="' + esc(u.c) + '"' + (b.unidad === u.c ? ' selected' : '') + '>' + esc(u.t + (u.n ? ' · ' + u.n : '')) + '</option>'; }).join('') + '</select>' : '';
+    var t = b.texto || '';
+    return '<section><h4>Agregar observación</h4><form class="fobs" data-obs="' + esc(a.codigo) + '" novalidate>' +
+      '<div class="fila2">' + sel + '<input name="nombre" maxlength="60" autocomplete="name" required placeholder="Su nombre (obligatorio)" aria-label="Su nombre (obligatorio)" value="' + esc(ls('fordemun_nombre')) + '"></div>' +
+      '<textarea name="texto" maxlength="1000" rows="3" placeholder="Escriba la observación…" aria-label="Observación">' + esc(t) + '</textarea>' +
+      '<input class="hp" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">' +
+      '<div class="pie2"><span class="cuenta">' + t.length + '/1000</span><button type="submit"' + (e.enviando ? ' disabled' : '') + '>' + (e.enviando ? 'Guardando…' : 'Guardar') + '</button></div>' +
+      '<p class="est' + (e.cls ? ' ' + e.cls : '') + '" role="status">' + esc(e.txt || 'Se agrega a la hoja con su nombre y la fecha; no borra ni cambia notas de otros.') + '</p></form></section>';
   }
   function renderDocs() {
     if (!links) { $('docs').innerHTML = '<h2>Documentos</h2><p class="nota">' + (linksErr ? 'No se pudo cargar el índice de documentos (' + esc(linksErr) + ').' : 'Cargando…') + '</p>'; return; }
@@ -331,7 +409,7 @@
       var ds = links.documentos.filter(function (x) { return x.tipo === t; });
       if (!ds.length) return;
       if (t === 'Minuta') ds.sort(function (x, y) { return String(y.fecha || '').localeCompare(String(x.fecha || '')); });  // la más reciente primero; lo demás, en el orden de la hoja
-      h += '<div class="grupo"><div class="g-cab" style="--gc:var(--azul);--gbg:#E6EAF2"><span>' + esc(TIPOS_PL[t]) + '</span><small>' + ds.length + '</small></div>';
+      h += '<div class="grupo"><div class="g-cab" style="--gc:var(--guinda);--gbg:var(--crema)"><span>' + esc(TIPOS_PL[t]) + '</span><small>' + ds.length + '</small></div>';
       ds.forEach(function (x) {
         var on = !!docsAbiertos[x.codigo];
         var meta = [x.tipo, x.fecha ? fecha(x.fecha) : 'sin fecha', x.actividades.length ? 'toca ' + plural(x.actividades.length, 'actividad', 'actividades') : 'sin actividades ligadas', x.url ? '' : 'sin archivo en Drive'].filter(Boolean).join(' · ');
@@ -354,6 +432,38 @@
     $('docs').innerHTML = h;
   }
 
+  function resumen(p) {
+    var s = p.semaforo, cls = s === 'Sin datos' ? 's-Sin' : 's-' + s;
+    return '<section class="resumen" style="--c:' + PROY_COLOR[p.sigla] + '" aria-label="Avance del proyecto ' + esc(p.proyecto) + '">' +
+      '<div class="r-top"><div class="r-tit">' + esc(p.proyecto) + '<small>' + esc(nombreCorto(p.nombre)) + '</small></div>' +
+      '<span class="pill ' + cls + '"><i></i>' + esc(s.toUpperCase()) + '</span>' +
+      '<div class="r-num"><b>' + pct(p.pct_real) + '</b><span>real</span><em><i class="sw"></i>prog. ' + pct(p.pct_programado) + '</em></div></div>' +
+      barra(p.pct_real, SEM[s], p.pct_programado, true) +
+      '<div class="t-stats">' + p.actividades + ' act · ' + p.vencidas + ' venc · ' + p.proximas + ' próx · ' + p.sin_estado + ' sin estado</div></section>';
+  }
+  // nombre de cada unidad (plantel, colonia, localidad) para el subtítulo de la actividad
+  function unidadesDe(a) {
+    var m = {}; (datos.unidades || []).forEach(function (u) { if (u.proyecto === a.proyecto) m[u.cod_unidad] = u; });
+    return (a.unidades || []).map(function (c) {
+      var u = m[c] || {};
+      if (c === a.sigla) return { c: c, t: 'Nivel proyecto', n: '' };
+      return { c: c, t: u.titulo || c, n: u.unidad || '' };
+    });
+  }
+  function subtitulo(a) {
+    var us = unidadesDe(a); if (!us.length) return '';
+    var full = us.map(function (u) { return u.t + (u.n ? ' · ' + u.n : ''); });
+    if (us.length > 2)                                     // varias unidades: una línea con los códigos; nombres y avance de cada una en el detalle
+      return '<div class="subu" title="' + esc(full.join('\n')) + '"><span><b>' + esc(a.quien || us.length + ' unidades') + '</b>: ' + esc(us.map(function (u) { return u.t; }).join(', ')) + '</span></div>';
+    return '<div class="subu">' + us.map(function (u) { return '<span><b>' + esc(u.t) + '</b>' + (u.n ? ' · ' + esc(u.n) : '') + '</span>'; }).join('') + '</div>';
+  }
+  function notas(txt) {                                    // «dd/mm hh:mm — Nombre: texto» → autor y fecha visibles
+    return String(txt).split('\n').filter(function (l) { return l.trim(); }).map(function (l) {
+      var m = /^(\d{2}\/\d{2} \d{2}:\d{2}) — ([^:]{1,60}): ([\s\S]*)$/.exec(l);
+      return m ? '<span class="nt"><span class="au">' + esc(m[2]) + '</span><span class="fe">' + esc(m[1]) + '</span><br>' + esc(m[3]) + '</span>'
+               : '<span class="nt">' + esc(l) + '</span>';
+    }).join('');
+  }
   function tarjeta(t) {
     var s = t.semaforo, cls = s === 'Sin datos' ? 's-Sin' : 's-' + s;
     return '<article class="tarjeta" style="--c:' + (t.color || 'var(--azul)') + '">' +
@@ -388,15 +498,13 @@
       // la vista Documentos no lleva tarjetas
     } else if (tab === 'General') {
       d.proyectos.forEach(function (p) { ts.push(Object.assign({}, p, { titulo: p.proyecto, sub: nombreCorto(p.nombre), color: PROY_COLOR[p.sigla] })); });
-      ts.push(Object.assign({}, d.total, { titulo: 'TOTAL', sub: 'Tres proyectos', color: 'var(--azul)' }));
+      ts.push(Object.assign({}, d.total, { titulo: 'TOTAL', sub: 'Tres proyectos', color: 'var(--guinda)' }));
     } else {
       var p = d.proyectos.filter(function (x) { return x.proyecto === tab; })[0];
-      ts.push(Object.assign({}, p, { titulo: p.proyecto, sub: nombreCorto(p.nombre), color: PROY_COLOR[p.sigla] }));
-      d.unidades.filter(function (u) { return u.proyecto === tab; }).forEach(function (u) {
-        ts.push(Object.assign({}, u, { titulo: u.titulo, sub: u.unidad, color: 'var(--azul)' }));
-      });
+      ts.push(resumen(p));                                   // pestaña de proyecto: una sola barra; sin tarjetas
     }
-    $('tarjetas').innerHTML = ts.map(tarjeta).join('');
+    $('tarjetas').classList.toggle('uno', !vDocs && tab !== 'General');
+    $('tarjetas').innerHTML = ts.map(function (t) { return typeof t === 'string' ? t : tarjeta(t); }).join('');
 
     // leyenda
     $('leyenda').innerHTML = [['Vencida', EST.vencida], ['Vence en ' + d.dias + ' días o menos', EST.proxima], ['En tiempo con avance', EST.avance], ['Sin avance o sin fecha', EST.sin_avance]]
@@ -408,23 +516,28 @@
       if (vDocs || (tab !== 'General' && p.proyecto !== tab)) return;
       var acts = d.actividades.filter(function (a) { return a.proyecto === p.proyecto; });
       if (!acts.length) return;
-      html += '<div class="grupo"><div class="g-cab" style="--gc:' + PROY_COLOR[p.sigla] + ';--gbg:' + (PROY_BG[p.sigla] || '#E6EAF2') + '">' +
+      html += '<div class="grupo"><div class="g-cab" style="--gc:' + PROY_COLOR[p.sigla] + ';--gbg:' + (PROY_BG[p.sigla] || '#F3EEE1') + '">' +
               '<span>' + esc(p.proyecto + ' · ' + nombreCorto(p.nombre)) + '</span><small>real ' + pct(p.pct_real) + ' · prog. ' + pct(p.pct_programado) + '</small></div>';
       acts.forEach(function (a) {
         var col = EST[a.estado];
-        var meta = [a.quien, a.est_txt, a.fin_txt, a.alerta].filter(Boolean).join(' · ');
+        var meta = [a.est_txt, a.fin_txt, a.alerta].filter(Boolean).join(' · ');
         var pc = a.estado === 'proxima' ? 'var(--amarillo-txt)' : a.estado === 'sin_avance' ? 'var(--tenue)' : col;
         var on = !!abiertas[a.codigo];
         html += '<div class="act" role="button" tabindex="0" aria-expanded="' + on + '" data-act="' + esc(a.codigo) + '" id="act-' + esc(a.codigo) + '">' +
                 '<i class="dot" style="background:' + col + '"></i><div class="cod">' + esc(a.codigo) + '</div>' +
-                '<div class="txt"><div class="nom" title="' + esc(a.actividad) + '"><span class="c2">' + esc(a.codigo) + '</span>' + esc(a.actividad) + '</div>' +
+                '<div class="txt"><div class="nom" title="' + esc(a.actividad) + '"><span class="c2">' + esc(a.codigo) + '</span>' + esc(a.actividad) + '</div>' + subtitulo(a) +
                 '<div class="meta' + (a.estado === 'vencida' ? ' r' : '') + '">' + esc(meta) + tags(infoAct(a.codigo)) + '</div></div>' +
                 barra(a.pct, col) + '<div class="pct" style="color:' + pc + '">' + pct(a.pct) + '</div></div>' +
                 '<div class="det' + (on ? '' : ' oculto') + '" id="det-' + esc(a.codigo) + '" style="--gc:' + PROY_COLOR[p.sigla] + '">' + (on ? detalleAct(a) : '') + '</div>';
       });
       html += '</div>';
     });
-    if (!vDocs) $('actividades').innerHTML = html || '<p class="nota">Sin actividades.</p>';
+    if (!vDocs) {
+      var ae = document.activeElement, f = ae && ae.form && ae.form.getAttribute('data-obs'), nm = f && ae.name, s0 = nm ? [ae.selectionStart, ae.selectionEnd] : null;
+      $('actividades').innerHTML = html || '<p class="nota">Sin actividades.</p>';
+      if (f) { var fm = document.querySelector('form[data-obs="' + f + '"]'), el = fm && fm.elements[nm];
+        if (el) { el.focus({ preventScroll: true }); try { if (s0 && s0[0] != null) el.setSelectionRange(s0[0], s0[1]); } catch (x) { } } }
+    }
 
     // alertas
     function filtra(l) { return l.filter(function (x) { return tab === 'General' || x.proyecto === tab; }); }
@@ -448,7 +561,8 @@
       'Criterios del Tablero de avance: ' + esc(eq) + '; estado en blanco = 0 %; «No aplica» se excluye. Vencida = fecha fin anterior al corte con avance &lt; 100 %; ' +
       'próxima (tarjetas y barras) = vence en ' + d.dias + ' días o menos; la lista muestra los próximos ' + d.diasLista + ' días. ' +
       'En las tarjetas, el tramo gris claro detrás de la barra = % programado a la fecha. Se actualiza sola cada 60 s.' +
-      (links ? ' Observaciones y documentos: copia del índice «Documentos» de la hoja generada el ' + esc(links.generado) + ' (no es en vivo).' : '') +
+      (links ? (linksVivo ? ' Observaciones y documentos: en vivo desde la hoja (columna Observaciones y pestaña «Documentos»).'
+                          : ' Observaciones y documentos: copia del índice «Documentos» de la hoja generada el ' + esc(links.generado) + ' (no es en vivo).') : '') +
       (d.avisos && d.avisos.length ? '<br>Avisos: ' + d.avisos.map(esc).join(' · ') : '');
   }
 
@@ -457,6 +571,8 @@
   function estado(cls, txt) { var e = $('vivo'); e.className = 'vivo ' + cls; $('act').textContent = txt; }
   function ok(res) {
     pidiendo = false; datos = res; ultimaOk = Date.now(); $('msg').innerHTML = '';
+    if (res.vinculos && res.vinculos.documentos) { links = res.vinculos; linksVivo = true; linksErr = ''; }  // en vivo
+    else if (linksVivo) { linksVivo = false; cargarLinks(); }                                             // respaldo
     estado('', 'Actualizado ' + ((res.meta && res.meta.generado) ? res.meta.generado.split(' ')[1] : new Date().toLocaleTimeString('es-MX')) + ' · se actualiza cada 60 s');
     render(); fijarCab(); aplicarHash();
   }
@@ -489,11 +605,12 @@
   }
   // índice de documentos: links.json junto a la página (?links=URL lo cambia en pruebas)
   function cargarLinks() {
+    if (linksVivo) return Promise.resolve();
     if (window.__LINKS_PREVIEW__) { links = window.__LINKS_PREVIEW__; return Promise.resolve(); }
     var u = q.get('links') || 'links.json';
     return fetch(u + (u.indexOf('?') < 0 ? '?' : '&') + '_=' + Date.now(), { cache: 'no-store', credentials: 'omit' })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function (j) { if (!j || !j.documentos) throw new Error('formato no válido'); links = j; linksErr = ''; },
+      .then(function (j) { if (!j || !j.documentos) throw new Error('formato no válido'); if (!linksVivo) { links = j; linksErr = ''; } },
             function (e) { linksErr = e && e.message ? e.message : String(e); })
       .then(function () { if (datos) { render(); aplicarHash(); } });
   }
@@ -536,6 +653,45 @@
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.act[data-act], .doc[data-doc]')) { e.preventDefault(); clicLista(e); }
   }
   ['actividades', 'docs'].forEach(function (id) { $(id).addEventListener('click', clicLista); $(id).addEventListener('keydown', teclaLista); });
+
+  // ---- alta de observaciones (POST text/plain → sin preflight CORS; la app web agrega la línea a la columna Observaciones)
+  function cliente() { var c = ls('fordemun_cli'); if (!c) { c = Math.random().toString(36).slice(2) + Date.now().toString(36); ls('fordemun_cli', c); } return c; }
+  function pintarEst(cod) { var fm = document.querySelector('form[data-obs="' + cod + '"]'); if (!fm) return; var e = estObs[cod] || {};
+    var p = fm.querySelector('.est'); p.className = 'est' + (e.cls ? ' ' + e.cls : ''); p.textContent = e.txt || '';
+    var bt = fm.querySelector('button'); bt.disabled = !!e.enviando; bt.textContent = e.enviando ? 'Guardando…' : 'Guardar'; }
+  $('actividades').addEventListener('input', function (e) {
+    var fm = e.target.form; if (!fm || !fm.hasAttribute('data-obs')) return;
+    var cod = fm.getAttribute('data-obs'), b = borr[cod] = borr[cod] || {};
+    if (e.target.name === 'texto') { b.texto = e.target.value; fm.querySelector('.cuenta').textContent = e.target.value.length + '/1000'; }
+    if (e.target.name === 'nombre') { ls('fordemun_nombre', e.target.value.trim());
+      [].forEach.call(document.querySelectorAll('form[data-obs] input[name="nombre"]'), function (x) { if (x !== e.target) x.value = e.target.value; }); }
+    if (e.target.name === 'unidad') b.unidad = e.target.value;
+  });
+  $('actividades').addEventListener('change', function (e) { if (e.target.name === 'unidad' && e.target.form) { var c = e.target.form.getAttribute('data-obs'); (borr[c] = borr[c] || {}).unidad = e.target.value; } });
+  $('actividades').addEventListener('submit', function (e) {
+    var fm = e.target; if (!fm.hasAttribute('data-obs')) return; e.preventDefault();
+    var cod = fm.getAttribute('data-obs'), el = fm.elements, texto = el.texto.value.trim(), unidad = el.unidad ? el.unidad.value : '';
+    if (estObs[cod] && estObs[cod].enviando) return;
+    if (el.unidad && !unidad) { estObs[cod] = { cls: 'err', txt: 'Elija la unidad (plantel, colonia o localidad).' }; pintarEst(cod); el.unidad.focus(); return; }
+    if (el.nombre.value.trim().length < 2) { estObs[cod] = { cls: 'err', txt: 'Escriba su nombre (obligatorio); se recuerda en este dispositivo.' }; pintarEst(cod); el.nombre.focus(); return; }
+    if (texto.length < 2) { estObs[cod] = { cls: 'err', txt: 'Escriba la observación.' }; pintarEst(cod); el.texto.focus(); return; }
+    if (texto.length > 1000) { estObs[cod] = { cls: 'err', txt: 'Máximo 1000 caracteres.' }; pintarEst(cod); return; }
+    estObs[cod] = { enviando: true, txt: 'Guardando en la hoja…' }; pintarEst(cod);
+    var cuerpo = { action: 'addObs', codigo: cod, unidad: unidad || ((datos.actividades.filter(function (x) { return x.codigo === cod; })[0] || {}).unidades || [])[0] || '',
+                   nombre: el.nombre.value.trim(), texto: texto, cliente: cliente(), web: el.web.value };
+    fetch(API, { method: 'POST', body: JSON.stringify(cuerpo), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit', redirect: 'follow', cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error(j && j.error ? j.error : 'respuesta vacía');
+        borr[cod] = { unidad: unidad };
+        if (links) { var o = links.observaciones = links.observaciones || {}, l = o[cod] = o[cod] || [], x = l.filter(function (y) { return y.unidad === j.unidad; })[0];
+          if (x) x.texto += '\n' + j.linea; else l.push({ unidad: j.unidad, texto: j.linea }); }
+        estObs[cod] = { cls: 'ok', txt: 'Guardada ✓ ' + j.fecha + (j.unidad ? ' · ' + j.unidad : '') + '. Actualizando…' };
+        render(); fijarCab(); pidiendo = false; cargar(); programar();
+        setTimeout(function () { if (estObs[cod] && estObs[cod].cls === 'ok') { estObs[cod].txt = 'Guardada ✓ ' + j.fecha + (j.unidad ? ' · ' + j.unidad : '') + '.'; pintarEst(cod); } }, 8000);
+      })
+      .catch(function (err) { estObs[cod] = { cls: 'err', txt: 'No se guardó: ' + (err && err.message ? err.message : err) }; pintarEst(cod); });
+  });
 
   function cargar() {
     if (pidiendo) return;
