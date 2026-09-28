@@ -77,6 +77,7 @@
       nav.tabs button .lg { display: none; }
       nav.tabs button .sm { display: inline; }
     }
+    @media (max-width: 420px) { nav.tabs button { padding-left: 6px !important; padding-right: 6px !important; font-size: 13.5px !important; } }
     main { padding: 20px var(--sr) 20px var(--sl); }
     .aviso { background: #FFF4E5; border: 1px solid #F5C77E; color: #7A4B00; border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: 14px; }
     .aviso.err { background: #FDECEC; border-color: #F2A7A7; color: #8A1C1C; }
@@ -336,8 +337,8 @@
 
     <div class="leyenda-wrap" id="leyWrap">
       <div>
-        <h2>Avance por actividad</h2>
-        <p class="nota">Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver sus observaciones, documentos, minutas y el avance por unidad, y para agregar una nota.</p>
+        <h2 id="tAct">Avance por actividad</h2>
+        <p class="nota" id="nAct">Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver sus observaciones, documentos, minutas y el avance por unidad, y para agregar una nota.</p>
       </div>
       <div class="leyenda" id="leyenda"></div>
     </div>
@@ -369,15 +370,22 @@
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k) || ''; localStorage.setItem(k, v); } catch (e) { return ''; } }
   var TIPOS = ['Minuta', 'Instrumento', 'Guía', 'Evidencia'], TIPOS_PL = { Minuta: 'Minutas', Instrumento: 'Instrumentos', 'Guía': 'Guías', Evidencia: 'Evidencias' };
 
-  var q = new URLSearchParams(location.search);          // ?tab=B-PVJ&vista=cal&unidad=PVE-P1M&estado=vencidas&resp=Consultora
-  if (q.get('tab')) tab = q.get('tab');
-  var vista = q.get('vista') === 'cal' ? 'cal' : 'lista';
+  var q = new URLSearchParams(location.search);          // ?tab=B-PVJ&unidad=PVE-P1M&estado=vencidas&resp=Consultora · ?tab=calendario&proyecto=B-PVJ
+  var TAB_URL = { calendario: 'Calendario', documentos: 'Documentos', general: 'General' };
+  if (q.get('tab')) tab = TAB_URL[q.get('tab').toLowerCase()] || q.get('tab');
+  var calProy = q.get('proyecto') || '', urlNormalizada = false;                   // sub-selector del Calendario: '' = Todos
+  if (q.get('vista') === 'cal') {                          // ligas viejas (?vista=cal) → pestaña Calendario
+    if (/^[A-Z]-[A-Z]{2,6}$/.test(tab) && !calProy) calProy = tab;
+    tab = 'Calendario';
+  }
   var filtro = { unidad: q.get('unidad') || '', estado: q.get('estado') || '', resp: q.get('resp') || '' };
   var ESTADOS_F = [['', 'Todas'], ['vencidas', 'Vencidas'], ['proximas', 'Próximas'], ['proceso', 'En proceso'], ['sin_iniciar', 'Sin iniciar'], ['completadas', 'Completadas']];
   if (!ESTADOS_F.some(function (e) { return e[0] === filtro.estado; })) filtro.estado = '';
-  function guardarUrl() {                                  // recuerda vista y filtros en la URL (se puede compartir)
-    var u = new URLSearchParams(location.search);
-    [['tab', tab === 'General' ? '' : tab], ['vista', vista === 'cal' ? 'cal' : ''], ['unidad', filtro.unidad], ['estado', filtro.estado], ['resp', filtro.resp]].forEach(function (kv) {
+  function guardarUrl() {                                  // recuerda pestaña y filtros en la URL (se puede compartir)
+    var u = new URLSearchParams(location.search); u.delete('vista');
+    var vDoc = tab === 'Documentos';
+    [['tab', tab === 'General' ? '' : tab === 'Calendario' ? 'calendario' : tab === 'Documentos' ? 'documentos' : tab], ['proyecto', tab === 'Calendario' ? calProy : ''],
+     ['unidad', vDoc ? '' : filtro.unidad], ['estado', vDoc ? '' : filtro.estado], ['resp', vDoc ? '' : filtro.resp]].forEach(function (kv) {
       if (kv[1]) u.set(kv[0], kv[1]); else u.delete(kv[0]); });
     var qs = u.toString();
     history.replaceState(null, '', location.pathname + (qs ? '?' + qs : '') + location.hash);
@@ -568,8 +576,13 @@
     h += '<div class="g-grid">' + lineas + (hoy >= R.lo && hoy <= R.hi ? '<i class="hoy" style="left:' + pos(hoy + 0.5) + '"><span>hoy ' + esc(dm(datos.corte)) + '</span></i>' : '') + '</div>';
     return h + '</div></div></div>';
   }
+  function proyEnVista(p) {                                // proyectos que muestra la pestaña actual
+    if (tab === 'General') return true;
+    if (tab === 'Calendario') return !calProy || p.proyecto === calProy;
+    return p.proyecto === tab;
+  }
   function herramientas(todas, visibles) {
-    var ps = datos.proyectos.filter(function (p) { return tab === 'General' || p.proyecto === tab; });
+    var ps = datos.proyectos.filter(proyEnVista), varios = ps.length > 1;
     var us = [], resp = {};
     ps.forEach(function (p) {
       datos.actividades.filter(function (a) { return a.proyecto === p.proyecto; }).forEach(function (a) {
@@ -580,13 +593,14 @@
     us.sort(function (x, y) { var nx = x.t === 'Nivel proyecto', ny = y.t === 'Nivel proyecto'; return x.c.slice(0, 3) === y.c.slice(0, 3) ? (nx === ny ? x.c.localeCompare(y.c) : nx ? -1 : 1) : 0; });
     var chip = function (f, v, txt, tit, dot) { return '<button type="button" class="chip' + (filtro[f] === v ? ' on' : '') + '" data-f="' + f + '" data-v="' + esc(v) + '"' + (tit ? ' title="' + esc(tit) + '"' : '') + ' aria-pressed="' + (filtro[f] === v) + '">' + (dot ? '<i style="background:' + dot + '"></i>' : '') + esc(txt) + '</button>'; };
     var dotE = { vencidas: EST.vencida, proximas: EST.proxima, proceso: EST.avance, sin_iniciar: EST.sin_avance, completadas: 'var(--verde)' };
-    var h = '<div class="fila-h"><div class="seg" role="group" aria-label="Vista"><button type="button" data-vista="lista" class="' + (vista === 'lista' ? 'on' : '') + '" aria-pressed="' + (vista === 'lista') + '">Lista</button>' +
-            '<button type="button" data-vista="cal" class="' + (vista === 'cal' ? 'on' : '') + '" aria-pressed="' + (vista === 'cal') + '">Calendario</button></div>' +
+    var seg = tab !== 'Calendario' ? '' : '<div class="seg" role="group" aria-label="Proyecto">' + [['', 'Todos']].concat(datos.proyectos.map(function (p) { return [p.proyecto, p.proyecto]; })).map(function (o) {
+      return '<button type="button" data-proy="' + esc(o[0]) + '" class="' + (calProy === o[0] ? 'on' : '') + '" aria-pressed="' + (calProy === o[0]) + '">' + esc(o[1]) + '</button>'; }).join('') + '</div>';
+    var h = '<div class="fila-h">' + seg +
             '<span class="cuenta-f">' + (hayFiltro() ? visibles + ' de ' + todas + ' actividades' : todas + ' actividades') + '</span>' +
             (hayFiltro() ? '<button type="button" class="limpiar" data-limpiar="1">Quitar filtros</button>' : '') + '</div>';
     h += '<div class="chips" role="group" aria-label="Estado"><span class="et">Estado</span>' + ESTADOS_F.map(function (e) { return chip('estado', e[0], e[1], '', dotE[e[0]]); }).join('') + '</div>';
-    h += '<div class="chips" role="group" aria-label="Unidad"><span class="et">' + (tab === 'B-PVJ' ? 'Colonia' : tab === 'C-PVG' ? 'Localidad' : tab === 'A-PVE' ? 'Escuela' : 'Unidad') + '</span>' + chip('unidad', '', 'Todas') +
-         us.map(function (u) { return chip('unidad', u.c, u.t === 'Nivel proyecto' ? 'Nivel proyecto' + (tab === 'General' ? ' ' + u.c : '') : u.t, u.n || ''); }).join('') + '</div>';
+    h += '<div class="chips" role="group" aria-label="Unidad"><span class="et">' + (varios ? 'Unidad' : ps[0] && ps[0].sigla === 'PVJ' ? 'Colonia' : ps[0] && ps[0].sigla === 'PVG' ? 'Localidad' : 'Escuela') + '</span>' + chip('unidad', '', 'Todas') +
+         us.map(function (u) { return chip('unidad', u.c, u.t === 'Nivel proyecto' ? 'Nivel proyecto' + (varios ? ' ' + u.c : '') : u.t, u.n || ''); }).join('') + '</div>';
     h += '<div class="chips" role="group" aria-label="Responsable"><span class="et">Responsable</span>' + chip('resp', '', 'Todos') +
          Object.keys(resp).sort().map(function (r) { return chip('resp', r, r); }).join('') + '</div>';
     return h;
@@ -639,22 +653,27 @@
     if (!datos) return;
     var d = datos, m = d.meta || {};
     // pestañas
-    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Documentos']);
+    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Documentos']);
     if (nombres.indexOf(tab) < 0) tab = 'General';
     $('tabs').innerHTML = nombres.map(function (n) {
-      return '<button type="button" role="tab" aria-selected="' + (n === tab) + '" class="' + (n === tab ? 'on' : '') + '" data-tab="' + esc(n) + '" aria-label="' + esc(n) + '">' + (n === 'Documentos' ? '<span class="lg">Documentos</span><span class="sm">Docs</span>' : esc(n)) + '</button>';
+      return '<button type="button" role="tab" aria-selected="' + (n === tab) + '" class="' + (n === tab ? 'on' : '') + '" data-tab="' + esc(n) + '" aria-label="' + esc(n) + '">' + (n === 'Documentos' ? '<span class="lg">Documentos</span><span class="sm">Docs</span>' : n === 'Calendario' ? '<span class="lg">Calendario</span><span class="sm">Calend.</span>' : esc(n)) + '</button>';
     }).join('');
-    var vDocs = tab === 'Documentos';
-    $('titulo').textContent = vDocs ? 'FORDEMUN 2026 · Documentos' : 'FORDEMUN 2026 · Avance' + (tab === 'General' ? '' : ' · ' + tab);
-    ['tarjetas', 'leyWrap', 'actividades', 'alertas'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs); });
+    var vDocs = tab === 'Documentos', vCal = tab === 'Calendario';
+    if (calProy && !d.proyectos.some(function (p) { return p.proyecto === calProy; })) calProy = '';
+    $('titulo').textContent = vDocs ? 'FORDEMUN 2026 · Documentos' : vCal ? 'FORDEMUN 2026 · Calendario' : 'FORDEMUN 2026 · Avance' + (tab === 'General' ? '' : ' · ' + tab);
+    ['leyWrap', 'actividades'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs); });
+    ['tarjetas', 'alertas'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs || vCal); });
+    $('tAct').textContent = vCal ? 'Calendario de actividades' : 'Avance por actividad';
+    $('nAct').textContent = vCal ? 'Barras de la fecha de inicio a la fecha fin; el relleno es el % real y la línea guinda marca hoy. Toque una barra para abrir la actividad en su proyecto.'
+      : 'Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver sus observaciones, documentos, minutas y el avance por unidad, y para agregar una nota.';
     $('docs').classList.toggle('oculto', !vDocs);
     if (vDocs) renderDocs();
     $('corte').textContent = 'Corte al ' + fecha(d.corte);
 
     // tarjetas
     var ts = [];
-    if (vDocs) {
-      // la vista Documentos no lleva tarjetas
+    if (vDocs || vCal) {
+      // Documentos y Calendario no llevan tarjetas
     } else if (tab === 'General') {
       d.proyectos.forEach(function (p) { ts.push(Object.assign({}, p, { titulo: p.proyecto, sub: nombreCorto(p.nombre), color: PROY_COLOR[p.sigla] })); });
       ts.push(Object.assign({}, d.total, { titulo: 'TOTAL', sub: 'Tres proyectos', color: 'var(--guinda)' }));
@@ -662,27 +681,27 @@
       var p = d.proyectos.filter(function (x) { return x.proyecto === tab; })[0];
       ts.push(resumen(p));                                   // pestaña de proyecto: una sola barra; sin tarjetas
     }
-    $('tarjetas').classList.toggle('uno', !vDocs && tab !== 'General');
+    $('tarjetas').classList.toggle('uno', !vDocs && !vCal && tab !== 'General');
     $('tarjetas').innerHTML = ts.map(function (t) { return typeof t === 'string' ? t : tarjeta(t); }).join('');
 
     // leyenda
     $('leyenda').innerHTML = [['Vencida', EST.vencida], ['Vence en ' + d.dias + ' días o menos', EST.proxima], ['En tiempo con avance', EST.avance], ['Sin avance o sin fecha', EST.sin_avance]]
       .map(function (l) { return '<span><i class="dot" style="background:' + l[1] + '"></i>' + esc(l[0]) + '</span>'; }).join('');
 
-    // actividades por proyecto (Lista o Calendario, con filtros)
+    // actividades por proyecto (lista en General y proyectos; Gantt en la pestaña Calendario), con filtros
     var html = '', nTodas = 0, nVis = 0, porP = [];
     d.proyectos.forEach(function (p) {
-      if (vDocs || (tab !== 'General' && p.proyecto !== tab)) return;
+      if (vDocs || !proyEnVista(p)) return;
       var todas = d.actividades.filter(function (a) { return a.proyecto === p.proyecto; });
       var acts = todas.map(aplicarFiltro).filter(Boolean);
       nTodas += todas.length; nVis += acts.length;
       porP.push({ p: p, acts: acts, todas: todas });
     });
-    var R = vista === 'cal' ? rango([].concat.apply([], porP.map(function (x) { return x.acts; }))) : null;
+    var R = vCal ? rango([].concat.apply([], porP.map(function (x) { return x.acts; }))) : null;
     porP.forEach(function (x) {
       var p = x.p, acts = x.acts;
-      if (!x.todas.length || (!acts.length && hayFiltro() && tab === 'General')) return;
-      if (vista === 'cal') {
+      if (!x.todas.length || (!acts.length && hayFiltro() && porP.length > 1)) return;
+      if (vCal) {
         html += '<div class="grupo"><div class="g-cab" style="--gc:' + PROY_COLOR[p.sigla] + ';--gbg:' + (PROY_BG[p.sigla] || '#F3EEE1') + '">' +
                 '<span>' + esc(p.proyecto + ' · ' + nombreCorto(p.nombre)) + '</span><small>real ' + pct(p.pct_real) + ' · prog. ' + pct(p.pct_programado) + '</small></div>' +
                 (acts.length ? gantt(p, acts, R) : '<p class="g-vacio">Ninguna actividad con estos filtros.</p>') + '</div>';
@@ -750,6 +769,7 @@
     else if (linksVivo) { linksVivo = false; cargarLinks(); }                                             // respaldo
     estado('', 'Actualizado ' + ((res.meta && res.meta.generado) ? res.meta.generado.split(' ')[1] : new Date().toLocaleTimeString('es-MX')) + ' · se actualiza cada 60 s');
     render(); fijarCab(); aplicarHash();
+    if (!urlNormalizada) { urlNormalizada = true; guardarUrl(); }   // p. ej. convierte ?vista=cal (liga vieja) en ?tab=calendario
   }
   function fallo(err) {
     pidiendo = false;
@@ -795,7 +815,7 @@
     el.classList.remove('foco'); void el.offsetWidth; el.classList.add('foco'); }
   function irAct(cod) {
     var p = proyDe(cod); if (!p) return;
-    tab = (tab === p || tab === 'General') ? tab : p; abiertas[cod] = true; vista = 'lista'; render(); fijarCab();
+    tab = (tab === p || tab === 'General') ? tab : p; abiertas[cod] = true; render(); fijarCab();   // desde Calendario/Documentos → pestaña del proyecto
     if (!$('act-' + cod) && hayFiltro()) { filtro = { unidad: '', estado: '', resp: '' }; render(); }   // estaba oculta por un filtro
     history.replaceState(null, '', location.pathname + location.search + '#act=' + encodeURIComponent(cod)); guardarUrl();
     setTimeout(function () { llevar($('act-' + cod)); }, 30);
@@ -886,7 +906,7 @@
   $('tabs').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-tab]'); if (!b) return;
     tab = b.getAttribute('data-tab');
-    if (filtro.unidad && tab !== 'General' && tab !== 'Documentos' && datos && !datos.actividades.some(function (a) { return a.proyecto === tab && (a.unidades || []).indexOf(filtro.unidad) >= 0; })) filtro.unidad = '';
+    if (filtro.unidad && datos && tab !== 'Documentos' && !datos.actividades.some(function (a) { return proyEnVista({ proyecto: a.proyecto }) && (a.unidades || []).indexOf(filtro.unidad) >= 0; })) filtro.unidad = '';
     render(); fijarCab(); window.scrollTo({ top: 0, behavior: 'smooth' });
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
     guardarUrl();
@@ -894,7 +914,10 @@
   $('btnAct').addEventListener('click', function () { cargar(); programar(); });
   $('herr').addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
-    if (b.hasAttribute('data-vista')) vista = b.getAttribute('data-vista');
+    if (b.hasAttribute('data-proy')) {
+      calProy = b.getAttribute('data-proy');
+      if (filtro.unidad && !datos.actividades.some(function (a) { return proyEnVista({ proyecto: a.proyecto }) && (a.unidades || []).indexOf(filtro.unidad) >= 0; })) filtro.unidad = '';
+    }
     else if (b.hasAttribute('data-limpiar')) filtro = { unidad: '', estado: '', resp: '' };
     else if (b.hasAttribute('data-f')) { var f = b.getAttribute('data-f'), v = b.getAttribute('data-v'); filtro[f] = filtro[f] === v ? '' : v; }
     else return;
