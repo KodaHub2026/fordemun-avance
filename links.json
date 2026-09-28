@@ -1,0 +1,111 @@
+{
+ "version": 1,
+ "generado": "28/09/2026 15:09",
+ "nota": "Copia estática de la pestaña Documentos y de las columnas Observaciones/Documentos de la hoja de control.",
+ "documentos": [
+  {
+   "codigo": "MIN-07-09-26",
+   "titulo": "Minuta 07-09-26 · Primera reunión (onboarding) · v7 final APA 7",
+   "tipo": "Minuta",
+   "fecha": "2026-09-07",
+   "url": "https://drive.google.com/file/d/1UOIuBQz46nzDu2LxwpMq-nms9HMG9nbj/view",
+   "actividades": [
+    "PVE-ACT00"
+   ],
+   "notas": "Se confirman las cinco primarias; pendientes: domicilios/fichas de las escuelas y cartas u oficios de presentación (no entrar sin oficio)."
+  },
+  {
+   "codigo": "MIN-15-09-26",
+   "titulo": "Minuta 15-09-26 · Coordinación y Meet de equipo · v8 final APA 7",
+   "tipo": "Minuta",
+   "fecha": "2026-09-15",
+   "url": "https://drive.google.com/file/d/12r64UWFYX0yPiGa-O7_S-VJNu7zc3QUl/view",
+   "actividades": [
+    "PVE-ACT02",
+    "PVG-ACT02"
+   ],
+   "notas": "Esquema Ejecución vs. Evidencias y códigos de unidad; flujo PDF → Drive → OCR → Excel para las encuestas (aún no aplicadas; la minuta 28-09 lo liga a PVE/PVG-ACT02); seguimiento ágil de 15 min y diario de campo."
+  },
+  {
+   "codigo": "MIN-28-09-26",
+   "titulo": "Minuta 28-09-26 · Revisión del tablero, datos de control y línea base · v5",
+   "tipo": "Minuta",
+   "fecha": "2026-09-28",
+   "url": "https://drive.google.com/file/d/1Cm0WGXm6ElbRvQB0iPViWN_24Uj0xwM2/view",
+   "actividades": [
+    "PVE-ACT00",
+    "PVE-ACT02",
+    "PVG-ACT02"
+   ],
+   "notas": "Encuesta como línea base: aplicar ahora y reaplicar al cierre (cita PVE-E02 y PVG-E02 = ACT02). Pendientes abiertos del 07-09: fichas de escuelas y oficios (PVE-ACT00). Única versión en Drive (v5)."
+  },
+  {
+   "codigo": "PVE-LA",
+   "titulo": "Encuesta PVE-LA · Línea base Alumnos (PDF)",
+   "tipo": "Instrumento",
+   "fecha": "2026-09-18",
+   "url": "https://drive.google.com/file/d/1AdmjXzUV9FHoWDuQBEZzV9ZYbngTGPEs/view",
+   "actividades": [
+    "PVE-ACT02"
+   ],
+   "notas": "Encuesta a alumnos: percepción de seguridad (CPTED), roles de violencia y factores personales. Word editable en PVE › Materiales e instrumentos › Instrumentos."
+  },
+  {
+   "codigo": "PVE-LP",
+   "titulo": "Encuesta PVE-LP · Línea base Personal (PDF)",
+   "tipo": "Instrumento",
+   "fecha": "2026-09-18",
+   "url": "https://drive.google.com/file/d/1_fpR53fhr-ThByy1YhVAviP746RcHjMR/view",
+   "actividades": [
+    "PVE-ACT02"
+   ],
+   "notas": "Encuesta al personal (docentes, directivos, administrativos). Word editable en PVE › Materiales e instrumentos › Instrumentos."
+  },
+  {
+   "codigo": "PVE-LD",
+   "titulo": "Instrumento PVE-LD · Línea base Documental (PDF)",
+   "tipo": "Instrumento",
+   "fecha": "2026-09-28",
+   "url": "https://drive.google.com/file/d/1fJRXEm3wSCvu0uEIRW77ha4mPugFSVUk/view",
+   "actividades": [
+    "PVE-ACT01"
+   ],
+   "notas": "Instrumento de recopilación y análisis documental; su encabezado lo ubica en el «Diagnóstico de violencia y seguridad escolar». Word en Encuestas e Instrumentos."
+  },
+  {
+   "codigo": "PVE-FA",
+   "titulo": "Encuesta PVE-FA · Final Alumnos",
+   "tipo": "Instrumento",
+   "fecha": null,
+   "url": null,
+   "actividades": [
+    "PVE-ACT02"
+   ],
+   "notas": "Sin archivo en Drive todavía: el libro de códigos la define como la encuesta final a alumnos (reaplicación al cierre, acuerdo 3 de la minuta 28-09). Pegar la liga cuando exista."
+  },
+  {
+   "codigo": "PVE-FP",
+   "titulo": "Encuesta PVE-FP · Final Personal",
+   "tipo": "Instrumento",
+   "fecha": null,
+   "url": null,
+   "actividades": [
+    "PVE-ACT02"
+   ],
+   "notas": "Sin archivo en Drive todavía: el libro de códigos la define como la encuesta final al personal. Pegar la liga cuando exista."
+  },
+  {
+   "codigo": "GUI-PVJ-01",
+   "titulo": "Guía práctica de contextualización · Jóvenes en Prevención",
+   "tipo": "Guía",
+   "fecha": "2026-09-15",
+   "url": "https://drive.google.com/file/d/1CbBS1sOwqYSYroeVUGbvsY8l_eMR8b9g/view",
+   "actividades": [
+    "PVJ-ACT01"
+   ],
+   "notas": "Guía del apartado 3.1 «Contextualización de las problemáticas» para las colonias Luis Echeverría, Estudiantil y San Marcos 4. PVJ › Materiales e instrumentos. PVJ y PVG aún no tienen encuestas."
+  }
+ ],
+ "observaciones": {},
+ "ligas_extra": {}
+}
