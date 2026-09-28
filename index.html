@@ -16,7 +16,7 @@
       --fondo: #F4F6F9; --tarjeta: #FFFFFF; --borde: #DDE2E8; --texto: #1F2933; --tenue: #616E7C; --pista: #E6E9EE;
       --azul: #1F3864; --rojo: #D64545; --amarillo: #E8A317; --amarillo-txt: #9A6B00; --verde: #2E9E5B; --gris: #9AA5B1;
       --pve: #028090; --pvj: #C98A2B; --pvg: #A26769;
-      --rayado: repeating-linear-gradient(-45deg, rgba(31,41,51,.34) 0 2px, rgba(31,41,51,.10) 2px 5px);
+      --prog: #C9D0D9;                                      /* relleno secundario = programado */
       --sp: 20px;                                           /* margen lateral */
       --sl: max(var(--sp), env(safe-area-inset-left)); --sr: max(var(--sp), env(safe-area-inset-right));
     }
@@ -51,16 +51,12 @@
     .aviso { background: #FFF4E5; border: 1px solid #F5C77E; color: #7A4B00; border-radius: 10px; padding: 10px 14px; margin-bottom: 16px; font-size: 14px; }
     .aviso.err { background: #FDECEC; border-color: #F2A7A7; color: #8A1C1C; }
 
-    /* barras de progreso: pista redondeada, relleno proporcional, zona rayada + marca = programado */
+    /* barras de progreso: pista redondeada, relleno proporcional; gris claro detrás = programado */
     .barra { position: relative; margin: 14px 0 12px; }
     .barra .pista { position: relative; height: 14px; background: var(--pista); border-radius: 99px; overflow: hidden; }
-    .barra .prog { position: absolute; left: 0; top: 0; bottom: 0; background: var(--rayado); }
+    .barra .prog { position: absolute; left: 0; top: 0; bottom: 0; background: var(--prog); border-radius: 0 3px 3px 0; }
     .barra .f { position: absolute; left: 0; top: 0; bottom: 0; border-radius: 0 3px 3px 0; min-width: 4px; }  /* sin tapa redonda: 5 % no parece un punto */
-    .barra .m { position: absolute; top: -4px; bottom: -4px; width: 2px; margin-left: -1px; background: var(--texto); border-radius: 1px;
-      box-shadow: 0 0 0 1.5px #fff; }
-    .sw { display: inline-block; width: 18px; height: 10px; border-radius: 99px; background: var(--rayado), var(--pista); vertical-align: -1px;
-      margin-right: 6px; position: relative; }
-    .sw::after { content: ""; position: absolute; right: -1px; top: -3px; bottom: -3px; width: 2px; background: var(--texto); border-radius: 1px; }
+    .sw { display: inline-block; width: 16px; height: 8px; border-radius: 99px; background: var(--prog); vertical-align: 0; margin-right: 6px; }
 
     /* tarjetas: 1 col. celular, 2 tableta, 4 escritorio */
     .tarjetas { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
@@ -235,7 +231,6 @@
     if (g > 0) h += '<div class="prog" style="width:' + g + '%"></div>';
     if (w > 0) h += '<div class="f" style="width:' + w + '%;background:' + color + '"></div>';
     h += '</div>';
-    if (g > 0) h += '<div class="m" style="left:clamp(1px,' + g + '%,calc(100% - 1px))" title="Programado ' + pct(prog) + '"></div>';
     return h + '</div>';
   }
 
@@ -323,7 +318,7 @@
       ' (pestañas A-PVE, B-PVJ, C-PVG' + (m.ultimaModificacion ? '; modificada ' + esc(m.ultimaModificacion) : '') + '). ' +
       'Criterios del Tablero de avance: ' + esc(eq) + '; estado en blanco = 0 %; «No aplica» se excluye. Vencida = fecha fin anterior al corte con avance &lt; 100 %; ' +
       'próxima (tarjetas y barras) = vence en ' + d.dias + ' días o menos; la lista muestra los próximos ' + d.diasLista + ' días. ' +
-      'En las tarjetas, la zona rayada con marca negra = % programado a la fecha. Se actualiza sola cada 60 s.' +
+      'En las tarjetas, el tramo gris claro detrás de la barra = % programado a la fecha. Se actualiza sola cada 60 s.' +
       (d.avisos && d.avisos.length ? '<br>Avisos: ' + d.avisos.map(esc).join(' · ') : '');
   }
 
