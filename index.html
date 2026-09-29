@@ -514,11 +514,11 @@
     var pu = (datos.porUnidad || {})[a.codigo];
     if (pu && pu.length) return pu;
     return (a.unidades || []).map(function (u) { return { u: u, pct: a.pct, estado: a.est_txt, ini: null, fin: null,
-      alerta: a.estado === 'vencida' ? 'Vencida' : a.estado === 'proxima' ? 'Próxima' : '', resp: '' }; });
+      alerta: a.estado === 'vencida' ? 'Vencida' : a.estado === 'proxima' ? 'Próxima' : '', resp: '', per: '' }; });
   }
   function cumple(r) {
     if (filtro.unidad && r.u !== filtro.unidad) return false;
-    if (filtro.resp && (r.resp || 'Por definir') !== filtro.resp) return false;
+    if (filtro.resp && !cumpleResp(r, filtro.resp)) return false;
     var e = filtro.estado, p = +r.pct || 0;
     if (e === 'vencidas') return r.alerta === 'Vencida';
     if (e === 'proximas') return r.alerta === 'Próxima';
@@ -528,6 +528,12 @@
     return true;
   }
   var panelF = false, borr = {};                           // panel de filtros abierto y valores en edición
+  // Responsable: por persona (columna «Responsable (persona)»: Campo / Logística / Por definir); «ent:X» filtra por entidad (Consultora, Bienestar Social…)
+  function cumpleResp(r, v) {
+    if (v.indexOf('ent:') === 0) return (r.resp || 'Por definir') === v.slice(4);
+    var per = r.per || 'Por definir';
+    return per === v || (!/^(Campo|Logística|Por definir)/.test(v) && (r.resp || '') === v);   // ligas viejas ?resp=Consultora
+  }
   function hayFiltro() { return !!(filtro.unidad || filtro.estado || filtro.resp); }
   function estadoDe(rs) {
     if (rs.some(function (r) { return r.alerta === 'Vencida'; })) return 'vencida';
@@ -597,25 +603,28 @@
   }
   function herramientas(todas, visibles) {
     var ps = datos.proyectos.filter(proyEnVista), varios = ps.length > 1;
-    var us = [], resp = {};
+    var us = [], resp = {}, ent = {};
     ps.forEach(function (p) {
       datos.actividades.filter(function (a) { return a.proyecto === p.proyecto; }).forEach(function (a) {
         unidadesDe(a).forEach(function (u) { if (!us.some(function (x) { return x.c === u.c; })) us.push(u); });
-        filasAct(a).forEach(function (r) { resp[r.resp || 'Por definir'] = 1; });
+        filasAct(a).forEach(function (r) { resp[r.per || 'Por definir'] = 1; if (r.resp) ent[r.resp] = 1; });
       });
     });
     us.sort(function (x, y) { var nx = x.t === 'Nivel proyecto', ny = y.t === 'Nivel proyecto'; return x.c.slice(0, 3) === y.c.slice(0, 3) ? (nx === ny ? x.c.localeCompare(y.c) : nx ? -1 : 1) : 0; });
     var etU = varios ? 'Unidad' : ps[0] && ps[0].sigla === 'PVJ' ? 'Colonia' : ps[0] && ps[0].sigla === 'PVG' ? 'Localidad' : 'Escuela';
     var val = panelF ? borr : filtro;                      // valores en edición mientras el panel está abierto
-    var opt = function (v, txt, sel) { return '<option value="' + esc(v) + '"' + (v === sel ? ' selected' : '') + '>' + esc(txt) + '</option>'; };
+    var opt = function (v, txt, sel) { return '<option value="' + esc(v) + '"' + (v === '#' ? ' disabled' : '') + (v === sel ? ' selected' : '') + '>' + esc(txt) + '</option>'; };
     var selF = function (f, et, ops) { return '<label>' + esc(et) + '<select data-sel="' + f + '" class="' + (val[f] ? 'on' : '') + '">' + ops.map(function (o) { return opt(o[0], o[1], val[f]); }).join('') + '</select></label>'; };
     var opsU = [['', 'Todas']].concat(us.map(function (u) { return [u.c, u.t === 'Nivel proyecto' ? 'Nivel proyecto' + (varios ? ' ' + u.c : '') : u.t + (u.n ? ' · ' + u.n : '')]; }));
-    var opsR = [['', 'Todos']].concat(Object.keys(resp).sort().map(function (r) { return [r, r]; }));
+    var ordR = function (x) { return /^Campo/.test(x) ? 0 : /^Log/.test(x) ? 1 : x === 'Por definir' ? 3 : 2; };
+    var opsR = [['', 'Todos']].concat(Object.keys(resp).sort(function (x, y) { return ordR(x) - ordR(y) || x.localeCompare(y); }).map(function (r) { return [r, r]; }));
+    var ents = Object.keys(ent).sort();
+    if (ents.length) opsR = opsR.concat([['#', '── Por entidad ──']], ents.map(function (e) { return ['ent:' + e, 'Entidad: ' + e]; }));
     if (filtro.unidad && !us.some(function (u) { return u.c === filtro.unidad; })) opsU.push([filtro.unidad, filtro.unidad]);
-    if (filtro.resp && !resp[filtro.resp]) opsR.push([filtro.resp, filtro.resp]);
+    if (filtro.resp && !opsR.some(function (o) { return o[0] === filtro.resp; })) opsR.push([filtro.resp, filtro.resp]);
     var n = (filtro.estado ? 1 : 0) + (filtro.unidad ? 1 : 0) + (filtro.resp ? 1 : 0);
     var txtDe = function (ops, v) { var o = ops.filter(function (x) { return x[0] === v; })[0]; return o ? o[1] : v; };
-    var resumen = [filtro.estado && txtDe(ESTADOS_F, filtro.estado), filtro.unidad && txtDe(opsU, filtro.unidad).split(' · ')[0], filtro.resp].filter(Boolean).join(', ');
+    var resumen = [filtro.estado && txtDe(ESTADOS_F, filtro.estado), filtro.unidad && txtDe(opsU, filtro.unidad).split(' · ')[0], filtro.resp && txtDe(opsR, filtro.resp).split(':')[0].replace(/^Entidad$/, txtDe(opsR, filtro.resp))].filter(Boolean).join(', ');
     var selP = tab !== 'Calendario' ? '' : '<select class="sel-p' + (calProy ? ' on' : '') + '" data-proy-sel="1" aria-label="Proyecto">' + [['', 'Todos los proyectos']].concat(datos.proyectos.map(function (p) { return [p.proyecto, p.proyecto]; })).map(function (o) { return opt(o[0], o[1], calProy); }).join('') + '</select>';
     var h = '<div class="fila-h">' + selP +
             '<button type="button" class="btn-f' + (n ? ' activo' : '') + '" data-abrir-f="1" aria-haspopup="true" aria-controls="panelF" aria-expanded="' + panelF + '">' +
