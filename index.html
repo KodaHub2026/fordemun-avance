@@ -245,10 +245,12 @@
     .det .lk-act .dot { width: 9px; height: 9px; align-self: center; }
     .det .lk-act b { white-space: nowrap; }
     .det .lk-act .p { font-weight: 700; font-variant-numeric: tabular-nums; }
-    .doc { display: grid; grid-template-columns: 124px minmax(0, 1fr) 16px; align-items: center; column-gap: 12px; padding: 11px 0 11px 8px; border-bottom: 1px solid var(--borde); }
-    .doc .cod { font-weight: 700; font-size: 14.5px; white-space: nowrap; }
+    /* Documentos: el código va como etiqueta chica arriba del título (sirve para cualquier largo, p. ej. EV-PVE-P1M-2026-10-08) */
+    .doc { display: grid; grid-template-columns: minmax(0, 1fr) 16px; align-items: center; column-gap: 12px; padding: 12px 4px 12px 8px; border-bottom: 1px solid var(--borde); }
+    .doc > .cod { display: none; }
     .doc .nom { font-size: 15.5px; font-weight: 500; line-height: 1.3; overflow-wrap: anywhere; }
-    .doc .nom .c2 { display: none; font-weight: 700; margin-right: 6px; }
+    .doc .nom .c2 { display: block; width: fit-content; max-width: 100%; margin: 0 0 4px; padding: 1px 7px; border-radius: 4px; background: rgba(0,0,0,.05);
+                    font-size: 12px; font-weight: 700; line-height: 1.45; letter-spacing: .02em; color: var(--tenue); overflow-wrap: anywhere; word-break: break-word; }
     .doc .meta { font-size: 13px; color: var(--tenue); margin-top: 2px; overflow-wrap: anywhere; }
     @keyframes foco { 0% { background: #FFF1C2; } 100% { background: transparent; } }
     .foco { animation: foco 2.2s ease-out; }
@@ -257,10 +259,9 @@
       .det .lk-act { grid-template-columns: 10px minmax(0, 1fr) auto; }
       .det .lk-act b { display: none; }
       .det .lk-act .c2 { font-weight: 700; margin-right: 6px; }
-      .doc { grid-template-columns: minmax(0, 1fr) 16px; padding: 12px 2px 12px 4px; }
-      .doc .cod { display: none; }
+      .doc { padding: 12px 2px 12px 4px; }
       .doc .nom { font-size: 15px; }
-      .doc .nom .c2 { display: inline; }
+      .doc .nom .c2 { font-size: 11.5px; }
       .doc .meta { font-size: 12.5px; }
     }
     @media (min-width: 721px) { .det .lk-act .c2 { display: none; } }
