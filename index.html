@@ -90,6 +90,29 @@
     .sw { display: inline-block; width: 16px; height: 8px; border-radius: 99px; background: var(--prog); vertical-align: 0; margin-right: 6px; }
 
     /* tarjetas: 1 col. celular, 2 tableta, 4 escritorio */
+    /* franja KPI (29-09-2026) */
+    .kpis { background: var(--crema); border: 1px solid #E6DCC6; border-top: 3px solid var(--dorado); border-radius: 14px; padding: 12px 14px 14px; margin: 0 0 16px; }
+    .kpis-h { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 12px; margin: 0 2px 10px; }
+    .kpis-h h2 { margin: 0; font-size: 15px; font-weight: 700; color: var(--guinda-osc); letter-spacing: .2px; }
+    .kpis-h small { font-size: 12px; color: var(--tenue); }
+    .kpi-g { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
+    @media (min-width: 720px) { .kpi-g { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
+    @media (min-width: 1100px) { .kpi-g { grid-template-columns: repeat(var(--nk, 6), minmax(0, 1fr)); } }
+    .kpi { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; text-align: left; font: inherit; color: inherit;
+      background: #fff; border: 1px solid var(--borde); border-radius: 12px; padding: 12px 12px 10px 15px; cursor: pointer; overflow: hidden; -webkit-tap-highlight-color: transparent; }
+    .kpi::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--k, var(--gris)); }
+    .kpi:focus-visible { outline: 2px solid var(--guinda); outline-offset: 2px; }
+    .kpi .k-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; }
+    .kpi .k-lab { font-size: 12.5px; font-weight: 700; color: var(--tenue); line-height: 1.25; overflow-wrap: anywhere; }
+    .kpi .k-dot { flex: 0 0 auto; width: 10px; height: 10px; border-radius: 50%; background: var(--k, var(--gris)); box-shadow: 0 0 0 3px rgba(0,0,0,.04); }
+    .kpi .k-num { font-size: clamp(26px, 6.6vw, 32px); font-weight: 800; line-height: 1.1; color: var(--guinda-osc); font-variant-numeric: tabular-nums; letter-spacing: -.5px; }
+    .kpi .k-num small { font-size: 15px; font-weight: 700; color: var(--tenue); letter-spacing: 0; }
+    .kpi .k-sub { font-size: 12px; color: var(--tenue); line-height: 1.3; overflow-wrap: anywhere; }
+    .kpi .k-tr { font-size: 12px; font-weight: 700; line-height: 1.3; }
+    .kpi .k-tr.bien { color: var(--verde); } .kpi .k-tr.mal { color: var(--rojo); } .kpi .k-tr.igual { color: var(--tenue); font-weight: 600; }
+    .kpi .k-tip { display: none; margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--borde); font-size: 11.5px; color: var(--texto); line-height: 1.35; }
+    .kpi.abierta .k-tip { display: block; }
+    @media (max-width: 719px) { .kpis { padding: 10px 10px 12px; border-radius: 12px; } .kpi { padding: 10px 10px 9px 13px; } }
     .tarjetas { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
     @media (min-width: 540px) { .tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
     @media (min-width: 1100px) { .tarjetas { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; } }
@@ -347,6 +370,7 @@
 
   <main>
     <div id="msg"></div>
+    <section class="kpis oculto" id="kpis" aria-label="Indicadores clave"></section>
     <section class="tarjetas" id="tarjetas" aria-label="Avance por proyecto"></section>
 
     <div class="leyenda-wrap" id="leyWrap">
@@ -680,6 +704,103 @@
       '</article>';
   }
 
+  // ---- tarjetas KPI (29-09-2026): se calculan con las filas por unidad (porUnidad) que pasan los filtros activos
+  var snap = null, snapIntentado = false;                  // instantánea semanal publicada en snapshots/ (tendencia)
+  function cargarSnap() {
+    if (snapIntentado || window.__AVANCE_PREVIEW__) return; snapIntentado = true;
+    fetch('snapshots/index.json?_=' + Date.now(), { cache: 'no-store', credentials: 'omit' }).then(function (r) { if (!r.ok) throw 0; return r.json(); })
+      .then(function (ix) {
+        var fs = (ix.fechas || []).filter(function (f) { return datos && f < datos.corte; }).sort(); if (!fs.length) return null;
+        return fetch('snapshots/avance_' + fs[fs.length - 1] + '.json', { cache: 'no-store', credentials: 'omit' }).then(function (r) { if (!r.ok) throw 0; return r.json(); });
+      }).then(function (j) { if (j && j.porUnidad) { snap = j; render(); } }).catch(function () { });
+  }
+  var UMBRAL = {
+    avance: 'Verde: % real ≥ % programado a la fecha. Amarillo: hasta 10 puntos por debajo. Rojo: más de 10 puntos por debajo. Programado = filas con fecha fin ≤ hoy (cuentan 100 %).',
+    term: 'Verde: terminadas ≥ filas que ya debían terminar (fecha fin ≤ hoy). Amarillo: al menos la mitad de ellas. Rojo: menos de la mitad.',
+    venc: 'Fecha fin anterior a hoy y avance < 100 %. Verde: 0. Amarillo: 1 a 3. Rojo: 4 o más.',
+    prox: 'Fecha fin entre hoy y 7 días, con avance < 100 %. Verde: 0 a 5. Amarillo: 6 a 15. Rojo: más de 15.',
+    evid: 'Actividades con al menos un documento ligado (pestaña Documentos, sin contar minutas) o una liga en la columna Documentos de la hoja. Verde: ≥ 50 %. Amarillo: 25 a 49 %. Rojo: < 25 %.',
+    notas: 'Notas guardadas desde el tablero (pestaña «Registro observaciones») en los últimos 7 días. Verde: 3 o más. Amarillo: 1 o 2. Rojo: ninguna.',
+    enc: 'Encuestas de línea base aplicadas contra la muestra meta (pestaña «Encuestas línea base-final»). Verde: ≥ 90 %. Amarillo: 50 a 89 %. Rojo: < 50 %.'
+  };
+  function filasKpi(fuente, conFiltro) {                  // [{c, p, u, pct, fin}] de los proyectos en vista
+    var out = [];
+    Object.keys(fuente.porUnidad || {}).forEach(function (c) {
+      var a = (datos.actividades || []).filter(function (x) { return x.codigo === c; })[0] || (fuente.actividades || []).filter(function (x) { return x.codigo === c; })[0];
+      if (!a || !proyEnVista({ proyecto: a.proyecto })) return;
+      fuente.porUnidad[c].forEach(function (r) { if (!conFiltro || cumple(r)) out.push({ c: c, p: a.proyecto, u: r.u, pct: +r.pct || 0, fin: r.fin }); });
+    });
+    return out;
+  }
+  function medir(fs, corte) {
+    var hoy = isoDia(corte), n = fs.length, s = 0, prog = 0, term = 0, venc = 0, prox = 0;
+    fs.forEach(function (r) {
+      var df = r.fin ? isoDia(r.fin) : null;
+      s += r.pct; if (r.pct >= 1) term++;
+      if (df !== null && df <= hoy) prog++;
+      if (df !== null && r.pct < 1 && df < hoy) venc++;
+      if (df !== null && r.pct < 1 && df >= hoy && df <= hoy + 7) prox++;
+    });
+    return { n: n, avance: n ? s / n : null, prog: n ? prog / n : null, nprog: prog, term: term, venc: venc, prox: prox };
+  }
+  function kpiHtml() {
+    var d = datos, fs = filasKpi(d, true), m = medir(fs, d.corte), hoy = isoDia(d.corte), filt = hayFiltro();
+    var base = snap && !filt ? medir(filasKpi(snap, false), snap.corte) : null;
+    var tr = function (dif, fmt, subeBien) {
+      if (dif === null || dif === undefined || !base) return '';
+      if (Math.abs(dif) < 1e-9) return '<span class="k-tr igual">= sin cambio vs ' + dm(snap.corte) + '</span>';
+      var bien = subeBien ? dif > 0 : dif < 0;
+      return '<span class="k-tr ' + (bien ? 'bien' : 'mal') + '">' + (dif > 0 ? '▲ +' : '▼ ') + fmt(dif) + ' vs ' + dm(snap.corte) + '</span>';
+    };
+    var col = function (s) { return s === 'Verde' ? 'var(--verde)' : s === 'Amarillo' ? 'var(--amarillo)' : s === 'Rojo' ? 'var(--rojo)' : 'var(--gris)'; };
+    var ks = [];
+    // 1) % de avance
+    var br = m.avance === null ? null : m.avance - m.prog;
+    ks.push({ lab: '% de avance', num: pct(m.avance), sub: 'programado ' + pct(m.prog), sem: br === null ? 'Sin datos' : br >= -1e-9 ? 'Verde' : br >= -0.10 ? 'Amarillo' : 'Rojo',
+              tr: base && base.avance !== null && m.avance !== null ? tr(Math.round((m.avance - base.avance) * 1000) / 10, function (x) { return String(Math.abs(x)).replace('.', ',') + ' pts'; }, true) : '', tip: UMBRAL.avance });
+    // 2) terminadas / total
+    ks.push({ lab: 'Terminadas', num: m.term + '<small> / ' + m.n + '</small>', sub: m.nprog ? m.nprog + ' ya debían terminar' : 'ninguna debía terminar aún',
+              sem: !m.n ? 'Sin datos' : m.term >= m.nprog ? 'Verde' : m.term >= m.nprog / 2 ? 'Amarillo' : 'Rojo',
+              tr: base ? tr(m.term - base.term, function (x) { return Math.abs(x); }, true) : '', tip: UMBRAL.term });
+    // 3) vencidas
+    ks.push({ lab: 'Vencidas', num: String(m.venc), sub: 'fin antes de hoy, sin terminar', sem: !m.n ? 'Sin datos' : m.venc === 0 ? 'Verde' : m.venc <= 3 ? 'Amarillo' : 'Rojo',
+              tr: base ? tr(m.venc - base.venc, function (x) { return Math.abs(x); }, false) : '', tip: UMBRAL.venc });
+    // 4) por vencer en 7 días
+    ks.push({ lab: 'Por vencer en 7 días', num: String(m.prox), sub: 'hasta el ' + fecha(new Date((hoy + 7) * 864e5).toISOString().slice(0, 10)).slice(0, 5),
+              sem: !m.n ? 'Sin datos' : m.prox <= 5 ? 'Verde' : m.prox <= 15 ? 'Amarillo' : 'Rojo',
+              tr: base ? tr(m.prox - base.prox, function (x) { return Math.abs(x); }, false) : '', tip: UMBRAL.prox });
+    // 5) % de actividades con evidencia o documento ligado
+    var cods = fs.map(function (r) { return r.c; }).filter(function (x, i, a) { return a.indexOf(x) === i; });
+    var conDoc = cods.filter(function (c) { var i = infoAct(c); return i.docs.length + i.extra.length > 0; }).length;
+    var pe = cods.length ? conDoc / cods.length : null;
+    ks.push({ lab: 'Con evidencia o documento', num: pct(pe), sub: conDoc + ' de ' + plural(cods.length, 'actividad', 'actividades'),
+              sem: pe === null ? 'Sin datos' : pe >= 0.5 ? 'Verde' : pe >= 0.25 ? 'Amarillo' : 'Rojo', tr: '', tip: UMBRAL.evid });
+    // 6) notas de los últimos 7 días (bitácora de observaciones); tendencia = 7 días anteriores
+    var K = d.kpi || {}, vis = {}; fs.forEach(function (r) { vis[r.c + '|' + r.u] = 1; vis[r.c + '|'] = 1; });
+    var enVista = function (x) { return vis[x.c + '|' + (x.u || '')] || (!x.u && vis[x.c + '|']); };
+    var nts = (K.notas || []).filter(enVista), n7 = 0, n14 = 0;
+    nts.forEach(function (x) { var df = isoDia(x.f); if (df > hoy - 7 && df <= hoy) n7++; else if (df > hoy - 14 && df <= hoy - 7) n14++; });
+    if (K.notas) ks.push({ lab: 'Notas (7 días)', num: String(n7), sub: 'bitácora de observaciones', sem: n7 >= 3 ? 'Verde' : n7 >= 1 ? 'Amarillo' : 'Rojo',
+              tr: n7 === n14 ? '<span class="k-tr igual">= igual que los 7 días previos</span>' : '<span class="k-tr ' + (n7 > n14 ? 'bien' : 'mal') + '">' + (n7 > n14 ? '▲ +' : '▼ ') + Math.abs(n7 - n14) + ' vs 7 días previos</span>', tip: UMBRAL.notas });
+    // 7) encuestas aplicadas vs meta: solo si ya hay alguna cifra capturada en «Aplicadas (n)»
+    var sig = {}; d.proyectos.forEach(function (p) { if (proyEnVista(p)) sig[p.sigla] = 1; });
+    var enc = (K.encuestas || []).filter(function (e) { return sig[e.p] && (!filtro.unidad || e.u === filtro.unidad) && /base/i.test(e.m) && e.meta !== null; });
+    if (enc.some(function (e) { return e.apl !== null; })) {
+      var apl = enc.reduce(function (s, e) { return s + (e.apl || 0); }, 0), meta = enc.reduce(function (s, e) { return s + e.meta; }, 0), pc = meta ? apl / meta : null;
+      ks.push({ lab: 'Encuestas línea base', num: apl + '<small> / ' + meta + '</small>', sub: 'aplicadas / meta · ' + pct(pc), sem: pc === null ? 'Sin datos' : pc >= 0.9 ? 'Verde' : pc >= 0.5 ? 'Amarillo' : 'Rojo', tr: '', tip: UMBRAL.enc });
+    }
+    var alcance = tab === 'General' ? 'General · tres proyectos' : tab;
+    var nota = filt ? 'con los filtros activos · sin tendencia' : (snap ? 'tendencia contra la instantánea del ' + fecha(snap.corte) : 'sin instantánea previa para tendencia');
+    return '<div class="kpis-h"><h2>Indicadores · ' + esc(alcance) + '</h2><small>' + esc(nota) + ' · toque una tarjeta para ver umbrales</small></div>' +
+      '<div class="kpi-g" style="--nk:' + ks.length + '">' + ks.map(function (k, i) {
+        return '<button type="button" class="kpi' + (kpiAbierta[k.lab] ? ' abierta' : '') + '" data-kpi="' + esc(k.lab) + '" style="--k:' + col(k.sem) + '" title="' + esc(k.lab + ' · ' + k.sem + '\n' + k.tip) + '" aria-expanded="' + !!kpiAbierta[k.lab] + '">' +
+          '<span class="k-top"><span class="k-lab">' + esc(k.lab) + '</span><i class="k-dot" aria-label="Semáforo ' + esc(k.sem) + '"></i></span>' +
+          '<span class="k-num">' + k.num + '</span><span class="k-sub">' + esc(k.sub) + '</span>' + (k.tr || '') +
+          '<span class="k-tip">Semáforo: <b>' + esc(k.sem) + '</b>. ' + esc(k.tip) + '</span></button>';
+      }).join('') + '</div>';
+  }
+  var kpiAbierta = {};
+
   function render() {
     if (!datos) return;
     var d = datos, m = d.meta || {};
@@ -693,7 +814,8 @@
     if (calProy && !d.proyectos.some(function (p) { return p.proyecto === calProy; })) calProy = '';
     $('titulo').textContent = vDocs ? 'FORDEMUN 2026 · Documentos' : vCal ? 'FORDEMUN 2026 · Calendario' : 'FORDEMUN 2026 · Avance' + (tab === 'General' ? '' : ' · ' + tab);
     ['leyWrap', 'actividades'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs); });
-    ['tarjetas', 'alertas'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs || vCal); });
+    ['tarjetas', 'alertas', 'kpis'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs || vCal); });
+    if (!vDocs && !vCal) { try { $('kpis').innerHTML = kpiHtml(); } catch (e) { $('kpis').classList.add('oculto'); } }
     $('tAct').textContent = vCal ? 'Calendario de actividades' : 'Avance por actividad';
     $('nAct').textContent = vCal ? 'Barras de la fecha de inicio a la fecha fin; el relleno es el % real y la línea guinda marca hoy. Toque una barra para abrir la actividad en su proyecto.'
       : 'Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver sus observaciones, documentos, minutas y el avance por unidad, y para agregar una nota.';
@@ -796,6 +918,7 @@
   function estado(cls, txt) { var e = $('vivo'); e.className = 'vivo ' + cls; $('act').textContent = txt; }
   function ok(res) {
     pidiendo = false; datos = res; ultimaOk = Date.now(); $('msg').innerHTML = '';
+    cargarSnap();
     if (res.vinculos && res.vinculos.documentos) { links = res.vinculos; linksVivo = true; linksErr = ''; }  // en vivo
     else if (linksVivo) { linksVivo = false; cargarLinks(); }                                             // respaldo
     estado('', 'Actualizado ' + ((res.meta && res.meta.generado) ? res.meta.generado.split(' ')[1] : new Date().toLocaleTimeString('es-MX')) + ' · se actualiza cada 60 s');
@@ -943,6 +1066,11 @@
     guardarUrl();
   });
   $('btnAct').addEventListener('click', function () { cargar(); programar(); });
+  $('kpis').addEventListener('click', function (e) {
+    var k = e.target.closest('.kpi[data-kpi]'); if (!k) return;
+    var id = k.getAttribute('data-kpi'); kpiAbierta[id] = !kpiAbierta[id];
+    k.classList.toggle('abierta', kpiAbierta[id]); k.setAttribute('aria-expanded', String(kpiAbierta[id]));
+  });
   function panel(abrir) {                                 // abre/cierra el panel sin redibujar
     panelF = abrir; if (abrir) borr = { estado: filtro.estado, unidad: filtro.unidad, resp: filtro.resp };
     var pf = $('panelF'), bf = $('herr').querySelector('[data-abrir-f]'); if (!pf || !bf) return;

@@ -1,0 +1,1530 @@
+{
+ "corte": "2026-09-28",
+ "generado": "28/09/2026 18:31:25",
+ "proyectos": [
+  {
+   "proyecto": "A-PVE",
+   "sigla": "PVE",
+   "nombre": "Prevención de Violencia Escolar (acoso y violencia escolar)",
+   "pct_real": 0.05701754385964912,
+   "pct_programado": 0,
+   "semaforo": "Amarillo",
+   "actividades": 57,
+   "terminadas": 0,
+   "vencidas": 0,
+   "proximas": 21,
+   "sin_estado": 51
+  },
+  {
+   "proyecto": "B-PVJ",
+   "sigla": "PVJ",
+   "nombre": "Prevención de Violencia a la Juventud (Jóvenes en prevención)",
+   "pct_real": 0.04838709677419355,
+   "pct_programado": 0.12903225806451613,
+   "semaforo": "Rojo",
+   "actividades": 31,
+   "terminadas": 0,
+   "vencidas": 4,
+   "proximas": 1,
+   "sin_estado": 29
+  },
+  {
+   "proyecto": "C-PVG",
+   "sigla": "PVG",
+   "nombre": "Prevención de Violencia Familiar y de Género",
+   "pct_real": 0.11363636363636363,
+   "pct_programado": 0,
+   "semaforo": "Amarillo",
+   "actividades": 11,
+   "terminadas": 0,
+   "vencidas": 0,
+   "proximas": 5,
+   "sin_estado": 9
+  }
+ ],
+ "total": {
+  "pct_real": 0.06060606060606061,
+  "pct_programado": 0.04040404040404041,
+  "semaforo": "Rojo",
+  "actividades": 99,
+  "terminadas": 0,
+  "vencidas": 4,
+  "proximas": 27,
+  "sin_estado": 89
+ },
+ "actividades": [
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT00",
+   "actividad": "Vinculación y presentación en planteles",
+   "pct": 0.5,
+   "estado": "proxima",
+   "est_txt": "En proceso",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT01",
+   "actividad": "Diagnóstico de violencia y seguridad escolar",
+   "pct": 0.75,
+   "estado": "proxima",
+   "est_txt": "Avanzado",
+   "n": 1,
+   "unidades": [
+    "PVE"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT02",
+   "actividad": "Encuestas",
+   "pct": 0,
+   "estado": "proxima",
+   "est_txt": "sin estado",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT03",
+   "actividad": "Grupos focales",
+   "pct": 0,
+   "estado": "proxima",
+   "est_txt": "sin estado",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT04",
+   "actividad": "Marcha Exploratoria de Seguridad (MES)",
+   "pct": 0,
+   "estado": "proxima",
+   "est_txt": "sin estado",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT05",
+   "actividad": "Red de niños mediadores",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT06",
+   "actividad": "Talleres y actividades lúdicas",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT07",
+   "actividad": "Canalización para atención especializada",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT08",
+   "actividad": "Estrategias de comunicación",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT09",
+   "actividad": "Esquema de incentivos positivos",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT10",
+   "actividad": "Mejoramiento de las características físicas de los planteles escolares",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT11",
+   "actividad": "Acuerdo de Prevención de Violencia Escolar",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 5,
+   "unidades": [
+    "PVE-P1M",
+    "PVE-P1V",
+    "PVE-P2",
+    "PVE-P3",
+    "PVE-P4"
+   ]
+  },
+  {
+   "proyecto": "A-PVE",
+   "codigo": "PVE-ACT12",
+   "actividad": "Informe de evaluación y seguimiento / formato de evidencia",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "PVE"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT01",
+   "actividad": "Contextualización de las problemáticas",
+   "pct": 0.75,
+   "estado": "vencida",
+   "est_txt": "Avanzado",
+   "n": 1,
+   "unidades": [
+    "PVJ"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT02",
+   "actividad": "Diagnósticos participativos",
+   "pct": 0.75,
+   "estado": "proxima",
+   "est_txt": "Avanzado",
+   "n": 1,
+   "unidades": [
+    "PVJ"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT03",
+   "actividad": "Convocatoria",
+   "pct": 0,
+   "estado": "vencida",
+   "est_txt": "sin estado",
+   "n": 3,
+   "unidades": [
+    "PVJ-CL",
+    "PVJ-CE",
+    "PVJ-CS"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT04",
+   "actividad": "Actividades de los jóvenes en favor de su comunidad a partir de alguna habilidad técnica, artística, cultural y deportiva",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 3,
+   "unidades": [
+    "PVJ-CL",
+    "PVJ-CE",
+    "PVJ-CS"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT05",
+   "actividad": "Capacitaciones para el trabajo",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 3,
+   "unidades": [
+    "PVJ-CL",
+    "PVJ-CE",
+    "PVJ-CS"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT06",
+   "actividad": "Talleres en habilidades psicosociales y competencias laborales",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 3,
+   "unidades": [
+    "PVJ-CL",
+    "PVJ-CE",
+    "PVJ-CS"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT07",
+   "actividad": "Talleres sobre sexualidad positiva, consentimiento y anticoncepción",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 3,
+   "unidades": [
+    "PVJ-CL",
+    "PVJ-CE",
+    "PVJ-CS"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT08",
+   "actividad": "Canalización para atención especializada a jóvenes",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 3,
+   "unidades": [
+    "PVJ-CL",
+    "PVJ-CE",
+    "PVJ-CS"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT09",
+   "actividad": "Mejoramiento y apropiación de zonas y/o espacios comunitarios",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 3,
+   "unidades": [
+    "PVJ-CL",
+    "PVJ-CE",
+    "PVJ-CS"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT10",
+   "actividad": "Jornadas de Jóvenes en Prevención",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "PVJ"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT11",
+   "actividad": "Incentivos positivos para fomentar la participación de los jóvenes",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 3,
+   "unidades": [
+    "PVJ-CL",
+    "PVJ-CE",
+    "PVJ-CS"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT12",
+   "actividad": "Participación de la policía local con un enfoque de proximidad social",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 3,
+   "unidades": [
+    "PVJ-CL",
+    "PVJ-CE",
+    "PVJ-CS"
+   ]
+  },
+  {
+   "proyecto": "B-PVJ",
+   "codigo": "PVJ-ACT13",
+   "actividad": "Informe de evaluación y seguimiento / formato de evidencia",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "PVJ"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT01",
+   "actividad": "Diagnóstico sobre violencia familiar y de género",
+   "pct": 0.75,
+   "estado": "proxima",
+   "est_txt": "Avanzado",
+   "n": 1,
+   "unidades": [
+    "PVG"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT02",
+   "actividad": "Cuestionarios o encuestas",
+   "pct": 0,
+   "estado": "proxima",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "Por definir"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT03",
+   "actividad": "Grupos focales",
+   "pct": 0,
+   "estado": "proxima",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "Por definir"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT04",
+   "actividad": "Entrevista",
+   "pct": 0,
+   "estado": "proxima",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "Por definir"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT05",
+   "actividad": "Marchas exploratorias de seguridad",
+   "pct": 0.5,
+   "estado": "proxima",
+   "est_txt": "En proceso",
+   "n": 1,
+   "unidades": [
+    "Por definir"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT06",
+   "actividad": "Sensibilización",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "Por definir"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT07",
+   "actividad": "Difusión",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "Por definir"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT08",
+   "actividad": "Atención y canalización",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "Por definir"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT09",
+   "actividad": "Formación e inserción laboral",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "Por definir"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT10",
+   "actividad": "Mejoramiento de espacios públicos",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "Por definir"
+   ]
+  },
+  {
+   "proyecto": "C-PVG",
+   "codigo": "PVG-ACT11",
+   "actividad": "Informe de evaluación y seguimiento / formato de evidencia",
+   "pct": 0,
+   "estado": "sin_avance",
+   "est_txt": "sin estado",
+   "n": 1,
+   "unidades": [
+    "PVG"
+   ]
+  }
+ ],
+ "porUnidad": {
+  "PVE-ACT00": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0.5,
+    "estado": "En proceso",
+    "ini": "2026-09-07",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0.5,
+    "estado": "En proceso",
+    "ini": "2026-09-07",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0.5,
+    "estado": "En proceso",
+    "ini": "2026-09-07",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0.5,
+    "estado": "En proceso",
+    "ini": "2026-09-07",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0.5,
+    "estado": "En proceso",
+    "ini": "2026-09-07",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   }
+  ],
+  "PVE-ACT01": [
+   {
+    "u": "PVE",
+    "pct": 0.75,
+    "estado": "Avanzado",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   }
+  ],
+  "PVE-ACT02": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   }
+  ],
+  "PVE-ACT03": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   }
+  ],
+  "PVE-ACT04": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   }
+  ],
+  "PVE-ACT05": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   }
+  ],
+  "PVE-ACT06": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-11-01",
+    "fin": "2026-11-14",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-11-01",
+    "fin": "2026-11-14",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-11-01",
+    "fin": "2026-11-14",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-11-01",
+    "fin": "2026-11-14",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-11-01",
+    "fin": "2026-11-14",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   }
+  ],
+  "PVE-ACT07": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora"
+   }
+  ],
+  "PVE-ACT08": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   }
+  ],
+  "PVE-ACT09": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora"
+   }
+  ],
+  "PVE-ACT10": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Bienestar Social"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Bienestar Social"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Bienestar Social"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Bienestar Social"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Bienestar Social"
+   }
+  ],
+  "PVE-ACT11": [
+   {
+    "u": "PVE-P1M",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P1V",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P2",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P3",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVE-P4",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Consultora"
+   }
+  ],
+  "PVE-ACT12": [
+   {
+    "u": "PVE",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-15",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   }
+  ],
+  "PVJ-ACT01": [
+   {
+    "u": "PVJ",
+    "pct": 0.75,
+    "estado": "Avanzado",
+    "ini": "2026-09-01",
+    "fin": "2026-09-14",
+    "alerta": "Vencida",
+    "resp": "Consultora"
+   }
+  ],
+  "PVJ-ACT02": [
+   {
+    "u": "PVJ",
+    "pct": 0.75,
+    "estado": "Avanzado",
+    "ini": "2026-09-15",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   }
+  ],
+  "PVJ-ACT03": [
+   {
+    "u": "PVJ-CL",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-14",
+    "alerta": "Vencida",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVJ-CE",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-14",
+    "alerta": "Vencida",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVJ-CS",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-14",
+    "alerta": "Vencida",
+    "resp": "Consultora"
+   }
+  ],
+  "PVJ-ACT04": [
+   {
+    "u": "PVJ-CL",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-11-30",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVJ-CE",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-11-30",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVJ-CS",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-11-30",
+    "alerta": "",
+    "resp": "Consultora"
+   }
+  ],
+  "PVJ-ACT05": [
+   {
+    "u": "PVJ-CL",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Bienestar Social"
+   },
+   {
+    "u": "PVJ-CE",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Bienestar Social"
+   },
+   {
+    "u": "PVJ-CS",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Bienestar Social"
+   }
+  ],
+  "PVJ-ACT06": [
+   {
+    "u": "PVJ-CL",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-11-30",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVJ-CE",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-11-30",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVJ-CS",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-11-30",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   }
+  ],
+  "PVJ-ACT07": [
+   {
+    "u": "PVJ-CL",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVJ-CE",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVJ-CS",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   }
+  ],
+  "PVJ-ACT08": [
+   {
+    "u": "PVJ-CL",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Bienestar Social"
+   },
+   {
+    "u": "PVJ-CE",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Bienestar Social"
+   },
+   {
+    "u": "PVJ-CS",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Bienestar Social"
+   }
+  ],
+  "PVJ-ACT09": [
+   {
+    "u": "PVJ-CL",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Bienestar Social"
+   },
+   {
+    "u": "PVJ-CE",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Bienestar Social"
+   },
+   {
+    "u": "PVJ-CS",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Bienestar Social"
+   }
+  ],
+  "PVJ-ACT10": [
+   {
+    "u": "PVJ",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Bienestar Social"
+   }
+  ],
+  "PVJ-ACT11": [
+   {
+    "u": "PVJ-CL",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-15",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVJ-CE",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-15",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   },
+   {
+    "u": "PVJ-CS",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-15",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   }
+  ],
+  "PVJ-ACT12": [
+   {
+    "u": "PVJ-CL",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVJ-CE",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   },
+   {
+    "u": "PVJ-CS",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   }
+  ],
+  "PVJ-ACT13": [
+   {
+    "u": "PVJ",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-15",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   }
+  ],
+  "PVG-ACT01": [
+   {
+    "u": "PVG",
+    "pct": 0.75,
+    "estado": "Avanzado",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   }
+  ],
+  "PVG-ACT02": [
+   {
+    "u": "Por definir",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   }
+  ],
+  "PVG-ACT03": [
+   {
+    "u": "Por definir",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   }
+  ],
+  "PVG-ACT04": [
+   {
+    "u": "Por definir",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora"
+   }
+  ],
+  "PVG-ACT05": [
+   {
+    "u": "Por definir",
+    "pct": 0.5,
+    "estado": "En proceso",
+    "ini": "2026-09-01",
+    "fin": "2026-09-30",
+    "alerta": "Próxima",
+    "resp": "Consultora + Bienestar Social"
+   }
+  ],
+  "PVG-ACT06": [
+   {
+    "u": "Por definir",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   }
+  ],
+  "PVG-ACT07": [
+   {
+    "u": "Por definir",
+    "pct": 0,
+    "estado": "",
+    "ini": null,
+    "fin": null,
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   }
+  ],
+  "PVG-ACT08": [
+   {
+    "u": "Por definir",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   }
+  ],
+  "PVG-ACT09": [
+   {
+    "u": "Por definir",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-11-14",
+    "alerta": "",
+    "resp": "Consultora + Bienestar Social"
+   }
+  ],
+  "PVG-ACT10": [
+   {
+    "u": "Por definir",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-10-01",
+    "fin": "2026-12-14",
+    "alerta": "",
+    "resp": "Bienestar Social"
+   }
+  ],
+  "PVG-ACT11": [
+   {
+    "u": "PVG",
+    "pct": 0,
+    "estado": "",
+    "ini": "2026-12-15",
+    "fin": "2026-12-31",
+    "alerta": "",
+    "resp": "Consultora"
+   }
+  ]
+ }
+}
