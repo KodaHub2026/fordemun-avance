@@ -90,29 +90,49 @@
     .sw { display: inline-block; width: 16px; height: 8px; border-radius: 99px; background: var(--prog); vertical-align: 0; margin-right: 6px; }
 
     /* tarjetas: 1 col. celular, 2 tableta, 4 escritorio */
-    /* franja KPI (29-09-2026) */
-    .kpis { background: var(--crema); border: 1px solid #E6DCC6; border-top: 3px solid var(--dorado); border-radius: 14px; padding: 12px 14px 14px; margin: 0 0 16px; }
-    .kpis-h { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 2px 12px; margin: 0 2px 10px; }
-    .kpis-h h2 { margin: 0; font-size: 15px; font-weight: 700; color: var(--guinda-osc); letter-spacing: .2px; }
-    .kpis-h small { font-size: 12px; color: var(--tenue); }
-    .kpi-g { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 10px; }
-    @media (min-width: 720px) { .kpi-g { grid-template-columns: repeat(3, minmax(0, 1fr)); } }
-    @media (min-width: 1100px) { .kpi-g { grid-template-columns: repeat(var(--nk, 6), minmax(0, 1fr)); } }
-    .kpi { position: relative; display: flex; flex-direction: column; align-items: flex-start; gap: 2px; min-width: 0; text-align: left; font: inherit; color: inherit;
-      background: #fff; border: 1px solid var(--borde); border-radius: 12px; padding: 12px 12px 10px 15px; cursor: pointer; overflow: hidden; -webkit-tap-highlight-color: transparent; }
-    .kpi::before { content: ""; position: absolute; left: 0; top: 0; bottom: 0; width: 5px; background: var(--k, var(--gris)); }
-    .kpi:focus-visible { outline: 2px solid var(--guinda); outline-offset: 2px; }
-    .kpi .k-top { display: flex; align-items: center; justify-content: space-between; gap: 6px; width: 100%; }
-    .kpi .k-lab { font-size: 12.5px; font-weight: 700; color: var(--tenue); line-height: 1.25; overflow-wrap: anywhere; }
-    .kpi .k-dot { flex: 0 0 auto; width: 10px; height: 10px; border-radius: 50%; background: var(--k, var(--gris)); box-shadow: 0 0 0 3px rgba(0,0,0,.04); }
-    .kpi .k-num { font-size: clamp(26px, 6.6vw, 32px); font-weight: 800; line-height: 1.1; color: var(--guinda-osc); font-variant-numeric: tabular-nums; letter-spacing: -.5px; }
-    .kpi .k-num small { font-size: 15px; font-weight: 700; color: var(--tenue); letter-spacing: 0; }
-    .kpi .k-sub { font-size: 12px; color: var(--tenue); line-height: 1.3; overflow-wrap: anywhere; }
-    .kpi .k-tr { font-size: 12px; font-weight: 700; line-height: 1.3; }
-    .kpi .k-tr.bien { color: var(--verde); } .kpi .k-tr.mal { color: var(--rojo); } .kpi .k-tr.igual { color: var(--tenue); font-weight: 600; }
-    .kpi .k-tip { display: none; margin-top: 6px; padding-top: 6px; border-top: 1px dashed var(--borde); font-size: 11.5px; color: var(--texto); line-height: 1.35; }
-    .kpi.abierta .k-tip { display: block; }
-    @media (max-width: 719px) { .kpis { padding: 10px 10px 12px; border-radius: 12px; } .kpi { padding: 10px 10px 9px 13px; } }
+    /* pestaña Indicadores (KPI) */
+    .kpis { margin: 4px 0 18px; }
+    .kpis-h { display: flex; flex-wrap: wrap; align-items: baseline; justify-content: space-between; gap: 4px 14px; margin: 0 2px 12px; }
+    .kpis-h h2 { margin: 0; font-size: 19px; font-weight: 700; color: var(--guinda-osc); }
+    .kpis-h small { font-size: 12.5px; color: var(--tenue); }
+    .kpi-g { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
+    @media (min-width: 560px) { .kpi-g { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
+    @media (min-width: 1000px) { .kpi-g { grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 16px; } }
+    .kpi { position: relative; display: flex; flex-direction: column; gap: 4px; min-width: 0; background: #fff; border: 1px solid var(--borde);
+      border-top: 6px solid var(--k, var(--gris)); border-radius: 14px; padding: 14px 16px 12px; }
+    .kpi .k-top { display: flex; align-items: center; justify-content: space-between; gap: 8px; }
+    .kpi .k-lab { font-size: 14px; font-weight: 700; color: var(--tenue); text-transform: uppercase; letter-spacing: .4px; line-height: 1.25; overflow-wrap: anywhere; }
+    .kpi .k-sem { flex: 0 0 auto; display: inline-flex; align-items: center; gap: 6px; font-size: 11.5px; font-weight: 700; padding: 3px 9px; border-radius: 999px;
+      color: var(--k); background: color-mix(in srgb, var(--k) 14%, #fff); }
+    .kpi .k-sem i { width: 8px; height: 8px; border-radius: 50%; background: var(--k); }
+    .kpi .k-num { font-size: clamp(34px, 9vw, 46px); font-weight: 800; line-height: 1.05; color: var(--guinda-osc); font-variant-numeric: tabular-nums; letter-spacing: -.8px; margin-top: 2px; }
+    .kpi .k-num small { font-size: 20px; font-weight: 700; color: var(--tenue); letter-spacing: 0; }
+    .kpi .k-sub { font-size: 13.5px; color: var(--texto); line-height: 1.35; overflow-wrap: anywhere; }
+    .kpi .k-tr { font-size: 13px; font-weight: 700; line-height: 1.35; }
+    .kpi .k-tr.bien { color: var(--verde); } .kpi .k-tr.mal { color: var(--rojo); } .kpi .k-tr.igual, .kpi .k-tr.nd { color: var(--tenue); font-weight: 600; }
+    .kpi .k-regla { margin-top: auto; padding-top: 8px; border-top: 1px dashed var(--borde); font-size: 12px; color: var(--tenue); line-height: 1.4; }
+    .kpi .k-regla b { color: var(--texto); }
+    .kpi-cmp { margin-top: 18px; background: var(--crema); border: 1px solid #E6DCC6; border-top: 3px solid var(--dorado); border-radius: 14px; padding: 12px 14px 8px; }
+    .kpi-cmp h3 { margin: 0 2px 8px; font-size: 16px; color: var(--guinda-osc); }
+    .kpi-cmp h3 small { font-weight: 500; font-size: 12.5px; color: var(--tenue); margin-left: 6px; }
+    .kpi-cmp table { width: 100%; border-collapse: collapse; font-size: 14px; }
+    .kpi-cmp th { text-align: right; font-size: 12px; font-weight: 700; color: var(--tenue); padding: 6px 8px; border-bottom: 1px solid #E6DCC6; }
+    .kpi-cmp th:first-child, .kpi-cmp td:first-child { text-align: left; }
+    .kpi-cmp td { text-align: right; padding: 9px 8px; border-bottom: 1px solid #EDE5D3; font-variant-numeric: tabular-nums; white-space: nowrap; }
+    .kpi-cmp tr[data-proy] { cursor: pointer; } .kpi-cmp tr[data-proy]:hover td { background: rgba(255,255,255,.6); }
+    .kpi-cmp tr.tot td { font-weight: 700; border-bottom: 0; }
+    .kpi-cmp td .d { display: inline-block; width: 9px; height: 9px; border-radius: 50%; margin-right: 6px; vertical-align: 1px; }
+    .kpi-cmp td .pn { display: inline-block; width: 10px; height: 10px; border-radius: 3px; margin-right: 8px; vertical-align: 0; }
+    @media (max-width: 719px) {
+      .kpi-cmp { padding: 10px 10px 4px; }
+      .kpi-cmp thead { display: none; }
+      .kpi-cmp table, .kpi-cmp tbody { display: block; }
+      .kpi-cmp tr { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 6px 8px; padding: 10px 4px; border-bottom: 1px solid #E6DCC6; }
+      .kpi-cmp tr.tot { border-bottom: 0; }
+      .kpi-cmp td { display: block; padding: 0; border: 0; text-align: left; white-space: normal; font-size: 14px; }
+      .kpi-cmp td:first-child { grid-column: 1 / -1; font-weight: 700; font-size: 15px; }
+      .kpi-cmp td[data-l]::before { content: attr(data-l); display: block; font-size: 11px; font-weight: 700; color: var(--tenue); }
+    }
     .tarjetas { display: grid; grid-template-columns: minmax(0, 1fr); gap: 12px; }
     @media (min-width: 540px) { .tarjetas { grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 14px; } }
     @media (min-width: 1100px) { .tarjetas { grid-template-columns: repeat(4, minmax(0, 1fr)); gap: 16px; } }
@@ -370,7 +390,6 @@
 
   <main>
     <div id="msg"></div>
-    <section class="kpis oculto" id="kpis" aria-label="Indicadores clave"></section>
     <section class="tarjetas" id="tarjetas" aria-label="Avance por proyecto"></section>
 
     <div class="leyenda-wrap" id="leyWrap">
@@ -381,6 +400,7 @@
       <div class="leyenda" id="leyenda"></div>
     </div>
     <div class="herr" id="herr"></div>
+    <section class="kpis oculto" id="kpis" aria-label="Indicadores clave"></section>
     <section id="actividades"></section>
 
     <section id="docs" class="oculto" aria-label="Documentos"></section>
@@ -409,7 +429,7 @@
   var TIPOS = ['Minuta', 'Instrumento', 'Guía', 'Evidencia'], TIPOS_PL = { Minuta: 'Minutas', Instrumento: 'Instrumentos', 'Guía': 'Guías', Evidencia: 'Evidencias' };
 
   var q = new URLSearchParams(location.search);          // ?tab=B-PVJ&unidad=PVE-P1M&estado=vencidas&resp=Consultora · ?tab=calendario&proyecto=B-PVJ
-  var TAB_URL = { calendario: 'Calendario', documentos: 'Documentos', general: 'General' };
+  var TAB_URL = { calendario: 'Calendario', documentos: 'Documentos', general: 'General', indicadores: 'Indicadores', kpi: 'Indicadores' };
   if (q.get('tab')) tab = TAB_URL[q.get('tab').toLowerCase()] || q.get('tab');
   var calProy = q.get('proyecto') || '', urlNormalizada = false;                   // sub-selector del Calendario: '' = Todos
   if (q.get('vista') === 'cal') {                          // ligas viejas (?vista=cal) → pestaña Calendario
@@ -422,7 +442,7 @@
   function guardarUrl() {                                  // recuerda pestaña y filtros en la URL (se puede compartir)
     var u = new URLSearchParams(location.search); u.delete('vista');
     var vDoc = tab === 'Documentos';
-    [['tab', tab === 'General' ? '' : tab === 'Calendario' ? 'calendario' : tab === 'Documentos' ? 'documentos' : tab], ['proyecto', tab === 'Calendario' ? calProy : ''],
+    [['tab', tab === 'General' ? '' : tab === 'Calendario' ? 'calendario' : tab === 'Documentos' ? 'documentos' : tab], ['proyecto', tab === 'Calendario' || tab === 'Indicadores' ? calProy : ''],
      ['unidad', vDoc ? '' : filtro.unidad], ['estado', vDoc ? '' : filtro.estado], ['resp', vDoc ? '' : filtro.resp]].forEach(function (kv) {
       if (kv[1]) u.set(kv[0], kv[1]); else u.delete(kv[0]); });
     var qs = u.toString();
@@ -623,7 +643,7 @@
   }
   function proyEnVista(p) {                                // proyectos que muestra la pestaña actual
     if (tab === 'General') return true;
-    if (tab === 'Calendario') return !calProy || p.proyecto === calProy;
+    if (tab === 'Calendario' || tab === 'Indicadores') return !calProy || p.proyecto === calProy;
     return p.proyecto === tab;
   }
   function herramientas(todas, visibles) {
@@ -650,7 +670,7 @@
     var n = (filtro.estado ? 1 : 0) + (filtro.unidad ? 1 : 0) + (filtro.resp ? 1 : 0);
     var txtDe = function (ops, v) { var o = ops.filter(function (x) { return x[0] === v; })[0]; return o ? o[1] : v; };
     var resumen = [filtro.estado && txtDe(ESTADOS_F, filtro.estado), filtro.unidad && txtDe(opsU, filtro.unidad).split(' · ')[0], filtro.resp && txtDe(opsR, filtro.resp).split(':')[0].replace(/^Entidad$/, txtDe(opsR, filtro.resp))].filter(Boolean).join(', ');
-    var selP = tab !== 'Calendario' ? '' : '<select class="sel-p' + (calProy ? ' on' : '') + '" data-proy-sel="1" aria-label="Proyecto">' + [['', 'Todos los proyectos']].concat(datos.proyectos.map(function (p) { return [p.proyecto, p.proyecto]; })).map(function (o) { return opt(o[0], o[1], calProy); }).join('') + '</select>';
+    var selP = tab !== 'Calendario' && tab !== 'Indicadores' ? '' : '<select class="sel-p' + (calProy ? ' on' : '') + '" data-proy-sel="1" aria-label="Proyecto">' + [['', 'Todos los proyectos']].concat(datos.proyectos.map(function (p) { return [p.proyecto, p.proyecto]; })).map(function (o) { return opt(o[0], o[1], calProy); }).join('') + '</select>';
     var h = '<div class="fila-h">' + selP +
             '<button type="button" class="btn-f' + (n ? ' activo' : '') + '" data-abrir-f="1" aria-haspopup="true" aria-controls="panelF" aria-expanded="' + panelF + '">' +
               '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 2.5h13l-5 6v5l-3-1.5V8.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Filtros' + (n ? ' · ' + n : '') + '</button>' +
@@ -719,15 +739,15 @@
     term: 'Verde: terminadas ≥ filas que ya debían terminar (fecha fin ≤ hoy). Amarillo: al menos la mitad de ellas. Rojo: menos de la mitad.',
     venc: 'Fecha fin anterior a hoy y avance < 100 %. Verde: 0. Amarillo: 1 a 3. Rojo: 4 o más.',
     prox: 'Fecha fin entre hoy y 7 días, con avance < 100 %. Verde: 0 a 5. Amarillo: 6 a 15. Rojo: más de 15.',
-    evid: 'Actividades con al menos un documento ligado (pestaña Documentos, sin contar minutas) o una liga en la columna Documentos de la hoja. Verde: ≥ 50 %. Amarillo: 25 a 49 %. Rojo: < 25 %.',
+    evid: 'Actividades con al menos un documento ligado (pestaña Documentos, sin minutas) o una liga en la columna Documentos de la hoja. Verde: ≥ 50 %. Amarillo: 25 a 49 %. Rojo: < 25 %.',
     notas: 'Notas guardadas desde el tablero (pestaña «Registro observaciones») en los últimos 7 días. Verde: 3 o más. Amarillo: 1 o 2. Rojo: ninguna.',
     enc: 'Encuestas de línea base aplicadas contra la muestra meta (pestaña «Encuestas línea base-final»). Verde: ≥ 90 %. Amarillo: 50 a 89 %. Rojo: < 50 %.'
   };
-  function filasKpi(fuente, conFiltro) {                  // [{c, p, u, pct, fin}] de los proyectos en vista
-    var out = [];
+  function filasKpi(fuente, conFiltro, scope) {           // [{c, p, u, pct, fin}] de los proyectos del alcance
+    var out = [], idx = {};
+    (datos.actividades || []).concat(fuente.actividades || []).forEach(function (a) { if (!idx[a.codigo]) idx[a.codigo] = a; });
     Object.keys(fuente.porUnidad || {}).forEach(function (c) {
-      var a = (datos.actividades || []).filter(function (x) { return x.codigo === c; })[0] || (fuente.actividades || []).filter(function (x) { return x.codigo === c; })[0];
-      if (!a || !proyEnVista({ proyecto: a.proyecto })) return;
+      var a = idx[c]; if (!a || !scope(a.proyecto)) return;
       fuente.porUnidad[c].forEach(function (r) { if (!conFiltro || cumple(r)) out.push({ c: c, p: a.proyecto, u: r.u, pct: +r.pct || 0, fin: r.fin }); });
     });
     return out;
@@ -743,79 +763,88 @@
     });
     return { n: n, avance: n ? s / n : null, prog: n ? prog / n : null, nprog: prog, term: term, venc: venc, prox: prox };
   }
-  function kpiHtml() {
-    var d = datos, fs = filasKpi(d, true), m = medir(fs, d.corte), hoy = isoDia(d.corte), filt = hayFiltro();
-    var base = snap && !filt ? medir(filasKpi(snap, false), snap.corte) : null;
+  function kpiCalc(scope) {                                // lista de KPI de un alcance (función proyecto → bool), con los filtros activos
+    var d = datos, fs = filasKpi(d, true, scope), m = medir(fs, d.corte), hoy = isoDia(d.corte), filt = hayFiltro();
+    var base = snap && !filt ? medir(filasKpi(snap, false, scope), snap.corte) : null;
+    var nd = '<span class="k-tr nd">' + (filt ? 'sin tendencia con filtros activos' : 'sin instantánea previa') + '</span>';
     var tr = function (dif, fmt, subeBien) {
-      if (dif === null || dif === undefined || !base) return '';
+      if (!base) return nd;
       if (Math.abs(dif) < 1e-9) return '<span class="k-tr igual">= sin cambio vs ' + dm(snap.corte) + '</span>';
       var bien = subeBien ? dif > 0 : dif < 0;
       return '<span class="k-tr ' + (bien ? 'bien' : 'mal') + '">' + (dif > 0 ? '▲ +' : '▼ ') + fmt(dif) + ' vs ' + dm(snap.corte) + '</span>';
     };
-    var col = function (s) { return s === 'Verde' ? 'var(--verde)' : s === 'Amarillo' ? 'var(--amarillo)' : s === 'Rojo' ? 'var(--rojo)' : 'var(--gris)'; };
+    var ent = function (x) { return String(Math.abs(x)); };
     var ks = [];
-    // 1) % de avance
     var br = m.avance === null ? null : m.avance - m.prog;
-    ks.push({ lab: '% de avance', num: pct(m.avance), sub: 'programado ' + pct(m.prog), sem: br === null ? 'Sin datos' : br >= -1e-9 ? 'Verde' : br >= -0.10 ? 'Amarillo' : 'Rojo',
-              tr: base && base.avance !== null && m.avance !== null ? tr(Math.round((m.avance - base.avance) * 1000) / 10, function (x) { return String(Math.abs(x)).replace('.', ',') + ' pts'; }, true) : '', tip: UMBRAL.avance });
-    // 2) terminadas / total
-    ks.push({ lab: 'Terminadas', num: m.term + '<small> / ' + m.n + '</small>', sub: m.nprog ? m.nprog + ' ya debían terminar' : 'ninguna debía terminar aún',
-              sem: !m.n ? 'Sin datos' : m.term >= m.nprog ? 'Verde' : m.term >= m.nprog / 2 ? 'Amarillo' : 'Rojo',
-              tr: base ? tr(m.term - base.term, function (x) { return Math.abs(x); }, true) : '', tip: UMBRAL.term });
-    // 3) vencidas
-    ks.push({ lab: 'Vencidas', num: String(m.venc), sub: 'fin antes de hoy, sin terminar', sem: !m.n ? 'Sin datos' : m.venc === 0 ? 'Verde' : m.venc <= 3 ? 'Amarillo' : 'Rojo',
-              tr: base ? tr(m.venc - base.venc, function (x) { return Math.abs(x); }, false) : '', tip: UMBRAL.venc });
-    // 4) por vencer en 7 días
-    ks.push({ lab: 'Por vencer en 7 días', num: String(m.prox), sub: 'hasta el ' + fecha(new Date((hoy + 7) * 864e5).toISOString().slice(0, 10)).slice(0, 5),
-              sem: !m.n ? 'Sin datos' : m.prox <= 5 ? 'Verde' : m.prox <= 15 ? 'Amarillo' : 'Rojo',
-              tr: base ? tr(m.prox - base.prox, function (x) { return Math.abs(x); }, false) : '', tip: UMBRAL.prox });
-    // 5) % de actividades con evidencia o documento ligado
+    ks.push({ id: 'avance', lab: '% de avance', corto: pct(m.avance), num: pct(m.avance), sub: 'programado a la fecha: ' + pct(m.prog), sem: br === null ? 'Sin datos' : br >= -1e-9 ? 'Verde' : br >= -0.10 ? 'Amarillo' : 'Rojo',
+              tr: base && base.avance !== null && m.avance !== null ? tr(Math.round((m.avance - base.avance) * 1000) / 10, function (x) { return String(Math.abs(x)).replace('.', ',') + ' pts'; }, true) : nd, tip: UMBRAL.avance });
+    ks.push({ id: 'term', lab: 'Terminadas', corto: m.term + '/' + m.n, num: m.term + '<small> / ' + m.n + '</small>', sub: (m.nprog ? m.nprog + ' ya debían terminar' : 'ninguna debía terminar aún') + ' · filas por unidad',
+              sem: !m.n ? 'Sin datos' : m.term >= m.nprog ? 'Verde' : m.term >= m.nprog / 2 ? 'Amarillo' : 'Rojo', tr: base ? tr(m.term - base.term, ent, true) : nd, tip: UMBRAL.term });
+    ks.push({ id: 'venc', lab: 'Vencidas', corto: String(m.venc), num: String(m.venc), sub: 'fecha fin antes de hoy y sin terminar', sem: !m.n ? 'Sin datos' : m.venc === 0 ? 'Verde' : m.venc <= 3 ? 'Amarillo' : 'Rojo',
+              tr: base ? tr(m.venc - base.venc, ent, false) : nd, tip: UMBRAL.venc });
+    ks.push({ id: 'prox', lab: 'Por vencer en 7 días', corto: String(m.prox), num: String(m.prox), sub: 'vencen hasta el ' + fecha(new Date((hoy + 7) * 864e5).toISOString().slice(0, 10)).slice(0, 5) + ', sin terminar',
+              sem: !m.n ? 'Sin datos' : m.prox <= 5 ? 'Verde' : m.prox <= 15 ? 'Amarillo' : 'Rojo', tr: base ? tr(m.prox - base.prox, ent, false) : nd, tip: UMBRAL.prox });
     var cods = fs.map(function (r) { return r.c; }).filter(function (x, i, a) { return a.indexOf(x) === i; });
-    var conDoc = cods.filter(function (c) { var i = infoAct(c); return i.docs.length + i.extra.length > 0; }).length;
-    var pe = cods.length ? conDoc / cods.length : null;
-    ks.push({ lab: 'Con evidencia o documento', num: pct(pe), sub: conDoc + ' de ' + plural(cods.length, 'actividad', 'actividades'),
-              sem: pe === null ? 'Sin datos' : pe >= 0.5 ? 'Verde' : pe >= 0.25 ? 'Amarillo' : 'Rojo', tr: '', tip: UMBRAL.evid });
-    // 6) notas de los últimos 7 días (bitácora de observaciones); tendencia = 7 días anteriores
+    var conDoc = cods.filter(function (c) { var i = infoAct(c); return i.docs.length + i.extra.length > 0; }).length, pe = cods.length ? conDoc / cods.length : null;
+    ks.push({ id: 'evid', lab: 'Con evidencia o documento', corto: pct(pe), num: pct(pe), sub: conDoc + ' de ' + plural(cods.length, 'actividad', 'actividades') + ' con documento ligado',
+              sem: pe === null ? 'Sin datos' : pe >= 0.5 ? 'Verde' : pe >= 0.25 ? 'Amarillo' : 'Rojo', tr: '<span class="k-tr nd">sin tendencia (la instantánea no guarda documentos)</span>', tip: UMBRAL.evid });
     var K = d.kpi || {}, vis = {}; fs.forEach(function (r) { vis[r.c + '|' + r.u] = 1; vis[r.c + '|'] = 1; });
-    var enVista = function (x) { return vis[x.c + '|' + (x.u || '')] || (!x.u && vis[x.c + '|']); };
-    var nts = (K.notas || []).filter(enVista), n7 = 0, n14 = 0;
-    nts.forEach(function (x) { var df = isoDia(x.f); if (df > hoy - 7 && df <= hoy) n7++; else if (df > hoy - 14 && df <= hoy - 7) n14++; });
-    if (K.notas) ks.push({ lab: 'Notas (7 días)', num: String(n7), sub: 'bitácora de observaciones', sem: n7 >= 3 ? 'Verde' : n7 >= 1 ? 'Amarillo' : 'Rojo',
-              tr: n7 === n14 ? '<span class="k-tr igual">= igual que los 7 días previos</span>' : '<span class="k-tr ' + (n7 > n14 ? 'bien' : 'mal') + '">' + (n7 > n14 ? '▲ +' : '▼ ') + Math.abs(n7 - n14) + ' vs 7 días previos</span>', tip: UMBRAL.notas });
-    // 7) encuestas aplicadas vs meta: solo si ya hay alguna cifra capturada en «Aplicadas (n)»
-    var sig = {}; d.proyectos.forEach(function (p) { if (proyEnVista(p)) sig[p.sigla] = 1; });
+    var n7 = 0, n14 = 0;
+    (K.notas || []).filter(function (x) { return vis[x.c + '|' + (x.u || '')]; }).forEach(function (x) { var df = isoDia(x.f); if (df > hoy - 7 && df <= hoy) n7++; else if (df > hoy - 14 && df <= hoy - 7) n14++; });
+    if (K.notas) ks.push({ id: 'notas', lab: 'Notas (7 días)', corto: String(n7), num: String(n7), sub: 'bitácora de observaciones del tablero', sem: n7 >= 3 ? 'Verde' : n7 >= 1 ? 'Amarillo' : 'Rojo',
+              tr: n7 === n14 ? '<span class="k-tr igual">= igual que los 7 días previos (' + n14 + ')</span>' : '<span class="k-tr ' + (n7 > n14 ? 'bien' : 'mal') + '">' + (n7 > n14 ? '▲ +' : '▼ ') + Math.abs(n7 - n14) + ' vs 7 días previos</span>', tip: UMBRAL.notas });
+    var sig = {}; d.proyectos.forEach(function (p) { if (scope(p.proyecto)) sig[p.sigla] = 1; });
     var enc = (K.encuestas || []).filter(function (e) { return sig[e.p] && (!filtro.unidad || e.u === filtro.unidad) && /base/i.test(e.m) && e.meta !== null; });
     if (enc.some(function (e) { return e.apl !== null; })) {
       var apl = enc.reduce(function (s, e) { return s + (e.apl || 0); }, 0), meta = enc.reduce(function (s, e) { return s + e.meta; }, 0), pc = meta ? apl / meta : null;
-      ks.push({ lab: 'Encuestas línea base', num: apl + '<small> / ' + meta + '</small>', sub: 'aplicadas / meta · ' + pct(pc), sem: pc === null ? 'Sin datos' : pc >= 0.9 ? 'Verde' : pc >= 0.5 ? 'Amarillo' : 'Rojo', tr: '', tip: UMBRAL.enc });
+      ks.push({ id: 'enc', lab: 'Encuestas línea base', corto: apl + '/' + meta, num: apl + '<small> / ' + meta + '</small>', sub: 'aplicadas / meta · ' + pct(pc), sem: pc === null ? 'Sin datos' : pc >= 0.9 ? 'Verde' : pc >= 0.5 ? 'Amarillo' : 'Rojo', tr: '<span class="k-tr nd">sin tendencia</span>', tip: UMBRAL.enc });
     }
-    var alcance = tab === 'General' ? 'General · tres proyectos' : tab;
-    var nota = filt ? 'con los filtros activos · sin tendencia' : (snap ? 'tendencia contra la instantánea del ' + fecha(snap.corte) : 'sin instantánea previa para tendencia');
-    return '<div class="kpis-h"><h2>Indicadores · ' + esc(alcance) + '</h2><small>' + esc(nota) + ' · toque una tarjeta para ver umbrales</small></div>' +
-      '<div class="kpi-g" style="--nk:' + ks.length + '">' + ks.map(function (k, i) {
-        return '<button type="button" class="kpi' + (kpiAbierta[k.lab] ? ' abierta' : '') + '" data-kpi="' + esc(k.lab) + '" style="--k:' + col(k.sem) + '" title="' + esc(k.lab + ' · ' + k.sem + '\n' + k.tip) + '" aria-expanded="' + !!kpiAbierta[k.lab] + '">' +
-          '<span class="k-top"><span class="k-lab">' + esc(k.lab) + '</span><i class="k-dot" aria-label="Semáforo ' + esc(k.sem) + '"></i></span>' +
-          '<span class="k-num">' + k.num + '</span><span class="k-sub">' + esc(k.sub) + '</span>' + (k.tr || '') +
-          '<span class="k-tip">Semáforo: <b>' + esc(k.sem) + '</b>. ' + esc(k.tip) + '</span></button>';
-      }).join('') + '</div>';
+    return ks;
   }
-  var kpiAbierta = {};
+  function colSem(s) { return s === 'Verde' ? 'var(--verde)' : s === 'Amarillo' ? 'var(--amarillo)' : s === 'Rojo' ? 'var(--rojo)' : 'var(--gris)'; }
+  function kpiHtml() {
+    var ks = kpiCalc(function (pr) { return !calProy || pr === calProy; }), filt = hayFiltro();
+    var nota = filt ? 'con los filtros activos (sin tendencia)' : (snap ? 'tendencia contra la instantánea del ' + fecha(snap.corte) : 'sin instantánea previa para la tendencia');
+    var h = '<div class="kpis-h"><h2>Indicadores · ' + esc(calProy || 'Todos los proyectos') + '</h2><small>' + esc(nota) + ' · corte ' + fecha(datos.corte) + '</small></div>' +
+      '<div class="kpi-g">' + ks.map(function (k) {
+        return '<article class="kpi" style="--k:' + colSem(k.sem) + '" title="' + esc(k.lab + ' · semáforo ' + k.sem + '\n' + k.tip) + '">' +
+          '<div class="k-top"><span class="k-lab">' + esc(k.lab) + '</span><span class="k-sem"><i></i>' + esc(k.sem.toUpperCase()) + '</span></div>' +
+          '<div class="k-num">' + k.num + '</div><div class="k-sub">' + esc(k.sub) + '</div>' + (k.tr || '') +
+          '<div class="k-regla"><b>Semáforo:</b> ' + esc(k.tip) + '</div></article>';
+      }).join('') + '</div>';
+    if (!calProy) {                                       // comparación rápida por proyecto
+      var filas = datos.proyectos.map(function (p) { return { p: p, ks: kpiCalc(function (pr) { return pr === p.proyecto; }) }; });
+      filas.push({ p: null, ks: ks });
+      var cols = ks.map(function (k) { return { id: k.id, lab: k.lab }; });
+      h += '<section class="kpi-cmp" aria-label="Comparación por proyecto"><h3>Comparación por proyecto<small>toque un proyecto para verlo solo</small></h3><table><thead><tr><th>Proyecto</th>' +
+        cols.map(function (c) { return '<th>' + esc(c.lab) + '</th>'; }).join('') + '</tr></thead><tbody>' +
+        filas.map(function (f) {
+          var nom = f.p ? f.p.proyecto : 'Total';
+          return '<tr' + (f.p ? ' data-proy="' + esc(f.p.proyecto) + '" tabindex="0"' : ' class="tot"') + '><td>' + (f.p ? '<i class="pn" style="background:' + PROY_COLOR[f.p.sigla] + '"></i>' : '') + esc(nom) +
+            (f.p ? ' <small style="color:var(--tenue);font-weight:500">' + esc(nombreCorto(f.p.nombre)) + '</small>' : '') + '</td>' +
+            cols.map(function (c) { var k = f.ks.filter(function (x) { return x.id === c.id; })[0];
+              return k ? '<td data-l="' + esc(c.lab) + '" title="' + esc(c.lab + ' · ' + k.sem) + '"><i class="d" style="background:' + colSem(k.sem) + '"></i>' + esc(k.corto) + '</td>' : '<td data-l="' + esc(c.lab) + '">—</td>'; }).join('') + '</tr>';
+        }).join('') + '</tbody></table></section>';
+    }
+    return h;
+  }
 
   function render() {
     if (!datos) return;
     var d = datos, m = d.meta || {};
     // pestañas
-    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Documentos']);
+    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Indicadores', 'Documentos']);
     if (nombres.indexOf(tab) < 0) tab = 'General';
     $('tabs').innerHTML = nombres.map(function (n) {
-      return '<button type="button" role="tab" aria-selected="' + (n === tab) + '" class="' + (n === tab ? 'on' : '') + '" data-tab="' + esc(n) + '" aria-label="' + esc(n) + '">' + (n === 'Documentos' ? '<span class="lg">Documentos</span><span class="sm">Docs</span>' : n === 'Calendario' ? '<span class="lg">Calendario</span><span class="sm">Calend.</span>' : esc(n)) + '</button>';
+      return '<button type="button" role="tab" aria-selected="' + (n === tab) + '" class="' + (n === tab ? 'on' : '') + '" data-tab="' + esc(n) + '" aria-label="' + esc(n) + '">' + (n === 'Documentos' ? '<span class="lg">Documentos</span><span class="sm">Docs</span>' : n === 'Calendario' ? '<span class="lg">Calendario</span><span class="sm">Calend.</span>' : n === 'Indicadores' ? '<span class="lg">Indicadores</span><span class="sm">KPI</span>' : esc(n)) + '</button>';
     }).join('');
-    var vDocs = tab === 'Documentos', vCal = tab === 'Calendario';
+    var vDocs = tab === 'Documentos', vCal = tab === 'Calendario', vInd = tab === 'Indicadores';
     if (calProy && !d.proyectos.some(function (p) { return p.proyecto === calProy; })) calProy = '';
-    $('titulo').textContent = vDocs ? 'FORDEMUN 2026 · Documentos' : vCal ? 'FORDEMUN 2026 · Calendario' : 'FORDEMUN 2026 · Avance' + (tab === 'General' ? '' : ' · ' + tab);
-    ['leyWrap', 'actividades'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs); });
-    ['tarjetas', 'alertas', 'kpis'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs || vCal); });
-    if (!vDocs && !vCal) { try { $('kpis').innerHTML = kpiHtml(); } catch (e) { $('kpis').classList.add('oculto'); } }
+    $('titulo').textContent = vDocs ? 'FORDEMUN 2026 · Documentos' : vCal ? 'FORDEMUN 2026 · Calendario' : vInd ? 'FORDEMUN 2026 · Indicadores' : 'FORDEMUN 2026 · Avance' + (tab === 'General' ? '' : ' · ' + tab);
+    ['leyWrap', 'actividades'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs || vInd); });
+    ['tarjetas', 'alertas'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs || vCal || vInd); });
+    $('kpis').classList.toggle('oculto', !vInd);
+    if (vInd) { try { $('kpis').innerHTML = kpiHtml(); } catch (e) { $('kpis').innerHTML = '<p class="nota">No se pudieron calcular los indicadores: ' + esc(e.message) + '</p>'; } }
     $('tAct').textContent = vCal ? 'Calendario de actividades' : 'Avance por actividad';
     $('nAct').textContent = vCal ? 'Barras de la fecha de inicio a la fecha fin; el relleno es el % real y la línea guinda marca hoy. Toque una barra para abrir la actividad en su proyecto.'
       : 'Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver sus observaciones, documentos, minutas y el avance por unidad, y para agregar una nota.';
@@ -825,8 +854,8 @@
 
     // tarjetas
     var ts = [];
-    if (vDocs || vCal) {
-      // Documentos y Calendario no llevan tarjetas
+    if (vDocs || vCal || vInd) {
+      // Documentos, Calendario e Indicadores no llevan tarjetas
     } else if (tab === 'General') {
       d.proyectos.forEach(function (p) { ts.push(Object.assign({}, p, { titulo: p.proyecto, sub: nombreCorto(p.nombre), color: PROY_COLOR[p.sigla] })); });
       ts.push(Object.assign({}, d.total, { titulo: 'TOTAL', sub: 'Tres proyectos', color: 'var(--guinda)' }));
@@ -834,7 +863,7 @@
       var p = d.proyectos.filter(function (x) { return x.proyecto === tab; })[0];
       ts.push(resumen(p));                                   // pestaña de proyecto: una sola barra; sin tarjetas
     }
-    $('tarjetas').classList.toggle('uno', !vDocs && !vCal && tab !== 'General');
+    $('tarjetas').classList.toggle('uno', !vDocs && !vCal && !vInd && tab !== 'General');
     $('tarjetas').innerHTML = ts.map(function (t) { return typeof t === 'string' ? t : tarjeta(t); }).join('');
 
     // leyenda
@@ -1066,10 +1095,12 @@
     guardarUrl();
   });
   $('btnAct').addEventListener('click', function () { cargar(); programar(); });
-  $('kpis').addEventListener('click', function (e) {
-    var k = e.target.closest('.kpi[data-kpi]'); if (!k) return;
-    var id = k.getAttribute('data-kpi'); kpiAbierta[id] = !kpiAbierta[id];
-    k.classList.toggle('abierta', kpiAbierta[id]); k.setAttribute('aria-expanded', String(kpiAbierta[id]));
+  $('kpis').addEventListener('click', function (e) {     // comparación por proyecto: tocar una fila muestra ese proyecto
+    var r = e.target.closest('tr[data-proy]'); if (!r) return;
+    calProy = r.getAttribute('data-proy'); unidadValida(); panelF = false; render(); guardarUrl(); window.scrollTo({ top: 0, behavior: 'smooth' });
+  });
+  $('kpis').addEventListener('keydown', function (e) {
+    if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('tr[data-proy]')) { e.preventDefault(); e.target.click(); }
   });
   function panel(abrir) {                                 // abre/cierra el panel sin redibujar
     panelF = abrir; if (abrir) borr = { estado: filtro.estado, unidad: filtro.unidad, resp: filtro.resp };
