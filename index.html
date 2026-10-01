@@ -370,6 +370,7 @@
     .fuera > summary::before { content: '▶'; font-size: 10px; transition: transform .15s; }
     .fuera[open] > summary::before { transform: rotate(90deg); }
     .fuera > summary b { color: #5F6670; }
+    .fuera .fa-bita { margin: 4px 6px 10px; font-size: 13px; } .fuera .fa-bita a { color: var(--guinda); font-weight: 600; }
     .fuera ul { list-style: none; margin: 0; padding: 0 6px 8px 22px; }
     .fuera li { display: grid; grid-template-columns: 92px minmax(0, 1fr); column-gap: 12px; padding: 6px 0; border-bottom: 1px solid #EEE; font-size: 13.5px; }
     .fuera li:last-child { border-bottom: 0; }
@@ -443,7 +444,10 @@
   var links = null, linksErr = '', linksVivo = false, abiertas = {}, docsAbiertos = {}, pendienteHash = location.hash;
   var borr = {}, estObs = {};                              // borradores y mensajes del cuadro «Agregar observación»
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k) || ''; localStorage.setItem(k, v); } catch (e) { return ''; } }
-  var TIPOS = ['Minuta', 'Instrumento', 'Guía', 'Evidencia'], TIPOS_PL = { Minuta: 'Minutas', Instrumento: 'Instrumentos', 'Guía': 'Guías', Evidencia: 'Evidencias' };
+  var TIPOS = ['Bitácora', 'Minuta', 'Instrumento', 'Guía', 'Evidencia'], TIPOS_PL = { 'Bitácora': 'Bitácora de seguimiento', Minuta: 'Minutas', Instrumento: 'Instrumentos', 'Guía': 'Guías', Evidencia: 'Evidencias' };
+  // 30-09-2026: Bitácora (pestaña de la hoja; solo la abren quienes tienen acceso). La app web omite ligas a la hoja, así que se completa aquí.
+  var BITACORA_URL = 'https://docs.google.com/spreadsheets/d/190fkDAQ231LgguSenuhIak0g0JPO9l--91Kf7woa7bQ/edit#gid=948531101';
+  function fixLinks(l) { if (l && l.documentos) l.documentos.forEach(function (x) { if (x.tipo === 'Bitácora' && !x.url) x.url = BITACORA_URL; }); return l; }
 
   var q = new URLSearchParams(location.search);          // ?tab=B-PVJ&unidad=PVE-P1M&estado=vencidas&resp=Consultora · ?tab=calendario&proyecto=B-PVJ
   var TAB_URL = { calendario: 'Calendario', documentos: 'Documentos', general: 'General', indicadores: 'Indicadores', kpi: 'Indicadores' };
@@ -491,7 +495,8 @@
   function infoAct(cod) {
     var ds = docsDe(cod);
     return { obs: (links && links.observaciones && links.observaciones[cod]) || [], extra: (links && links.ligas_extra && links.ligas_extra[cod]) || [],
-             docs: ds.filter(function (x) { return x.tipo !== 'Minuta'; }), mins: ds.filter(function (x) { return x.tipo === 'Minuta'; }) };
+             docs: ds.filter(function (x) { return x.tipo !== 'Minuta' && x.tipo !== 'Bitácora'; }), mins: ds.filter(function (x) { return x.tipo === 'Minuta'; }),
+             bita: ds.filter(function (x) { return x.tipo === 'Bitácora'; }) };
   }
   function plural(n, s, p) { return n + ' ' + (n === 1 ? s : p); }
   function tags(i) {
@@ -527,6 +532,7 @@
     var ds = i.docs.map(function (x) { return '<li>' + enlaceDoc(x) + '</li>'; }).concat(i.extra.map(function (x) {
       return '<li><a href="' + esc(x.url) + '" target="_blank" rel="noopener">Liga de Drive ↗</a><span class="sub2">' + esc(x.unidad || '') + ' · escrita en la hoja</span></li>'; }));
     h += '<section><h4>Documentos</h4>' + (ds.length ? '<ul>' + ds.join('') + '</ul>' : '<p class="vacio">Sin documentos ligados.</p>') + '</section>';
+    if (i.bita.length) h += '<section><h4>Bitácora</h4><ul>' + i.bita.map(function (x) { return '<li>' + enlaceDoc(x) + '<span class="sub2">Notas fechadas de seguimiento · solo con acceso a la hoja</span></li>'; }).join('') + '</ul></section>';
     h += '<section><h4>Mencionada en</h4>' + (i.mins.length ? '<ul>' + i.mins.map(function (x) {
       return '<li>' + enlaceDoc(x) + '<a class="ir" href="#doc=' + encodeURIComponent(x.codigo) + '" data-ir-doc="' + esc(x.codigo) + '">Ver actividades de la minuta ›</a></li>'; }).join('') + '</ul>' : '<p class="vacio">Ninguna minuta la cita.</p>') + '</section>';
     return h;
@@ -737,7 +743,7 @@
       '<span>' + plural(fs.length, 'fila', 'filas') + ' · no cuentan en el avance ni en los indicadores</span></summary><ul>' +
       fs.map(function (f) { var u = nomUnidad(f.u);
         return '<li><b>' + esc(f.codigo) + '</b><span>' + esc(f.actividad) + '<small>' + esc(u.t + (u.n ? ' · ' + u.n : '') + (f.fin ? ' · fin ' + fecha(f.fin) : '')) + '</small></span></li>'; }).join('') +
-      '</ul></details>';
+      '</ul><p class="fa-bita">Decisiones y pendientes del cambio de alcance: <a href="' + esc(BITACORA_URL) + '" target="_blank" rel="noopener">Bitácora ↗</a> <small>(solo con acceso a la hoja)</small></p></details>';
   }
   function subtitulo(a) {
     var us = unidadesDe(a); if (!us.length) return '';
@@ -994,7 +1000,7 @@
   function ok(res) {
     pidiendo = false; datos = res; ultimaOk = Date.now(); $('msg').innerHTML = '';
     cargarSnap();
-    if (res.vinculos && res.vinculos.documentos) { links = res.vinculos; linksVivo = true; linksErr = ''; }  // en vivo
+    if (res.vinculos && res.vinculos.documentos) { links = fixLinks(res.vinculos); linksVivo = true; linksErr = ''; }  // en vivo
     else if (linksVivo) { linksVivo = false; cargarLinks(); }                                             // respaldo
     estado('', 'Actualizado ' + ((res.meta && res.meta.generado) ? res.meta.generado.split(' ')[1] : new Date().toLocaleTimeString('es-MX')) + ' · se actualiza cada 60 s');
     render(); fijarCab(); aplicarHash();
@@ -1034,7 +1040,7 @@
     var u = q.get('links') || 'links.json';
     return fetch(u + (u.indexOf('?') < 0 ? '?' : '&') + '_=' + Date.now(), { cache: 'no-store', credentials: 'omit' })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function (j) { if (!j || !j.documentos) throw new Error('formato no válido'); if (!linksVivo) { links = j; linksErr = ''; } },
+      .then(function (j) { if (!j || !j.documentos) throw new Error('formato no válido'); if (!linksVivo) { links = fixLinks(j); linksErr = ''; } },
             function (e) { linksErr = e && e.message ? e.message : String(e); })
       .then(function () { if (datos) { render(); aplicarHash(); } });
   }
