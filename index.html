@@ -363,7 +363,7 @@
     .g-grid .hoy { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--guinda); z-index: 1; }
     .g-grid .hoy span { position: absolute; top: 6px; right: 4px; font-size: 10.5px; font-weight: 700; color: #fff; background: var(--guinda); border-radius: 4px; padding: 1px 5px; white-space: nowrap; }
     .g-vacio { padding: 14px; color: var(--tenue); font-size: 14px; }
-    /* 30-09-2026: filas «Fuera de alcance (por confirmar)»: en gris, no cuentan */
+    /* 30-09-2026: filas «Fuera de alcance…» (P1V y P3): en gris, no cuentan */
     .fuera { margin: 4px 0 2px; border-top: 1px dashed var(--borde); color: #7A828C; }
     .fuera > summary { cursor: pointer; list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 10px 6px; font-size: 13.5px; }
     .fuera > summary::-webkit-details-marker { display: none; }
@@ -521,8 +521,8 @@
       }).join('') + '</ul></section>';
     }
     var fa = (datos.fueraAlcance || []).filter(function (f) { return f.codigo === a.codigo; });
-    if (fa.length) h += '<section><h4>Fuera de alcance (por confirmar)</h4><ul>' + fa.map(function (f) { var u = nomUnidad(f.u);
-      return '<li class="un li-fa"><i class="dot" style="background:#C9CDD2"></i><span><b>' + esc(u.t) + '</b>' + (u.n ? ' · ' + esc(u.n) : '') + '<span class="sub2">no cuenta en el avance · por confirmar con el municipio</span></span><span class="p">—</span></li>'; }).join('') + '</ul></section>';
+    if (fa.length) h += '<section><h4>Fuera de alcance (reposición por definir)</h4><ul>' + fa.map(function (f) { var u = nomUnidad(f.u);
+      return '<li class="un li-fa"><i class="dot" style="background:#C9CDD2"></i><span><b>' + esc(u.t) + '</b>' + (u.n ? ' · ' + esc(u.n) : '') + '<span class="sub2">no cuenta en el avance · reposición por definir con el municipio</span></span><span class="p">—</span></li>'; }).join('') + '</ul></section>';
     if (linksVivo) h += formObs(a);
     var ds = i.docs.map(function (x) { return '<li>' + enlaceDoc(x) + '</li>'; }).concat(i.extra.map(function (x) {
       return '<li><a href="' + esc(x.url) + '" target="_blank" rel="noopener">Liga de Drive ↗</a><span class="sub2">' + esc(x.unidad || '') + ' · escrita en la hoja</span></li>'; }));
@@ -723,7 +723,7 @@
       return { c: c, t: u.titulo || c, n: u.unidad || '' };
     });
   }
-  // 30-09-2026: alcance. fueraAlcance = filas «Fuera de alcance (por confirmar)» (no cuentan); unidadesFuera = unidades con todas sus filas fuera
+  // 30-09-2026: alcance. fueraAlcance = filas «Fuera de alcance…» (P1V y P3: reposición por definir) (no cuentan); unidadesFuera = unidades con todas sus filas fuera
   function esFuera(c, u) { return (datos.fueraAlcance || []).some(function (f) { return f.codigo === c && f.u === u; }); }
   function uFuera(u) { return (datos.unidadesFuera || []).indexOf(u) >= 0; }
   function nomUnidad(c) { var u = (datos.unidades || []).filter(function (x) { return x.cod_unidad === c; })[0] || {}; return { c: c, t: u.titulo || c, n: u.unidad || '' }; }
@@ -733,7 +733,7 @@
   function bloqueFuera(p) {
     var fs = fueraDe(p); if (!fs.length || filtro.estado || filtro.resp) return '';
     var us = fs.map(function (f) { return f.u; }).filter(function (x, i, a) { return a.indexOf(x) === i; });
-    return '<details class="fuera"' + (filtro.unidad ? ' open' : '') + '><summary><span class="tag-fa">FUERA DE ALCANCE (POR CONFIRMAR)</span><b>' + esc(us.join(', ')) + '</b>' +
+    return '<details class="fuera"' + (filtro.unidad ? ' open' : '') + '><summary><span class="tag-fa">FUERA DE ALCANCE (REPOSICIÓN POR DEFINIR)</span><b>' + esc(us.join(', ')) + '</b>' +
       '<span>' + plural(fs.length, 'fila', 'filas') + ' · no cuentan en el avance ni en los indicadores</span></summary><ul>' +
       fs.map(function (f) { var u = nomUnidad(f.u);
         return '<li><b>' + esc(f.codigo) + '</b><span>' + esc(f.actividad) + '<small>' + esc(u.t + (u.n ? ' · ' + u.n : '') + (f.fin ? ' · fin ' + fecha(f.fin) : '')) + '</small></span></li>'; }).join('') +
@@ -849,7 +849,7 @@
     var faK = (datos.fueraAlcance || []).filter(function (f) { return !calProy || f.proyecto === calProy; });
     var fuK = faK.map(function (f) { return f.u; }).filter(function (x, i, a) { return a.indexOf(x) === i; });
     var h = '<div class="kpis-h"><h2>Indicadores · ' + esc(calProy || 'Todos los proyectos') + '</h2><small>' + esc(nota) + ' · corte ' + fecha(datos.corte) + '</small></div>' +
-      (faK.length ? '<p class="k-fa"><span class="tag-fa">FUERA DE ALCANCE</span> No incluyen ' + plural(faK.length, 'fila', 'filas') + ' de ' + esc(fuK.join(', ')) + ' (por confirmar); tampoco en la tendencia.</p>' : '') +
+      (faK.length ? '<p class="k-fa"><span class="tag-fa">FUERA DE ALCANCE</span> No incluyen ' + plural(faK.length, 'fila', 'filas') + ' de ' + esc(fuK.join(', ')) + ' (vespertinas; reposición por definir); tampoco en la tendencia.</p>' : '') +
       '<div class="kpi-g">' + ks.map(function (k) {
         return '<article class="kpi" style="--k:' + colSem(k.sem) + '" title="' + esc(k.lab + ' · semáforo ' + k.sem + '\n' + k.tip) + '">' +
           '<div class="k-top"><span class="k-lab">' + esc(k.lab) + '</span><span class="k-sem"><i></i>' + esc(k.sem.toUpperCase()) + '</span></div>' +
@@ -912,7 +912,7 @@
 
     // leyenda
     $('leyenda').innerHTML = [['Vencida', EST.vencida], ['Vence en ' + d.dias + ' días o menos', EST.proxima], ['En tiempo con avance', EST.avance], ['Sin avance o sin fecha', EST.sin_avance]]
-      .concat((d.fueraAlcance || []).length ? [['Fuera de alcance (por confirmar): no cuenta', '#C9CDD2']] : [])
+      .concat((d.fueraAlcance || []).length ? [['Fuera de alcance (reposición por definir): no cuenta', '#C9CDD2']] : [])
       .map(function (l) { return '<span><i class="dot" style="background:' + l[1] + '"></i>' + esc(l[0]) + '</span>'; }).join('');
 
     // actividades por proyecto (lista en General y proyectos; Gantt en la pestaña Calendario), con filtros
@@ -937,7 +937,7 @@
       }
       html += '<div class="grupo"><div class="g-cab" style="--gc:' + PROY_COLOR[p.sigla] + ';--gbg:' + (PROY_BG[p.sigla] || '#F3EEE1') + '">' +
               '<span>' + esc(p.proyecto + ' · ' + nombreCorto(p.nombre)) + '</span><small>real ' + pct(p.pct_real) + ' · prog. ' + pct(p.pct_programado) + '</small></div>';
-      if (!acts.length) html += '<p class="g-vacio">' + (filtro.unidad && uFuera(filtro.unidad) ? 'Esta unidad está fuera de alcance (por confirmar): sus filas no cuentan en el avance.' : 'Ninguna actividad con estos filtros.') + '</p>';
+      if (!acts.length) html += '<p class="g-vacio">' + (filtro.unidad && uFuera(filtro.unidad) ? 'Esta unidad está fuera de alcance (reposición por definir): sus filas no cuentan en el avance.' : 'Ninguna actividad con estos filtros.') + '</p>';
       acts.forEach(function (a) {
         var col = EST[a.estado];
         var meta = [a.est_txt, a.fin_txt, a.alerta].filter(Boolean).join(' · ');
@@ -980,7 +980,7 @@
     $('pie').innerHTML = 'Fecha de corte: ' + fecha(d.corte) + ' (America/Matamoros). Fuente: ' +
       (m.url ? '<a href="' + esc(m.url) + '" target="_blank" rel="noopener">' + esc(m.hoja || 'Google Sheet de control') + '</a>' : esc(m.hoja || 'Google Sheet de control')) +
       ' (pestañas A-PVE, B-PVJ, C-PVG' + (m.ultimaModificacion ? '; modificada ' + esc(m.ultimaModificacion) : '') + '). ' +
-      'Criterios del Tablero de avance: ' + esc(eq) + '; estado en blanco = 0 %; «No aplica» y «Fuera de alcance (por confirmar)» se excluyen. Vencida = fecha fin anterior al corte con avance &lt; 100 %; ' +
+      'Criterios del Tablero de avance: ' + esc(eq) + '; estado en blanco = 0 %; «No aplica» y «Fuera de alcance» se excluyen. Vencida = fecha fin anterior al corte con avance &lt; 100 %; ' +
       'próxima (tarjetas y barras) = vence en ' + d.dias + ' días o menos; la lista muestra los próximos ' + d.diasLista + ' días. ' +
       'En las tarjetas, el tramo gris claro detrás de la barra = % programado a la fecha. Se actualiza sola cada 60 s.' +
       (links ? (linksVivo ? ' Observaciones y documentos: en vivo desde la hoja (columna Observaciones y pestaña «Documentos»).'
