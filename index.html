@@ -363,6 +363,23 @@
     .g-grid .hoy { position: absolute; top: 0; bottom: 0; width: 2px; margin-left: -1px; background: var(--guinda); z-index: 1; }
     .g-grid .hoy span { position: absolute; top: 6px; right: 4px; font-size: 10.5px; font-weight: 700; color: #fff; background: var(--guinda); border-radius: 4px; padding: 1px 5px; white-space: nowrap; }
     .g-vacio { padding: 14px; color: var(--tenue); font-size: 14px; }
+    /* 30-09-2026: filas «Fuera de alcance (por confirmar)»: en gris, no cuentan */
+    .fuera { margin: 4px 0 2px; border-top: 1px dashed var(--borde); color: #7A828C; }
+    .fuera > summary { cursor: pointer; list-style: none; display: flex; flex-wrap: wrap; align-items: center; gap: 4px 10px; padding: 10px 6px; font-size: 13.5px; }
+    .fuera > summary::-webkit-details-marker { display: none; }
+    .fuera > summary::before { content: '▶'; font-size: 10px; transition: transform .15s; }
+    .fuera[open] > summary::before { transform: rotate(90deg); }
+    .fuera > summary b { color: #5F6670; }
+    .fuera ul { list-style: none; margin: 0; padding: 0 6px 8px 22px; }
+    .fuera li { display: grid; grid-template-columns: 92px minmax(0, 1fr); column-gap: 12px; padding: 6px 0; border-bottom: 1px solid #EEE; font-size: 13.5px; }
+    .fuera li:last-child { border-bottom: 0; }
+    .fuera li b { font-weight: 600; }
+    .fuera li small { display: block; color: #8A9099; }
+    .tag-fa { display: inline-block; padding: 1px 8px; border-radius: 999px; background: #ECEDEF; color: #5F6670; font-size: 11.5px; font-weight: 600; letter-spacing: .02em; }
+    .doc.fa, .doc.fa + .det { opacity: .62; }
+    .li-fa { opacity: .7; }
+    .k-fa { margin: -4px 0 12px; font-size: 13px; color: #6B727C; }
+    @media (max-width: 560px) { .fuera li { grid-template-columns: 1fr; } }
     @media (min-width: 1100px) { .g-in { --lab: 300px; } }
     @media (max-width: 720px) { .g-in { --lab: 132px; --pxd: 4.5px; } .g-lab { padding: 5px 8px; } .g-lab .n { font-size: 12px; } .seg button { padding: 6px 14px; } }
     .oculto { display: none !important; }
@@ -503,6 +520,9 @@
                '<span class="sub2">' + esc([x.estado || 'sin estado', x.fin ? 'fin ' + fecha(x.fin) : ''].filter(Boolean).join(' · ')) + '</span></span><span class="p">' + pct(x.pct) + '</span></li>';
       }).join('') + '</ul></section>';
     }
+    var fa = (datos.fueraAlcance || []).filter(function (f) { return f.codigo === a.codigo; });
+    if (fa.length) h += '<section><h4>Fuera de alcance (por confirmar)</h4><ul>' + fa.map(function (f) { var u = nomUnidad(f.u);
+      return '<li class="un li-fa"><i class="dot" style="background:#C9CDD2"></i><span><b>' + esc(u.t) + '</b>' + (u.n ? ' · ' + esc(u.n) : '') + '<span class="sub2">no cuenta en el avance · por confirmar con el municipio</span></span><span class="p">—</span></li>'; }).join('') + '</ul></section>';
     if (linksVivo) h += formObs(a);
     var ds = i.docs.map(function (x) { return '<li>' + enlaceDoc(x) + '</li>'; }).concat(i.extra.map(function (x) {
       return '<li><a href="' + esc(x.url) + '" target="_blank" rel="noopener">Liga de Drive ↗</a><span class="sub2">' + esc(x.unidad || '') + ' · escrita en la hoja</span></li>'; }));
@@ -535,7 +555,8 @@
       ds.forEach(function (x) {
         var on = !!docsAbiertos[x.codigo];
         var meta = [x.tipo, x.fecha ? fecha(x.fecha) : 'sin fecha', x.actividades.length ? 'toca ' + plural(x.actividades.length, 'actividad', 'actividades') : 'sin actividades ligadas', x.url ? '' : 'sin archivo en Drive'].filter(Boolean).join(' · ');
-        h += '<div class="doc" role="button" tabindex="0" aria-expanded="' + on + '" data-doc="' + esc(x.codigo) + '" id="doc-' + esc(x.codigo) + '">' +
+        var fa = /^\[fuera de alcance\]/i.test(x.titulo || '');
+        h += '<div class="doc' + (fa ? ' fa' : '') + '" role="button" tabindex="0" aria-expanded="' + on + '" data-doc="' + esc(x.codigo) + '" id="doc-' + esc(x.codigo) + '">' +
              '<div class="cod">' + esc(x.codigo) + '</div><div class="txt"><div class="nom"><span class="c2">' + esc(x.codigo) + '</span>' + esc(x.titulo) + '</div>' +
              '<div class="meta">' + esc(meta) + '</div></div><span class="chev" aria-hidden="true">▶</span></div>';
         var lis = x.actividades.map(function (c) {
@@ -665,7 +686,11 @@
     var opsR = [['', 'Todos']].concat(Object.keys(resp).sort(function (x, y) { return ordR(x) - ordR(y) || x.localeCompare(y); }).map(function (r) { return [r, r]; }));
     var ents = Object.keys(ent).sort();
     if (ents.length) opsR = opsR.concat([['#', '── Por entidad ──']], ents.map(function (e) { return ['ent:' + e, 'Entidad: ' + e]; }));
-    if (filtro.unidad && !us.some(function (u) { return u.c === filtro.unidad; })) opsU.push([filtro.unidad, filtro.unidad]);
+    (datos.unidadesFuera || []).forEach(function (c) {                     // 30-09-2026: unidades fuera de alcance, con etiqueta
+      if (!ps.some(function (p) { return c.indexOf(p.sigla + '-') === 0; })) return;
+      var u = nomUnidad(c); opsU.push([c, u.t + (u.n ? ' · ' + u.n : '') + ' (fuera de alcance)']);
+    });
+    if (filtro.unidad && !opsU.some(function (o) { return o[0] === filtro.unidad; })) opsU.push([filtro.unidad, filtro.unidad]);
     if (filtro.resp && !opsR.some(function (o) { return o[0] === filtro.resp; })) opsR.push([filtro.resp, filtro.resp]);
     var n = (filtro.estado ? 1 : 0) + (filtro.unidad ? 1 : 0) + (filtro.resp ? 1 : 0);
     var txtDe = function (ops, v) { var o = ops.filter(function (x) { return x[0] === v; })[0]; return o ? o[1] : v; };
@@ -697,6 +722,22 @@
       if (c === a.sigla) return { c: c, t: 'Nivel proyecto', n: '' };
       return { c: c, t: u.titulo || c, n: u.unidad || '' };
     });
+  }
+  // 30-09-2026: alcance. fueraAlcance = filas «Fuera de alcance (por confirmar)» (no cuentan); unidadesFuera = unidades con todas sus filas fuera
+  function esFuera(c, u) { return (datos.fueraAlcance || []).some(function (f) { return f.codigo === c && f.u === u; }); }
+  function uFuera(u) { return (datos.unidadesFuera || []).indexOf(u) >= 0; }
+  function nomUnidad(c) { var u = (datos.unidades || []).filter(function (x) { return x.cod_unidad === c; })[0] || {}; return { c: c, t: u.titulo || c, n: u.unidad || '' }; }
+  function fueraDe(p) {                                    // filas fuera de alcance del proyecto que pasan el filtro de unidad
+    return (datos.fueraAlcance || []).filter(function (f) { return f.proyecto === p && (!filtro.unidad || f.u === filtro.unidad); });
+  }
+  function bloqueFuera(p) {
+    var fs = fueraDe(p); if (!fs.length || filtro.estado || filtro.resp) return '';
+    var us = fs.map(function (f) { return f.u; }).filter(function (x, i, a) { return a.indexOf(x) === i; });
+    return '<details class="fuera"' + (filtro.unidad ? ' open' : '') + '><summary><span class="tag-fa">FUERA DE ALCANCE (POR CONFIRMAR)</span><b>' + esc(us.join(', ')) + '</b>' +
+      '<span>' + plural(fs.length, 'fila', 'filas') + ' · no cuentan en el avance ni en los indicadores</span></summary><ul>' +
+      fs.map(function (f) { var u = nomUnidad(f.u);
+        return '<li><b>' + esc(f.codigo) + '</b><span>' + esc(f.actividad) + '<small>' + esc(u.t + (u.n ? ' · ' + u.n : '') + (f.fin ? ' · fin ' + fecha(f.fin) : '')) + '</small></span></li>'; }).join('') +
+      '</ul></details>';
   }
   function subtitulo(a) {
     var us = unidadesDe(a); if (!us.length) return '';
@@ -748,7 +789,7 @@
     (datos.actividades || []).concat(fuente.actividades || []).forEach(function (a) { if (!idx[a.codigo]) idx[a.codigo] = a; });
     Object.keys(fuente.porUnidad || {}).forEach(function (c) {
       var a = idx[c]; if (!a || !scope(a.proyecto)) return;
-      fuente.porUnidad[c].forEach(function (r) { if (!conFiltro || cumple(r)) out.push({ c: c, p: a.proyecto, u: r.u, pct: +r.pct || 0, fin: r.fin }); });
+      fuente.porUnidad[c].forEach(function (r) { if ((!conFiltro || cumple(r)) && !esFuera(c, r.u)) out.push({ c: c, p: a.proyecto, u: r.u, pct: +r.pct || 0, fin: r.fin }); });
     });
     return out;
   }
@@ -794,7 +835,7 @@
     if (K.notas) ks.push({ id: 'notas', lab: 'Notas (7 días)', corto: String(n7), num: String(n7), sub: 'bitácora de observaciones del tablero', sem: n7 >= 3 ? 'Verde' : n7 >= 1 ? 'Amarillo' : 'Rojo',
               tr: n7 === n14 ? '<span class="k-tr igual">= igual que los 7 días previos (' + n14 + ')</span>' : '<span class="k-tr ' + (n7 > n14 ? 'bien' : 'mal') + '">' + (n7 > n14 ? '▲ +' : '▼ ') + Math.abs(n7 - n14) + ' vs 7 días previos</span>', tip: UMBRAL.notas });
     var sig = {}; d.proyectos.forEach(function (p) { if (scope(p.proyecto)) sig[p.sigla] = 1; });
-    var enc = (K.encuestas || []).filter(function (e) { return sig[e.p] && (!filtro.unidad || e.u === filtro.unidad) && /base/i.test(e.m) && e.meta !== null; });
+    var enc = (K.encuestas || []).filter(function (e) { return sig[e.p] && !uFuera(e.u) && (!filtro.unidad || e.u === filtro.unidad) && /base/i.test(e.m) && e.meta !== null; });
     if (enc.some(function (e) { return e.apl !== null; })) {
       var apl = enc.reduce(function (s, e) { return s + (e.apl || 0); }, 0), meta = enc.reduce(function (s, e) { return s + e.meta; }, 0), pc = meta ? apl / meta : null;
       ks.push({ id: 'enc', lab: 'Encuestas línea base', corto: apl + '/' + meta, num: apl + '<small> / ' + meta + '</small>', sub: 'aplicadas / meta · ' + pct(pc), sem: pc === null ? 'Sin datos' : pc >= 0.9 ? 'Verde' : pc >= 0.5 ? 'Amarillo' : 'Rojo', tr: '<span class="k-tr nd">sin tendencia</span>', tip: UMBRAL.enc });
@@ -805,7 +846,10 @@
   function kpiHtml() {
     var ks = kpiCalc(function (pr) { return !calProy || pr === calProy; }), filt = hayFiltro();
     var nota = filt ? 'con los filtros activos (sin tendencia)' : (snap ? 'tendencia contra la instantánea del ' + fecha(snap.corte) : 'sin instantánea previa para la tendencia');
+    var faK = (datos.fueraAlcance || []).filter(function (f) { return !calProy || f.proyecto === calProy; });
+    var fuK = faK.map(function (f) { return f.u; }).filter(function (x, i, a) { return a.indexOf(x) === i; });
     var h = '<div class="kpis-h"><h2>Indicadores · ' + esc(calProy || 'Todos los proyectos') + '</h2><small>' + esc(nota) + ' · corte ' + fecha(datos.corte) + '</small></div>' +
+      (faK.length ? '<p class="k-fa"><span class="tag-fa">FUERA DE ALCANCE</span> No incluyen ' + plural(faK.length, 'fila', 'filas') + ' de ' + esc(fuK.join(', ')) + ' (por confirmar); tampoco en la tendencia.</p>' : '') +
       '<div class="kpi-g">' + ks.map(function (k) {
         return '<article class="kpi" style="--k:' + colSem(k.sem) + '" title="' + esc(k.lab + ' · semáforo ' + k.sem + '\n' + k.tip) + '">' +
           '<div class="k-top"><span class="k-lab">' + esc(k.lab) + '</span><span class="k-sem"><i></i>' + esc(k.sem.toUpperCase()) + '</span></div>' +
@@ -868,6 +912,7 @@
 
     // leyenda
     $('leyenda').innerHTML = [['Vencida', EST.vencida], ['Vence en ' + d.dias + ' días o menos', EST.proxima], ['En tiempo con avance', EST.avance], ['Sin avance o sin fecha', EST.sin_avance]]
+      .concat((d.fueraAlcance || []).length ? [['Fuera de alcance (por confirmar): no cuenta', '#C9CDD2']] : [])
       .map(function (l) { return '<span><i class="dot" style="background:' + l[1] + '"></i>' + esc(l[0]) + '</span>'; }).join('');
 
     // actividades por proyecto (lista en General y proyectos; Gantt en la pestaña Calendario), con filtros
@@ -882,7 +927,8 @@
     var R = vCal ? rango([].concat.apply([], porP.map(function (x) { return x.acts; }))) : null;
     porP.forEach(function (x) {
       var p = x.p, acts = x.acts;
-      if (!x.todas.length || (!acts.length && hayFiltro() && porP.length > 1)) return;
+      var bf = vCal ? '' : bloqueFuera(p.proyecto);
+      if (!x.todas.length || (!acts.length && !bf && hayFiltro() && porP.length > 1)) return;
       if (vCal) {
         html += '<div class="grupo"><div class="g-cab" style="--gc:' + PROY_COLOR[p.sigla] + ';--gbg:' + (PROY_BG[p.sigla] || '#F3EEE1') + '">' +
                 '<span>' + esc(p.proyecto + ' · ' + nombreCorto(p.nombre)) + '</span><small>real ' + pct(p.pct_real) + ' · prog. ' + pct(p.pct_programado) + '</small></div>' +
@@ -891,7 +937,7 @@
       }
       html += '<div class="grupo"><div class="g-cab" style="--gc:' + PROY_COLOR[p.sigla] + ';--gbg:' + (PROY_BG[p.sigla] || '#F3EEE1') + '">' +
               '<span>' + esc(p.proyecto + ' · ' + nombreCorto(p.nombre)) + '</span><small>real ' + pct(p.pct_real) + ' · prog. ' + pct(p.pct_programado) + '</small></div>';
-      if (!acts.length) html += '<p class="g-vacio">Ninguna actividad con estos filtros.</p>';
+      if (!acts.length) html += '<p class="g-vacio">' + (filtro.unidad && uFuera(filtro.unidad) ? 'Esta unidad está fuera de alcance (por confirmar): sus filas no cuentan en el avance.' : 'Ninguna actividad con estos filtros.') + '</p>';
       acts.forEach(function (a) {
         var col = EST[a.estado];
         var meta = [a.est_txt, a.fin_txt, a.alerta].filter(Boolean).join(' · ');
@@ -904,7 +950,7 @@
                 barra(a.pct, col) + '<div class="pct" style="color:' + pc + '">' + pct(a.pct) + '</div></div>' +
                 '<div class="det' + (on ? '' : ' oculto') + '" id="det-' + esc(a.codigo) + '" style="--gc:' + PROY_COLOR[p.sigla] + '">' + (on ? detalleAct(a) : '') + '</div>';
       });
-      html += '</div>';
+      html += bf + '</div>';
     });
     $('herr').classList.toggle('oculto', vDocs);
     if (!vDocs) $('herr').innerHTML = herramientas(nTodas, nVis);
@@ -934,7 +980,7 @@
     $('pie').innerHTML = 'Fecha de corte: ' + fecha(d.corte) + ' (America/Matamoros). Fuente: ' +
       (m.url ? '<a href="' + esc(m.url) + '" target="_blank" rel="noopener">' + esc(m.hoja || 'Google Sheet de control') + '</a>' : esc(m.hoja || 'Google Sheet de control')) +
       ' (pestañas A-PVE, B-PVJ, C-PVG' + (m.ultimaModificacion ? '; modificada ' + esc(m.ultimaModificacion) : '') + '). ' +
-      'Criterios del Tablero de avance: ' + esc(eq) + '; estado en blanco = 0 %; «No aplica» se excluye. Vencida = fecha fin anterior al corte con avance &lt; 100 %; ' +
+      'Criterios del Tablero de avance: ' + esc(eq) + '; estado en blanco = 0 %; «No aplica» y «Fuera de alcance (por confirmar)» se excluyen. Vencida = fecha fin anterior al corte con avance &lt; 100 %; ' +
       'próxima (tarjetas y barras) = vence en ' + d.dias + ' días o menos; la lista muestra los próximos ' + d.diasLista + ' días. ' +
       'En las tarjetas, el tramo gris claro detrás de la barra = % programado a la fecha. Se actualiza sola cada 60 s.' +
       (links ? (linksVivo ? ' Observaciones y documentos: en vivo desde la hoja (columna Observaciones y pestaña «Documentos»).'
@@ -1089,7 +1135,7 @@
   $('tabs').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-tab]'); if (!b) return;
     tab = b.getAttribute('data-tab');
-    if (filtro.unidad && datos && tab !== 'Documentos' && !datos.actividades.some(function (a) { return proyEnVista({ proyecto: a.proyecto }) && (a.unidades || []).indexOf(filtro.unidad) >= 0; })) filtro.unidad = '';
+    if (filtro.unidad && datos && tab !== 'Documentos' && !uFuera(filtro.unidad) && !datos.actividades.some(function (a) { return proyEnVista({ proyecto: a.proyecto }) && (a.unidades || []).indexOf(filtro.unidad) >= 0; })) filtro.unidad = '';
     render(); fijarCab(); window.scrollTo({ top: 0, behavior: 'smooth' });
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
     guardarUrl();
@@ -1110,7 +1156,8 @@
     if (abrir) { var s0 = pf.querySelector('select'); if (s0 && matchMedia('(hover: hover)').matches) s0.focus(); }
   }
   function unidadValida() {
-    if (filtro.unidad && !datos.actividades.some(function (a) { return proyEnVista({ proyecto: a.proyecto }) && (a.unidades || []).indexOf(filtro.unidad) >= 0; })) filtro.unidad = '';
+    if (filtro.unidad && !(uFuera(filtro.unidad) && datos.proyectos.some(function (p) { return proyEnVista(p) && filtro.unidad.indexOf(p.sigla + '-') === 0; })) &&
+        !datos.actividades.some(function (a) { return proyEnVista({ proyecto: a.proyecto }) && (a.unidades || []).indexOf(filtro.unidad) >= 0; })) filtro.unidad = '';
   }
   $('herr').addEventListener('click', function (e) {
     var b = e.target.closest('button'); if (!b) return;
