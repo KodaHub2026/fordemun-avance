@@ -1,0 +1,2723 @@
+{
+  "corte": "2026-10-05",
+  "dias": 14,
+  "diasLista": 7,
+  "estados": [
+    [
+      "Sin iniciar",
+      0
+    ],
+    [
+      "En proceso",
+      0.5
+    ],
+    [
+      "Avanzado",
+      0.75
+    ],
+    [
+      "Terminado",
+      1
+    ]
+  ],
+  "avisos": [],
+  "proyectos": [
+    {
+      "actividades": 38,
+      "terminadas": 0,
+      "pct_real": 0.09868421052631579,
+      "pct_programado": 0.3684210526315789,
+      "brecha": -0.26973684210526316,
+      "vencidas": 14,
+      "proximas": 2,
+      "sin_estado": 28,
+      "semaforo": "Rojo",
+      "proyecto": "A-PVE",
+      "letra": "A",
+      "sigla": "PVE",
+      "nombre": "Prevención de Violencia Escolar (acoso y violencia escolar)"
+    },
+    {
+      "actividades": 31,
+      "terminadas": 0,
+      "pct_real": 0.04838709677419355,
+      "pct_programado": 0.16129032258064516,
+      "brecha": -0.11290322580645161,
+      "vencidas": 5,
+      "proximas": 0,
+      "sin_estado": 29,
+      "semaforo": "Rojo",
+      "proyecto": "B-PVJ",
+      "letra": "B",
+      "sigla": "PVJ",
+      "nombre": "Prevención de Violencia a la Juventud (Jóvenes en prevención)"
+    },
+    {
+      "actividades": 11,
+      "terminadas": 0,
+      "pct_real": 0.11363636363636363,
+      "pct_programado": 0.45454545454545453,
+      "brecha": -0.3409090909090909,
+      "vencidas": 5,
+      "proximas": 0,
+      "sin_estado": 9,
+      "semaforo": "Rojo",
+      "proyecto": "C-PVG",
+      "letra": "C",
+      "sigla": "PVG",
+      "nombre": "Prevención de Violencia Familiar y de Género"
+    }
+  ],
+  "total": {
+    "actividades": 80,
+    "terminadas": 0,
+    "pct_real": 0.08125,
+    "pct_programado": 0.3,
+    "brecha": -0.21875,
+    "vencidas": 24,
+    "proximas": 2,
+    "sin_estado": 66,
+    "semaforo": "Rojo",
+    "proyecto": "TOTAL",
+    "nombre": "Tres proyectos"
+  },
+  "unidades": [
+    {
+      "actividades": 2,
+      "terminadas": 0,
+      "pct_real": 0.375,
+      "pct_programado": 0.5,
+      "brecha": -0.125,
+      "vencidas": 1,
+      "proximas": 0,
+      "sin_estado": 1,
+      "semaforo": "Rojo",
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "cod_unidad": "PVE",
+      "titulo": "Nivel proyecto",
+      "unidad": "Documentos e informes de PVE"
+    },
+    {
+      "actividades": 12,
+      "terminadas": 0,
+      "pct_real": 0.08333333333333333,
+      "pct_programado": 0.3333333333333333,
+      "brecha": -0.25,
+      "vencidas": 4,
+      "proximas": 1,
+      "sin_estado": 9,
+      "semaforo": "Rojo",
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "cod_unidad": "PVE-P1M",
+      "titulo": "PVE-P1M",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Mat.)"
+    },
+    {
+      "actividades": 0,
+      "terminadas": 0,
+      "pct_real": null,
+      "pct_programado": null,
+      "brecha": null,
+      "vencidas": 0,
+      "proximas": 0,
+      "sin_estado": 0,
+      "semaforo": "Sin datos",
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "cod_unidad": "PVE-P1V",
+      "titulo": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)"
+    },
+    {
+      "actividades": 12,
+      "terminadas": 0,
+      "pct_real": 0.08333333333333333,
+      "pct_programado": 0.4166666666666667,
+      "brecha": -0.33333333333333337,
+      "vencidas": 5,
+      "proximas": 0,
+      "sin_estado": 9,
+      "semaforo": "Rojo",
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "cod_unidad": "PVE-P2",
+      "titulo": "PVE-P2",
+      "unidad": "Esc. Prim. Luis Torres Vázquez"
+    },
+    {
+      "actividades": 0,
+      "terminadas": 0,
+      "pct_real": null,
+      "pct_programado": null,
+      "brecha": null,
+      "vencidas": 0,
+      "proximas": 0,
+      "sin_estado": 0,
+      "semaforo": "Sin datos",
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "cod_unidad": "PVE-P3",
+      "titulo": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez"
+    },
+    {
+      "actividades": 12,
+      "terminadas": 0,
+      "pct_real": 0.08333333333333333,
+      "pct_programado": 0.3333333333333333,
+      "brecha": -0.25,
+      "vencidas": 4,
+      "proximas": 1,
+      "sin_estado": 9,
+      "semaforo": "Rojo",
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "cod_unidad": "PVE-P4",
+      "titulo": "PVE-P4",
+      "unidad": "Esc. Prim. República de México"
+    },
+    {
+      "actividades": 4,
+      "terminadas": 0,
+      "pct_real": 0.375,
+      "pct_programado": 0.5,
+      "brecha": -0.125,
+      "vencidas": 2,
+      "proximas": 0,
+      "sin_estado": 2,
+      "semaforo": "Rojo",
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "cod_unidad": "PVJ",
+      "titulo": "Nivel proyecto",
+      "unidad": "Documentos e informes de PVJ"
+    },
+    {
+      "actividades": 9,
+      "terminadas": 0,
+      "pct_real": 0,
+      "pct_programado": 0.1111111111111111,
+      "brecha": -0.1111111111111111,
+      "vencidas": 1,
+      "proximas": 0,
+      "sin_estado": 9,
+      "semaforo": "Rojo",
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "cod_unidad": "PVJ-CL",
+      "titulo": "PVJ-CL",
+      "unidad": "Colonia Luis Echeverría Álvarez"
+    },
+    {
+      "actividades": 9,
+      "terminadas": 0,
+      "pct_real": 0,
+      "pct_programado": 0.1111111111111111,
+      "brecha": -0.1111111111111111,
+      "vencidas": 1,
+      "proximas": 0,
+      "sin_estado": 9,
+      "semaforo": "Rojo",
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "cod_unidad": "PVJ-CE",
+      "titulo": "PVJ-CE",
+      "unidad": "Colonia Estudiantil"
+    },
+    {
+      "actividades": 9,
+      "terminadas": 0,
+      "pct_real": 0,
+      "pct_programado": 0.1111111111111111,
+      "brecha": -0.1111111111111111,
+      "vencidas": 1,
+      "proximas": 0,
+      "sin_estado": 9,
+      "semaforo": "Rojo",
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "cod_unidad": "PVJ-CS",
+      "titulo": "PVJ-CS",
+      "unidad": "Colonia San Marcos 4"
+    },
+    {
+      "actividades": 2,
+      "terminadas": 0,
+      "pct_real": 0.375,
+      "pct_programado": 0.5,
+      "brecha": -0.125,
+      "vencidas": 1,
+      "proximas": 0,
+      "sin_estado": 1,
+      "semaforo": "Rojo",
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "cod_unidad": "PVG",
+      "titulo": "Nivel proyecto",
+      "unidad": "Documentos e informes de PVG"
+    },
+    {
+      "actividades": 9,
+      "terminadas": 0,
+      "pct_real": 0.05555555555555555,
+      "pct_programado": 0.4444444444444444,
+      "brecha": -0.38888888888888884,
+      "vencidas": 4,
+      "proximas": 0,
+      "sin_estado": 8,
+      "semaforo": "Rojo",
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "cod_unidad": "Por definir",
+      "titulo": "Localidad por definir",
+      "unidad": "Localidad por definir (libro de códigos: pendiente)"
+    }
+  ],
+  "actividades": [
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT00",
+      "actividad": "Vinculación y presentación en planteles",
+      "n": 3,
+      "pct": 0.5,
+      "estado": "vencida",
+      "quien": "3 planteles",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "En proceso",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT01",
+      "actividad": "Diagnóstico de violencia y seguridad escolar",
+      "n": 1,
+      "pct": 0.75,
+      "estado": "vencida",
+      "quien": "nivel proyecto",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "Avanzado",
+      "unidades": [
+        "PVE"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT02",
+      "actividad": "Encuestas",
+      "n": 3,
+      "pct": 0.5,
+      "estado": "vencida",
+      "quien": "3 planteles",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "En proceso",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT03",
+      "actividad": "Grupos focales",
+      "n": 3,
+      "pct": 0,
+      "estado": "vencida",
+      "quien": "3 planteles",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT04",
+      "actividad": "Marcha Exploratoria de Seguridad (MES)",
+      "n": 3,
+      "pct": 0,
+      "estado": "vencida",
+      "quien": "3 planteles",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT05",
+      "actividad": "Red de niños mediadores",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 planteles",
+      "fin_txt": "fin 31/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT06",
+      "actividad": "Talleres y actividades lúdicas",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 planteles",
+      "fin_txt": "fin 14/11/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT07",
+      "actividad": "Canalización para atención especializada",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 planteles",
+      "fin_txt": "sin fecha",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT08",
+      "actividad": "Estrategias de comunicación",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 planteles",
+      "fin_txt": "sin fecha",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT09",
+      "actividad": "Esquema de incentivos positivos",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 planteles",
+      "fin_txt": "sin fecha",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT10",
+      "actividad": "Mejoramiento de las características físicas de los planteles escolares",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 planteles",
+      "fin_txt": "fin 14/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT11",
+      "actividad": "Acuerdo de Prevención de Violencia Escolar",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 planteles",
+      "fin_txt": "fin 14/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT12",
+      "actividad": "Informe de evaluación y seguimiento / formato de evidencia",
+      "n": 1,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "nivel proyecto",
+      "fin_txt": "fin 31/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVE"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT13",
+      "actividad": "Teatro Guiñol",
+      "n": 1,
+      "pct": 0,
+      "estado": "vencida",
+      "quien": "PVE-P2",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "Sin iniciar",
+      "unidades": [
+        "PVE-P2"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT14",
+      "actividad": "Feria Lúdica",
+      "n": 1,
+      "pct": 0,
+      "estado": "proxima",
+      "quien": "PVE-P4",
+      "fin_txt": "fin 07/10/2026",
+      "alerta": "vence en 2 d",
+      "est_txt": "Sin iniciar",
+      "unidades": [
+        "PVE-P4"
+      ]
+    },
+    {
+      "proyecto": "A-PVE",
+      "sigla": "PVE",
+      "codigo": "PVE-ACT15",
+      "actividad": "Teatro Guiñol y Actividades Lúdicas",
+      "n": 1,
+      "pct": 0,
+      "estado": "proxima",
+      "quien": "PVE-P1M",
+      "fin_txt": "fin 08/10/2026",
+      "alerta": "vence en 3 d",
+      "est_txt": "Sin iniciar",
+      "unidades": [
+        "PVE-P1M"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT01",
+      "actividad": "Contextualización de las problemáticas",
+      "n": 1,
+      "pct": 0.75,
+      "estado": "vencida",
+      "quien": "nivel proyecto",
+      "fin_txt": "fin 14/09/2026",
+      "alerta": "vencida hace 21 d",
+      "est_txt": "Avanzado",
+      "unidades": [
+        "PVJ"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT02",
+      "actividad": "Diagnósticos participativos",
+      "n": 1,
+      "pct": 0.75,
+      "estado": "vencida",
+      "quien": "nivel proyecto",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "Avanzado",
+      "unidades": [
+        "PVJ"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT03",
+      "actividad": "Convocatoria",
+      "n": 3,
+      "pct": 0,
+      "estado": "vencida",
+      "quien": "3 colonias",
+      "fin_txt": "fin 14/09/2026",
+      "alerta": "vencida hace 21 d",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ-CL",
+        "PVJ-CE",
+        "PVJ-CS"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT04",
+      "actividad": "Actividades de los jóvenes en favor de su comunidad a partir de alguna habilidad técnica, artística, cultural y deportiva",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 colonias",
+      "fin_txt": "fin 30/11/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ-CL",
+        "PVJ-CE",
+        "PVJ-CS"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT05",
+      "actividad": "Capacitaciones para el trabajo",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 colonias",
+      "fin_txt": "sin fecha",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ-CL",
+        "PVJ-CE",
+        "PVJ-CS"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT06",
+      "actividad": "Talleres en habilidades psicosociales y competencias laborales",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 colonias",
+      "fin_txt": "fin 30/11/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ-CL",
+        "PVJ-CE",
+        "PVJ-CS"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT07",
+      "actividad": "Talleres sobre sexualidad positiva, consentimiento y anticoncepción",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 colonias",
+      "fin_txt": "sin fecha",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ-CL",
+        "PVJ-CE",
+        "PVJ-CS"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT08",
+      "actividad": "Canalización para atención especializada a jóvenes",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 colonias",
+      "fin_txt": "sin fecha",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ-CL",
+        "PVJ-CE",
+        "PVJ-CS"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT09",
+      "actividad": "Mejoramiento y apropiación de zonas y/o espacios comunitarios",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 colonias",
+      "fin_txt": "fin 31/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ-CL",
+        "PVJ-CE",
+        "PVJ-CS"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT10",
+      "actividad": "Jornadas de Jóvenes en Prevención",
+      "n": 1,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "nivel proyecto",
+      "fin_txt": "fin 31/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT11",
+      "actividad": "Incentivos positivos para fomentar la participación de los jóvenes",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 colonias",
+      "fin_txt": "fin 31/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ-CL",
+        "PVJ-CE",
+        "PVJ-CS"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT12",
+      "actividad": "Participación de la policía local con un enfoque de proximidad social",
+      "n": 3,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "3 colonias",
+      "fin_txt": "fin 31/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ-CL",
+        "PVJ-CE",
+        "PVJ-CS"
+      ]
+    },
+    {
+      "proyecto": "B-PVJ",
+      "sigla": "PVJ",
+      "codigo": "PVJ-ACT13",
+      "actividad": "Informe de evaluación y seguimiento / formato de evidencia",
+      "n": 1,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "nivel proyecto",
+      "fin_txt": "fin 31/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVJ"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT01",
+      "actividad": "Diagnóstico sobre violencia familiar y de género",
+      "n": 1,
+      "pct": 0.75,
+      "estado": "vencida",
+      "quien": "nivel proyecto",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "Avanzado",
+      "unidades": [
+        "PVG"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT02",
+      "actividad": "Cuestionarios o encuestas",
+      "n": 1,
+      "pct": 0,
+      "estado": "vencida",
+      "quien": "localidad por definir",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "sin estado",
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT03",
+      "actividad": "Grupos focales",
+      "n": 1,
+      "pct": 0,
+      "estado": "vencida",
+      "quien": "localidad por definir",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "sin estado",
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT04",
+      "actividad": "Entrevista",
+      "n": 1,
+      "pct": 0,
+      "estado": "vencida",
+      "quien": "localidad por definir",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "sin estado",
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT05",
+      "actividad": "Marchas exploratorias de seguridad",
+      "n": 1,
+      "pct": 0.5,
+      "estado": "vencida",
+      "quien": "localidad por definir",
+      "fin_txt": "fin 30/09/2026",
+      "alerta": "vencida hace 5 d",
+      "est_txt": "En proceso",
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT06",
+      "actividad": "Sensibilización",
+      "n": 1,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "localidad por definir",
+      "fin_txt": "sin fecha",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT07",
+      "actividad": "Difusión",
+      "n": 1,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "localidad por definir",
+      "fin_txt": "sin fecha",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT08",
+      "actividad": "Atención y canalización",
+      "n": 1,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "localidad por definir",
+      "fin_txt": "fin 31/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT09",
+      "actividad": "Formación e inserción laboral",
+      "n": 1,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "localidad por definir",
+      "fin_txt": "fin 14/11/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT10",
+      "actividad": "Mejoramiento de espacios públicos",
+      "n": 1,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "localidad por definir",
+      "fin_txt": "fin 14/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "proyecto": "C-PVG",
+      "sigla": "PVG",
+      "codigo": "PVG-ACT11",
+      "actividad": "Informe de evaluación y seguimiento / formato de evidencia",
+      "n": 1,
+      "pct": 0,
+      "estado": "sin_avance",
+      "quien": "nivel proyecto",
+      "fin_txt": "fin 31/12/2026",
+      "alerta": "",
+      "est_txt": "sin estado",
+      "unidades": [
+        "PVG"
+      ]
+    }
+  ],
+  "vencidas": [
+    {
+      "codigo": "PVJ-ACT01",
+      "proyecto": "B-PVJ",
+      "actividad": "Contextualización de las problemáticas",
+      "quien": "nivel proyecto",
+      "fin": "2026-09-14",
+      "dias": -21,
+      "n": 1,
+      "unidades": [
+        "PVJ"
+      ]
+    },
+    {
+      "codigo": "PVJ-ACT03",
+      "proyecto": "B-PVJ",
+      "actividad": "Convocatoria",
+      "quien": "PVJ-CL, PVJ-CE, PVJ-CS",
+      "fin": "2026-09-14",
+      "dias": -21,
+      "n": 3,
+      "unidades": [
+        "PVJ-CL",
+        "PVJ-CE",
+        "PVJ-CS"
+      ]
+    },
+    {
+      "codigo": "PVE-ACT00",
+      "proyecto": "A-PVE",
+      "actividad": "Vinculación y presentación en planteles",
+      "quien": "PVE-P1M, PVE-P2, PVE-P4",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 3,
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "codigo": "PVE-ACT01",
+      "proyecto": "A-PVE",
+      "actividad": "Diagnóstico de violencia y seguridad escolar",
+      "quien": "nivel proyecto",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 1,
+      "unidades": [
+        "PVE"
+      ]
+    },
+    {
+      "codigo": "PVE-ACT02",
+      "proyecto": "A-PVE",
+      "actividad": "Encuestas",
+      "quien": "PVE-P1M, PVE-P2, PVE-P4",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 3,
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "codigo": "PVE-ACT03",
+      "proyecto": "A-PVE",
+      "actividad": "Grupos focales",
+      "quien": "PVE-P1M, PVE-P2, PVE-P4",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 3,
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "codigo": "PVE-ACT04",
+      "proyecto": "A-PVE",
+      "actividad": "Marcha Exploratoria de Seguridad (MES)",
+      "quien": "PVE-P1M, PVE-P2, PVE-P4",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 3,
+      "unidades": [
+        "PVE-P1M",
+        "PVE-P2",
+        "PVE-P4"
+      ]
+    },
+    {
+      "codigo": "PVE-ACT13",
+      "proyecto": "A-PVE",
+      "actividad": "Teatro Guiñol",
+      "quien": "PVE-P2",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 1,
+      "unidades": [
+        "PVE-P2"
+      ]
+    },
+    {
+      "codigo": "PVJ-ACT02",
+      "proyecto": "B-PVJ",
+      "actividad": "Diagnósticos participativos",
+      "quien": "nivel proyecto",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 1,
+      "unidades": [
+        "PVJ"
+      ]
+    },
+    {
+      "codigo": "PVG-ACT01",
+      "proyecto": "C-PVG",
+      "actividad": "Diagnóstico sobre violencia familiar y de género",
+      "quien": "nivel proyecto",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 1,
+      "unidades": [
+        "PVG"
+      ]
+    },
+    {
+      "codigo": "PVG-ACT02",
+      "proyecto": "C-PVG",
+      "actividad": "Cuestionarios o encuestas",
+      "quien": "localidad por definir",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 1,
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "codigo": "PVG-ACT03",
+      "proyecto": "C-PVG",
+      "actividad": "Grupos focales",
+      "quien": "localidad por definir",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 1,
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "codigo": "PVG-ACT04",
+      "proyecto": "C-PVG",
+      "actividad": "Entrevista",
+      "quien": "localidad por definir",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 1,
+      "unidades": [
+        "Por definir"
+      ]
+    },
+    {
+      "codigo": "PVG-ACT05",
+      "proyecto": "C-PVG",
+      "actividad": "Marchas exploratorias de seguridad",
+      "quien": "localidad por definir",
+      "fin": "2026-09-30",
+      "dias": -5,
+      "n": 1,
+      "unidades": [
+        "Por definir"
+      ]
+    }
+  ],
+  "proximas": [
+    {
+      "codigo": "PVE-ACT14",
+      "proyecto": "A-PVE",
+      "actividad": "Feria Lúdica",
+      "quien": "PVE-P4",
+      "fin": "2026-10-07",
+      "dias": 2,
+      "n": 1,
+      "unidades": [
+        "PVE-P4"
+      ]
+    },
+    {
+      "codigo": "PVE-ACT15",
+      "proyecto": "A-PVE",
+      "actividad": "Teatro Guiñol y Actividades Lúdicas",
+      "quien": "PVE-P1M",
+      "fin": "2026-10-08",
+      "dias": 3,
+      "n": 1,
+      "unidades": [
+        "PVE-P1M"
+      ]
+    }
+  ],
+  "porUnidad": {
+    "PVE-ACT00": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0.5,
+        "estado": "En proceso",
+        "ini": "2026-09-07",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0.5,
+        "estado": "En proceso",
+        "ini": "2026-09-07",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0.5,
+        "estado": "En proceso",
+        "ini": "2026-09-07",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      }
+    ],
+    "PVE-ACT01": [
+      {
+        "u": "PVE",
+        "pct": 0.75,
+        "estado": "Avanzado",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      }
+    ],
+    "PVE-ACT02": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0.5,
+        "estado": "En proceso",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0.5,
+        "estado": "En proceso",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0.5,
+        "estado": "En proceso",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVE-ACT03": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVE-ACT04": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVE-ACT05": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVE-ACT06": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-11-01",
+        "fin": "2026-11-14",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-11-01",
+        "fin": "2026-11-14",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-11-01",
+        "fin": "2026-11-14",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVE-ACT07": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Por definir"
+      }
+    ],
+    "PVE-ACT08": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVE-ACT09": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      }
+    ],
+    "PVE-ACT10": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-14",
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-14",
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-14",
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      }
+    ],
+    "PVE-ACT11": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-14",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVE-P2",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-14",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVE-P4",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-14",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Por definir"
+      }
+    ],
+    "PVE-ACT12": [
+      {
+        "u": "PVE",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-15",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      }
+    ],
+    "PVE-ACT13": [
+      {
+        "u": "PVE-P2",
+        "pct": 0,
+        "estado": "Sin iniciar",
+        "ini": "2026-09-30",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Paul Harris / FSTSE",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVE-ACT14": [
+      {
+        "u": "PVE-P4",
+        "pct": 0,
+        "estado": "Sin iniciar",
+        "ini": "2026-10-07",
+        "fin": "2026-10-07",
+        "alerta": "Próxima",
+        "resp": "Todos (comisiones por asignar)",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVE-ACT15": [
+      {
+        "u": "PVE-P1M",
+        "pct": 0,
+        "estado": "Sin iniciar",
+        "ini": "2026-10-08",
+        "fin": "2026-10-08",
+        "alerta": "Próxima",
+        "resp": "Lupe Ma. de la Garza / Cedif 2",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVJ-ACT01": [
+      {
+        "u": "PVJ",
+        "pct": 0.75,
+        "estado": "Avanzado",
+        "ini": "2026-09-01",
+        "fin": "2026-09-14",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      }
+    ],
+    "PVJ-ACT02": [
+      {
+        "u": "PVJ",
+        "pct": 0.75,
+        "estado": "Avanzado",
+        "ini": "2026-09-15",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVJ-ACT03": [
+      {
+        "u": "PVJ-CL",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-14",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVJ-CE",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-14",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVJ-CS",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-14",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVJ-ACT04": [
+      {
+        "u": "PVJ-CL",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-11-30",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVJ-CE",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-11-30",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVJ-CS",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-11-30",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVJ-ACT05": [
+      {
+        "u": "PVJ-CL",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVJ-CE",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVJ-CS",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      }
+    ],
+    "PVJ-ACT06": [
+      {
+        "u": "PVJ-CL",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-11-30",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVJ-CE",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-11-30",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVJ-CS",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-11-30",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVJ-ACT07": [
+      {
+        "u": "PVJ-CL",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVJ-CE",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      },
+      {
+        "u": "PVJ-CS",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVJ-ACT08": [
+      {
+        "u": "PVJ-CL",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVJ-CE",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVJ-CS",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      }
+    ],
+    "PVJ-ACT09": [
+      {
+        "u": "PVJ-CL",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVJ-CE",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVJ-CS",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      }
+    ],
+    "PVJ-ACT10": [
+      {
+        "u": "PVJ",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      }
+    ],
+    "PVJ-ACT11": [
+      {
+        "u": "PVJ-CL",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-15",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      },
+      {
+        "u": "PVJ-CE",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-15",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      },
+      {
+        "u": "PVJ-CS",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-15",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      }
+    ],
+    "PVJ-ACT12": [
+      {
+        "u": "PVJ-CL",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVJ-CE",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Por definir"
+      },
+      {
+        "u": "PVJ-CS",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Por definir"
+      }
+    ],
+    "PVJ-ACT13": [
+      {
+        "u": "PVJ",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-15",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      }
+    ],
+    "PVG-ACT01": [
+      {
+        "u": "PVG",
+        "pct": 0.75,
+        "estado": "Avanzado",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      }
+    ],
+    "PVG-ACT02": [
+      {
+        "u": "Por definir",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVG-ACT03": [
+      {
+        "u": "Por definir",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVG-ACT04": [
+      {
+        "u": "Por definir",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVG-ACT05": [
+      {
+        "u": "Por definir",
+        "pct": 0.5,
+        "estado": "En proceso",
+        "ini": "2026-09-01",
+        "fin": "2026-09-30",
+        "alerta": "Vencida",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVG-ACT06": [
+      {
+        "u": "Por definir",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVG-ACT07": [
+      {
+        "u": "Por definir",
+        "pct": 0,
+        "estado": "",
+        "ini": null,
+        "fin": null,
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Campo: Isaac De León, Jesús Peña, Alejandro Aguilar"
+      }
+    ],
+    "PVG-ACT08": [
+      {
+        "u": "Por definir",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Por definir"
+      }
+    ],
+    "PVG-ACT09": [
+      {
+        "u": "Por definir",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-11-14",
+        "alerta": "",
+        "resp": "Consultora + Bienestar Social",
+        "per": "Por definir"
+      }
+    ],
+    "PVG-ACT10": [
+      {
+        "u": "Por definir",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-10-01",
+        "fin": "2026-12-14",
+        "alerta": "",
+        "resp": "Bienestar Social",
+        "per": "Por definir"
+      }
+    ],
+    "PVG-ACT11": [
+      {
+        "u": "PVG",
+        "pct": 0,
+        "estado": "",
+        "ini": "2026-12-15",
+        "fin": "2026-12-31",
+        "alerta": "",
+        "resp": "Consultora",
+        "per": "Logística: Dr. José Juan Villanueva / Paul Del Ángel"
+      }
+    ]
+  },
+  "fueraAlcance": [
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT00",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Vinculación y presentación en planteles",
+      "fin": "2026-09-30",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT00",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Vinculación y presentación en planteles",
+      "fin": "2026-09-30",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT02",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Encuestas",
+      "fin": "2026-09-30",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT02",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Encuestas",
+      "fin": "2026-09-30",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT03",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Grupos focales",
+      "fin": "2026-09-30",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT03",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Grupos focales",
+      "fin": "2026-09-30",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT04",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Marcha Exploratoria de Seguridad (MES)",
+      "fin": "2026-09-30",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT04",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Marcha Exploratoria de Seguridad (MES)",
+      "fin": "2026-09-30",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT05",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Red de niños mediadores",
+      "fin": "2026-12-31",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT05",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Red de niños mediadores",
+      "fin": "2026-12-31",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT06",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Talleres y actividades lúdicas",
+      "fin": "2026-11-14",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT06",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Talleres y actividades lúdicas",
+      "fin": "2026-11-14",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT07",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Canalización para atención especializada",
+      "fin": null,
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT07",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Canalización para atención especializada",
+      "fin": null,
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT08",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Estrategias de comunicación",
+      "fin": null,
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT08",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Estrategias de comunicación",
+      "fin": null,
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT09",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Esquema de incentivos positivos",
+      "fin": null,
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT09",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Esquema de incentivos positivos",
+      "fin": null,
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT10",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Mejoramiento de las características físicas de los planteles escolares",
+      "fin": "2026-12-14",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT10",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Mejoramiento de las características físicas de los planteles escolares",
+      "fin": "2026-12-14",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT11",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Acuerdo de Prevención de Violencia Escolar",
+      "fin": "2026-12-14",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT11",
+      "u": "PVE-P3",
+      "unidad": "Esc. Prim. Lauro Rendón Valdez",
+      "actividad": "Acuerdo de Prevención de Violencia Escolar",
+      "fin": "2026-12-14",
+      "estado": "Fuera de alcance (reposición por definir)"
+    },
+    {
+      "proyecto": "A-PVE",
+      "codigo": "PVE-ACT15",
+      "u": "PVE-P1V",
+      "unidad": "Esc. Prim. Prof. Eutimio Martínez Lara (T. Vesp.)",
+      "actividad": "Teatro Guiñol y Actividades Lúdicas",
+      "fin": "2026-10-08",
+      "estado": "Fuera de alcance (reposición por definir)"
+    }
+  ],
+  "unidadesFuera": [
+    "PVE-P1V",
+    "PVE-P3"
+  ],
+  "kpi": {
+    "notas": [
+      {
+        "f": "2026-09-30",
+        "c": "PVE-ACT00",
+        "u": "PVE-P1M"
+      }
+    ],
+    "encuestas": [
+      {
+        "p": "PVE",
+        "u": "PVE-P1M",
+        "m": "Línea base",
+        "i": "PVE-LA",
+        "meta": 70,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P1M",
+        "m": "Línea base",
+        "i": "PVE-LP",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P1M",
+        "m": "Final",
+        "i": "PVE-FA",
+        "meta": 70,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P1M",
+        "m": "Final",
+        "i": "PVE-FP",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P2",
+        "m": "Línea base",
+        "i": "PVE-LA",
+        "meta": 79,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P2",
+        "m": "Línea base",
+        "i": "PVE-LP",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P2",
+        "m": "Final",
+        "i": "PVE-FA",
+        "meta": 79,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P2",
+        "m": "Final",
+        "i": "PVE-FP",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P4",
+        "m": "Línea base",
+        "i": "PVE-LA",
+        "meta": 72,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P4",
+        "m": "Línea base",
+        "i": "PVE-LP",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P4",
+        "m": "Final",
+        "i": "PVE-FA",
+        "meta": 72,
+        "apl": null
+      },
+      {
+        "p": "PVE",
+        "u": "PVE-P4",
+        "m": "Final",
+        "i": "PVE-FP",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVJ",
+        "u": "PVJ-CL",
+        "m": "Línea base",
+        "i": "Por definir",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVJ",
+        "u": "PVJ-CL",
+        "m": "Final",
+        "i": "Por definir",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVJ",
+        "u": "PVJ-CE",
+        "m": "Línea base",
+        "i": "Por definir",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVJ",
+        "u": "PVJ-CE",
+        "m": "Final",
+        "i": "Por definir",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVJ",
+        "u": "PVJ-CS",
+        "m": "Línea base",
+        "i": "Por definir",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVJ",
+        "u": "PVJ-CS",
+        "m": "Final",
+        "i": "Por definir",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVG",
+        "u": "POR DEFINIR",
+        "m": "Línea base",
+        "i": "Por definir",
+        "meta": null,
+        "apl": null
+      },
+      {
+        "p": "PVG",
+        "u": "POR DEFINIR",
+        "m": "Final",
+        "i": "Por definir",
+        "meta": null,
+        "apl": null
+      }
+    ]
+  },
+  "vinculos": {
+    "version": 1,
+    "generado": "05/10/2026 11:18",
+    "vivo": true,
+    "documentos": [
+      {
+        "codigo": "MIN-07-09-26",
+        "titulo": "Minuta 07-09-26 · Primera reunión (onboarding) · v7 final APA 7",
+        "tipo": "Minuta",
+        "fecha": "2026-09-07",
+        "url": "https://drive.google.com/file/d/1UOIuBQz46nzDu2LxwpMq-nms9HMG9nbj/view",
+        "actividades": [
+          "PVE-ACT00"
+        ],
+        "notas": "Se confirman las cinco primarias; pendientes: domicilios/fichas de las escuelas y cartas u oficios de presentación (no entrar sin oficio)."
+      },
+      {
+        "codigo": "MIN-15-09-26",
+        "titulo": "Minuta 15-09-26 · Coordinación y Meet de equipo · v8 final APA 7",
+        "tipo": "Minuta",
+        "fecha": "2026-09-15",
+        "url": "https://drive.google.com/file/d/12r64UWFYX0yPiGa-O7_S-VJNu7zc3QUl/view",
+        "actividades": [
+          "PVE-ACT02",
+          "PVG-ACT02"
+        ],
+        "notas": "Esquema Ejecución vs. Evidencias y códigos de unidad; flujo PDF → Drive → OCR → Excel para las encuestas (aún no aplicadas; la minuta 28-09 lo liga a PVE/PVG-ACT02); seguimiento ágil de 15 min y diario de campo."
+      },
+      {
+        "codigo": "MIN-28-09-26",
+        "titulo": "Minuta 28-09-26 · Revisión del tablero, datos de control y línea base · v5",
+        "tipo": "Minuta",
+        "fecha": "2026-09-28",
+        "url": "https://drive.google.com/file/d/1Cm0WGXm6ElbRvQB0iPViWN_24Uj0xwM2/view",
+        "actividades": [
+          "PVE-ACT00",
+          "PVE-ACT02",
+          "PVG-ACT02"
+        ],
+        "notas": "Encuesta como línea base: aplicar ahora y reaplicar al cierre (cita PVE-E02 y PVG-E02 = ACT02). Pendientes abiertos del 07-09: fichas de escuelas y oficios (PVE-ACT00). Única versión en Drive (v5)."
+      },
+      {
+        "codigo": "PVE-LA",
+        "titulo": "Encuesta PVE-LA · Línea base Alumnos (PDF)",
+        "tipo": "Instrumento",
+        "fecha": "2026-09-18",
+        "url": "https://drive.google.com/file/d/1AdmjXzUV9FHoWDuQBEZzV9ZYbngTGPEs/view",
+        "actividades": [
+          "PVE-ACT02"
+        ],
+        "notas": "Encuesta a alumnos: percepción de seguridad (CPTED), roles de violencia y factores personales. Word editable en PVE › Materiales e instrumentos › Instrumentos."
+      },
+      {
+        "codigo": "PVE-LP",
+        "titulo": "Encuesta PVE-LP · Línea base Personal (PDF)",
+        "tipo": "Instrumento",
+        "fecha": "2026-09-18",
+        "url": "https://drive.google.com/file/d/1_fpR53fhr-ThByy1YhVAviP746RcHjMR/view",
+        "actividades": [
+          "PVE-ACT02"
+        ],
+        "notas": "Encuesta al personal (docentes, directivos, administrativos). Word editable en PVE › Materiales e instrumentos › Instrumentos."
+      },
+      {
+        "codigo": "PVE-LD",
+        "titulo": "Instrumento PVE-LD · Línea base Documental (PDF)",
+        "tipo": "Instrumento",
+        "fecha": "2026-09-28",
+        "url": "https://drive.google.com/file/d/1fJRXEm3wSCvu0uEIRW77ha4mPugFSVUk/view",
+        "actividades": [
+          "PVE-ACT01"
+        ],
+        "notas": "Instrumento de recopilación y análisis documental; su encabezado lo ubica en el «Diagnóstico de violencia y seguridad escolar». Word en Encuestas e Instrumentos."
+      },
+      {
+        "codigo": "PVE-FA",
+        "titulo": "Encuesta PVE-FA · Final Alumnos",
+        "tipo": "Instrumento",
+        "fecha": null,
+        "url": null,
+        "actividades": [
+          "PVE-ACT02"
+        ],
+        "notas": "Sin archivo en Drive todavía: el libro de códigos la define como la encuesta final a alumnos (reaplicación al cierre, acuerdo 3 de la minuta 28-09). Pegar la liga cuando exista."
+      },
+      {
+        "codigo": "PVE-FP",
+        "titulo": "Encuesta PVE-FP · Final Personal",
+        "tipo": "Instrumento",
+        "fecha": null,
+        "url": null,
+        "actividades": [
+          "PVE-ACT02"
+        ],
+        "notas": "Sin archivo en Drive todavía: el libro de códigos la define como la encuesta final al personal. Pegar la liga cuando exista."
+      },
+      {
+        "codigo": "GUI-PVJ-01",
+        "titulo": "Guía práctica de contextualización · Jóvenes en Prevención",
+        "tipo": "Guía",
+        "fecha": "2026-09-15",
+        "url": "https://drive.google.com/file/d/1CbBS1sOwqYSYroeVUGbvsY8l_eMR8b9g/view",
+        "actividades": [
+          "PVJ-ACT01"
+        ],
+        "notas": "Guía del apartado 3.1 «Contextualización de las problemáticas» para las colonias Luis Echeverría, Estudiantil y San Marcos 4. PVJ › Materiales e instrumentos. PVJ y PVG aún no tienen encuestas."
+      },
+      {
+        "codigo": "EV-PVE-P2-2026-09-30",
+        "titulo": "Carpeta de evidencias · Teatro Guiñol · PVE-P2 · 30-sep-2026",
+        "tipo": "Evidencia",
+        "fecha": "2026-09-30",
+        "url": "https://drive.google.com/drive/folders/1h9TVyO7GEeslm-IZlG2amhodpq1TIUDB",
+        "actividades": [
+          "PVE-ACT13"
+        ],
+        "notas": "Subir: Fotos, Listas de asistencia y Encuestas PDF (barrido). Apoyan: Paul Harris / FSTSE. Evidencias = lo que sube el campo (no Ejecución)."
+      },
+      {
+        "codigo": "EV-PVE-P4-2026-10-07",
+        "titulo": "Carpeta de evidencias · Feria Lúdica · PVE-P4 · 7-oct-2026",
+        "tipo": "Evidencia",
+        "fecha": "2026-10-07",
+        "url": "https://drive.google.com/drive/folders/1U2YyRhrWY6dpVjL2oqA1Pqm2wpV0XChG",
+        "actividades": [
+          "PVE-ACT14"
+        ],
+        "notas": "Subir: Fotos, Listas de asistencia y Encuestas PDF (barrido). Apoyan: Todos (comisiones por asignar). Evidencias = lo que sube el campo (no Ejecución)."
+      },
+      {
+        "codigo": "EV-PVE-P1M-2026-10-08",
+        "titulo": "Carpeta de evidencias · Teatro Guiñol y Actividades Lúdicas · PVE-P1M · 8-oct-2026",
+        "tipo": "Evidencia",
+        "fecha": "2026-10-08",
+        "url": "https://drive.google.com/drive/folders/1wPstUuMGYFr5MT6Rg3cWNyZJkB1QX0zx",
+        "actividades": [
+          "PVE-ACT15"
+        ],
+        "notas": "Subir: Fotos, Listas de asistencia y Encuestas PDF (barrido). Apoyan: Lupe Ma. de la Garza / Cedif 2. Evidencias = lo que sube el campo (no Ejecución)."
+      },
+      {
+        "codigo": "EV-PVE-P1V-2026-10-08",
+        "titulo": "[Fuera de alcance] Carpeta de evidencias · Teatro Guiñol y Actividades Lúdicas · PVE-P1V · 8-oct-2026",
+        "tipo": "Evidencia",
+        "fecha": "2026-10-08",
+        "url": "https://drive.google.com/drive/folders/1tLv-MaJVuo7BKp8KlrJGs0HErMQ-is0R",
+        "actividades": [],
+        "notas": "Subir: Fotos, Listas de asistencia y Encuestas PDF (barrido). Apoyan: Lupe Ma. de la Garza / Cedif 2. Evidencias = lo que sube el campo (no Ejecución).\nFuera de alcance 30-sep-2026: solo 3 matutinas; por confirmar con Benjamín. La carpeta se conserva. Actividades antes: PVE-ACT15 (se quitó para que el evento del 8-oct quede solo con P1M; para deshacer, volver a escribir PVE-ACT15 en «Actividades»)."
+      },
+      {
+        "codigo": "PVE-MES",
+        "titulo": "Instrumento PVE-MES · Marcha Exploratoria de Seguridad en Espacios Escolares (PDF)",
+        "tipo": "Instrumento",
+        "fecha": "2026-09-30",
+        "url": "https://drive.google.com/file/d/1RQoUWKhQ73MGuf1vwe4Pabu7I1VyoUO9/view",
+        "actividades": [
+          "PVE-ACT04"
+        ],
+        "notas": "Instrumento listo: formato uniforme de las encuestas PVE. El Dr. José Juan lo aprobó el 30-sep-2026 a las 23:27, con casillas de planteles (PVE-P1M, PVE-P2, PVE-P4), siempre que Paul controle la asociación código-escuela para el OCR. Word editable: fila PVE-MES-W. Carpeta: Ejecución › Materiales semanas 3-4 › PVE › Materiales e instrumentos › MES (marcha exploratoria). Notas en la Bitácora."
+      },
+      {
+        "codigo": "PVE-MES-W",
+        "titulo": "Instrumento PVE-MES · Marcha Exploratoria de Seguridad en Espacios Escolares (Word editable)",
+        "tipo": "Instrumento",
+        "fecha": "2026-09-30",
+        "url": "https://drive.google.com/file/d/10IDqBxG5MQ2EGH5H-ob6g7SWXCBbjzMx/view",
+        "actividades": [
+          "PVE-ACT04"
+        ],
+        "notas": "Versión editable del PVE-MES (mismo contenido que el PDF). Aprobado por el Dr. José Juan el 30-sep-2026 23:27."
+      },
+      {
+        "codigo": "BITACORA",
+        "titulo": "Bitácora de seguimiento (pestaña «Bitácora» de la hoja de control)",
+        "tipo": "Bitácora",
+        "fecha": "2026-09-30",
+        "url": null,
+        "actividades": [
+          "PVE-ACT00",
+          "PVE-ACT02",
+          "PVE-ACT04",
+          "PVE-ACT15"
+        ],
+        "notas": "Notas fechadas (grupo de WhatsApp, reuniones y notas del tablero) para redactar el Diagnóstico, informes y anexos. Incluye el cambio de alcance PVE (PVE-P1V y PVE-P3 fuera; reposición por definir), el evento PVE-ACT15 del 8-oct y el PVE-MES. Solo la abren quienes tienen acceso a la hoja."
+      },
+      {
+        "codigo": "PVE-MES-G",
+        "titulo": "Guía de campo PVE-MES-G · Marcha Exploratoria de Seguridad (MES) – Enfoque CPTED (PDF)",
+        "tipo": "Guía",
+        "fecha": "2026-09-30",
+        "url": "https://drive.google.com/file/d/1GOXxlRlND3Kc7ylZKA6eF576WAnoMzP7/view",
+        "actividades": [
+          "PVE-ACT04"
+        ],
+        "notas": "Guía en campo del Dr. José Juan con el formato del PVE-MES (fases de preparación, ejecución 3×30 min, checklist CPTED y organización de resultados). Aprobada por Paul el 30-sep-2026; carpeta MES. Word editable: fila PVE-MES-G-W."
+      },
+      {
+        "codigo": "PVE-MES-G-W",
+        "titulo": "Guía de campo PVE-MES-G · Marcha Exploratoria de Seguridad (MES) – Enfoque CPTED (Word editable)",
+        "tipo": "Guía",
+        "fecha": "2026-09-30",
+        "url": "https://drive.google.com/file/d/1C85nm3tceDa5gCSRbzuLjp1HEcQozSiV/view",
+        "actividades": [
+          "PVE-ACT04"
+        ],
+        "notas": "Versión editable de la guía PVE-MES-G (mismo contenido que el PDF)."
+      },
+      {
+        "codigo": "MAN-TAB",
+        "titulo": "Manual de usuario del tablero FORDEMUN 2026 (PDF)",
+        "tipo": "Guía",
+        "fecha": "2026-10-01",
+        "url": "https://drive.google.com/file/d/10tYqIMr5V7s4mio8MO-binP8Q9ZtCs5q/view",
+        "actividades": [],
+        "notas": "Manual corto (4 págs.) del tablero: datos, pestañas, filtros, panel de detalle y notas con aviso por correo, Bitácora, semáforo y KPI, vista propia, actualizar y Fuera de alcance. Aprobado por Paul el 1-oct-2026. Carpeta: Fortamun 2026 actual › Normativa y guia (junto al libro de códigos). Word editable: fila MAN-TAB-W."
+      },
+      {
+        "codigo": "MAN-TAB-W",
+        "titulo": "Manual de usuario del tablero FORDEMUN 2026 (Word editable)",
+        "tipo": "Guía",
+        "fecha": "2026-10-01",
+        "url": "https://drive.google.com/file/d/1exmRaEoGUVNfJ2UW2YPCIJZ1u5g4GH2M/view",
+        "actividades": [],
+        "notas": "Versión editable del manual del tablero (mismo contenido que el PDF)."
+      },
+      {
+        "codigo": "EV-PVE-P1M-ENC-2026-10-05",
+        "titulo": "PDF escaneado · Encuestas aplicadas · PVE-P1M · Eutimio Martínez Lara",
+        "tipo": "Evidencia",
+        "fecha": "2026-10-05",
+        "url": "https://drive.google.com/file/d/1DRv-JZrrJgJ2ReIONTSaW3YyO80YnKQl/view",
+        "actividades": [
+          "PVE-ACT02"
+        ],
+        "notas": "Subido por Jesús (jesusanselmo92) a la raíz del plantel P1M (~81 MB). Queda en raíz por indicación de Paul (no mover). OCR pendiente; instrumento aparente PVE-LA."
+      },
+      {
+        "codigo": "EV-PVE-P2-ENC-2026-10-05",
+        "titulo": "PDF escaneado · Encuestas aplicadas · PVE-P2 · Luis Torres Vázquez",
+        "tipo": "Evidencia",
+        "fecha": "2026-10-05",
+        "url": "https://drive.google.com/file/d/1GZij5ayC50hYYo7VGiqCd6Bo3hhM7t8N/view",
+        "actividades": [
+          "PVE-ACT02"
+        ],
+        "notas": "Subido por Jesús (jesusanselmo92) a la raíz del plantel P2 (~93 MB). Queda en raíz por indicación de Paul (no mover). OCR pendiente."
+      },
+      {
+        "codigo": "EV-PVE-P4-ENC-2026-10-05",
+        "titulo": "PDF escaneado · Encuestas aplicadas · PVE-P4 · República de México",
+        "tipo": "Evidencia",
+        "fecha": "2026-10-05",
+        "url": "https://drive.google.com/file/d/12AvsOWKhNfSqwHy7ZASJqAM55hf5cvDK/view",
+        "actividades": [
+          "PVE-ACT02"
+        ],
+        "notas": "Subido por Jesús (jesusanselmo92) a la raíz del plantel P4 (~85 MB, 82 págs). Queda en raíz por indicación de Paul (no mover). Muestra OCR 05/10: escaneo sin texto nativo; tesseract spa ~83–86%; viable con revisión/OMR."
+      }
+    ],
+    "observaciones": {
+      "PVE-ACT00": [
+        {
+          "unidad": "PVE-P1M",
+          "texto": "30/09 23:54 — JJVS: Prueba"
+        }
+      ],
+      "PVE-ACT02": [
+        {
+          "unidad": "PVE-P1M",
+          "texto": "05/10 — PDF encuestas aplicadas en raíz plantel (Jesús); OCR pendiente; no Terminado sin OCR OK."
+        },
+        {
+          "unidad": "PVE-P2",
+          "texto": "05/10 — PDF encuestas aplicadas en raíz plantel (Jesús); OCR pendiente; no Terminado sin OCR OK."
+        },
+        {
+          "unidad": "PVE-P4",
+          "texto": "05/10 — PDF encuestas aplicadas en raíz plantel (Jesús); OCR pendiente; no Terminado sin OCR OK."
+        }
+      ]
+    },
+    "ligas_extra": {}
+  },
+  "meta": {
+    "generado": "05/10/2026 11:18:23",
+    "generadoIso": "2026-10-05T16:18:23.109Z",
+    "zona": "America/Matamoros",
+    "hoja": "Control_FORDEMUN_2026",
+    "ultimaModificacion": "05/10/2026 11:17",
+    "origenParametros": "valores del Tablero (0 / 50 / 75 / 100 %)"
+  }
+}

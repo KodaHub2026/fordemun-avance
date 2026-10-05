@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "28/09/2026 15:09",
+ "generado": "05/10/2026 11:25",
  "nota": "Copia estática de la pestaña Documentos y de las columnas Observaciones/Documentos de la hoja de control.",
  "documentos": [
   {
@@ -104,6 +104,39 @@
     "PVJ-ACT01"
    ],
    "notas": "Guía del apartado 3.1 «Contextualización de las problemáticas» para las colonias Luis Echeverría, Estudiantil y San Marcos 4. PVJ › Materiales e instrumentos. PVJ y PVG aún no tienen encuestas."
+  },
+  {
+   "codigo": "EV-PVE-P1M-ENC-2026-10-05",
+   "titulo": "PDF escaneado · Encuestas aplicadas · PVE-P1M · Eutimio Martínez Lara",
+   "tipo": "Evidencia",
+   "fecha": "2026-10-05",
+   "url": "https://drive.google.com/file/d/1DRv-JZrrJgJ2ReIONTSaW3YyO80YnKQl/view",
+   "actividades": [
+    "PVE-ACT02"
+   ],
+   "notas": "Raíz plantel P1M; owner Jesús; OCR pendiente; no mover (Paul)."
+  },
+  {
+   "codigo": "EV-PVE-P2-ENC-2026-10-05",
+   "titulo": "PDF escaneado · Encuestas aplicadas · PVE-P2 · Luis Torres Vázquez",
+   "tipo": "Evidencia",
+   "fecha": "2026-10-05",
+   "url": "https://drive.google.com/file/d/1GZij5ayC50hYYo7VGiqCd6Bo3hhM7t8N/view",
+   "actividades": [
+    "PVE-ACT02"
+   ],
+   "notas": "Raíz plantel P2; owner Jesús; OCR pendiente; no mover (Paul)."
+  },
+  {
+   "codigo": "EV-PVE-P4-ENC-2026-10-05",
+   "titulo": "PDF escaneado · Encuestas aplicadas · PVE-P4 · República de México",
+   "tipo": "Evidencia",
+   "fecha": "2026-10-05",
+   "url": "https://drive.google.com/file/d/12AvsOWKhNfSqwHy7ZASJqAM55hf5cvDK/view",
+   "actividades": [
+    "PVE-ACT02"
+   ],
+   "notas": "Raíz plantel P4; 82 págs; OCR muestra viable ~83–86%; no mover (Paul)."
   }
  ],
  "observaciones": {},
