@@ -246,6 +246,24 @@
     .tag { display: inline-flex; align-items: center; gap: 4px; font-size: 11.5px; font-weight: 600; line-height: 1.2; color: var(--guinda-osc);
       background: #F6E6E9; border-radius: 999px; padding: 3px 8px; white-space: nowrap; }
     .tag.min { color: #5B3E8A; background: #EEE8F7; } .tag.obs { color: #7A5500; background: #FCEFD2; }
+    /* vista Bitácora (10-10-2026): notas de seguimiento, la más reciente primero */
+    .bfil { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
+    .bfil button { font: inherit; font-size: 14px; font-weight: 600; color: var(--texto); background: var(--tarjeta); border: 1px solid var(--borde);
+      border-radius: 999px; padding: 6px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+    .bfil button small { color: var(--tenue); font-weight: 600; font-size: 12.5px; }
+    .bfil button.on { background: var(--guinda-osc); border-color: var(--guinda-osc); color: #fff; }
+    .bfil button.on small { color: #EED5CB; }
+    .bfil button i { width: 9px; height: 9px; border-radius: 50%; display: inline-block; }
+    .bn { padding: 12px 4px 12px 8px; border-bottom: 1px solid var(--borde); }
+    .bn:last-child { border-bottom: 0; }
+    .bn .bm { display: flex; flex-wrap: wrap; align-items: center; gap: 4px 6px; font-size: 13px; color: var(--tenue); }
+    .bn .bm .h { font-weight: 700; color: var(--texto); font-variant-numeric: tabular-nums; margin-right: 2px; }
+    .bn .bm .au { font-weight: 600; color: var(--texto); margin-right: 2px; }
+    .bn .tag.p { color: #fff; background: var(--pc, var(--gris)); }
+    .bn .tag.t { color: #2F4B6E; background: #E4ECF5; }
+    .bn .bt { font-size: 15.5px; line-height: 1.45; margin-top: 5px; overflow-wrap: anywhere; white-space: pre-line; }
+    .bn .bs { font-size: 12.5px; color: var(--tenue); margin-top: 4px; line-height: 1.4; overflow-wrap: anywhere; }
+    .bact { color: var(--texto); font-size: 14px; margin: 6px 0 12px; }
     .chev { display: inline-block; font-size: 12px; color: var(--tenue); transition: transform .15s; }
     [aria-expanded="true"] .chev { transform: rotate(90deg); }
     .det { margin: 0 0 10px 30px; padding: 12px 16px 6px; background: #FCFAF6; border: 1px solid var(--borde); border-left: 4px solid var(--gc, var(--azul));
@@ -422,6 +440,7 @@
     <section id="actividades"></section>
 
     <section id="docs" class="oculto" aria-label="Documentos"></section>
+    <section id="bitacora" class="oculto" aria-label="Bitácora"></section>
 
     <section class="alertas" id="alertas" aria-label="Vencidas y próximas">
       <h3><span class="dot" style="background:var(--rojo)"></span><span id="tVenc">Vencidas</span></h3>
@@ -450,9 +469,11 @@
   function fixLinks(l) { if (l && l.documentos) l.documentos.forEach(function (x) { if (x.tipo === 'Bitácora' && !x.url) x.url = BITACORA_URL; }); return l; }
 
   var q = new URLSearchParams(location.search);          // ?tab=B-PVJ&unidad=PVE-P1M&estado=vencidas&resp=Consultora · ?tab=calendario&proyecto=B-PVJ
-  var TAB_URL = { calendario: 'Calendario', documentos: 'Documentos', general: 'General', indicadores: 'Indicadores', kpi: 'Indicadores' };
+  var TAB_URL = { bitacora: 'Bitácora', 'bitácora': 'Bitácora', calendario: 'Calendario', documentos: 'Documentos', general: 'General', indicadores: 'Indicadores', kpi: 'Indicadores' };
   if (q.get('tab')) tab = TAB_URL[q.get('tab').toLowerCase()] || q.get('tab');
-  var calProy = q.get('proyecto') || '', urlNormalizada = false;                   // sub-selector del Calendario: '' = Todos
+  var bita = null, bitaErr = '', bitaProy = '';                                   // Bitácora: copia estática bitacora.json; filtro por proyecto
+  if (tab === 'Bitácora' && /^(PVE|PVJ|PVG|General)$/.test(q.get('proyecto') || '')) bitaProy = q.get('proyecto');
+  var calProy = (tab === 'Bitácora' ? '' : q.get('proyecto')) || '', urlNormalizada = false;                   // sub-selector del Calendario: '' = Todos
   if (q.get('vista') === 'cal') {                          // ligas viejas (?vista=cal) → pestaña Calendario
     if (/^[A-Z]-[A-Z]{2,6}$/.test(tab) && !calProy) calProy = tab;
     tab = 'Calendario';
@@ -462,8 +483,8 @@
   if (!ESTADOS_F.some(function (e) { return e[0] === filtro.estado; })) filtro.estado = '';
   function guardarUrl() {                                  // recuerda pestaña y filtros en la URL (se puede compartir)
     var u = new URLSearchParams(location.search); u.delete('vista');
-    var vDoc = tab === 'Documentos';
-    [['tab', tab === 'General' ? '' : tab === 'Calendario' ? 'calendario' : tab === 'Documentos' ? 'documentos' : tab], ['proyecto', tab === 'Calendario' || tab === 'Indicadores' ? calProy : ''],
+    var vDoc = tab === 'Documentos' || tab === 'Bitácora';
+    [['tab', tab === 'General' ? '' : tab === 'Calendario' ? 'calendario' : tab === 'Documentos' ? 'documentos' : tab === 'Bitácora' ? 'bitacora' : tab], ['proyecto', tab === 'Calendario' || tab === 'Indicadores' ? calProy : tab === 'Bitácora' ? bitaProy : ''],
      ['unidad', vDoc ? '' : filtro.unidad], ['estado', vDoc ? '' : filtro.estado], ['resp', vDoc ? '' : filtro.resp]].forEach(function (kv) {
       if (kv[1]) u.set(kv[0], kv[1]); else u.delete(kv[0]); });
     var qs = u.toString();
@@ -548,6 +569,50 @@
       '<input class="hp" name="web" tabindex="-1" autocomplete="off" aria-hidden="true">' +
       '<div class="pie2"><span class="cuenta">' + t.length + '/1000</span><button type="submit"' + (e.enviando ? ' disabled' : '') + '>' + (e.enviando ? 'Guardando…' : 'Guardar') + '</button></div>' +
       '<p class="est' + (e.cls ? ' ' + e.cls : '') + '" role="status">' + esc(e.txt || 'Se agrega a la hoja con su nombre y la fecha; no borra ni cambia notas de otros.') + '</p></form></section>';
+  }
+  // ---- Bitácora (10-10-2026): copia estática de la pestaña «Bitácora» de la hoja (bitacora.json, generada con tools/build_bitacora.py)
+  var BITA_PROY = [['', 'Todos'], ['PVE', 'PVE'], ['PVJ', 'PVJ'], ['PVG', 'PVG'], ['General', 'General']];
+  function bitaDe(n, k) { if (!k) return true; return String(n.proyecto || '').split(/\s*[\/,]\s*/).indexOf(k) >= 0; }
+  function colProy(t) { var m = /PVE|PVJ|PVG/.exec(t || ''); return m && t.indexOf('/') < 0 ? PROY_COLOR[m[0]] : 'var(--guinda)'; }
+  var DIAS = ['domingo', 'lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado'];
+  function diaSem(iso) { var p = (iso || '').split('-'); if (p.length < 3) return ''; return DIAS[new Date(+p[0], +p[1] - 1, +p[2]).getDay()]; }
+  function renderBita() {
+    var cab = '<div class="leyenda-wrap"><div><h2>Bitácora</h2><p class="nota">Notas fechadas de seguimiento y avance para redactar los documentos (acuerdo del 30/09/2026). La más reciente primero; el texto es el de la hoja.</p></div></div>';
+    if (!bita) { $('bitacora').innerHTML = cab + '<p class="nota">' + (bitaErr ? 'No se pudo cargar la bitácora (' + esc(bitaErr) + ').' : 'Cargando…') + '</p>'; return; }
+    var ns = bita.notas || [], vis = ns.filter(function (n) { return bitaDe(n, bitaProy); });
+    var h = cab + '<p class="bact" id="bitaAct"><b>Última actualización:</b> ' + esc(bita.generado) + ' (America/Matamoros) · ' + plural(ns.length, 'nota', 'notas') +
+            (bita.desde ? ' del ' + fecha(bita.desde) + ' al ' + fecha(bita.hasta) : '') + ' · copia de la pestaña «Bitácora» de la hoja de control (no es en vivo).</p>';
+    h += '<div class="bfil" role="group" aria-label="Filtrar por proyecto">' + BITA_PROY.map(function (b) {
+      var c = ns.filter(function (n) { return bitaDe(n, b[0]); }).length;
+      return '<button type="button" data-bproy="' + esc(b[0]) + '" class="' + (b[0] === bitaProy ? 'on' : '') + '" aria-pressed="' + (b[0] === bitaProy) + '">' +
+             (PROY_COLOR[b[0]] ? '<i style="background:' + PROY_COLOR[b[0]] + '"></i>' : '') + esc(b[1]) + ' <small>' + c + '</small></button>';
+    }).join('') + '</div>';
+    if (!vis.length) h += '<p class="nota">Ninguna nota de ' + esc(bitaProy) + '.</p>';
+    var porDia = [], idx = {};
+    vis.forEach(function (n) { var k = n.iso || n.fecha || 'Sin fecha'; if (!(k in idx)) { idx[k] = porDia.length; porDia.push({ k: k, f: n.fecha, ns: [] }); } porDia[idx[k]].ns.push(n); });
+    porDia.forEach(function (d) {
+      h += '<div class="grupo"><div class="g-cab" style="--gc:var(--guinda);--gbg:var(--crema)"><span>' + esc(d.f || 'Sin fecha') + (diaSem(d.k) ? ' <small style="font-weight:500">' + esc(diaSem(d.k)) + '</small>' : '') + '</span><small>' + plural(d.ns.length, 'nota', 'notas') + '</small></div>';
+      d.ns.forEach(function (n) {
+        var m = '';
+        if (n.hora) m += '<span class="h">' + esc(n.hora) + '</span>';
+        if (n.autor) m += '<span class="au">' + esc(n.autor) + '</span>';
+        if (n.proyecto) m += '<span class="tag p" style="--pc:' + colProy(n.proyecto) + '">' + esc(n.proyecto) + '</span>';
+        if (n.sede) m += '<span class="tag">' + esc(n.sede) + '</span>';
+        if (n.tipo) m += '<span class="tag t">' + esc(n.tipo) + '</span>';
+        var sub = [n.fuente ? 'Fuente: ' + n.fuente : '', n.estado ? 'Estado: ' + n.estado : '', n.uso ? 'Uso en documento: ' + n.uso : ''].filter(Boolean).join(' · ');
+        h += '<div class="bn" id="bn-' + esc(n.fila) + '">' + (m ? '<div class="bm">' + m + '</div>' : '') + '<div class="bt">' + esc(n.nota) + '</div>' + (sub ? '<div class="bs">' + esc(sub) + '</div>' : '') + '</div>';
+      });
+      h += '</div>';
+    });
+    $('bitacora').innerHTML = h;
+  }
+  function cargarBita() {
+    var u = q.get('bitacora') || 'bitacora.json';
+    return fetch(u + (u.indexOf('?') < 0 ? '?' : '&') + '_=' + Date.now(), { cache: 'no-store', credentials: 'omit' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (j) { if (!j || !j.notas) throw new Error('formato no válido'); bita = j; bitaErr = ''; },
+            function (e) { if (!bita) bitaErr = e && e.message ? e.message : String(e); })
+      .then(function () { if (datos && tab === 'Bitácora') renderBita(); });
   }
   function renderDocs() {
     if (!links) { $('docs').innerHTML = '<h2>Documentos</h2><p class="nota">' + (linksErr ? 'No se pudo cargar el índice de documentos (' + esc(linksErr) + ').' : 'Cargando…') + '</p>'; return; }
@@ -883,14 +948,14 @@
     if (!datos) return;
     var d = datos, m = d.meta || {};
     // pestañas
-    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Indicadores', 'Documentos']);
+    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Indicadores', 'Documentos', 'Bitácora']);
     if (nombres.indexOf(tab) < 0) tab = 'General';
     $('tabs').innerHTML = nombres.map(function (n) {
-      return '<button type="button" role="tab" aria-selected="' + (n === tab) + '" class="' + (n === tab ? 'on' : '') + '" data-tab="' + esc(n) + '" aria-label="' + esc(n) + '">' + (n === 'Documentos' ? '<span class="lg">Documentos</span><span class="sm">Docs</span>' : n === 'Calendario' ? '<span class="lg">Calendario</span><span class="sm">Calend.</span>' : n === 'Indicadores' ? '<span class="lg">Indicadores</span><span class="sm">KPI</span>' : esc(n)) + '</button>';
+      return '<button type="button" role="tab" aria-selected="' + (n === tab) + '" class="' + (n === tab ? 'on' : '') + '" data-tab="' + esc(n) + '" aria-label="' + esc(n) + '">' + (n === 'Documentos' ? '<span class="lg">Documentos</span><span class="sm">Docs</span>' : n === 'Calendario' ? '<span class="lg">Calendario</span><span class="sm">Calend.</span>' : n === 'Indicadores' ? '<span class="lg">Indicadores</span><span class="sm">KPI</span>' : n === 'Bitácora' ? '<span class="lg">Bitácora</span><span class="sm">Bitác.</span>' : esc(n)) + '</button>';
     }).join('');
-    var vDocs = tab === 'Documentos', vCal = tab === 'Calendario', vInd = tab === 'Indicadores';
+    var vBita = tab === 'Bitácora', vDocs = tab === 'Documentos' || vBita, vCal = tab === 'Calendario', vInd = tab === 'Indicadores';
     if (calProy && !d.proyectos.some(function (p) { return p.proyecto === calProy; })) calProy = '';
-    $('titulo').textContent = vDocs ? 'FORDEMUN 2026 · Documentos' : vCal ? 'FORDEMUN 2026 · Calendario' : vInd ? 'FORDEMUN 2026 · Indicadores' : 'FORDEMUN 2026 · Avance' + (tab === 'General' ? '' : ' · ' + tab);
+    $('titulo').textContent = vBita ? 'FORDEMUN 2026 · Bitácora' : vDocs ? 'FORDEMUN 2026 · Documentos' : vCal ? 'FORDEMUN 2026 · Calendario' : vInd ? 'FORDEMUN 2026 · Indicadores' : 'FORDEMUN 2026 · Avance' + (tab === 'General' ? '' : ' · ' + tab);
     ['leyWrap', 'actividades'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs || vInd); });
     ['tarjetas', 'alertas'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs || vCal || vInd); });
     $('kpis').classList.toggle('oculto', !vInd);
@@ -898,8 +963,10 @@
     $('tAct').textContent = vCal ? 'Calendario de actividades' : 'Avance por actividad';
     $('nAct').textContent = vCal ? 'Barras de la fecha de inicio a la fecha fin; el relleno es el % real y la línea guinda marca hoy. Toque una barra para abrir la actividad en su proyecto.'
       : 'Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver sus observaciones, documentos, minutas y el avance por unidad, y para agregar una nota.';
-    $('docs').classList.toggle('oculto', !vDocs);
-    if (vDocs) renderDocs();
+    $('docs').classList.toggle('oculto', !vDocs || vBita);
+    if (vDocs && !vBita) renderDocs();
+    $('bitacora').classList.toggle('oculto', !vBita);
+    if (vBita) renderBita();
     $('corte').textContent = 'Corte al ' + fecha(d.corte);
 
     // tarjetas
@@ -1128,7 +1195,7 @@
     if (pidiendo) return;
     pidiendo = true;
     if (!datos) estado('cargando', 'Cargando…');
-    cargarLinks();
+    cargarLinks(); cargarBita();
     if (window.__AVANCE_PREVIEW__) { setTimeout(function () { ok(window.__AVANCE_PREVIEW__); }, 0); return; }
     var p = window.fetch ? porFetch().catch(function () { return porJsonp(); }) : porJsonp();
     p.then(function (d) {
@@ -1141,12 +1208,16 @@
   $('tabs').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-tab]'); if (!b) return;
     tab = b.getAttribute('data-tab');
-    if (filtro.unidad && datos && tab !== 'Documentos' && !uFuera(filtro.unidad) && !datos.actividades.some(function (a) { return proyEnVista({ proyecto: a.proyecto }) && (a.unidades || []).indexOf(filtro.unidad) >= 0; })) filtro.unidad = '';
+    if (filtro.unidad && datos && tab !== 'Documentos' && tab !== 'Bitácora' && !uFuera(filtro.unidad) && !datos.actividades.some(function (a) { return proyEnVista({ proyecto: a.proyecto }) && (a.unidades || []).indexOf(filtro.unidad) >= 0; })) filtro.unidad = '';
     render(); fijarCab(); window.scrollTo({ top: 0, behavior: 'smooth' });
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
     guardarUrl();
   });
   $('btnAct').addEventListener('click', function () { cargar(); programar(); });
+  $('bitacora').addEventListener('click', function (e) {
+    var b = e.target.closest('button[data-bproy]'); if (!b) return;
+    bitaProy = b.getAttribute('data-bproy'); renderBita(); guardarUrl();
+  });
   $('kpis').addEventListener('click', function (e) {     // comparación por proyecto: tocar una fila muestra ese proyecto
     var r = e.target.closest('tr[data-proy]'); if (!r) return;
     calProy = r.getAttribute('data-proy'); unidadValida(); panelF = false; render(); guardarUrl(); window.scrollTo({ top: 0, behavior: 'smooth' });
