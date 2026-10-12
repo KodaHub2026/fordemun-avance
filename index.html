@@ -49,6 +49,33 @@
     nav.tabs button { flex: 0 0 auto; font: inherit; font-size: 15px; font-weight: 600; color: #EED5CB; background: transparent; white-space: nowrap;
       border: 0; padding: 10px 16px 12px; border-bottom: 3px solid transparent; cursor: pointer; -webkit-tap-highlight-color: transparent; }
     nav.tabs button.on { color: #fff; border-bottom-color: var(--dorado); }
+    /* 11-10-2026: menú ☰ en lugar de la barra de pestañas */
+    .cab { padding-bottom: 14px; }
+    .cab-top { display: flex; align-items: center; gap: 12px; min-width: 0; }
+    .cab-top h1 { flex: 1 1 auto; min-width: 0; }
+    .hamb { flex: 0 0 auto; width: 42px; height: 42px; display: inline-flex; align-items: center; justify-content: center; font: inherit; font-size: 22px; line-height: 1;
+      color: #fff; background: rgba(255,255,255,.12); border: 1px solid rgba(255,255,255,.28); border-radius: 10px; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    .hamb:hover { background: rgba(255,255,255,.2); }
+    .hamb[aria-expanded="true"] { background: #fff; color: var(--guinda-osc); border-color: #fff; }
+    .hamb:focus-visible, nav.menu button:focus-visible { outline: 2px solid var(--dorado); outline-offset: 2px; }
+    nav.menu { position: absolute; left: 0; right: 0; top: calc(100% + 3px); padding: 0 var(--sr) 0 var(--sl); pointer-events: none; z-index: 6; }
+    nav.menu[hidden] { display: none; }
+    nav.menu .menu-in { max-width: 1200px; margin: 0 auto; }
+    nav.menu .panel { pointer-events: auto; width: min(340px, 100%); max-height: calc(100vh - 140px); overflow-y: auto; overscroll-behavior: contain;
+      background: var(--tarjeta, #fff); color: var(--texto); border: 1px solid var(--borde); border-top: 0; border-radius: 0 0 14px 14px;
+      box-shadow: 0 12px 28px rgba(0,0,0,.18); padding: 6px 0 8px; }
+    nav.menu .grp { font-size: 11.5px; font-weight: 700; letter-spacing: .6px; text-transform: uppercase; color: var(--tenue); padding: 10px 18px 4px; }
+    nav.menu .sep { border-top: 1px solid var(--borde); margin: 6px 0 0; }
+    nav.menu button { display: flex; width: 100%; align-items: center; gap: 10px; font: inherit; font-size: 15.5px; font-weight: 600; color: var(--texto);
+      background: transparent; border: 0; border-left: 4px solid transparent; padding: 10px 18px 10px 14px; text-align: left; cursor: pointer; -webkit-tap-highlight-color: transparent; }
+    nav.menu button:hover { background: var(--crema); }
+    nav.menu button.on { border-left-color: var(--dorado); background: #F6E6E9; color: var(--guinda-osc); }
+    nav.menu button i { width: 10px; height: 10px; border-radius: 50%; flex: 0 0 auto; background: var(--gris); }
+    nav.menu button small { margin-left: auto; color: var(--tenue); font-weight: 500; font-size: 13px; white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+    nav.menu button.on small { color: var(--guinda-osc); }
+    #btnAct .sm { display: none; }
+    @media (max-width: 720px) { .cab .sub { font-size: 12.5px; gap: 4px 10px; margin-top: 4px; } .c60 { display: none; } #btnAct .lg { display: none; } #btnAct .sm { display: inline; } #btnAct { padding: 2px 10px; font-size: 15px; line-height: 1.2; }
+      .cab { padding-bottom: 12px; } .hamb { width: 40px; height: 40px; } nav.menu { padding: 0; } nav.menu .panel { width: 100%; border-radius: 0 0 12px 12px; border-left: 0; border-right: 0; } }
     /* franja de logos oficiales (sobre crema, como el membrete) */
     .marca { background: var(--crema); padding: calc(8px + env(safe-area-inset-top)) var(--sr) 8px var(--sl); }
     .marca-in { max-width: 1200px; margin: 0 auto; display: flex; align-items: center; justify-content: space-between; gap: 12px; }
@@ -414,14 +441,17 @@
   </div>
   <header class="cab" id="cab">
     <div class="cab-in">
-      <h1 id="titulo">FORDEMUN 2026 · Avance</h1>
+      <div class="cab-top" id="cabTop">
+        <button class="hamb" id="btnMenu" type="button" aria-expanded="false" aria-controls="tabs" aria-label="Abrir el menú de secciones" title="Secciones"><span aria-hidden="true">☰</span></button>
+        <h1 id="titulo">FORDEMUN 2026 · Avance</h1>
+      </div>
       <div class="sub">
         <span id="corte">Cargando…</span>
         <span class="vivo cargando" id="vivo"><i></i><span id="act">Conectando…</span></span>
-        <button class="btn" id="btnAct" type="button" aria-label="Actualizar ahora">Actualizar</button>
+        <button class="btn" id="btnAct" type="button" aria-label="Actualizar ahora"><span class="lg">Actualizar</span><span class="sm" aria-hidden="true">↻</span></button>
       </div>
-      <nav class="tabs" id="tabs" role="tablist"></nav>
     </div>
+    <nav class="menu" id="tabs" aria-label="Secciones del tablero" hidden></nav>
   </header>
 
   <main>
@@ -461,7 +491,7 @@
   var EST = { vencida: 'var(--rojo)', proxima: 'var(--amarillo)', avance: 'var(--verde)', sin_avance: 'var(--gris)' };
   var datos = null, tab = 'General', timer = null, ultimaOk = 0, pidiendo = false;
   var links = null, linksErr = '', linksVivo = false, abiertas = {}, docsAbiertos = {}, pendienteHash = location.hash;
-  var borr = {}, estObs = {};                              // borradores y mensajes del cuadro «Agregar observación»
+  var borr = {}, estObs = {}, menuAbierto = false;                              // borradores y mensajes del cuadro «Agregar observación»
   function ls(k, v) { try { if (v === undefined) return localStorage.getItem(k) || ''; localStorage.setItem(k, v); } catch (e) { return ''; } }
   var TIPOS = ['Bitácora', 'Minuta', 'Instrumento', 'Guía', 'Evidencia'], TIPOS_PL = { 'Bitácora': 'Bitácora de seguimiento', Minuta: 'Minutas', Instrumento: 'Instrumentos', 'Guía': 'Guías', Evidencia: 'Evidencias' };
   // 30-09-2026: Bitácora (pestaña de la hoja; solo la abren quienes tienen acceso). La app web omite ligas a la hoja, así que se completa aquí.
@@ -950,9 +980,17 @@
     // pestañas
     var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Indicadores', 'Documentos', 'Bitácora']);
     if (nombres.indexOf(tab) < 0) tab = 'General';
-    $('tabs').innerHTML = nombres.map(function (n) {
-      return '<button type="button" role="tab" aria-selected="' + (n === tab) + '" class="' + (n === tab ? 'on' : '') + '" data-tab="' + esc(n) + '" aria-label="' + esc(n) + '">' + (n === 'Documentos' ? '<span class="lg">Documentos</span><span class="sm">Docs</span>' : n === 'Calendario' ? '<span class="lg">Calendario</span><span class="sm">Calend.</span>' : n === 'Indicadores' ? '<span class="lg">Indicadores</span><span class="sm">KPI</span>' : n === 'Bitácora' ? '<span class="lg">Bitácora</span><span class="sm">Bitác.</span>' : esc(n)) + '</button>';
-    }).join('');
+    var ICO = { General: 'var(--guinda)', Calendario: 'var(--dorado)', Indicadores: 'var(--verde)', Documentos: 'var(--azul)', 'Bitácora': 'var(--guinda-osc)' };
+    function item(n) {
+      var p = d.proyectos.filter(function (x) { return x.proyecto === n; })[0];
+      return '<button type="button" data-tab="' + esc(n) + '" class="' + (n === tab ? 'on' : '') + '"' + (n === tab ? ' aria-current="page"' : '') + '>' +
+             '<i style="background:' + (p ? PROY_COLOR[p.sigla] : ICO[n] || 'var(--gris)') + '"></i>' + esc(n) + (p ? '<small>' + esc(nombreCorto(p.nombre)) + '</small>' : n === 'General' ? '<small>Tres proyectos</small>' : '') + '</button>';
+    }
+    var foco = menuAbierto && document.activeElement && $('tabs').contains(document.activeElement) ? document.activeElement.getAttribute('data-tab') : null;
+    $('tabs').innerHTML = '<div class="menu-in"><div class="panel">' +
+      '<div class="grp">Avance</div>' + nombres.slice(0, d.proyectos.length + 1).map(item).join('') +
+      '<div class="sep"></div><div class="grp">Consulta</div>' + nombres.slice(d.proyectos.length + 1).map(item).join('') + '</div></div>';
+    if (foco) { var bf0 = $('tabs').querySelector('button[data-tab="' + foco + '"]'); if (bf0) bf0.focus({ preventScroll: true }); }
     var vBita = tab === 'Bitácora', vDocs = tab === 'Documentos' || vBita, vCal = tab === 'Calendario', vInd = tab === 'Indicadores';
     if (calProy && !d.proyectos.some(function (p) { return p.proyecto === calProy; })) calProy = '';
     $('titulo').textContent = vBita ? 'FORDEMUN 2026 · Bitácora' : vDocs ? 'FORDEMUN 2026 · Documentos' : vCal ? 'FORDEMUN 2026 · Calendario' : vInd ? 'FORDEMUN 2026 · Indicadores' : 'FORDEMUN 2026 · Avance' + (tab === 'General' ? '' : ' · ' + tab);
@@ -1062,8 +1100,9 @@
   }
 
   // la cabecera se pega arriba dejando visibles solo las pestañas (ahorra alto en celular)
-  function fijarCab() { $('cab').style.setProperty('--oc', $('tabs').offsetTop + 'px'); }
-  function estado(cls, txt) { var e = $('vivo'); e.className = 'vivo ' + cls; $('act').textContent = txt; }
+  function fijarCab() { $('cab').style.setProperty('--oc', $('cabTop').offsetTop + 'px'); }   // la cabecera se pega desde la fila del título y el botón ☰
+  function estado(cls, txt) { var e = $('vivo'), k = txt.indexOf(' · '); e.className = 'vivo ' + cls;
+    $('act').innerHTML = k < 0 ? esc(txt) : esc(txt.slice(0, k)) + '<span class="c60">' + esc(txt.slice(k)) + '</span>'; }   // en celular se oculta « · se actualiza cada 60 s»
   function ok(res) {
     pidiendo = false; datos = res; ultimaOk = Date.now(); $('msg').innerHTML = '';
     cargarSnap();
@@ -1209,10 +1248,26 @@
     var b = e.target.closest('button[data-tab]'); if (!b) return;
     tab = b.getAttribute('data-tab');
     if (filtro.unidad && datos && tab !== 'Documentos' && tab !== 'Bitácora' && !uFuera(filtro.unidad) && !datos.actividades.some(function (a) { return proyEnVista({ proyecto: a.proyecto }) && (a.unidades || []).indexOf(filtro.unidad) >= 0; })) filtro.unidad = '';
+    menu(false, true);
     render(); fijarCab(); window.scrollTo({ top: 0, behavior: 'smooth' });
     if (location.hash) history.replaceState(null, '', location.pathname + location.search);
     guardarUrl();
   });
+  function menu(abrir, enfocarBoton) {                     // menú ☰ de secciones
+    menuAbierto = abrir; $('tabs').hidden = !abrir;
+    var b = $('btnMenu'); b.setAttribute('aria-expanded', String(abrir)); b.setAttribute('aria-label', abrir ? 'Cerrar el menú de secciones' : 'Abrir el menú de secciones');
+    b.firstChild.textContent = abrir ? '✕' : '☰';
+    if (abrir) { var on = $('tabs').querySelector('button.on') || $('tabs').querySelector('button'); if (on) on.focus({ preventScroll: true }); }
+    else if (enfocarBoton) b.focus({ preventScroll: true });
+  }
+  $('btnMenu').addEventListener('click', function (e) { e.stopPropagation(); menu(!menuAbierto); });
+  $('tabs').addEventListener('keydown', function (e) {     // flechas arriba/abajo dentro del menú
+    if (e.key !== 'ArrowDown' && e.key !== 'ArrowUp' && e.key !== 'Home' && e.key !== 'End') return;
+    var bs = [].slice.call($('tabs').querySelectorAll('button')), k = bs.indexOf(document.activeElement); e.preventDefault();
+    k = e.key === 'Home' ? 0 : e.key === 'End' ? bs.length - 1 : (k + (e.key === 'ArrowDown' ? 1 : -1) + bs.length) % bs.length; bs[k].focus();
+  });
+  document.addEventListener('click', function (e) { if (menuAbierto && !e.target.closest('#tabs') && !e.target.closest('#btnMenu')) menu(false); });
+  document.addEventListener('keydown', function (e) { if (e.key === 'Escape' && menuAbierto) menu(false, true); });
   $('btnAct').addEventListener('click', function () { cargar(); programar(); });
   $('bitacora').addEventListener('click', function (e) {
     var b = e.target.closest('button[data-bproy]'); if (!b) return;
