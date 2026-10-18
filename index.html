@@ -277,6 +277,8 @@
     .bfil { display: flex; flex-wrap: wrap; gap: 6px; margin: 0 0 16px; }
     .bfil button { font: inherit; font-size: 14px; font-weight: 600; color: var(--texto); background: var(--tarjeta); border: 1px solid var(--borde);
       border-radius: 999px; padding: 6px 14px; cursor: pointer; display: inline-flex; align-items: center; gap: 6px; }
+    .pn.venc { border-left: 3px solid var(--rojo); }
+    .pn .cu { font-size: 12.5px; font-weight: 600; color: var(--tenue); margin-left: auto; } .pn .cu.r { color: var(--rojo); }
     .bfil button small { color: var(--tenue); font-weight: 600; font-size: 12.5px; }
     .bfil button.on { background: var(--guinda-osc); border-color: var(--guinda-osc); color: #fff; }
     .bfil button.on small { color: #EED5CB; }
@@ -505,6 +507,7 @@
 
     <section id="docs" class="oculto" aria-label="Documentos"></section>
     <section id="bitacora" class="oculto" aria-label="Bitácora"></section>
+    <section id="pend" class="oculto" aria-label="Pendientes por persona"></section>
 
     <section class="alertas" id="alertas" aria-label="Vencidas y próximas">
       <h3><span class="dot" style="background:var(--rojo)"></span><span id="tVenc">Vencidas</span></h3>
@@ -533,7 +536,7 @@
   function fixLinks(l) { if (l && l.documentos) l.documentos.forEach(function (x) { if (x.tipo === 'Bitácora' && !x.url) x.url = BITACORA_URL; }); return l; }
 
   var q = new URLSearchParams(location.search);          // ?tab=B-PVJ&unidad=PVE-P1M&estado=vencidas&resp=Consultora · ?tab=calendario&proyecto=B-PVJ
-  var TAB_URL = { bitacora: 'Bitácora', 'bitácora': 'Bitácora', calendario: 'Calendario', documentos: 'Documentos', general: 'General', indicadores: 'Indicadores', kpi: 'Indicadores' };
+  var TAB_URL = { pendientes: 'Pendientes', bitacora: 'Bitácora', 'bitácora': 'Bitácora', calendario: 'Calendario', documentos: 'Documentos', general: 'General', indicadores: 'Indicadores', kpi: 'Indicadores' };
   if (q.get('tab')) tab = TAB_URL[q.get('tab').toLowerCase()] || q.get('tab');
   var bita = null, bitaErr = '', bitaProy = '';                                   // Bitácora: copia estática bitacora.json; filtro por proyecto
   if (tab === 'Bitácora' && /^(PVE|PVJ|PVG|General)$/.test(q.get('proyecto') || '')) bitaProy = q.get('proyecto');
@@ -547,8 +550,8 @@
   if (!ESTADOS_F.some(function (e) { return e[0] === filtro.estado; })) filtro.estado = '';
   function guardarUrl() {                                  // recuerda pestaña y filtros en la URL (se puede compartir)
     var u = new URLSearchParams(location.search); u.delete('vista');
-    var vDoc = tab === 'Documentos' || tab === 'Bitácora';
-    [['tab', tab === 'General' ? '' : tab === 'Calendario' ? 'calendario' : tab === 'Documentos' ? 'documentos' : tab === 'Bitácora' ? 'bitacora' : tab], ['proyecto', tab === 'Calendario' || tab === 'Indicadores' ? calProy : tab === 'Bitácora' ? bitaProy : ''], ['cv', tab === 'Calendario' && !calProy && calVista !== 'linea' ? calVista : ''],
+    var vDoc = tab === 'Documentos' || tab === 'Bitácora' || tab === 'Pendientes';
+    [['tab', tab === 'General' ? '' : tab === 'Calendario' ? 'calendario' : tab === 'Documentos' ? 'documentos' : tab === 'Bitácora' ? 'bitacora' : tab === 'Pendientes' ? 'pendientes' : tab], ['proyecto', tab === 'Calendario' || tab === 'Indicadores' ? calProy : tab === 'Bitácora' ? bitaProy : ''], ['cv', tab === 'Calendario' && !calProy && calVista !== 'linea' ? calVista : ''],
      ['unidad', vDoc ? '' : filtro.unidad], ['estado', vDoc ? '' : filtro.estado], ['resp', vDoc ? '' : filtro.resp]].forEach(function (kv) {
       if (kv[1]) u.set(kv[0], kv[1]); else u.delete(kv[0]); });
     var qs = u.toString();
@@ -669,6 +672,40 @@
       h += '</div>';
     });
     $('bitacora').innerHTML = h;
+  }
+  // ---- Pendientes por persona (17-10-2026): copia de la pestaña «Pendientes» de la hoja (pendientes.json)
+  var pend = null, pendErr = '', pendPer = '';
+  var PEND_URL = 'https://docs.google.com/spreadsheets/d/190fkDAQ231LgguSenuhIak0g0JPO9l--91Kf7woa7bQ/edit#gid=1193414020';
+  function renderPend() {
+    var cab = '<div class="leyenda-wrap"><div><h2>Pendientes por persona</h2><p class="nota">Lo que falta según las minutas, el checklist v3 y las actividades del tablero, agrupado por responsable. Rojo = vencido a la fecha de hoy.</p></div></div>';
+    if (!pend) { $('pend').innerHTML = cab + '<p class="nota">' + (pendErr ? 'No se pudieron cargar los pendientes (' + esc(pendErr) + ').' : 'Cargando…') + '</p>'; return; }
+    var hoy = datos ? datos.corte : pend.corte, ps = pend.personas || [], rs = pend.pendientes || [];
+    rs.forEach(function (r) { r._v = !!r.vence && r.vence < hoy; });
+    var h = cab + '<p class="bact"><b>Última actualización:</b> ' + esc(pend.generado) + ' (America/Matamoros) · ' + plural(rs.length, 'pendiente', 'pendientes') + ' · ' + rs.filter(function (r) { return r._v; }).length + ' vencidos · copia de la pestaña <a href="' + PEND_URL + '" target="_blank" rel="noopener">«Pendientes»</a> de la hoja (no es en vivo).</p>';
+    h += '<div class="bfil" role="group" aria-label="Filtrar por persona">' + [['', 'Todas']].concat(ps.map(function (x) { return [x, x]; })).map(function (b) {
+      var c = rs.filter(function (r) { return !b[0] || r.persona === b[0]; }).length;
+      return '<button type="button" data-pper="' + esc(b[0]) + '" class="' + (b[0] === pendPer ? 'on' : '') + '" aria-pressed="' + (b[0] === pendPer) + '">' + esc(b[1]) + ' <small>' + c + '</small></button>';
+    }).join('') + '</div>';
+    ps.filter(function (x) { return !pendPer || x === pendPer; }).forEach(function (per) {
+      var its = rs.filter(function (r) { return r.persona === per; }); if (!its.length) return;
+      var nv = its.filter(function (r) { return r._v; }).length;
+      h += '<div class="grupo"><div class="g-cab" style="--gc:var(--guinda);--gbg:var(--crema)"><span>' + esc(per) + '</span><small>' + plural(its.length, 'pendiente', 'pendientes') + (nv ? ' · <b style="color:var(--rojo)">' + nv + ' vencido' + (nv === 1 ? '' : 's') + '</b>' : '') + '</small></div>';
+      its.forEach(function (r) {
+        var pc = PROY_COLOR[r.proyecto] || 'var(--guinda)';
+        var cuando = r.vence ? (r._v ? 'venció el ' + fecha(r.vence) : 'vence el ' + fecha(r.vence)) : 'fecha por definir';
+        h += '<div class="bn pn' + (r._v ? ' venc' : '') + '"><div class="bm"><span class="tag p" style="--pc:' + pc + '">' + esc(r.proyecto) + '</span><span class="h"><b>' + esc(r.codigo) + '</b></span>' +
+             '<span class="tag t">' + esc(r.falta) + '</span><span class="cu' + (r._v ? ' r' : '') + '">' + esc(cuando) + '</span></div>' +
+             '<div class="bt">' + esc(r.tarea) + '</div><div class="bs">' + (r.liga ? '<a href="' + esc(r.liga) + '" target="_blank" rel="noopener">Abrir liga ›</a> · ' : '') + 'Fuente: ' + esc(r.fuente) + '</div></div>';
+      });
+      h += '</div>';
+    });
+    $('pend').innerHTML = h;
+  }
+  function cargarPend() {
+    return fetch('pendientes.json?_=' + Date.now(), { cache: 'no-store', credentials: 'omit' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (j) { pend = j; pendErr = ''; }, function (e) { if (!pend) pendErr = e && e.message ? e.message : String(e); })
+      .then(function () { if (datos && tab === 'Pendientes') renderPend(); });
   }
   function cargarBita() {
     var u = q.get('bitacora') || 'bitacora.json';
@@ -1076,9 +1113,9 @@
     if (!datos) return;
     var d = datos, m = d.meta || {};
     // pestañas
-    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Indicadores', 'Documentos', 'Bitácora']);
+    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Indicadores', 'Pendientes', 'Documentos', 'Bitácora']);
     if (nombres.indexOf(tab) < 0) tab = 'General';
-    var ICO = { General: 'var(--guinda)', Calendario: 'var(--dorado)', Indicadores: 'var(--verde)', Documentos: 'var(--azul)', 'Bitácora': 'var(--guinda-osc)' };
+    var ICO = { General: 'var(--guinda)', Calendario: 'var(--dorado)', Indicadores: 'var(--verde)', Documentos: 'var(--azul)', Pendientes: 'var(--rojo)', 'Bitácora': 'var(--guinda-osc)' };
     function item(n) {
       var p = d.proyectos.filter(function (x) { return x.proyecto === n; })[0];
       return '<button type="button" data-tab="' + esc(n) + '" class="' + (n === tab ? 'on' : '') + '"' + (n === tab ? ' aria-current="page"' : '') + '>' +
@@ -1089,9 +1126,9 @@
       '<div class="grp">Avance</div>' + nombres.slice(0, d.proyectos.length + 1).map(item).join('') +
       '<div class="sep"></div><div class="grp">Consulta</div>' + nombres.slice(d.proyectos.length + 1).map(item).join('') + '</div></div>';
     if (foco) { var bf0 = $('tabs').querySelector('button[data-tab="' + foco + '"]'); if (bf0) bf0.focus({ preventScroll: true }); }
-    var vBita = tab === 'Bitácora', vDocs = tab === 'Documentos' || vBita, vCal = tab === 'Calendario', vInd = tab === 'Indicadores';
+    var vPend = tab === 'Pendientes', vBita = tab === 'Bitácora' || vPend, vDocs = tab === 'Documentos' || vBita, vCal = tab === 'Calendario', vInd = tab === 'Indicadores';
     if (calProy && !d.proyectos.some(function (p) { return p.proyecto === calProy; })) calProy = '';
-    $('titulo').textContent = vBita ? 'FORDEMUN 2026 · Bitácora' : vDocs ? 'FORDEMUN 2026 · Documentos' : vCal ? 'FORDEMUN 2026 · Calendario' : vInd ? 'FORDEMUN 2026 · Indicadores' : 'FORDEMUN 2026 · Avance' + (tab === 'General' ? '' : ' · ' + tab);
+    $('titulo').textContent = vPend ? 'FORDEMUN 2026 · Pendientes por persona' : vBita ? 'FORDEMUN 2026 · Bitácora' : vDocs ? 'FORDEMUN 2026 · Documentos' : vCal ? 'FORDEMUN 2026 · Calendario' : vInd ? 'FORDEMUN 2026 · Indicadores' : 'FORDEMUN 2026 · Avance' + (tab === 'General' ? '' : ' · ' + tab);
     ['leyWrap', 'actividades'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs || vInd); });
     ['tarjetas', 'alertas'].forEach(function (id) { $(id).classList.toggle('oculto', vDocs || vCal || vInd); });
     $('kpis').classList.toggle('oculto', !vInd);
@@ -1101,8 +1138,10 @@
       : 'Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver sus observaciones, documentos, minutas y el avance por unidad, y para agregar una nota.';
     $('docs').classList.toggle('oculto', !vDocs || vBita);
     if (vDocs && !vBita) renderDocs();
-    $('bitacora').classList.toggle('oculto', !vBita);
-    if (vBita) renderBita();
+    $('bitacora').classList.toggle('oculto', !vBita || vPend);
+    if (vBita && !vPend) renderBita();
+    $('pend').classList.toggle('oculto', !vPend);
+    if (vPend) renderPend();
     $('corte').textContent = 'Corte al ' + fecha(d.corte);
 
     // tarjetas
@@ -1304,6 +1343,7 @@
     if ((e.key === 'Enter' || e.key === ' ') && e.target.matches('.act[data-act], .doc[data-doc]')) { e.preventDefault(); clicLista(e); }
   }
   ['actividades', 'docs'].forEach(function (id) { $(id).addEventListener('click', clicLista); $(id).addEventListener('keydown', teclaLista); });
+  $('pend').addEventListener('click', function (e) { var b = e.target.closest('[data-pper]'); if (!b) return; pendPer = b.getAttribute('data-pper'); renderPend(); });
 
   // ---- alta de observaciones (POST text/plain → sin preflight CORS; la app web agrega la línea a la columna Observaciones)
   function cliente() { var c = ls('fordemun_cli'); if (!c) { c = Math.random().toString(36).slice(2) + Date.now().toString(36); ls('fordemun_cli', c); } return c; }
@@ -1348,7 +1388,7 @@
     if (pidiendo) return;
     pidiendo = true;
     if (!datos) estado('cargando', 'Cargando…');
-    cargarLinks(); cargarBita();
+    cargarLinks(); cargarBita(); cargarPend();
     if (window.__AVANCE_PREVIEW__) { setTimeout(function () { ok(window.__AVANCE_PREVIEW__); }, 0); return; }
     var p = window.fetch ? porFetch().catch(function () { return porJsonp(); }) : porJsonp();
     p.then(function (d) {
