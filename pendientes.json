@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "17/10/2026 20:35",
+ "generado": "17/10/2026 20:50",
  "corte": "2026-10-17",
  "nota": "Copia de la pestaña «Pendientes» de la hoja de control (análisis del 17/10/2026). No es en vivo.",
  "personas": [
@@ -242,15 +242,15 @@
   },
   {
    "persona": "Lic. Jesús (Anselmo) Peña",
-   "proyecto": "PVE",
-   "codigo": "PVE-ACT13",
-   "tarea": "Teatro Guiñol P2 (30/09): subir fotos y lista de asistencia a la carpeta del evento (vacía)",
+   "proyecto": "PVG",
+   "codigo": "PVG-ACT06",
+   "tarea": "Teatro Guiñol (Sensibilización PVG, 30/09, Col. Estudiantil / Prim. Luis Torres): subir fotos y lista de asistencia a la carpeta del evento (vacía)",
    "falta": "evidencia",
    "vence": "2026-09-30",
    "vencida": true,
    "dias": -17,
    "liga": "https://drive.google.com/drive/folders/1h9TVyO7GEeslm-IZlG2amhodpq1TIUDB",
-   "fuente": "Bitácora 30/09"
+   "fuente": "Bitácora 30/09; reasignado a PVG 17-10 (Paul)"
   },
   {
    "persona": "Lic. Jesús (Anselmo) Peña",
