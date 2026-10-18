@@ -405,6 +405,16 @@
     .mes-g .cur { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 4px; }
     .mes-g .cur i { display: block; width: 14px; height: 4px; border-radius: 2px; background: var(--ec); opacity: .55; }
     .mes-ley { padding: 6px 10px; font-size: 12px; color: var(--tenue); border-top: 1px solid var(--pista); }
+    .cal-vista button.on { --sc: var(--guinda); }
+    .cal-vista { margin-top: -2px; }
+    .mes.semana .mes-nav b { text-transform: none; }
+    .mes.gral .ev { background: var(--evbg, #F6F1E7); }
+    .mes.gral .ev b { color: var(--pc); }
+    .mes.semana .mes-g .dc { min-height: 260px; padding-top: 28px; font-size: 12.5px; }
+    .mes.semana .mes-g .ev { -webkit-line-clamp: 4; }
+    .mes.semana .mes-g { grid-template-columns: repeat(7, minmax(120px, 1fr)); min-width: 840px; }
+    .mes-pl { display: flex; flex-wrap: wrap; gap: 10px; margin-bottom: 4px; }
+    .mes-pl span { display: inline-flex; align-items: center; gap: 4px; } .mes-pl i { width: 10px; height: 10px; border-radius: 3px; display: inline-block; }
     /* Gantt */
     .gantt { border: 1px solid var(--borde); border-radius: 10px; background: #fff; margin-top: 8px; min-width: 0; }
     .g-scroll { overflow-x: auto; -webkit-overflow-scrolling: touch; border-radius: 10px; }
@@ -538,7 +548,7 @@
   function guardarUrl() {                                  // recuerda pestaña y filtros en la URL (se puede compartir)
     var u = new URLSearchParams(location.search); u.delete('vista');
     var vDoc = tab === 'Documentos' || tab === 'Bitácora';
-    [['tab', tab === 'General' ? '' : tab === 'Calendario' ? 'calendario' : tab === 'Documentos' ? 'documentos' : tab === 'Bitácora' ? 'bitacora' : tab], ['proyecto', tab === 'Calendario' || tab === 'Indicadores' ? calProy : tab === 'Bitácora' ? bitaProy : ''],
+    [['tab', tab === 'General' ? '' : tab === 'Calendario' ? 'calendario' : tab === 'Documentos' ? 'documentos' : tab === 'Bitácora' ? 'bitacora' : tab], ['proyecto', tab === 'Calendario' || tab === 'Indicadores' ? calProy : tab === 'Bitácora' ? bitaProy : ''], ['cv', tab === 'Calendario' && !calProy && calVista !== 'linea' ? calVista : ''],
      ['unidad', vDoc ? '' : filtro.unidad], ['estado', vDoc ? '' : filtro.estado], ['resp', vDoc ? '' : filtro.resp]].forEach(function (kv) {
       if (kv[1]) u.set(kv[0], kv[1]); else u.delete(kv[0]); });
     var qs = u.toString();
@@ -796,39 +806,61 @@
       .then(function (j) { eventosCal = (j && j.eventos) || []; if (datos) render(); }).catch(function () { eventosCal = []; });
   }
   function minus1(t) { return t ? t.charAt(0).toLowerCase() + t.slice(1) : t; }
-  function mesGrid(p, acts) {
-    var hoy = isoDia(datos.corte), c = new Date(hoy * 864e5);
-    if (!calMes) calMes = { y: c.getUTCFullYear(), m: c.getUTCMonth() };
-    var d1 = Date.UTC(calMes.y, calMes.m, 1) / 864e5, dN = Date.UTC(calMes.y, calMes.m + 1, 1) / 864e5;
-    var dow = (new Date(d1 * 864e5).getUTCDay() + 6) % 7, ini = d1 - dow, fin = dN + ((7 - (new Date(dN * 864e5).getUTCDay() + 6) % 7) % 7);
-    var col = PROY_COLOR[p.sigla], pref = PREF_CAL[p.sigla] || p.sigla;
-    var spans = acts.map(function (a) {
+  var calVista = q.get('cv') === 'mes' || q.get('cv') === 'semana' ? q.get('cv') : 'linea', calSem = null;   // Calendario › General: linea | mes | semana
+  function spansDe(acts) {
+    return acts.map(function (a) {
       var i0 = null, f0 = null;
       a._rs.forEach(function (r) { if (r.ini) { var x = isoDia(r.ini); i0 = i0 === null || x < i0 ? x : i0; } if (r.fin) { var y = isoDia(r.fin); f0 = f0 === null || y > f0 ? y : f0; } });
       if (i0 === null && f0 !== null) i0 = f0; if (f0 === null && i0 !== null) f0 = i0;
       return { a: a, i: i0, f: f0 };
     }).filter(function (x) { return x.i !== null; });
-    var evs = eventosCal.filter(function (e) { return !e.proyectos || e.proyectos.indexOf(p.proyecto) >= 0; });
-    var h = '<div class="mes" style="--mc:' + col + ';--mbg:' + (PROY_BG[p.sigla] || '#F3EEE1') + '">' +
-      '<div class="mes-nav"><button type="button" data-cal-mes="-1" aria-label="Mes anterior">‹</button><b>' + MESES_L[calMes.m] + ' ' + calMes.y + '</b>' +
-      '<button type="button" data-cal-mes="1" aria-label="Mes siguiente">›</button></div><div class="mes-scroll"><div class="mes-g">' +
+  }
+  function isoDe(d) { return new Date(d * 864e5).toISOString().slice(0, 10); }
+  // grupos: [{p, acts}] · modo: 'mes' | 'semana' · general: true = todos los proyectos (cabecera guinda, etiquetas con el color de cada proyecto)
+  function calGrid(grupos, modo, general) {
+    var hoy = isoDia(datos.corte), c = new Date(hoy * 864e5);
+    if (!calMes) calMes = { y: c.getUTCFullYear(), m: c.getUTCMonth() };
+    if (calSem === null) calSem = hoy - (c.getUTCDay() + 6) % 7;
+    var ini, fin, d1, dN, titulo;
+    if (modo === 'semana') {
+      ini = calSem; fin = calSem + 7; d1 = ini; dN = fin;
+      var a0 = new Date(ini * 864e5), a1 = new Date((fin - 1) * 864e5);
+      titulo = 'Semana del ' + a0.getUTCDate() + (a0.getUTCMonth() !== a1.getUTCMonth() ? ' de ' + MESES_L[a0.getUTCMonth()] : '') + ' al ' + a1.getUTCDate() + ' de ' + MESES_L[a1.getUTCMonth()] + ' ' + a1.getUTCFullYear();
+    } else {
+      d1 = Date.UTC(calMes.y, calMes.m, 1) / 864e5; dN = Date.UTC(calMes.y, calMes.m + 1, 1) / 864e5;
+      ini = d1 - (new Date(d1 * 864e5).getUTCDay() + 6) % 7; fin = dN + ((7 - (new Date(dN * 864e5).getUTCDay() + 6) % 7) % 7);
+      titulo = MESES_L[calMes.m] + ' ' + calMes.y;
+    }
+    var p0 = grupos[0] && grupos[0].p, mc = general ? 'var(--guinda-osc)' : PROY_COLOR[p0.sigla], mbg = general ? 'var(--crema)' : (PROY_BG[p0.sigla] || '#F3EEE1');
+    var items = [];
+    grupos.forEach(function (g) { spansDe(g.acts).forEach(function (x) { x.p = g.p; items.push(x); }); });
+    var ps = grupos.map(function (g) { return g.p.proyecto; });
+    var evs = eventosCal.filter(function (e) { return !e.proyectos || e.proyectos.some(function (x) { return ps.indexOf(x) >= 0; }); });
+    var paso = modo === 'semana' ? 'sem' : 'mes';
+    var h = '<div class="mes' + (modo === 'semana' ? ' semana' : '') + (general ? ' gral' : '') + '" style="--mc:' + mc + ';--mbg:' + mbg + '">' +
+      '<div class="mes-nav"><button type="button" data-cal-' + paso + '="-1" aria-label="' + (modo === 'semana' ? 'Semana anterior' : 'Mes anterior') + '">‹</button><b>' + titulo + '</b>' +
+      '<button type="button" data-cal-' + paso + '="1" aria-label="' + (modo === 'semana' ? 'Semana siguiente' : 'Mes siguiente') + '">›</button></div><div class="mes-scroll"><div class="mes-g">' +
       ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'].map(function (n) { return '<div class="dh">' + n + '</div>'; }).join('');
     for (var d = ini; d < fin; d++) {
-      var dt = new Date(d * 864e5), iso = dt.toISOString().slice(0, 10), dentro = d >= d1 && d < dN, cel = '';
+      var dt = new Date(d * 864e5), iso = isoDe(d), dentro = d >= d1 && d < dN, cel = '', cur = '';
       evs.forEach(function (e) { if (e.fecha === iso) cel += '<span class="ev fijo" title="' + esc(e.texto + ' · Propuesta de calendario dinámico (checklist v3)') + '">' + esc(e.texto) + '</span>'; });
-      var cur = '';
-      spans.forEach(function (x) {
+      items.forEach(function (x) {
         if (d < x.i || d > x.f) return;
-        var ec = EST[x.a.estado] || col, tt = x.a.codigo + ' · ' + x.a.actividad + ' · ' + fecha(new Date(x.i * 864e5).toISOString().slice(0, 10)) + ' → ' + fecha(new Date(x.f * 864e5).toISOString().slice(0, 10));
+        var pc = PROY_COLOR[x.p.sigla], ec = EST[x.a.estado] || pc, pref = PREF_CAL[x.p.sigla] || x.p.sigla;
+        var tt = x.a.codigo + ' · ' + x.a.actividad + ' · ' + fecha(isoDe(x.i)) + ' → ' + fecha(isoDe(x.f));
         var marca = x.i === x.f ? '' : d === x.i ? ' <small>(inicia)</small>' : d === x.f ? ' <small>(termina)</small>' : null;
-        if (marca === null) { cur += '<i style="--ec:' + col + '" title="' + esc('En curso: ' + tt) + '" data-ir-act="' + esc(x.a.codigo) + '"></i>'; return; }
-        cel += '<span class="ev" style="--ec:' + ec + '" data-ir-act="' + esc(x.a.codigo) + '" title="' + esc(tt) + '"><b>' + esc(pref) + '</b>-' + esc(minus1(x.a.actividad)) + marca + '</span>';
+        if (marca === null && modo !== 'semana') { cur += '<i style="--ec:' + pc + '" title="' + esc('En curso: ' + tt) + '" data-ir-act="' + esc(x.a.codigo) + '"></i>'; return; }
+        if (marca === null) marca = ' <small>(en curso)</small>';
+        cel += '<span class="ev" style="--ec:' + ec + ';--pc:' + pc + (general ? ';--evbg:' + (PROY_BG[x.p.sigla] || '#F3EEE1') : '') + '" data-ir-act="' + esc(x.a.codigo) + '" title="' + esc(tt) + '"><b>' + esc(pref) + '</b>-' + esc(minus1(x.a.actividad)) + marca + '</span>';
       });
       if (cur) cel += '<span class="cur">' + cur + '</span>';
-      h += '<div class="dc' + (dentro ? '' : ' fuera') + (d === hoy ? ' hoy' : '') + '"' + (d === hoy ? ' aria-current="date"' : '') + '><span class="nd">' + dt.getUTCDate() + '</span>' + cel + '</div>';
+      h += '<div class="dc' + (dentro ? '' : ' fuera') + (d === hoy ? ' hoy' : '') + '"' + (d === hoy ? ' aria-current="date"' : '') + '><span class="nd">' + (modo === 'semana' ? dt.getUTCDate() + ' ' + MESES[dt.getUTCMonth()] : dt.getUTCDate()) + '</span>' + cel + '</div>';
     }
-    return h + '</div></div><div class="mes-ley">Etiquetas: actividad que inicia, termina o es de un solo día (toque para abrirla); rayitas = actividades en curso ese día. «reunión seg.» viene de la Propuesta de calendario dinámico del checklist v3. Recuadro guinda = hoy.</div></div>';
+    var ley = general ? '<span class="mes-pl">' + grupos.map(function (g) { return '<span><i style="background:' + PROY_COLOR[g.p.sigla] + '"></i><b>' + esc(PREF_CAL[g.p.sigla] || g.p.sigla) + '</b> = ' + esc(g.p.proyecto) + '</span>'; }).join('') + '</span>' : '';
+    return h + '</div></div><div class="mes-ley">' + ley + (modo === 'semana' ? 'Cada día muestra todas las actividades vigentes (inicia, en curso o termina); toque una para abrirla. ' : 'Etiquetas: actividad que inicia, termina o es de un solo día (toque para abrirla); rayitas = actividades en curso ese día. ') +
+      '«reunión seg.» viene de la Propuesta de calendario dinámico del checklist v3. Recuadro guinda = hoy.</div></div>';
   }
+  function mesGrid(p, acts) { return calGrid([{ p: p, acts: acts }], 'mes', false); }
   function proyEnVista(p) {                                // proyectos que muestra la pestaña actual
     if (tab === 'General') return true;
     if (tab === 'Calendario' || tab === 'Indicadores') return !calProy || p.proyecto === calProy;
@@ -1102,7 +1134,10 @@
       porP.push({ p: p, acts: acts, todas: todas });
     });
     var R = vCal ? rango([].concat.apply([], porP.map(function (x) { return x.acts; }))) : null;
+    var gralGrid = vCal && !calProy && calVista !== 'linea';
+    if (gralGrid) html += calGrid(porP.filter(function (x) { return x.todas.length; }), calVista, true);
     porP.forEach(function (x) {
+      if (gralGrid) return;
       var p = x.p, acts = x.acts;
       var bf = vCal ? '' : bloqueFuera(p.proyecto);
       if (!x.todas.length || (!acts.length && !bf && hayFiltro() && porP.length > 1)) return;
@@ -1130,6 +1165,8 @@
       });
       html += bf + '</div>';
     });
+    if (vCal && !calProy) html = '<div class="cal-seg cal-vista" role="group" aria-label="Vista del calendario general">' + [['linea', 'Línea de tiempo'], ['mes', 'Mes'], ['semana', 'Semana']]
+      .map(function (o) { return '<button type="button" data-cal-vista="' + o[0] + '" class="' + (o[0] === calVista ? 'on' : '') + '" aria-pressed="' + (o[0] === calVista) + '">' + o[1] + '</button>'; }).join('') + '</div>' + html;
     if (vCal) html = '<div class="cal-seg" role="group" aria-label="Calendario">' + [['', 'General', 'var(--guinda-osc)']].concat(d.proyectos.map(function (p) { return [p.proyecto, p.sigla, PROY_COLOR[p.sigla]]; }))
       .map(function (o) { return '<button type="button" data-cal-proy="' + esc(o[0]) + '" style="--sc:' + o[2] + '" class="' + (o[0] === calProy ? 'on' : '') + '"' + (o[0] === calProy ? ' aria-pressed="true"' : ' aria-pressed="false"') + '>' + esc(o[1]) + '</button>'; }).join('') + '</div>' + html;
     $('herr').classList.toggle('oculto', vDocs);
@@ -1249,6 +1286,10 @@
   function clicLista(e) {
     var cm = e.target.closest('[data-cal-mes]');
     if (cm) { var k = +cm.getAttribute('data-cal-mes'), nm = calMes.m + k; calMes = { y: calMes.y + Math.floor(nm / 12), m: ((nm % 12) + 12) % 12 }; render(); return; }
+    var cs = e.target.closest('[data-cal-sem]');
+    if (cs) { calSem += 7 * +cs.getAttribute('data-cal-sem'); render(); return; }
+    var cv = e.target.closest('[data-cal-vista]');
+    if (cv) { calVista = cv.getAttribute('data-cal-vista'); render(); guardarUrl(); return; }
     var cp = e.target.closest('[data-cal-proy]');
     if (cp) { calProy = cp.getAttribute('data-cal-proy'); unidadValida(); panelF = false; render(); guardarUrl(); return; }
     var ir = e.target.closest('[data-ir-act],[data-ir-doc]');
