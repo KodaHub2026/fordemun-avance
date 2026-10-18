@@ -1,0 +1,10 @@
+{
+ "version": 1,
+ "fuente": "GUIA CHECK LIST FORTA 2026 v3 códigos libro.xlsx · pestaña «Propuesta de calendario dinámico» (17/10/2026)",
+ "url": "https://docs.google.com/spreadsheets/d/1xjtfcTHu4Et8PKNJdB9Vv2J4ZXxQY8Zo/edit?gid=596670020#gid=596670020",
+ "eventos": [
+  { "fecha": "2026-10-17", "texto": "reunión seg.", "proyectos": ["A-PVE", "B-PVJ", "C-PVG"] },
+  { "fecha": "2026-10-24", "texto": "reunión seg.", "proyectos": ["A-PVE", "B-PVJ", "C-PVG"] },
+  { "fecha": "2026-10-31", "texto": "reunión seg.", "proyectos": ["A-PVE", "B-PVJ", "C-PVG"] }
+ ]
+}
