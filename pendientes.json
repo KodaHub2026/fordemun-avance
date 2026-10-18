@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "17/10/2026 20:20",
+ "generado": "17/10/2026 20:35",
  "corte": "2026-10-17",
  "nota": "Copia de la pestaña «Pendientes» de la hoja de control (análisis del 17/10/2026). No es en vivo.",
  "personas": [
@@ -124,13 +124,13 @@
    "persona": "Paul",
    "proyecto": "PVJ",
    "codigo": "PVJ-ACT01",
-   "tarea": "Cerrar el documento de contextualización por colonia (la carpeta del Doc «2-8 oct» solo tiene el PVJ-LJ)",
-   "falta": "reporte",
+   "tarea": "Aplicar el instrumento PVJ-LJ en campo (CL, CE, CS), subir evidencias (hojas llenas, fotos) y cerrar el documento de contextualización por colonia; el instrumento ya está listo",
+   "falta": "aplicación en campo / evidencias",
    "vence": "2026-09-14",
    "vencida": true,
    "dias": -33,
-   "liga": "https://drive.google.com/drive/folders/18SVlw0Bei7bTyAsfPNNSO6tmJip8M_kh",
-   "fuente": "Checklist: AGREGAR INFO ANEXOS"
+   "liga": "https://drive.google.com/file/d/1JAPaGKGCUx81FYzEi8NIwdnXZH-n8A4R/view",
+   "fuente": "Paul 17-10: PVJ-LJ es de PVJ-ACT01; carpeta del Doc 2-8 oct solo con el PDF"
   },
   {
    "persona": "Paul",
