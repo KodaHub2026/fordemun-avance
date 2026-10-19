@@ -848,6 +848,13 @@
  #alertas .seg button{padding:6px 8px;font-size:11.5px}}
 body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:none!important}
 @media (max-width:860px){body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:block!important}}
+.cb,.cchip{display:flex;align-items:center;gap:10px;font:500 12.5px Poppins,sans-serif;color:#2a1f24;cursor:pointer;border:0;background:none;text-align:left;width:100%;padding:6px 6px;border-radius:8px}
+.cb:hover{background:#f7f1e7}.cb i,.cchip i{width:18px;height:18px;border-radius:5px;display:grid;place-items:center;font-style:normal;font-size:11px;color:#fff;border:2px solid var(--cc);background:var(--cc);flex:none}
+.cb:not(.on) i,.cchip:not(.on) i{background:#fff}.cb:not(.on){color:#8a7b80}.cb:focus-visible,.cchip:focus-visible{outline:2px solid var(--cc);outline-offset:2px}
+.calchips{display:flex;flex-wrap:wrap;gap:8px;margin:0 0 14px}
+.cchip{width:auto;padding:7px 12px 7px 9px;border-radius:99px;border:1.5px solid var(--cc);background:#fff;font-weight:600;font-size:12.5px}
+.cchip.on{background:color-mix(in srgb,var(--cc) 12%,#fff)}.cchip:not(.on){border-style:dashed;color:#8a7b80}
+@media (min-width:1101px){.calchips.enmes{display:none}}
   </style>
 </head>
 <body>
@@ -1186,6 +1193,12 @@ body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:none!import
   }
   // ---- Calendario mensual por semana (17-10-2026): un calendario por proyecto (lunes a domingo, una fila por semana)
   var calMes = null, eventosCal = [], alF = 'todas';
+  // 18-10-2026: un solo calendario; «Calendarios» = interruptores (se recuerdan en localStorage)
+  var CAL_K = [['PVE', 'Escolar · PVE'], ['PVJ', 'Juventud · PVJ'], ['PVG', 'Familiar y Género · PVG'], ['GEN', 'General · reuniones'], ['SEP', 'SEP · días sin clases']];
+  var calOn = (function () { var o = { PVE: true, PVJ: true, PVG: true, GEN: true, SEP: true }; try { var j = JSON.parse(ls('fordemun_cal_on') || '{}'); Object.keys(o).forEach(function (k) { if (j[k] === false) o[k] = false; }); } catch (e) { } return o; })();
+  function calCol(k) { return k === 'GEN' ? '#5e4b6b' : k === 'SEP' ? '#9a8f88' : PROY_COLOR[k]; }
+  function evOn(e) { return e.tipo === 'sep' ? calOn.SEP : e.p ? calOn[e.p] !== false : calOn.GEN; }
+  function calChecks(cls) { return CAL_K.map(function (c) { var on = calOn[c[0]]; return '<button type="button" class="' + cls + (on ? ' on' : '') + '" data-cal-on="' + c[0] + '" role="switch" aria-checked="' + on + '" style="--cc:' + calCol(c[0]) + '"><i aria-hidden="true">' + (on ? '✓' : '') + '</i>' + c[1] + '</button>'; }).join(''); }
   var PREF_CAL = { PVE: 'Esc. Prev', PVJ: 'Jov. Prev', PVG: 'Fam. Prev' };
   var MESES_L = ['enero', 'febrero', 'marzo', 'abril', 'mayo', 'junio', 'julio', 'agosto', 'septiembre', 'octubre', 'noviembre', 'diciembre'];
   function cargarEventos() {
@@ -1222,7 +1235,7 @@ body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:none!import
     var items = [], vistos = {};
     grupos.forEach(function (g) { spansDe(g.acts).forEach(function (x) { if (x.a._nueva && x.a._gral) { if (vistos[x.a.codigo]) return; vistos[x.a.codigo] = 1; } x.p = g.p; items.push(x); }); });
     var ps = grupos.map(function (g) { return g.p.proyecto; });
-    var evs = eventosCal.filter(function (e) { return !e.proyectos || e.proyectos.some(function (x) { return ps.indexOf(x) >= 0; }); });
+    var evs = eventosCal.filter(function (e) { return general ? evOn(e) : (!e.proyectos || e.proyectos.some(function (x) { return ps.indexOf(x) >= 0; })); });
     var paso = modo === 'semana' ? 'sem' : 'mes';
     var h = '<div class="mes' + (modo === 'semana' ? ' semana' : '') + (general ? ' gral' : '') + '" style="--mc:' + mc + ';--mbg:' + mbg + '">' +
       '<div class="mes-nav"><button type="button" class="hoyb" data-cal-hoy>Hoy</button><button type="button" data-cal-' + paso + '="-1" aria-label="' + (modo === 'semana' ? 'Semana anterior' : 'Mes anterior') + '">‹</button><b>' + titulo + '</b>' +
@@ -1268,13 +1281,14 @@ body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:none!import
       ['L', 'M', 'M', 'J', 'V', 'S', 'D'].map(function (x) { return '<i>' + x + '</i>'; }).join('');
     for (var d = ini; d < dN || (d - ini) % 7; d++) { var dt = new Date(d * 864e5), iso = isoDe(d);
       h += '<button type="button" data-cal-dia="' + iso + '" class="' + [d < d1 || d >= dN ? 'o' : '', d === hoy ? 't' : '', d >= s0 && d < s0 + 7 && d !== hoy ? 'w' : '', sep[iso] ? 'sp' : ''].join(' ') + '" title="' + fecha(iso) + (sep[iso] ? ' · sin clases (SEP)' : '') + '">' + dt.getUTCDate() + '</button>'; }
-    h += '</div><h4>Calendarios</h4>' + [['Escolar · PVE', PROY_COLOR.PVE], ['Juventud · PVJ', PROY_COLOR.PVJ], ['Familiar y Género · PVG', PROY_COLOR.PVG], ['General · reuniones', CGEN], ['SEP · días sin clases', '#9a8f88']].map(function (c) { return '<div class="cb"><i style="background:' + c[1] + '">✓</i>' + c[0] + '</div>'; }).join('') + '</div>';
+    h += '</div><h4>Calendarios</h4>' + [['Escolar · PVE', PROY_COLOR.PVE], ['Juventud · PVJ', PROY_COLOR.PVJ], ['Familiar y Género · PVG', PROY_COLOR.PVG], ['General · reuniones', CGEN], ['SEP · días sin clases', '#9a8f88']].map(function (c) { return ''; }).join('') + calChecks('cb') + '</div>';
     return h;
   }
   function mesGrid(p, acts) { return calGrid([{ p: p, acts: acts }], 'mes', false); }
   function proyEnVista(p) {                                // proyectos que muestra la pestaña actual
     if (tab === 'General') return true;
-    if (tab === 'Calendario' || tab === 'Indicadores') return !calProy || p.proyecto === calProy;
+    if (tab === 'Calendario') return calOn[p.sigla] !== false;
+    if (tab === 'Indicadores') return !calProy || p.proyecto === calProy;
     return p.proyecto === tab;
   }
   function herramientas(todas, visibles) {
@@ -1305,7 +1319,7 @@ body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:none!import
     var n = (filtro.estado ? 1 : 0) + (filtro.unidad ? 1 : 0) + (filtro.resp ? 1 : 0);
     var txtDe = function (ops, v) { var o = ops.filter(function (x) { return x[0] === v; })[0]; return o ? o[1] : v; };
     var resumen = [filtro.estado && txtDe(ESTADOS_F, filtro.estado), filtro.unidad && txtDe(opsU, filtro.unidad).split(' · ')[0], filtro.resp && txtDe(opsR, filtro.resp).split(':')[0].replace(/^Entidad$/, txtDe(opsR, filtro.resp))].filter(Boolean).join(', ');
-    var selP = tab !== 'Calendario' && tab !== 'Indicadores' ? '' : '<select class="sel-p' + (calProy ? ' on' : '') + '" data-proy-sel="1" aria-label="Proyecto">' + [['', 'Todos los proyectos']].concat(datos.proyectos.map(function (p) { return [p.proyecto, p.proyecto]; })).map(function (o) { return opt(o[0], o[1], calProy); }).join('') + '</select>';
+    var selP = tab !== 'Indicadores' ? '' : '<select class="sel-p' + (calProy ? ' on' : '') + '" data-proy-sel="1" aria-label="Proyecto">' + [['', 'Todos los proyectos']].concat(datos.proyectos.map(function (p) { return [p.proyecto, p.proyecto]; })).map(function (o) { return opt(o[0], o[1], calProy); }).join('') + '</select>';
     var h = '<div class="fila-h">' + selP +
             '<button type="button" class="btn-f' + (n ? ' activo' : '') + '" data-abrir-f="1" aria-haspopup="true" aria-controls="panelF" aria-expanded="' + panelF + '">' +
               '<svg viewBox="0 0 16 16" aria-hidden="true"><path d="M1.5 2.5h13l-5 6v5l-3-1.5V8.5z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>Filtros' + (n ? ' · ' + n : '') + '</button>' +
@@ -1831,6 +1845,7 @@ body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:none!import
     if (foco) { var bf0 = $('tabs').querySelector('button[data-tab="' + foco + '"]'); if (bf0) bf0.focus({ preventScroll: true }); }
     var vPend = tab === 'Pendientes', vBita = tab === 'Bitácora' || vPend, vDocs = tab === 'Documentos' || vBita, vCal = tab === 'Calendario', vInd = tab === 'Indicadores';
     if (calProy && !d.proyectos.some(function (p) { return p.proyecto === calProy; })) calProy = '';
+    if (tab === 'Calendario') calProy = '';                 // un solo calendario: el filtro son los interruptores «Calendarios»
     var secc = vPend ? 'Pendientes por persona' : vBita ? 'Bitácora' : vDocs ? 'Documentos' : vCal ? 'Calendario de actividades' : vInd ? 'Indicadores' : tab === 'General' ? '' : tab;
     var pT = d.proyectos.filter(function (x) { return x.proyecto === tab; })[0];
     $('titulo').textContent = secc ? (pT ? tab + ' · ' + nombreCorto(pT.nombre) : secc) : 'Tablero de avance FORDEMUN 2026';
@@ -1850,7 +1865,7 @@ body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:none!import
     $('kpis').classList.toggle('oculto', !vInd);
     if (vInd) { try { $('kpis').innerHTML = indHtml(); } catch (e) { $('kpis').innerHTML = '<p class="nota">No se pudieron calcular los indicadores: ' + esc(e.message) + '</p>'; } }
     $('tAct').textContent = vCal ? 'Calendario de actividades' : 'Avance por actividad';
-    $('nAct').textContent = vCal ? (calProy ? 'Calendario del mes por semana (lunes a domingo) y, abajo, las barras de inicio a fin. ' : 'Elija PVE, PVJ o PVG para ver su calendario mensual por semana. ') + 'Barras de la fecha de inicio a la fecha fin; el relleno es el % real y la línea guinda marca hoy. Toque una barra o etiqueta para abrir la actividad en su proyecto.'
+    $('nAct').textContent = vCal ? 'Un solo calendario: active o desactive Escolar, Juventud, Familiar y Género, General y SEP en «Calendarios». ' + 'Barras de la fecha de inicio a la fecha fin; el relleno es el % real y la línea guinda marca hoy. Toque una barra o etiqueta para abrir la actividad en su proyecto.'
       : 'Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver sus observaciones, documentos, minutas y el avance por unidad, y para agregar una nota.';
     $('docs').classList.toggle('oculto', !vDocs || vBita);
     if (vDocs && !vBita) renderDocs();
@@ -1885,7 +1900,7 @@ body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:none!import
       var todas = d.actividades.filter(function (a) { return a.proyecto === p.proyecto; });
       var acts = todas.map(aplicarFiltro).filter(Boolean);
       nTodas += todas.length; nVis += acts.length;
-      if (vCal) acts = acts.concat(nuevasDe(p));               // 18-10-2026: actividades agregadas (★) en Gantt y calendarios
+      if (vCal) acts = acts.concat(nuevasDe(p).filter(function (n) { return calOn.GEN || !n._gral; }));               // 18-10-2026: actividades agregadas (★) en Gantt y calendarios
       porP.push({ p: p, acts: acts, todas: todas });
     });
     var R = vCal ? rango([].concat.apply([], porP.map(function (x) { return x.acts; }))) : null;
@@ -1923,8 +1938,8 @@ body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:none!import
     });
     if (vCal && !calProy) html = '<div class="cal-seg cal-vista" role="group" aria-label="Vista del calendario general">' + [['linea', 'Línea de tiempo'], ['mes', 'Mes'], ['semana', 'Semana']]
       .map(function (o) { return '<button type="button" data-cal-vista="' + o[0] + '" class="' + (o[0] === calVista ? 'on' : '') + '" aria-pressed="' + (o[0] === calVista) + '">' + o[1] + '</button>'; }).join('') + '</div>' + html;
-    if (vCal) html = '<div class="cal-seg" role="group" aria-label="Calendario">' + [['', 'General', 'var(--guinda-osc)']].concat(d.proyectos.map(function (p) { return [p.proyecto, p.sigla, PROY_COLOR[p.sigla]]; }))
-      .map(function (o) { return '<button type="button" data-cal-proy="' + esc(o[0]) + '" style="--sc:' + o[2] + '" class="' + (o[0] === calProy ? 'on' : '') + '"' + (o[0] === calProy ? ' aria-pressed="true"' : ' aria-pressed="false"') + '>' + esc(o[1]) + '</button>'; }).join('') + '</div>' + html;
+    if (vCal) html = '<div class="calchips' + (calVista === 'mes' ? ' enmes' : '') + '" role="group" aria-label="Calendarios">' + calChecks('cchip') + '</div>' + html;
+    if (vCal && !porP.length && !html.match(/class="mes/)) html += '<p class="nota">No hay calendarios de proyecto activos. Active Escolar, Juventud o Familiar y Género para ver sus actividades.</p>';
     $('herr').classList.toggle('oculto', vDocs);
     if (!vDocs) $('herr').innerHTML = herramientas(nTodas, nVis);
     if (!vDocs) {
@@ -2184,7 +2199,8 @@ body[data-vista="cal"] .mes:not(.semana) .mes-g .dc .ev.xtra{display:none!import
   $('btnAct').addEventListener('click', function () { cargar(); programar(); });
   function reFoco(fn) { var ae = document.activeElement, id = ae && ae.id, c = id && ae.selectionStart; fn(); if (id && $(id)) { $(id).focus({ preventScroll: true }); try { $(id).setSelectionRange(c, c); } catch (x) { } } }
   document.addEventListener('click', function (e) {          // C2: chips, «ver más», alertas, calendario
-    var b = e.target.closest('[data-zest],[data-ind-proy],[data-pmas],[data-dtipo],[data-dmas],[data-bmas],[data-alf],[data-cal-hoy],[data-cal-dia],[data-cal-alta]'); if (!b) return;
+    var b = e.target.closest('[data-cal-on],[data-zest],[data-ind-proy],[data-pmas],[data-dtipo],[data-dmas],[data-bmas],[data-alf],[data-cal-hoy],[data-cal-dia],[data-cal-alta]'); if (!b) return;
+    if (b.hasAttribute('data-cal-on')) { var ck = b.getAttribute('data-cal-on'); calOn[ck] = !calOn[ck]; ls('fordemun_cal_on', JSON.stringify(calOn)); render(); var nb = document.querySelector('[data-cal-on="' + ck + '"].' + b.className.split(' ')[0]); if (nb) nb.focus({ preventScroll: true }); return; }
     if (b.hasAttribute('data-zest')) { filtro.estado = b.getAttribute('data-zest'); render(); guardarUrl(); }
     else if (b.hasAttribute('data-ind-proy')) { calProy = b.getAttribute('data-ind-proy'); unidadValida(); render(); guardarUrl(); }
     else if (b.hasAttribute('data-pmas')) { var pm = b.getAttribute('data-pmas'); pendMas[pm] = !pendMas[pm]; renderPend(); }
