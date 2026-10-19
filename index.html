@@ -329,6 +329,23 @@
     .fobs .est { margin: 0; font-size: 13.5px; min-height: 1em; }
     .fobs .est.ok { color: var(--verde); font-weight: 600; } .fobs .est.err { color: var(--rojo); font-weight: 600; }
     .fobs .hp { position: absolute; left: -9999px; width: 1px; height: 1px; opacity: 0; }
+    /* 18-10-2026: alta de actividades (Pendientes) y actividades agregadas en calendarios */
+    .alta { border: 1px solid var(--borde); border-radius: 12px; background: var(--tarjeta); margin: 0 0 16px; --gc: var(--guinda-osc); }
+    .alta > summary { cursor: pointer; padding: 12px 14px; font-weight: 700; color: var(--guinda-osc); list-style: none; display: flex; align-items: center; gap: 8px; }
+    .alta > summary::-webkit-details-marker { display: none; }
+    .alta > summary::before { content: "＋"; display: inline-grid; place-items: center; width: 24px; height: 24px; border-radius: 50%; background: var(--guinda-osc); color: #fff; font-size: 15px; }
+    .alta[open] > summary::before { content: "−"; }
+    .alta > summary small { font-weight: 500; color: var(--tenue); }
+    .alta .fobs { padding: 0 14px 14px; }
+    .alta label { display: grid; gap: 4px; font-size: 13px; font-weight: 600; color: var(--tenue); }
+    .alta .fila3 { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 8px; }
+    @media (max-width: 640px) { .alta .fila3 { grid-template-columns: minmax(0, 1fr) minmax(0, 1fr); } }
+    .alta .off { font-size: 13.5px; color: var(--tenue); margin: 0; padding: 0 14px 14px; }
+    .tag.nva { color: #fff; background: var(--guinda-osc); }
+    .mes-g .ev.nva { border-left-style: dashed; }
+    .mes-g .ev.nva b::before { content: "★ "; }
+    .g-row.nva .g-lab b::before { content: "★ "; }
+    .g-row.nva .g-bar { background-image: repeating-linear-gradient(45deg, transparent 0 5px, rgba(255,255,255,.35) 5px 10px); }
     @media (max-width: 480px) { .fobs .fila2 { grid-template-columns: minmax(0, 1fr); } }
     .det .ir { font-size: 12.5px; font-weight: 600; margin-left: 6px; white-space: nowrap; }
     .det .lk-act { display: grid; grid-template-columns: 10px 88px minmax(0, 1fr) auto; column-gap: 10px; align-items: baseline; }
@@ -673,20 +690,51 @@
     });
     $('bitacora').innerHTML = h;
   }
-  // ---- Pendientes por persona (17-10-2026): copia de la pestaña «Pendientes» de la hoja (pendientes.json)
-  var pend = null, pendErr = '', pendPer = '';
+  // ---- Pendientes por persona (17-10-2026). 18-10-2026: en vivo desde la hoja (pestañas «Pendientes» y «Actividades nuevas»,
+  //      vía la app web: datos.pendientesVivo). Si la app web aún no lo manda, se usa la copia pendientes.json.
+  var pend = null, pendErr = '', pendPer = '', pendVivo = false, estAlta = {}, borrAlta = {};
   var PEND_URL = 'https://docs.google.com/spreadsheets/d/190fkDAQ231LgguSenuhIak0g0JPO9l--91Kf7woa7bQ/edit#gid=1193414020';
+  var GRAL = 'General (todo el equipo)';
+  function nuevasAbiertas() { return ((pend && pend.nuevas) || []).filter(function (n) { return !/^(hecho|terminad|cancelad)/i.test(n.estado || ''); }); }
+  function formAlta(ps) {
+    if (!pendVivo || !pend.alta) return '<details class="alta"><summary>Agregar actividad <small>(general o por persona)</small></summary><p class="off">El alta de actividades se activa cuando se publique la nueva versión de la app web del tablero. Mientras tanto, esta sección es una copia de la pestaña «Pendientes».</p></details>';
+    var b = borrAlta, e = estAlta, opt = function (v, t, sel) { return '<option value="' + esc(v) + '"' + (v === sel ? ' selected' : '') + '>' + esc(t) + '</option>'; };
+    var proys = (pend.proyectos || ['PVE', 'PVJ', 'PVG', 'General']);
+    return '<details class="alta"' + (b.abierto ? ' open' : '') + ' id="altaBox"><summary>Agregar actividad <small>(general o por persona · se guarda en la hoja y avisa por correo)</small></summary>' +
+      '<form class="fobs" id="fAlta" autocomplete="off" novalidate>' +
+      '<label>Actividad *<input name="titulo" maxlength="150" required value="' + esc(b.titulo || '') + '" placeholder="Ej.: Entregar volantes a los enlaces de colonia"></label>' +
+      '<div class="fila3"><label>Proyecto *<select name="proyecto">' + proys.map(function (p) { return opt(p, p, b.proyecto || 'General'); }).join('') + '</select></label>' +
+      '<label>Asignar a *<select name="persona">' + [['General', 'General (todo el equipo)']].concat(ps.map(function (x) { return [x, x]; })).map(function (o) { return opt(o[0], o[1], b.persona || 'General'); }).join('') + '</select></label>' +
+      '<label>Fecha límite *<input type="date" name="vence" required value="' + esc(b.vence || '') + '"></label></div>' +
+      '<div class="fila3"><label>Inicio (opcional)<input type="date" name="inicio" value="' + esc(b.inicio || '') + '"></label>' +
+      '<label>Tu nombre *<input name="nombre" maxlength="60" value="' + esc(ls('fordemun_nombre')) + '"></label>' +
+      '<label>Clave del equipo *<input type="password" name="clave" value="' + esc(ls('fordemun_clave')) + '"></label></div>' +
+      '<label>Descripción (opcional)<textarea name="descripcion" maxlength="1500">' + esc(b.descripcion || '') + '</textarea></label>' +
+      '<input class="hp" name="web" tabindex="-1" aria-hidden="true">' +
+      '<div class="pie2"><p class="est' + (e.cls ? ' ' + e.cls : '') + '" role="status">' + esc(e.txt || 'Al guardar aparece aquí, en los calendarios y le llega un correo a la persona asignada (General = a todo el equipo).') + '</p>' +
+      '<button type="submit"' + (e.enviando ? ' disabled' : '') + '>' + (e.enviando ? 'Guardando…' : 'Agregar') + '</button></div></form></details>';
+  }
   function renderPend() {
-    var cab = '<div class="leyenda-wrap"><div><h2>Pendientes por persona</h2><p class="nota">Lo que falta según las minutas, el checklist v3 y las actividades del tablero, agrupado por responsable. Rojo = vencido a la fecha de hoy.</p></div></div>';
+    var cab = '<div class="leyenda-wrap"><div><h2>Pendientes por persona</h2><p class="nota">Lo que falta según las minutas, el checklist v3 y las actividades del tablero, más las actividades agregadas desde aquí (★), agrupado por responsable. Rojo = vencido a la fecha de hoy.</p></div></div>';
     if (!pend) { $('pend').innerHTML = cab + '<p class="nota">' + (pendErr ? 'No se pudieron cargar los pendientes (' + esc(pendErr) + ').' : 'Cargando…') + '</p>'; return; }
-    var hoy = datos ? datos.corte : pend.corte, ps = pend.personas || [], rs = pend.pendientes || [];
+    var hoy = datos ? datos.corte : pend.corte, ps = (pend.personas || []).slice();
+    var rs = (pend.pendientes || []).slice();
+    nuevasAbiertas().forEach(function (n) {
+      rs.push({ persona: n.persona === 'General' ? GRAL : n.persona, proyecto: n.proyecto, codigo: n.id, tarea: n.titulo + (n.descripcion ? '\n' + n.descripcion : ''), falta: 'nueva', vence: n.vence,
+                liga: '', fuente: 'Agregada en el tablero por ' + (n.registro || '¿?') + ' el ' + n.alta + (n.inicio ? ' · inicia ' + fecha(n.inicio) : ''), _n: true });
+      if (n.persona !== 'General' && ps.indexOf(n.persona) < 0) ps.push(n.persona);
+    });
+    var hayG = rs.some(function (r) { return r.persona === GRAL; });
+    var grupos = (hayG ? [GRAL] : []).concat(ps);
     rs.forEach(function (r) { r._v = !!r.vence && r.vence < hoy; });
-    var h = cab + '<p class="bact"><b>Última actualización:</b> ' + esc(pend.generado) + ' (America/Matamoros) · ' + plural(rs.length, 'pendiente', 'pendientes') + ' · ' + rs.filter(function (r) { return r._v; }).length + ' vencidos · copia de la pestaña <a href="' + PEND_URL + '" target="_blank" rel="noopener">«Pendientes»</a> de la hoja (no es en vivo).</p>';
-    h += '<div class="bfil" role="group" aria-label="Filtrar por persona">' + [['', 'Todas']].concat(ps.map(function (x) { return [x, x]; })).map(function (b) {
+    var h = cab + formAlta(pend.personas || []) + '<p class="bact"><b>Última actualización:</b> ' + esc(pend.generado) + ' (America/Matamoros) · ' + plural(rs.length, 'pendiente', 'pendientes') + ' · ' + rs.filter(function (r) { return r._v; }).length + ' vencidos · ' +
+      (pendVivo ? 'en vivo desde las pestañas <a href="' + PEND_URL + '" target="_blank" rel="noopener">«Pendientes»</a> y «Actividades nuevas» de la hoja.' : 'copia de la pestaña <a href="' + PEND_URL + '" target="_blank" rel="noopener">«Pendientes»</a> de la hoja (no es en vivo).') + '</p>';
+    if (pendPer && grupos.indexOf(pendPer) < 0) pendPer = '';
+    h += '<div class="bfil" role="group" aria-label="Filtrar por persona">' + [['', 'Todas']].concat(grupos.map(function (x) { return [x, x]; })).map(function (b) {
       var c = rs.filter(function (r) { return !b[0] || r.persona === b[0]; }).length;
       return '<button type="button" data-pper="' + esc(b[0]) + '" class="' + (b[0] === pendPer ? 'on' : '') + '" aria-pressed="' + (b[0] === pendPer) + '">' + esc(b[1]) + ' <small>' + c + '</small></button>';
     }).join('') + '</div>';
-    ps.filter(function (x) { return !pendPer || x === pendPer; }).forEach(function (per) {
+    grupos.filter(function (x) { return !pendPer || x === pendPer; }).forEach(function (per) {
       var its = rs.filter(function (r) { return r.persona === per; }); if (!its.length) return;
       var nv = its.filter(function (r) { return r._v; }).length;
       h += '<div class="grupo"><div class="g-cab" style="--gc:var(--guinda);--gbg:var(--crema)"><span>' + esc(per) + '</span><small>' + plural(its.length, 'pendiente', 'pendientes') + (nv ? ' · <b style="color:var(--rojo)">' + nv + ' vencido' + (nv === 1 ? '' : 's') + '</b>' : '') + '</small></div>';
@@ -694,17 +742,31 @@
         var pc = PROY_COLOR[r.proyecto] || 'var(--guinda)';
         var cuando = r.vence ? (r._v ? 'venció el ' + fecha(r.vence) : 'vence el ' + fecha(r.vence)) : 'fecha por definir';
         h += '<div class="bn pn' + (r._v ? ' venc' : '') + '"><div class="bm"><span class="tag p" style="--pc:' + pc + '">' + esc(r.proyecto) + '</span><span class="h"><b>' + esc(r.codigo) + '</b></span>' +
-             '<span class="tag t">' + esc(r.falta) + '</span><span class="cu' + (r._v ? ' r' : '') + '">' + esc(cuando) + '</span></div>' +
-             '<div class="bt">' + esc(r.tarea) + '</div><div class="bs">' + (r.liga ? '<a href="' + esc(r.liga) + '" target="_blank" rel="noopener">Abrir liga ›</a> · ' : '') + 'Fuente: ' + esc(r.fuente) + '</div></div>';
+             (r._n ? '<span class="tag nva">★ nueva</span>' : '<span class="tag t">' + esc(r.falta) + '</span>') + '<span class="cu' + (r._v ? ' r' : '') + '">' + esc(cuando) + '</span></div>' +
+             '<div class="bt">' + esc(r.tarea) + '</div><div class="bs">' + (r.liga ? '<a href="' + esc(r.liga) + '" target="_blank" rel="noopener">Abrir liga ›</a> · ' : '') + (r._n ? '' : 'Fuente: ') + esc(r.fuente) + '</div></div>';
       });
       h += '</div>';
     });
+    var fo = document.activeElement && $('fAlta') && $('fAlta').contains(document.activeElement) ? document.activeElement.name : null;
     $('pend').innerHTML = h;
+    if (fo) { var el = $('fAlta') && $('fAlta').elements[fo]; if (el) el.focus({ preventScroll: true }); }
+  }
+  // actividades agregadas (pestaña «Actividades nuevas») como pseudo-actividades para el Gantt y los calendarios del proyecto p
+  function nuevasDe(p) {
+    if (!pendVivo || !pend || filtro.unidad || filtro.resp) return [];
+    var hoyD = isoDia(datos.corte);
+    return (pend.nuevas || []).filter(function (n) { return n.vence && (n.proyecto === p.sigla || n.proyecto === 'General'); }).map(function (n) {
+      var hecho = /^(hecho|terminad)/i.test(n.estado || ''), dv = isoDia(n.vence) - hoyD;
+      var est = hecho ? 'avance' : dv < 0 ? 'vencida' : dv <= datos.dias ? 'proxima' : 'sin_avance';
+      return { codigo: n.id, actividad: n.titulo, proyecto: p.proyecto, quien: n.persona === 'General' ? 'General (todo el equipo)' : n.persona, estado: est, pct: hecho ? 1 : 0,
+               _rs: [{ ini: n.inicio || n.vence, fin: n.vence }], _nueva: true, _gral: n.proyecto === 'General' };
+    });
   }
   function cargarPend() {
+    if (pendVivo) return Promise.resolve();
     return fetch('pendientes.json?_=' + Date.now(), { cache: 'no-store', credentials: 'omit' })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
-      .then(function (j) { pend = j; pendErr = ''; }, function (e) { if (!pend) pendErr = e && e.message ? e.message : String(e); })
+      .then(function (j) { if (!pendVivo) { pend = j; pendErr = ''; } }, function (e) { if (!pend) pendErr = e && e.message ? e.message : String(e); })
       .then(function () { if (datos && tab === 'Pendientes') renderPend(); });
   }
   function cargarBita() {
@@ -820,7 +882,7 @@
       if (ini === null && fin !== null) ini = fin; if (fin === null && ini !== null) fin = ini;
       var col = EST[a.estado], us = unidadesDe(a);
       var sub = us.length === 1 ? us[0].t + (us[0].n ? ' · ' + us[0].n : '') : (a.quien || us.length + ' unidades');
-      h += '<div class="g-row" data-ir-act="' + esc(a.codigo) + '" title="' + esc(a.codigo + ' · ' + a.actividad + (ini !== null ? ' · ' + fecha(new Date(ini * 864e5).toISOString().slice(0, 10)) + ' → ' + fecha(new Date(fin * 864e5).toISOString().slice(0, 10)) : '')) + '">' +
+      h += '<div class="g-row' + (a._nueva ? ' nva' : '') + '" ' + (a._nueva ? 'data-ir-pend' : 'data-ir-act') + '="' + esc(a.codigo) + '" title="' + esc(a.codigo + ' · ' + a.actividad + (a._nueva ? ' · ' + a.quien : '') + (ini !== null ? ' · ' + fecha(new Date(ini * 864e5).toISOString().slice(0, 10)) + ' → ' + fecha(new Date(fin * 864e5).toISOString().slice(0, 10)) : '')) + '">' +
            '<div class="g-lab"><b>' + esc(a.codigo) + '</b><span class="n">' + esc(a.actividad) + '</span><small>' + esc(sub) + '</small></div><div class="g-track">';
       if (ini === null) h += '<span class="g-nf">sin fecha</span>';
       else {
@@ -869,8 +931,8 @@
       titulo = MESES_L[calMes.m] + ' ' + calMes.y;
     }
     var p0 = grupos[0] && grupos[0].p, mc = general ? 'var(--guinda-osc)' : PROY_COLOR[p0.sigla], mbg = general ? 'var(--crema)' : (PROY_BG[p0.sigla] || '#F3EEE1');
-    var items = [];
-    grupos.forEach(function (g) { spansDe(g.acts).forEach(function (x) { x.p = g.p; items.push(x); }); });
+    var items = [], vistos = {};
+    grupos.forEach(function (g) { spansDe(g.acts).forEach(function (x) { if (x.a._nueva && x.a._gral) { if (vistos[x.a.codigo]) return; vistos[x.a.codigo] = 1; } x.p = g.p; items.push(x); }); });
     var ps = grupos.map(function (g) { return g.p.proyecto; });
     var evs = eventosCal.filter(function (e) { return !e.proyectos || e.proyectos.some(function (x) { return ps.indexOf(x) >= 0; }); });
     var paso = modo === 'semana' ? 'sem' : 'mes';
@@ -883,19 +945,21 @@
       evs.forEach(function (e) { if (e.fecha === iso) cel += '<span class="ev fijo" title="' + esc(e.texto + ' · Propuesta de calendario dinámico (checklist v3)') + '">' + esc(e.texto) + '</span>'; });
       items.forEach(function (x) {
         if (d < x.i || d > x.f) return;
-        var pc = PROY_COLOR[x.p.sigla], ec = EST[x.a.estado] || pc, pref = PREF_CAL[x.p.sigla] || x.p.sigla;
-        var tt = x.a.codigo + ' · ' + x.a.actividad + ' · ' + fecha(isoDe(x.i)) + ' → ' + fecha(isoDe(x.f));
+        var nv = x.a._nueva, pc = nv && x.a._gral ? 'var(--guinda-osc)' : PROY_COLOR[x.p.sigla], ec = EST[x.a.estado] || pc, pref = nv && x.a._gral ? 'General' : PREF_CAL[x.p.sigla] || x.p.sigla;
+        var tt = x.a.codigo + ' · ' + x.a.actividad + (nv ? ' · ' + x.a.quien + ' (agregada en Pendientes)' : '') + ' · ' + fecha(isoDe(x.i)) + ' → ' + fecha(isoDe(x.f));
+        var ir = nv ? 'data-ir-pend="' + esc(x.a.codigo) + '"' : 'data-ir-act="' + esc(x.a.codigo) + '"';
         var marca = x.i === x.f ? '' : d === x.i ? ' <small>(inicia)</small>' : d === x.f ? ' <small>(termina)</small>' : null;
-        if (marca === null && modo !== 'semana') { cur += '<i style="--ec:' + pc + '" title="' + esc('En curso: ' + tt) + '" data-ir-act="' + esc(x.a.codigo) + '"></i>'; return; }
+        if (nv && marca === '') marca = ' <small>(' + esc(x.a.quien) + ')</small>';
+        if (marca === null && modo !== 'semana') { cur += '<i style="--ec:' + pc + '" title="' + esc('En curso: ' + tt) + '" ' + ir + '></i>'; return; }
         if (marca === null) marca = ' <small>(en curso)</small>';
-        cel += '<span class="ev" style="--ec:' + ec + ';--pc:' + pc + (general ? ';--evbg:' + (PROY_BG[x.p.sigla] || '#F3EEE1') : '') + '" data-ir-act="' + esc(x.a.codigo) + '" title="' + esc(tt) + '"><b>' + esc(pref) + '</b>-' + esc(minus1(x.a.actividad)) + marca + '</span>';
+        cel += '<span class="ev' + (nv ? ' nva' : '') + '" style="--ec:' + ec + ';--pc:' + pc + (general ? ';--evbg:' + (nv && x.a._gral ? 'var(--crema)' : PROY_BG[x.p.sigla] || '#F3EEE1') : '') + '" ' + ir + ' title="' + esc(tt) + '"><b>' + esc(pref) + '</b>-' + esc(minus1(x.a.actividad)) + marca + '</span>';
       });
       if (cur) cel += '<span class="cur">' + cur + '</span>';
       h += '<div class="dc' + (dentro ? '' : ' fuera') + (d === hoy ? ' hoy' : '') + '"' + (d === hoy ? ' aria-current="date"' : '') + '><span class="nd">' + (modo === 'semana' ? dt.getUTCDate() + ' ' + MESES[dt.getUTCMonth()] : dt.getUTCDate()) + '</span>' + cel + '</div>';
     }
     var ley = general ? '<span class="mes-pl">' + grupos.map(function (g) { return '<span><i style="background:' + PROY_COLOR[g.p.sigla] + '"></i><b>' + esc(PREF_CAL[g.p.sigla] || g.p.sigla) + '</b> = ' + esc(g.p.proyecto) + '</span>'; }).join('') + '</span>' : '';
     return h + '</div></div><div class="mes-ley">' + ley + (modo === 'semana' ? 'Cada día muestra todas las actividades vigentes (inicia, en curso o termina); toque una para abrirla. ' : 'Etiquetas: actividad que inicia, termina o es de un solo día (toque para abrirla); rayitas = actividades en curso ese día. ') +
-      '«reunión seg.» viene de la Propuesta de calendario dinámico del checklist v3. Recuadro guinda = hoy.</div></div>';
+      '«reunión seg.» viene de la Propuesta de calendario dinámico del checklist v3. ★ = actividad agregada en Pendientes. Recuadro guinda = hoy.</div></div>';
   }
   function mesGrid(p, acts) { return calGrid([{ p: p, acts: acts }], 'mes', false); }
   function proyEnVista(p) {                                // proyectos que muestra la pestaña actual
@@ -1170,6 +1234,7 @@
       var todas = d.actividades.filter(function (a) { return a.proyecto === p.proyecto; });
       var acts = todas.map(aplicarFiltro).filter(Boolean);
       nTodas += todas.length; nVis += acts.length;
+      if (vCal) acts = acts.concat(nuevasDe(p));               // 18-10-2026: actividades agregadas (★) en Gantt y calendarios
       porP.push({ p: p, acts: acts, todas: todas });
     });
     var R = vCal ? rango([].concat.apply([], porP.map(function (x) { return x.acts; }))) : null;
@@ -1250,6 +1315,7 @@
     $('act').innerHTML = k < 0 ? esc(txt) : esc(txt.slice(0, k)) + '<span class="c60">' + esc(txt.slice(k)) + '</span>'; }   // en celular se oculta « · se actualiza cada 60 s»
   function ok(res) {
     pidiendo = false; datos = res; ultimaOk = Date.now(); $('msg').innerHTML = '';
+    if (res.pendientesVivo && !res.pendientesVivo.error && res.pendientesVivo.pendientes) { pend = res.pendientesVivo; pendVivo = true; pendErr = ''; }
     cargarSnap(); if (!eventosCal.length) cargarEventos();
     if (res.vinculos && res.vinculos.documentos) { links = fixLinks(res.vinculos); linksVivo = true; linksErr = ''; }  // en vivo
     else if (linksVivo) { linksVivo = false; cargarLinks(); }                                             // respaldo
@@ -1331,6 +1397,8 @@
     if (cv) { calVista = cv.getAttribute('data-cal-vista'); render(); guardarUrl(); return; }
     var cp = e.target.closest('[data-cal-proy]');
     if (cp) { calProy = cp.getAttribute('data-cal-proy'); unidadValida(); panelF = false; render(); guardarUrl(); return; }
+    var ipn = e.target.closest('[data-ir-pend]');
+    if (ipn) { tab = 'Pendientes'; pendPer = ''; render(); fijarCab(); guardarUrl(); window.scrollTo({ top: 0, behavior: 'smooth' }); return; }
     var ir = e.target.closest('[data-ir-act],[data-ir-doc]');
     if (ir) { e.preventDefault(); if (ir.hasAttribute('data-ir-act')) irAct(ir.getAttribute('data-ir-act')); else irDoc(ir.getAttribute('data-ir-doc')); return; }
     if (e.target.closest('a')) return;                     // ligas a Drive: se abren normal
@@ -1344,6 +1412,37 @@
   }
   ['actividades', 'docs'].forEach(function (id) { $(id).addEventListener('click', clicLista); $(id).addEventListener('keydown', teclaLista); });
   $('pend').addEventListener('click', function (e) { var b = e.target.closest('[data-pper]'); if (!b) return; pendPer = b.getAttribute('data-pper'); renderPend(); });
+  // ---- 18-10-2026: alta de actividades (POST text/plain → la app web agrega la fila a «Actividades nuevas» y avisa por correo)
+  $('pend').addEventListener('toggle', function (e) { if (e.target.id === 'altaBox') borrAlta.abierto = e.target.open; }, true);
+  $('pend').addEventListener('input', function (e) {
+    var fm = e.target.form; if (!fm || fm.id !== 'fAlta') return;
+    var n = e.target.name;
+    if (n === 'nombre') ls('fordemun_nombre', e.target.value.trim()); else if (n === 'clave') ls('fordemun_clave', e.target.value); else if (n !== 'web') borrAlta[n] = e.target.value;
+  });
+  $('pend').addEventListener('change', function (e) { var fm = e.target.form; if (fm && fm.id === 'fAlta' && e.target.tagName === 'SELECT') borrAlta[e.target.name] = e.target.value; });
+  $('pend').addEventListener('submit', function (e) {
+    var fm = e.target; if (fm.id !== 'fAlta') return; e.preventDefault();
+    if (estAlta.enviando) return;
+    var el = fm.elements, v = function (n) { return (el[n].value || '').trim(); };
+    var err = v('titulo').length < 3 ? ['titulo', 'Escriba la actividad.'] : !v('vence') ? ['vence', 'Indique la fecha límite.'] : v('inicio') && v('inicio') > v('vence') ? ['inicio', 'El inicio es después de la fecha límite.'] :
+              v('nombre').length < 2 ? ['nombre', 'Escriba su nombre (se recuerda en este dispositivo).'] : !v('clave') ? ['clave', 'Escriba la clave del equipo.'] : null;
+    if (err) { estAlta = { cls: 'err', txt: err[1] }; renderPend(); var x = $('fAlta').elements[err[0]]; if (x) x.focus(); return; }
+    var cuerpo = { action: 'addActividad', titulo: v('titulo'), proyecto: el.proyecto.value, persona: el.persona.value, inicio: v('inicio'), vence: v('vence'),
+                   descripcion: el.descripcion.value.trim(), nombre: v('nombre'), clave: v('clave'), cliente: cliente(), web: el.web.value };
+    Object.keys(cuerpo).forEach(function (k) { if (k !== 'action' && k !== 'clave' && k !== 'nombre' && k !== 'cliente' && k !== 'web') borrAlta[k] = cuerpo[k]; });
+    estAlta = { enviando: true, txt: 'Guardando en la hoja…' }; renderPend();
+    fetch(API, { method: 'POST', body: JSON.stringify(cuerpo), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit', redirect: 'follow', cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error(j && j.error ? j.error : 'respuesta vacía');
+        var av = j.notificados && j.notificados.length ? 'Aviso por correo a: ' + j.notificados.join(', ') + '.' : 'Correo: ' + (j.aviso || 'no enviado') + '.';
+        if (j.sinCorreo && j.sinCorreo.length) av += ' Sin correo registrado: ' + j.sinCorreo.join(', ') + '.';
+        estAlta = { cls: 'ok', txt: 'Guardada ✓ ' + j.id + ' · ' + j.fecha + '. ' + av };
+        borrAlta = { abierto: true };
+        pidiendo = false; cargar(); programar(); renderPend();
+      })
+      .catch(function (er) { estAlta = { cls: 'err', txt: 'No se guardó: ' + (er && er.message ? er.message : er) }; renderPend(); });
+  });
 
   // ---- alta de observaciones (POST text/plain → sin preflight CORS; la app web agrega la línea a la columna Observaciones)
   function cliente() { var c = ls('fordemun_cli'); if (!c) { c = Math.random().toString(36).slice(2) + Date.now().toString(36); ls('fordemun_cli', c); } return c; }
