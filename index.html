@@ -1337,7 +1337,42 @@ body{font-weight:500}
 .lt,.lt-pop,.lt-scrim2{--ink:var(--c2-txt);--mut:var(--c2-txt-meta)}
 .lt-sfg[data-cal="PVJ"] h5 i+*,.lt-grp[data-cal="PVJ"] .lt-sb{color:var(--c2-txt-meta)}
 .ev[data-cal="PVJ"] b,.ev[style*="--pc:#c98a12"] b{color:inherit}
-  </style>
+  /* Indicadores por persona (19-10-2026) */
+.ipcard .ip-ctl{display:flex;flex-wrap:wrap;gap:10px;margin:0 0 12px}
+.ipcard .ip-ctl select{font:inherit;font-weight:600;color:var(--c2-ink,#2a1d22);background:#fff;border:1px solid var(--c2-line,#e6dccb);border-radius:8px;padding:4px 8px;margin-left:4px}
+.ip-tw{overflow-x:auto}
+.ip-t{width:100%;border-collapse:collapse}
+.ip-t th{text-align:left;white-space:normal;letter-spacing:0;padding:8px 6px;vertical-align:bottom}
+.ip-t td{padding:8px 6px}
+.ip-t td.c1{min-width:220px!important}
+.ip-t th,.ip-t td{padding-left:5px!important;padding-right:5px!important}
+.ip-t{font-size:13px}
+.ip-t .ip-dv{font-size:13px;font-weight:600}
+.ip-t .ip-u{max-width:none!important;margin-top:4px}
+.ip-t .ip-u small{display:inline!important}
+.ip-t td{vertical-align:middle}
+.ip-t td small{display:block;color:var(--tenue,#5f5257);font-weight:500}
+.ip-t td.c1{display:flex;gap:10px;align-items:center;min-width:200px}
+.ip-av{flex:0 0 auto;width:34px;height:34px;border-radius:50%;background:#f6ebee;color:#8c1d40;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+.ip-cum{display:inline-flex;align-items:center;gap:6px;font-weight:700}
+.ip-cum i{width:9px;height:9px;border-radius:50%;display:inline-block}
+.ip-cum small{display:inline!important;margin-left:2px}
+.ip-r{color:#b4233f!important;font-weight:700}
+.ip-u{max-width:280px}
+.ip-u small{display:block}
+.ip-dv{display:block;font-size:13px;font-weight:600;color:var(--tenue,#5f5257)}
+.ip-dv.bien{color:#21804a}.ip-dv.mal{color:#b4233f}
+.ip-cards{display:none}
+.ip-c{background:#fff;border:1px solid var(--c2-line,#e6dccb);border-radius:14px;padding:12px;margin:0 0 10px}
+.ip-ch{display:flex;gap:10px;align-items:center;margin-bottom:10px}
+.ip-ch small{display:block;color:var(--tenue,#5f5257);font-weight:500}
+.ip-m{display:grid;grid-template-columns:repeat(3,1fr);gap:8px}
+.ip-m>div{background:#fbf7f0;border-radius:10px;padding:6px 8px}
+.ip-m b{display:block;font-size:18px}
+.ip-m small{color:var(--tenue,#5f5257);font-weight:500}
+.ip-cf{margin-top:8px;font-size:13px}
+@media (max-width:760px){.ip-tw{display:none}.ip-cards{display:block}}
+</style>
 </head>
 <body>
 <div class="app">
@@ -1561,7 +1596,7 @@ body{font-weight:500}
     return fetch('pendientes.json?_=' + Date.now(), { cache: 'no-store', credentials: 'omit' })
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (j) { if (!pendVivo) { pend = j; pendErr = ''; } }, function (e) { if (!pend) pendErr = e && e.message ? e.message : String(e); })
-      .then(function () { if (datos && tab === 'Pendientes') renderPend(); });
+      .then(function () { if (datos && tab === 'Pendientes') renderPend(); if (datos && tab === 'Indicadores') render(); });
   }
   function cargarBita() {
     var u = q.get('bitacora') || 'bitacora.json';
@@ -1569,7 +1604,7 @@ body{font-weight:500}
       .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
       .then(function (j) { if (!j || !j.notas) throw new Error('formato no válido'); bita = j; bitaErr = ''; },
             function (e) { if (!bita) bitaErr = e && e.message ? e.message : String(e); })
-      .then(function () { if (datos && tab === 'Bitácora') renderBita(); });
+      .then(function () { if (datos && tab === 'Bitácora') renderBita(); if (datos && tab === 'Indicadores') render(); });
   }
 
 
@@ -2168,6 +2203,7 @@ body{font-weight:500}
     var evRows = ps.map(function (p) { return [p.proyecto, PROY_COLOR[p.sigla], evp(p.proyecto)]; }).concat(calProy ? [] : [['Total', '#8c1d40', evp('')]]);
     h += '<div class="g2b">' + card('Con evidencia o documento', '', evRows.map(function (r) { return '<div class="hb2"><span>' + esc(r[0]) + '</span><b>' + pct(r[2].p) + '</b><div class="zb"><i style="width:' + ((r[2].p || 0) * 100) + '%;background:' + r[1] + '"></i></div></div>'; }).join('') +
       '<div class="note">Semáforo: Verde ≥ 50 % · Amarillo 25–49 % · Rojo &lt; 25 %. Cuenta actividades con al menos un documento ligado (sin minutas).</div>') + card('Vencidas por proyecto', '', donaSvg(ps)) + '</div>';
+    try { h += iperHtml(scope); } catch (e) { h += '<p class="nota">No se pudieron calcular los indicadores por persona: ' + esc(e.message) + '</p>'; }
     var S0 = snapAct();
     h += card('Cambio contra cada instantánea', '<span class="mut">' + esc(calProy || 'tres proyectos') + (S0 ? ' · seleccionada: ' + fCorta(S0.corte) : '') + '</span>', tablaDeltas());
     var rows = d.proyectos.map(function (p) { return { p: p, k: kpiCalc(function (x) { return x === p.proyecto; }) }; }).concat([{ p: Object.assign({}, d.total, { proyecto: '', nombre: 'Tres proyectos' }), k: kpiCalc(function () { return true; }) }]);
@@ -2177,6 +2213,120 @@ body{font-weight:500}
       ((d.fueraAlcance || []).length ? '<div class="note">Fuera de alcance: no se incluyen ' + d.fueraAlcance.length + ' filas de ' + esc((d.unidadesFuera || []).join(' y ')) + ' (reposición por definir), tampoco en la tendencia.</div>' : ''));
     return h + '</div>';
   }
+
+
+  // -- indicadores por persona (19-10-2026): actividades por unidad (columna «Responsable (persona)»), pendientes en vivo y Bitácora
+  var IPER = [
+    { id: 'paul', n: 'Paul Del Ángel', al: ['paul', 'paul del angel', 'paul ulises del angel franco'] },
+    { id: 'jj', n: 'Dr. José Juan Villanueva', al: ['doc jose juan', 'dr. jose juan villanueva', 'dr. jose juan', 'jose juan', 'jjvs'] },
+    { id: 'jesus', n: 'Lic. Jesús Anselmo Peña', al: ['lic. jesus (anselmo) pena', 'jesus pena', 'jesus anselmo pena', 'lic. jesus pena'] },
+    { id: 'isaac', n: 'Lic. Isaac De León', al: ['isaac de leon', 'lic. isaac de leon'] },
+    { id: 'tulio', n: 'Tulio Alejandro Aguilar', al: ['tulio alejandro aguilar', 'tulio aguilar'] },
+    { id: 'alejandro', n: 'Alejandro Aguilar', al: ['alejandro aguilar'] },
+    { id: 'omar', n: 'Enlace Omar Alejandro', al: ['enlace omar alejandro', 'omar alejandro'] }
+  ];
+  var iperOrd = 'venc', iperSel = '';
+  function iperKey(s) {
+    var t = normS(String(s || '').replace(/\s*\(con fortasec\)/i, '')).replace(/\s+/g, ' ').trim(); if (!t) return null;
+    for (var i = 0; i < IPER.length; i++) if (IPER[i].al.indexOf(t) >= 0) return IPER[i].id;
+    var nu = { id: 'x:' + t, n: String(s).trim(), al: [t], nuevo: true }; IPER.push(nu); return nu.id;   // nombre no previsto: se muestra tal cual
+  }
+  function iperNombres(per) {                              // «Campo: A, B; Logística: C / D» → [{k, g}]
+    var out = [];
+    String(per || '').split(/\s*;\s*/).forEach(function (x) { var m = /^([^:]{2,30}):\s*(.+)$/.exec(x.trim()); if (!m) return;
+      m[2].split(/\s*[\/,]\s*/).forEach(function (n) { var k = n.trim() && iperKey(n); if (k) out.push({ k: k, g: m[1].trim() }); }); });
+    return out;
+  }
+  function iperActs(fuente, scope, corte) {
+    var R = {}, hoy = isoDia(corte), sinP = 0, idx = {};
+    (datos.actividades || []).concat(fuente.actividades || []).forEach(function (a) { if (!idx[a.codigo]) idx[a.codigo] = a; });
+    Object.keys(fuente.porUnidad || {}).forEach(function (c) {
+      var a = idx[c]; if (!a || !scope(a.proyecto)) return;
+      fuente.porUnidad[c].forEach(function (r) {
+        if (esFuera(c, r.u)) return;
+        var ps = iperNombres(r.per); if (!ps.length) { sinP++; return; }
+        var pc = +r.pct || 0, df = r.fin ? isoDia(r.fin) : null, comp = ps.length > 1;
+        ps.forEach(function (p) {
+          var o = R[p.k] || (R[p.k] = { n: 0, acts: {}, term: 0, due: 0, dueT: 0, venc: 0, prox: 0, s: 0, comp: 0, grupos: {} });
+          o.n++; o.acts[c] = 1; o.s += pc; o.grupos[p.g] = 1; if (comp) o.comp++;
+          if (pc >= 1) o.term++;
+          if (df !== null && df <= hoy) { o.due++; if (pc >= 1) o.dueT++; }
+          if (df !== null && pc < 1 && df < hoy) o.venc++;
+          if (df !== null && pc < 1 && df >= hoy && df <= hoy + 7) o.prox++;
+        });
+      });
+    });
+    return { R: R, sinP: sinP };
+  }
+  function iperHtml(scope) {
+    var d = datos, hoy = d.corte, sig = '', P = calProy ? d.proyectos.filter(function (p) { return p.proyecto === calProy; })[0] : null; if (P) sig = P.sigla;
+    var A = iperActs(d, scope, d.corte), S = snapAct(), B = S && S.porUnidad ? iperActs(S, scope, S.corte).R : null;
+    var pe = {}, pendG = 0, nomP = {};
+    if (pend) {
+      (pend.pendientes || []).map(function (r) { return { persona: r.persona, proyecto: r.proyecto, vence: r.vence, estado: r.estado }; })
+        .concat((pend.nuevas || []).map(function (n) { return { persona: n.persona, proyecto: n.proyecto, vence: n.vence, estado: n.estado }; }))
+        .forEach(function (r) {
+          if (sig && r.proyecto !== sig) return;
+          if (!r.persona || r.persona === 'General') { pendG++; return; }
+          var k = iperKey(r.persona); nomP[k] = r.persona;
+          var o = pe[k] || (pe[k] = { ab: 0, he: 0, v: 0 });
+          if (/^(hecho|terminad|cancelad)/i.test(r.estado || '')) o.he++; else { o.ab++; if (r.vence && r.vence < hoy) o.v++; }
+        });
+    }
+    var ul = {}, bitaComp = 0;
+    if (bita) (bita.notas || []).forEach(function (n) {
+      if (!n.iso || (sig && !bitaDe(n, sig))) return;
+      var as = String(n.autor || '').split(/\s*\/\s*/); if (as.length > 1) bitaComp++;
+      as.forEach(function (x) { var k = /fortasec/i.test(x) && !/paul/i.test(x) ? null : iperKey(x); if (!k) return;
+        if (!ul[k] || n.iso > ul[k].iso || (n.iso === ul[k].iso && n.fila > ul[k].fila)) ul[k] = n; });
+    });
+    var ids = IPER.map(function (p) { return p.id; }).filter(function (k) { return A.R[k] || pe[k] || ul[k]; });
+    var rows = ids.map(function (k) {
+      var p = IPER.filter(function (x) { return x.id === k; })[0], a = A.R[k], b = B && B[k], q = pe[k];
+      var cum = a && a.due ? a.dueT / a.due : null, av = a && a.n ? a.s / a.n : null, avB = b && b.n ? b.s / b.n : null;
+      return { k: k, n: p.n, a: a, q: q, u: ul[k], cum: cum, av: av, dv: av !== null && avB !== null ? Math.round((av - avB) * 1000) / 10 : null };
+    });
+    var opts = [['venc', 'Más vencidas'], ['cum', 'Menor cumplimiento'], ['pend', 'Más pendientes abiertos'], ['nom', 'Nombre (A-Z)']];
+    var nv = function (x) { return x == null ? -1 : x; };
+    rows.sort(function (x, y) {
+      if (iperOrd === 'nom') return x.n.localeCompare(y.n, 'es');
+      if (iperOrd === 'cum') return (x.cum === null) - (y.cum === null) || nv(x.cum) - nv(y.cum) || x.n.localeCompare(y.n, 'es');
+      if (iperOrd === 'pend') return ((y.q && y.q.ab) || 0) - ((x.q && x.q.ab) || 0) || x.n.localeCompare(y.n, 'es');
+      return ((y.a && y.a.venc) || 0) - ((x.a && x.a.venc) || 0) || ((y.q && y.q.v) || 0) - ((x.q && x.q.v) || 0) || x.n.localeCompare(y.n, 'es');
+    });
+    if (iperSel && !rows.some(function (r) { return r.k === iperSel; })) iperSel = '';
+    var vis = rows.filter(function (r) { return !iperSel || r.k === iperSel; });
+    var semC = function (c) { return c === null ? 'var(--gris)' : c >= 0.9 ? 'var(--verde)' : c >= 0.5 ? 'var(--amarillo)' : 'var(--rojo)'; };
+    var dvH = function (r) { return !S ? '' : r.dv === null ? '<span class="ip-dv nd">sin dato en ' + fCorta(S.corte) + '</span>' : '<span class="ip-dv ' + (r.dv > 0 ? 'bien' : r.dv < 0 ? 'mal' : '') + '">' + (r.dv > 0 ? '▲ +' : r.dv < 0 ? '▼ ' : '= ') + String(Math.abs(r.dv)).replace('.', ',') + ' pts vs ' + fCorta(S.corte) + '</span>'; };
+    var ult = function (r) { return r.u ? '<b>' + esc(fecha(r.u.iso).slice(0, 5)) + '</b> <small title="' + esc(r.u.nota) + '">' + esc(String(r.u.nota || '').slice(0, 60)) + (String(r.u.nota || '').length > 60 ? '…' : '') + '</small>' : '<span class="mut">sin notas</span>'; };
+    var cumH = function (r) { return r.cum === null ? '<span class="mut" title="Ninguna de sus actividades debía terminar aún">—</span>' : '<span class="ip-cum"><i style="background:' + semC(r.cum) + '"></i>' + pct(r.cum) + '<small>' + r.a.dueT + '/' + r.a.due + '</small></span>'; };
+    var n0 = function (x) { return x ? String(x) : '<span class="mut">0</span>'; };
+    var ctrl = '<div class="ip-ctl"><label class="zsel"><em>Persona:</em><select data-ipf="sel"><option value="">Todas (' + rows.length + ')</option>' + rows.slice().sort(function (x, y) { return x.n.localeCompare(y.n, 'es'); }).map(function (r) { return '<option value="' + esc(r.k) + '"' + (iperSel === r.k ? ' selected' : '') + '>' + esc(r.n) + '</option>'; }).join('') + '</select></label>' +
+      '<label class="zsel"><em>Ordenar:</em><select data-ipf="ord">' + opts.map(function (o) { return '<option value="' + o[0] + '"' + (iperOrd === o[0] ? ' selected' : '') + '>' + o[1] + '</option>'; }).join('') + '</select></label></div>';
+    var tabla = '<div class="ip-tw"><table class="tbl ip-t"><thead><tr><th>Persona</th><th title="Filas actividad × plantel/colonia donde aparece en «Responsable (persona)»">Asignadas</th><th>Terminadas</th><th>Vencidas</th><th>Por vencer 7 d</th><th title="Terminadas de las que ya debían terminar (fecha fin ≤ corte)">% cumplimiento</th><th>% avance prom.</th><th>Pendientes abiertos</th></tr></thead><tbody>' +
+      vis.map(function (r) { var a = r.a;
+        return '<tr><td class="c1"><span class="ip-av">' + esc(iniDe(r.n)) + '</span><span><b>' + esc(r.n) + '</b><small>' + esc(a ? Object.keys(a.grupos).join(' · ') : 'sin actividades asignadas') + '</small><small class="ip-u">Última nota: ' + ult(r) + '</small></span></td>' +
+          '<td>' + (a ? a.n + '<small> (' + plural(Object.keys(a.acts).length, 'act.', 'act.') + ')</small>' : '<span class="mut">—</span>') + '</td><td>' + (a ? n0(a.term) : '—') + '</td><td class="' + (a && a.venc ? 'ip-r' : '') + '">' + (a ? n0(a.venc) : '—') + '</td><td>' + (a ? n0(a.prox) : '—') + '</td>' +
+          '<td>' + (a ? cumH(r) : '—') + '</td><td>' + (r.av === null ? '—' : pct(r.av)) + dvH(r) + '</td>' +
+          '<td>' + (r.q ? r.q.ab + (r.q.v ? ' <small class="ip-r">' + plural(r.q.v, 'vencido', 'vencidos') + '</small>' : '') + (r.q.he ? ' <small>· ' + r.q.he + ' hechos</small>' : '') : '<span class="mut">0</span>') + '</td></tr>'; }).join('') + '</tbody></table></div>';
+    var cards = '<div class="ip-cards">' + vis.map(function (r) { var a = r.a;
+      return '<article class="ip-c"><div class="ip-ch"><span class="ip-av">' + esc(iniDe(r.n)) + '</span><div><b>' + esc(r.n) + '</b><small>' + esc(a ? Object.keys(a.grupos).join(' · ') + ' · ' + plural(a.n, 'fila asignada', 'filas asignadas') : 'sin actividades asignadas') + '</small></div></div>' +
+        '<div class="ip-m"><div><b>' + (a ? a.term : '—') + '</b><small>terminadas</small></div><div class="' + (a && a.venc ? 'ip-r' : '') + '"><b>' + (a ? a.venc : '—') + '</b><small>vencidas</small></div><div><b>' + (a ? a.prox : '—') + '</b><small>por vencer 7 d</small></div>' +
+        '<div><b>' + (r.cum === null ? '—' : pct(r.cum)) + '</b><small>cumplimiento</small></div><div><b>' + (r.q ? r.q.ab : 0) + '</b><small>pendientes' + (r.q && r.q.v ? ' (' + r.q.v + ' venc.)' : '') + '</small></div><div><b>' + (r.av === null ? '—' : pct(r.av)) + '</b><small>avance prom.</small></div></div>' +
+        (S && r.dv !== null ? '<div class="ip-cf">' + dvH(r) + '</div>' : '') + '<div class="ip-cf">Última nota: ' + ult(r) + '</div></article>'; }).join('') + '</div>';
+    var notas = [];
+    if (A.sinP) notas.push(plural(A.sinP, 'fila', 'filas') + ' sin persona asignada («Por definir») no cuentan para nadie.');
+    notas.push('Las actividades de un grupo (Campo, Logística) cuentan completas para cada integrante; no se reparten.');
+    if (pendG) notas.push(plural(pendG, 'pendiente o actividad nueva', 'pendientes o actividades nuevas') + ' para «General» (todo el equipo) no se asignan a nadie.');
+    notas.push('Pendientes: ' + (pendVivo ? 'en vivo («Pendientes» y «Actividades nuevas»); los hechos suelen salir de la lista, por eso casi no aparecen' : 'copia del ' + esc((pend && pend.generado) || '—')) + '. Bitácora: ' + (bita ? 'copia publicada hasta el ' + esc(fecha(bita.hasta)) : 'cargando…') + '.');
+    notas.push('«Alejandro Aguilar» (Campo) y «Tulio Alejandro Aguilar» (Pendientes) se muestran por separado hasta confirmar si son la misma persona.');
+    return card('Indicadores por persona', '<span class="mut">' + esc(calProy || 'tres proyectos') + ' · corte ' + dm(d.corte) + (S ? ' · vs ' + fCorta(S.corte) : '') + '</span>', ctrl + tabla + cards + '<div class="note">' + notas.map(esc).join('<br>') + '</div>', 'ipcard');
+  }
+  document.addEventListener('change', function (e) {
+    var s = e.target.closest && e.target.closest('[data-ipf]'); if (!s) return;
+    if (s.getAttribute('data-ipf') === 'sel') iperSel = s.value; else iperOrd = s.value;
+    render();
+  });
 
   // -- pendientes
   var pendProy = '', pendMas = {};
