@@ -419,6 +419,10 @@
     .mes-g .dc.hoy .nd { color: #fff; background: var(--guinda); border-radius: 999px; padding: 0 6px; }
     .mes-g .ev { display: block; margin-top: 3px; padding: 3px 5px; border-radius: 5px; background: var(--mbg, var(--crema)); border-left: 3px solid var(--ec, var(--mc)); color: var(--texto); cursor: pointer; word-break: break-word; display: -webkit-box; -webkit-line-clamp: 3; -webkit-box-orient: vertical; overflow: hidden; }
     .mes-g .ev.fijo { cursor: default; border-left-color: var(--dorado); background: #F6F1E7; }
+    .mes-g .dc.sep { background: repeating-linear-gradient(135deg, #F4D9DF 0 6px, #FBEFF2 6px 12px); }
+    .mes-g .ev.sep { cursor: default; background: #fff; color: #7B1E3A; font-weight: 600; border: 1px dashed #7B1E3A; border-left: 3px solid #7B1E3A; }
+    .mes-g .ev.conf { cursor: default; background: #FFF4CC; color: #7B1E3A; font-weight: 700; border-left: 3px solid #C0392B; }
+    .mes-ley .k-sep { display: inline-block; width: 14px; height: 10px; vertical-align: middle; margin-right: 3px; border: 1px dashed #7B1E3A; background: repeating-linear-gradient(135deg, #F4D9DF 0 3px, #FBEFF2 3px 6px); }
     .mes-g .ev b { color: var(--mc, var(--guinda-osc)); }
     .mes-g .ev small { color: var(--tenue); }
     .mes-g .cur { display: flex; flex-wrap: wrap; gap: 2px; margin-top: 4px; }
@@ -942,7 +946,11 @@
       ['lunes', 'martes', 'miércoles', 'jueves', 'viernes', 'sábado', 'domingo'].map(function (n) { return '<div class="dh">' + n + '</div>'; }).join('');
     for (var d = ini; d < fin; d++) {
       var dt = new Date(d * 864e5), iso = isoDe(d), dentro = d >= d1 && d < dN, cel = '', cur = '';
-      evs.forEach(function (e) { if (e.fecha === iso) cel += '<span class="ev fijo" title="' + esc(e.texto + ' · Propuesta de calendario dinámico (checklist v3)') + '">' + esc(e.texto) + '</span>'; });
+      var esSep = false, escHoy = false;
+      evs.forEach(function (e) { if (e.fecha !== iso) return;
+        if (e.tipo === 'sep') { esSep = true; cel += '<span class="ev sep" title="' + esc(e.texto + ' · ' + (e.fuente || 'Calendario Escolar SEP 2026-2027')) + '">' + esc(e.texto) + '</span>'; return; }
+        if (e.p === 'PVE') escHoy = true;
+        cel += '<span class="ev fijo" title="' + esc(e.texto + ' · ' + (e.fuente || 'Propuesta de calendario dinámico (checklist v3)')) + '">' + (e.p ? '<b>' + esc(PREF_CAL[e.p] || e.p) + '</b>-' : '') + esc(e.texto) + '</span>'; });
       items.forEach(function (x) {
         if (d < x.i || d > x.f) return;
         var nv = x.a._nueva, pc = nv && x.a._gral ? 'var(--guinda-osc)' : PROY_COLOR[x.p.sigla], ec = EST[x.a.estado] || pc, pref = nv && x.a._gral ? 'General' : PREF_CAL[x.p.sigla] || x.p.sigla;
@@ -954,12 +962,15 @@
         if (marca === null) marca = ' <small>(en curso)</small>';
         cel += '<span class="ev' + (nv ? ' nva' : '') + '" style="--ec:' + ec + ';--pc:' + pc + (general ? ';--evbg:' + (nv && x.a._gral ? 'var(--crema)' : PROY_BG[x.p.sigla] || '#F3EEE1') : '') + '" ' + ir + ' title="' + esc(tt) + '"><b>' + esc(pref) + '</b>-' + esc(nv ? x.a.actividad : minus1(x.a.actividad)) + marca + '</span>';
       });
+      if (esSep && (escHoy || items.some(function (x) { return x.p.sigla === 'PVE' && (d === x.i || d === x.f) && !(x.a._nueva && x.a._gral); })))
+        cel += '<span class="ev conf" title="Actividad en escuela en un día sin clases según el Calendario Escolar SEP 2026-2027. No se movió la fecha.">⚠ Conflicto: actividad en escuela en día sin clases (SEP)</span>';
       if (cur) cel += '<span class="cur">' + cur + '</span>';
-      h += '<div class="dc' + (dentro ? '' : ' fuera') + (d === hoy ? ' hoy' : '') + '"' + (d === hoy ? ' aria-current="date"' : '') + '><span class="nd">' + (modo === 'semana' ? dt.getUTCDate() + ' ' + MESES[dt.getUTCMonth()] : dt.getUTCDate()) + '</span>' + cel + '</div>';
+      h += '<div class="dc' + (dentro ? '' : ' fuera') + (esSep ? ' sep' : '') + (d === hoy ? ' hoy' : '') + '"' + (d === hoy ? ' aria-current="date"' : '') + '><span class="nd">' + (modo === 'semana' ? dt.getUTCDate() + ' ' + MESES[dt.getUTCMonth()] : dt.getUTCDate()) + '</span>' + cel + '</div>';
     }
     var ley = general ? '<span class="mes-pl">' + grupos.map(function (g) { return '<span><i style="background:' + PROY_COLOR[g.p.sigla] + '"></i><b>' + esc(PREF_CAL[g.p.sigla] || g.p.sigla) + '</b> = ' + esc(g.p.proyecto) + '</span>'; }).join('') + '</span>' : '';
     return h + '</div></div><div class="mes-ley">' + ley + (modo === 'semana' ? 'Cada día muestra todas las actividades vigentes (inicia, en curso o termina); toque una para abrirla. ' : 'Etiquetas: actividad que inicia, termina o es de un solo día (toque para abrirla); rayitas = actividades en curso ese día. ') +
-      '«reunión seg.» viene de la Propuesta de calendario dinámico del checklist v3. ★ = actividad agregada en Pendientes. Recuadro guinda = hoy.</div></div>';
+      'Etiquetas doradas = eventos de la Propuesta de calendario dinámico (checklist v3), la minuta del 18-oct y la Bitácora. ★ = actividad agregada en Pendientes. Recuadro guinda = hoy. ' +
+      '<span class="k-sep"></span>Rayado rosa = día sin clases (CTE, suspensión, festivo o vacaciones) según el <a href="https://calendarioescolar.sep.gob.mx/" target="_blank" rel="noopener">Calendario Escolar SEP 2026-2027</a>; ⚠ = actividad en escuela que cae en ese día (no se mueve la fecha).</div></div>';
   }
   function mesGrid(p, acts) { return calGrid([{ p: p, acts: acts }], 'mes', false); }
   function proyEnVista(p) {                                // proyectos que muestra la pestaña actual

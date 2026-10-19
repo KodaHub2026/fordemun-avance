@@ -1,10 +1,328 @@
 {
- "version": 1,
- "fuente": "GUIA CHECK LIST FORTA 2026 v3 códigos libro.xlsx · pestaña «Propuesta de calendario dinámico» (17/10/2026)",
+ "version": 2,
+ "fuente": "GUIA CHECK LIST FORTA 2026 v3 códigos libro.xlsx · «Propuesta de calendario dinámico» + minuta 18-oct v2 + Bitácora (actualizado 18/10/2026)",
  "url": "https://docs.google.com/spreadsheets/d/1xjtfcTHu4Et8PKNJdB9Vv2J4ZXxQY8Zo/edit?gid=596670020#gid=596670020",
+ "sep": {
+  "fuente": "SEP · Calendario Escolar 2026-2027, Educación Básica · https://calendarioescolar.sep.gob.mx/ (consultado 18/10/2026)",
+  "url": "https://calendarioescolar.sep.gob.mx/",
+  "nota": "Octubre 2026: único día sin clases = vie 30 (CTE, sesión ordinaria). Sin festivos ni suspensiones en octubre. Nov 2026: lun 2 y lun 16 suspensión; vie 27 CTE."
+ },
  "eventos": [
-  { "fecha": "2026-10-17", "texto": "reunión seg.", "proyectos": ["A-PVE", "B-PVJ", "C-PVG"] },
-  { "fecha": "2026-10-24", "texto": "reunión seg.", "proyectos": ["A-PVE", "B-PVJ", "C-PVG"] },
-  { "fecha": "2026-10-31", "texto": "reunión seg.", "proyectos": ["A-PVE", "B-PVJ", "C-PVG"] }
+  {
+   "fecha": "2026-10-01",
+   "texto": "encuestas PVE-LA en P4 (PVE-ACT02)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-10-01",
+   "texto": "marcha exploratoria en P4 (PVE-ACT04; programada)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-10-02",
+   "texto": "encuestas PVE-LA en P1M y P2 (PVE-ACT02)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-10-03",
+   "texto": "campo reporta MES hechas; falta subirlas (PVE-ACT04)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-10-05",
+   "texto": "PDF de encuestas en Drive y OCR de P4 (PVE-ACT02)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-10-05",
+   "texto": "instrumentos de contextualización al Doc (PVJ-ACT01)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "p": "PVJ"
+  },
+  {
+   "fecha": "2026-10-11",
+   "texto": "reunión de planeación (Meet) y minuta 11-oct",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)"
+  },
+  {
+   "fecha": "2026-10-11",
+   "texto": "se autoriza el instrumento PVJ-LJ (PVJ-ACT01)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "p": "PVJ"
+  },
+  {
+   "fecha": "2026-10-13",
+   "texto": "actividad de campo programada (por confirmar)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)"
+  },
+  {
+   "fecha": "2026-10-14",
+   "texto": "actividad de campo programada (por confirmar)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)"
+  },
+  {
+   "fecha": "2026-10-14",
+   "texto": "fotos de la MES de P1M, P2 y P4 en Drive (PVE-ACT04)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-10-17",
+   "texto": "reunión seg.",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Propuesta de calendario dinámico (checklist v3)"
+  },
+  {
+   "fecha": "2026-10-18",
+   "texto": "reunión: cierre del diagnóstico y programación 19-23 oct",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Minuta 18-oct v2"
+  },
+  {
+   "fecha": "2026-10-19",
+   "texto": "contextualización con el enlace de colonia (PVJ-ACT01; tentativa)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "Minuta 18-oct v2",
+   "p": "PVJ"
+  },
+  {
+   "fecha": "2026-10-19",
+   "texto": "impresión y difusión del volante v3 (PVJ-ACT03)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "Minuta 18-oct v2",
+   "p": "PVJ"
+  },
+  {
+   "fecha": "2026-10-19",
+   "texto": "entrega de materiales en PDF",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Minuta 18-oct v2"
+  },
+  {
+   "fecha": "2026-10-20",
+   "texto": "visita: mecánica de niños mediadores (PVE-ACT05)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "Propuesta de calendario dinámico (checklist v3) + Minuta 18-oct v2",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-10-20",
+   "texto": "formatos de niños mediadores y carta modelo (PVE-ACT05)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "Minuta 18-oct v2",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-10-20",
+   "texto": "cierre de la captura de diarios de campo",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Minuta 18-oct v2"
+  },
+  {
+   "fecha": "2026-10-20",
+   "texto": "jornada Doc-Paul (por confirmar)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Minuta 18-oct v2"
+  },
+  {
+   "fecha": "2026-10-21",
+   "texto": "convocatoria del enlace a grupo diverso (PVG-ACT03; por confirmar)",
+   "proyectos": [
+    "C-PVG"
+   ],
+   "fuente": "Minuta 18-oct v2",
+   "p": "PVG"
+  },
+  {
+   "fecha": "2026-10-21",
+   "texto": "grupo focal, lista de asistencia (PVG-ACT03)",
+   "proyectos": [
+    "C-PVG"
+   ],
+   "fuente": "Propuesta de calendario dinámico (checklist v3) + Minuta 18-oct v2",
+   "p": "PVG"
+  },
+  {
+   "fecha": "2026-10-22",
+   "texto": "grupo focal en CL, CE y CS San Marcos 2; lugar y hora por confirmar (PVJ-ACT02)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "Propuesta de calendario dinámico (checklist v3) + Minuta 18-oct v2",
+   "p": "PVJ"
+  },
+  {
+   "fecha": "2026-10-23",
+   "texto": "recepción de las listas de niños mediadores (PVE-ACT05)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "Minuta 18-oct v2",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-10-23",
+   "texto": "marcha exploratoria, MES (PVG-ACT05)",
+   "proyectos": [
+    "C-PVG"
+   ],
+   "fuente": "Propuesta de calendario dinámico (checklist v3) + Minuta 18-oct v2",
+   "p": "PVG"
+  },
+  {
+   "fecha": "2026-10-24",
+   "texto": "reunión seg.",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Propuesta de calendario dinámico (checklist v3)"
+  },
+  {
+   "fecha": "2026-10-26",
+   "texto": "1er taller de niños mediadores (PVE-ACT05)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "Propuesta de calendario dinámico (checklist v3)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-10-26",
+   "texto": "semana 26-30: 9 informes de diagnóstico (día por confirmar)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Minuta 18-oct v2"
+  },
+  {
+   "fecha": "2026-10-30",
+   "texto": "SEP: Consejo Técnico Escolar (sin clases)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "SEP · Calendario Escolar 2026-2027, Educación Básica · https://calendarioescolar.sep.gob.mx/ (consultado 18/10/2026)",
+   "tipo": "sep"
+  },
+  {
+   "fecha": "2026-10-31",
+   "texto": "reunión seg.",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Propuesta de calendario dinámico (checklist v3)"
+  },
+  {
+   "fecha": "2026-11-02",
+   "texto": "SEP: suspensión de labores docentes (sin clases)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "SEP · Calendario Escolar 2026-2027, Educación Básica · https://calendarioescolar.sep.gob.mx/ (consultado 18/10/2026)",
+   "tipo": "sep"
+  },
+  {
+   "fecha": "2026-11-16",
+   "texto": "SEP: suspensión de labores docentes (sin clases)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "SEP · Calendario Escolar 2026-2027, Educación Básica · https://calendarioescolar.sep.gob.mx/ (consultado 18/10/2026)",
+   "tipo": "sep"
+  },
+  {
+   "fecha": "2026-11-27",
+   "texto": "SEP: Consejo Técnico Escolar (sin clases)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "SEP · Calendario Escolar 2026-2027, Educación Básica · https://calendarioescolar.sep.gob.mx/ (consultado 18/10/2026)",
+   "tipo": "sep"
+  }
  ]
 }
