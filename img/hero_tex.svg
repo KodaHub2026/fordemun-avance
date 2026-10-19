@@ -1,0 +1,12 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1200 420" preserveAspectRatio="xMidYMid slice">
+<defs>
+<radialGradient id="lt" cx="0.08" cy="0.05" r="0.75"><stop offset="0" stop-color="#b02f57" stop-opacity=".85"/><stop offset=".55" stop-color="#9d2449" stop-opacity=".35"/><stop offset="1" stop-color="#9d2449" stop-opacity="0"/></radialGradient>
+<radialGradient id="dk" cx="0.95" cy="1" r="0.7"><stop offset="0" stop-color="#5e0f27" stop-opacity=".7"/><stop offset="1" stop-color="#5e0f27" stop-opacity="0"/></radialGradient>
+<filter id="gr"><feTurbulence type="fractalNoise" baseFrequency=".9" numOctaves="2" stitchTiles="stitch"/><feColorMatrix values="0 0 0 0 1  0 0 0 0 .95  0 0 0 0 .9  0 0 0 .06 0"/></filter>
+</defs>
+<rect width="1200" height="420" fill="url(#lt)"/><rect width="1200" height="420" fill="url(#dk)"/>
+<g fill="none" stroke="#fff" stroke-opacity=".045" stroke-width="1.4"><circle cx="980" cy="-260" r="320"/><circle cx="980" cy="-260" r="366"/><circle cx="980" cy="-260" r="412"/><circle cx="980" cy="-260" r="458"/><circle cx="980" cy="-260" r="504"/><circle cx="980" cy="-260" r="550"/><circle cx="980" cy="-260" r="596"/><circle cx="980" cy="-260" r="642"/><circle cx="980" cy="-260" r="688"/><circle cx="980" cy="-260" r="734"/><circle cx="980" cy="-260" r="780"/><circle cx="980" cy="-260" r="826"/><circle cx="980" cy="-260" r="872"/><circle cx="980" cy="-260" r="918"/><circle cx="980" cy="-260" r="964"/><circle cx="980" cy="-260" r="1010"/><circle cx="980" cy="-260" r="1056"/><circle cx="980" cy="-260" r="1102"/><circle cx="980" cy="-260" r="1148"/><circle cx="980" cy="-260" r="1194"/><circle cx="980" cy="-260" r="1240"/><circle cx="980" cy="-260" r="1286"/></g>
+<path d="M-40,250 C160,120 380,40 700,-20" fill="none" stroke="#e3c48f" stroke-opacity=".22" stroke-width="2"/>
+<path d="M-40,290 C190,150 420,60 760,-20" fill="none" stroke="#fbf5ea" stroke-opacity=".08" stroke-width="10"/>
+<rect width="1200" height="420" filter="url(#gr)"/>
+</svg>

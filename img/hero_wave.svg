@@ -1,0 +1,7 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1000 140" preserveAspectRatio="none">
+<defs><linearGradient id="gold" x1="0" y1="0" x2="1" y2="0">
+<stop offset="0" stop-color="#b98d4e"/><stop offset=".35" stop-color="#e3c48f"/><stop offset=".6" stop-color="#c99e5f"/><stop offset=".85" stop-color="#ead2a3"/><stop offset="1" stop-color="#bf9558"/></linearGradient>
+<linearGradient id="gold2" x1="0" y1="0" x2="1" y2="0"><stop offset="0" stop-color="#e3c48f" stop-opacity=".0"/><stop offset=".5" stop-color="#e3c48f" stop-opacity=".55"/><stop offset="1" stop-color="#e3c48f" stop-opacity=".15"/></linearGradient></defs>
+<path d="M0,-2 C320,-2 470,72 640,72 C790,72 900,38 1000,22 L1000,140 L0,140 Z" fill="url(#gold2)"/><path d="M0,0.5 C320,0.5 470,75 640,75 C790,75 900,40.5 1000,24.5 L1000,140 L0,140 Z" fill="#7d1736"/>
+<path d="M0,14 C320,14 470,88 640,88 C790,88 900,54 1000,38 L1000,140 L0,140 Z" fill="#fbf5ea"/><path d="M0,16.5 C320,16.5 470,91 640,91 C790,91 900,56.5 1000,40.5 L1000,140 L0,140 Z" fill="url(#gold)"/><path d="M0,28.5 C320,28.5 470,109 640,109 C790,109 900,68.5 1000,52.5 L1000,140 L0,140 Z" fill="#fdf9f1"/><path d="M0,31 C320,31 470,112.5 640,112.5 C790,112.5 900,71 1000,55 L1000,140 L0,140 Z" fill="#f7f1e7"/>
+</svg>
