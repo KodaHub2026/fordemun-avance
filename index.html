@@ -952,7 +952,7 @@
         if (nv && marca === '') marca = ' <small>(' + esc(x.a.quien) + ')</small>';
         if (marca === null && modo !== 'semana') { cur += '<i style="--ec:' + pc + '" title="' + esc('En curso: ' + tt) + '" ' + ir + '></i>'; return; }
         if (marca === null) marca = ' <small>(en curso)</small>';
-        cel += '<span class="ev' + (nv ? ' nva' : '') + '" style="--ec:' + ec + ';--pc:' + pc + (general ? ';--evbg:' + (nv && x.a._gral ? 'var(--crema)' : PROY_BG[x.p.sigla] || '#F3EEE1') : '') + '" ' + ir + ' title="' + esc(tt) + '"><b>' + esc(pref) + '</b>-' + esc(minus1(x.a.actividad)) + marca + '</span>';
+        cel += '<span class="ev' + (nv ? ' nva' : '') + '" style="--ec:' + ec + ';--pc:' + pc + (general ? ';--evbg:' + (nv && x.a._gral ? 'var(--crema)' : PROY_BG[x.p.sigla] || '#F3EEE1') : '') + '" ' + ir + ' title="' + esc(tt) + '"><b>' + esc(pref) + '</b>-' + esc(nv ? x.a.actividad : minus1(x.a.actividad)) + marca + '</span>';
       });
       if (cur) cel += '<span class="cur">' + cur + '</span>';
       h += '<div class="dc' + (dentro ? '' : ' fuera') + (d === hoy ? ' hoy' : '') + '"' + (d === hoy ? ' aria-current="date"' : '') + '><span class="nd">' + (modo === 'semana' ? dt.getUTCDate() + ' ' + MESES[dt.getUTCMonth()] : dt.getUTCDate()) + '</span>' + cel + '</div>';
