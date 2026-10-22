@@ -1291,6 +1291,14 @@ body[data-vista="cal"] .mes-nav .vmenu .o.sel,.mes-nav .vmenu .o.sel{background:
     #diarios .diac .dpr{cursor:pointer}#diarios .dpsel{margin-bottom:6px}
     .diac .dfo{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.diac .dfo img{width:96px;height:72px;object-fit:cover;border-radius:6px;border:1px solid #e0d5c4;display:block}.diac .dfo a{font-size:13px;color:var(--guinda)}
     .diaf input[type=file]{font-size:13px;padding:6px;background:#fff}
+    .diaf,.diaf *{box-sizing:border-box;min-width:0}.diaf input,.diaf textarea,.diaf select{width:100%;max-width:100%}.diaf textarea{resize:vertical}
+    .diaf input,.diaf textarea,.diaf select{scroll-margin:90px 0 120px}
+    @media (max-width:640px){.diaf{padding:12px;gap:10px;margin:8px -4px}.diaf label{font-size:13px}
+      .diaf input,.diaf textarea,.diaf select{font-size:16px;padding:10px;border-radius:10px;min-height:44px}
+      .diaf input[type=date]{-webkit-appearance:none;appearance:none}
+      .diaf input[type=file]{font-size:15px;padding:8px}.diaf input[type=file]::file-selector-button{font:inherit;font-size:15px;padding:9px 14px;margin-right:10px;border:0;border-radius:999px;background:#8c1d40;color:#fff}
+      .diaf .r3{position:sticky;bottom:0;background:#fbf8f3;padding:8px 0 calc(8px + env(safe-area-inset-bottom));margin:0 -2px}.diaf .r3 .gbtn{flex:1 1 40%;min-height:46px;font-size:16px}.diaf .r3 .est{flex-basis:100%}
+      .dmodal input{font-size:16px}}
     .dia-add{display:inline-flex;align-items:center;gap:8px;background:#8c1d40;color:#fff;border:0;border-radius:999px;padding:11px 22px 11px 18px;font:inherit;font-size:15px;font-weight:600;cursor:pointer;box-shadow:0 2px 6px rgba(90,15,36,.25);margin:4px 0 10px}
     .dia-add:hover{background:var(--guinda-osc)}.dia-add:focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
     .dia-add svg{width:16px;height:16px;flex:none}
@@ -2339,25 +2347,24 @@ body{font-weight:500}
   var diaBorradas = {};
   function abreBorrar(id, per) {
     var m = document.createElement('div'); m.className = 'dmodal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true');
-    m.innerHTML = '<div class="dbox"><h3>Borrar entrada ' + esc(id) + '</h3><p>¿Seguro que quieres borrar esta entrada? Esta acción no se puede deshacer.</p>' +
-      '<label>Su nombre<input name="nombre" maxlength="60" value="' + esc(ls('fordemun_nombre') || '') + '"></label>' +
-      '<label>Clave del equipo<input name="clave" type="password" value="' + esc(ls('fordemun_clave') || '') + '"></label>' +
-      '<div class="acc"><button type="button" class="no">Cancelar</button><button type="button" class="si">Borrar</button></div><div class="est" aria-live="polite"></div></div>';
+    m.innerHTML = '<div class="dbox"><h3>Borrar entrada ' + esc(id) + '</h3><p>¿Estás seguro de borrar esta entrada? Si es así, escribe <b>CONFIRMAR</b></p>' +
+      '<label>Confirmación<input name="confirm" autocomplete="off" autocapitalize="characters" spellcheck="false" placeholder="CONFIRMAR"></label>' +
+      '<div class="acc"><button type="button" class="no">Cancelar</button><button type="button" class="si" disabled>Borrar</button></div><div class="est" aria-live="polite"></div></div>';
     document.body.appendChild(m);
-    var q = function (s) { return m.querySelector(s); }, est = q('.est'), cierra = function () { document.removeEventListener('keydown', esc1); m.remove(); };
+    var q = function (s) { return m.querySelector(s); }, est = q('.est'), inp = q('[name=confirm]'), bt = q('.si'), cierra = function () { document.removeEventListener('keydown', esc1); m.remove(); };
+    var ok = function () { return inp.value.trim().toUpperCase() === 'CONFIRMAR'; };
     var esc1 = function (ev) { if (ev.key === 'Escape') cierra(); }; document.addEventListener('keydown', esc1);
     m.addEventListener('click', function (ev) { ev.stopPropagation(); if (ev.target === m || ev.target.closest('.no')) cierra(); });
-    q('.no').focus();
-    q('.si').addEventListener('click', function () {
-      var nom = q('[name=nombre]').value.trim(), cl = q('[name=clave]').value.trim();
-      if (nom.length < 2) { est.className = 'est err'; est.textContent = 'Escriba su nombre.'; return; }
-      if (!cl) { est.className = 'est err'; est.textContent = 'Escriba la clave del equipo.'; return; }
-      ls('fordemun_nombre', nom); ls('fordemun_clave', cl);
-      var bt = q('.si'); bt.disabled = true; bt.textContent = 'Borrando…'; est.className = 'est'; est.textContent = '';
-      postApi({ action: 'deleteDiario', id: id, persona: per, nombre: nom, clave: cl, cliente: cliente(), web: '' }).then(function (j) {
+    inp.addEventListener('input', function () { bt.disabled = !ok(); });
+    inp.addEventListener('keydown', function (ev) { if (ev.key === 'Enter' && ok()) bt.click(); });
+    inp.focus();
+    bt.addEventListener('click', function () {
+      if (!ok()) return;
+      bt.disabled = true; bt.textContent = 'Borrando…'; est.className = 'est'; est.textContent = '';
+      postApi({ action: 'deleteDiario', id: id, persona: per, confirm: 'CONFIRMAR', cliente: cliente(), web: '' }).then(function (j) {
         if (!j || !j.ok) throw new Error(j && j.error ? (/acci[oó]n no v[aá]lida/i.test(j.error) ? 'Borrar todavía no está activo en la app web (falta publicar la nueva versión). No se borró nada.' : j.error) : 'respuesta vacía');
         diaBorradas[id] = 1; cierra(); toast('Entrada ' + id + ' borrada'); pidiendo = false; cargar(); render();
-      }).catch(function (er) { bt.disabled = false; bt.textContent = 'Borrar'; est.className = 'est err'; est.textContent = 'No se borró: ' + (er && er.message ? er.message : er); });
+      }).catch(function (er) { bt.disabled = !ok(); bt.textContent = 'Borrar'; est.className = 'est err'; est.textContent = 'No se borró: ' + (er && er.message ? er.message : er); });
     });
   }
 
