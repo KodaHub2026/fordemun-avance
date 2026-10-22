@@ -1303,6 +1303,11 @@ body[data-vista="cal"] .mes-nav .vmenu .o.sel,.mes-nav .vmenu .o.sel{background:
     .dia-add:hover{background:var(--guinda-osc)}.dia-add:focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
     .dia-add svg{width:16px;height:16px;flex:none}
     .dia-fab{display:none}
+    .dia-ord{display:inline-flex;align-items:center;flex-wrap:wrap;gap:0;margin:2px 0 12px;border:1.5px solid #8c1d40;border-radius:999px;padding:3px;background:#fff}
+    .dia-ord .lb{font-size:13px;font-weight:700;color:#8c1d40;padding:0 10px 0 12px}
+    .dia-ord button{border:0;background:transparent;color:#8c1d40;font:inherit;font-size:14px;font-weight:600;padding:8px 14px;border-radius:999px;cursor:pointer;min-height:38px}
+    .dia-ord button.on{background:#8c1d40;color:#fff}.dia-ord button:focus-visible{outline:3px solid var(--dorado);outline-offset:1px}
+    @media (max-width:600px){.dia-ord{display:grid;grid-template-columns:1fr;width:100%;border-radius:16px;padding:4px}.dia-ord .lb{padding:6px 10px 4px}.dia-ord button{text-align:left;font-size:15px;min-height:44px;border-radius:12px}}
     .dia-volver{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:9px 18px 9px 14px;margin:0 0 12px;border:2px solid #8c1d40;border-radius:999px;background:#fff;color:#8c1d40;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
     .dia-volver svg{width:18px;height:18px;flex:none}.dia-volver:hover{background:#8c1d40;color:#fff}.dia-volver:focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
     @media (max-width:600px){.dia-volver{display:flex;width:100%;justify-content:center;font-size:16px}}
@@ -2283,13 +2288,18 @@ body{font-weight:500}
           return '<div class="dpr" role="button" tabindex="0" data-tab-ir="Diario:' + esc(per) + '"><span class="av" style="background:var(--guinda-osc)">' + esc(iniDe(per)) + '</span><span class="nm2"><b>' + esc(per) + '</b><small class="mut">' +
             plural(es.length, 'entrada', 'entradas') + ' · última: ' + esc(es.length ? fechaCorta(es[0].fecha) : '—') + (es.length ? ' · ' + Object.keys(pr).map(function (k) { return k + ' ' + pr[k]; }).join(', ') : '') + '</small></span><span class="chev">›</span></div>'; }).join('') + '</section>';
     }
-    var per = t.slice(7), es = todas.filter(function (e) { return e.persona === per && (!diaFil || e.proyecto === diaFil); }).sort(function (a, b) { return String(b.fecha).localeCompare(String(a.fecha)) || String(b.id).localeCompare(String(a.id)); });
+    var per = t.slice(7), dOrd = ls('fordemun_dia_orden') || 'asc', dcN = function (e) { var m = /^DC-(\d+)$/.exec(e.id || ''); return m ? +m[1] : -1; };
+    var es = todas.filter(function (e) { return e.persona === per && (!diaFil || e.proyecto === diaFil); }).sort(function (a, b) {   // 21-10-2026: «Ordenar» (guardado en localStorage)
+      if (dOrd === 'nuevas') return dcN(b) - dcN(a) || String(b.fecha).localeCompare(String(a.fecha));
+      var f = String(a.fecha || '').localeCompare(String(b.fecha || '')) || dcN(a) - dcN(b); return dOrd === 'desc' ? -f : f; });
     var tot = todas.filter(function (e) { return e.persona === per; });
     var sigN = diaFil || 'PVE', fOn = diaForm && diaForm.per === per;
     var h = '<div class="c2v"><button type="button" class="dia-volver" data-tab-ir="Diarios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Volver a Diarios de campo</button><div class="fbar dpsel">' + DIA_PER.map(function (x) {
         return '<button type="button" class="chip' + (x === per ? ' on' : '') + '" data-tab-ir="Diario:' + esc(x) + '">' + esc(x) + '</button>'; }).join('') + '</div><div class="fbar">' + [['', 'Todos'], ['PVE', 'PVE'], ['PVJ', 'PVJ'], ['PVG', 'PVG']].map(function (o) {
         return '<button type="button" class="chip' + (diaFil === o[0] ? ' on' : '') + '" data-dia-fil="' + o[0] + '">' + o[1] + ' <b>' + tot.filter(function (e) { return !o[0] || e.proyecto === o[0]; }).length + '</b></button>'; }).join('') +
-      '<span class="sp"></span>' + diarDocs(per).map(function (d) { return '<a class="lnk" href="' + esc(d.url) + '" target="_blank" rel="noopener">Doc ' + esc(d.proyecto) + ' ↗</a>'; }).join(' ') + '</div>';
+      '<span class="sp"></span>' + diarDocs(per).map(function (d) { return '<a class="lnk" href="' + esc(d.url) + '" target="_blank" rel="noopener">Doc ' + esc(d.proyecto) + ' ↗</a>'; }).join(' ') + '</div>' +
+      '<div class="dia-ord" role="radiogroup" aria-label="Ordenar entradas"><span class="lb">Ordenar</span>' + [['asc', 'Fecha: antiguas primero'], ['desc', 'Fecha: recientes primero'], ['nuevas', 'Recién agregadas']].map(function (o) {
+        return '<button type="button" role="radio" aria-checked="' + (dOrd === o[0]) + '" class="' + (dOrd === o[0] ? 'on' : '') + '" data-dia-ord="' + o[0] + '">' + o[1] + '</button>'; }).join('') + '</div>';
     h += '<section class="card c2v diac"><div class="sh"><h2>' + esc(per) + '</h2><span class="mut">' + plural(es.length, 'entrada', 'entradas') + (diaFil ? ' en ' + diaFil : '') + (diarVivo && !diarVivo.error ? ' · en vivo' : ' · copia; guardar requiere la app web') + '</span></div>';
     h += fOn && !diaForm.id ? formDiario(per, diaForm.sig, null, true) : '<button type="button" class="dia-add" data-dia-nueva="' + esc(per) + '" data-dia-proy="' + esc(sigN) + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg>Agregar entrada</button>' +
       '<button type="button" class="dia-fab" data-dia-nueva="' + esc(per) + '" data-dia-proy="' + esc(sigN) + '" aria-label="Agregar entrada al diario de ' + esc(per) + '"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><path d="M12 5v14M5 12h14"/></svg></button>';
@@ -2317,6 +2327,7 @@ body{font-weight:500}
     if ((b = t.closest('[data-dia-edit]'))) { diaForm = { per: b.getAttribute('data-dia-per'), sig: b.getAttribute('data-dia-proy'), id: b.getAttribute('data-dia-edit') }; render(); return; }
     if ((b = t.closest('[data-dia-del]'))) { abreBorrar(b.getAttribute('data-dia-del'), b.getAttribute('data-dia-per')); return; }
     if (t.closest('[data-dia-cancel]')) { diaForm = null; render(); return; }
+    if ((b = t.closest('[data-dia-ord]'))) { ls('fordemun_dia_orden', b.getAttribute('data-dia-ord')); render(); return; }
     if ((b = t.closest('[data-dia-fil]'))) { diaFil = b.getAttribute('data-dia-fil'); render(); return; }
     if (t.closest('form.diaf')) return;
     if ((b = t.closest('[data-sq]'))) { var k = b.getAttribute('data-sq'); diaAbre[k] = !diaAbre[k]; render(); }
