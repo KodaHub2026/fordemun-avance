@@ -1288,7 +1288,7 @@ body[data-vista="cal"] .mes-nav .vmenu .o.sel,.mes-nav .vmenu .o.sel{background:
     @media (max-width:640px){.diaf .r2{grid-template-columns:1fr}.sqc .sqr{grid-template-columns:auto 1fr auto}.sqc .sqr .sqb{grid-column:1/-1}.diac .dpb{padding-left:4px}}
     nav.menu button.nv.sub{padding-left:34px;font-size:13px}#tabs button.nv.sub.on .av2{background:#fff;color:#8c1d40}#tabs button.nv.sub .ct{background:#f1ebe2;color:#6d5f63}nav.menu .av2{width:22px;height:22px;border-radius:50%;background:var(--crema);color:var(--guinda-osc);font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
     .diac .pz{font-size:11px;font-weight:700;color:#fff;background:var(--c);border-radius:6px;padding:1px 6px}.diaf select{font:inherit;font-size:14px;padding:6px 8px;border:1px solid #d9cdb9;border-radius:8px;background:#fff}
-    #diarios .diac .dpr{cursor:pointer}
+    #diarios .diac .dpr{cursor:pointer}#diarios .dpsel{margin-bottom:6px}
     .diac .dfo{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.diac .dfo img{width:96px;height:72px;object-fit:cover;border-radius:6px;border:1px solid #e0d5c4;display:block}.diac .dfo a{font-size:13px;color:var(--guinda)}
     .diaf input[type=file]{font-size:13px;padding:6px;background:#fff}
   </style>
@@ -2085,7 +2085,9 @@ body{font-weight:500}
   }
   document.addEventListener('click', function (e) {          // tarjeta de programa / fila de equipo → abre esa pestaña
     var t = e.target.closest('[data-tab-ir]'); if (!t) return;
-    var b = $('tabs').querySelector('button[data-tab="' + t.getAttribute('data-tab-ir') + '"]'); if (b) b.click();
+    var ti = t.getAttribute('data-tab-ir');
+    if (ti.indexOf('Diario:') === 0) { tab = ti; diaForm = null; render(); window.scrollTo({ top: 0, behavior: 'smooth' }); guardarUrl(); return; }   // persona dentro de «Diarios de campo»
+    var b = $('tabs').querySelector('button[data-tab="' + ti + '"]'); if (b) b.click();
   });
   document.addEventListener('keydown', function (e) { if ((e.key === 'Enter' || e.key === ' ') && e.target.matches && e.target.matches('article[data-tab-ir]')) { e.preventDefault(); e.target.click(); } });
 
@@ -2257,7 +2259,8 @@ body{font-weight:500}
     var per = t.slice(7), es = todas.filter(function (e) { return e.persona === per && (!diaFil || e.proyecto === diaFil); }).sort(function (a, b) { return String(b.fecha).localeCompare(String(a.fecha)) || String(b.id).localeCompare(String(a.id)); });
     var tot = todas.filter(function (e) { return e.persona === per; });
     var sigN = diaFil || 'PVE', fOn = diaForm && diaForm.per === per;
-    var h = '<div class="c2v"><div class="fbar">' + [['', 'Todos'], ['PVE', 'PVE'], ['PVJ', 'PVJ'], ['PVG', 'PVG']].map(function (o) {
+    var h = '<div class="c2v"><div class="fbar dpsel"><button type="button" class="chip" data-tab-ir="Diarios">‹ Diarios</button>' + DIA_PER.map(function (x) {
+        return '<button type="button" class="chip' + (x === per ? ' on' : '') + '" data-tab-ir="Diario:' + esc(x) + '">' + esc(x) + '</button>'; }).join('') + '</div><div class="fbar">' + [['', 'Todos'], ['PVE', 'PVE'], ['PVJ', 'PVJ'], ['PVG', 'PVG']].map(function (o) {
         return '<button type="button" class="chip' + (diaFil === o[0] ? ' on' : '') + '" data-dia-fil="' + o[0] + '">' + o[1] + ' <b>' + tot.filter(function (e) { return !o[0] || e.proyecto === o[0]; }).length + '</b></button>'; }).join('') +
       '<span class="sp"></span>' + diarDocs(per).map(function (d) { return '<a class="lnk" href="' + esc(d.url) + '" target="_blank" rel="noopener">Doc ' + esc(d.proyecto) + ' ↗</a>'; }).join(' ') + '</div>';
     h += '<section class="card c2v diac"><div class="sh"><h2>' + esc(per) + '</h2><span class="mut">' + plural(es.length, 'entrada', 'entradas') + (diaFil ? ' en ' + diaFil : '') + (diarVivo && !diarVivo.error ? ' · en vivo' : ' · copia; guardar requiere la app web') + '</span></div>';
@@ -2637,8 +2640,9 @@ body{font-weight:500}
     if (ltAbierto) ltCerrar();
     var d = datos, m = d.meta || {};
     // pestañas
-    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Indicadores', 'Pendientes', 'Documentos', 'Bitácora', 'Diarios'], DIA_PER.map(function (x) { return 'Diario:' + x; }));
-    if (nombres.indexOf(tab) < 0) tab = 'General';
+    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Indicadores', 'Pendientes', 'Documentos', 'Bitácora', 'Diarios']);
+    if (nombres.indexOf(tab) < 0 && !(tab.indexOf('Diario:') === 0 && DIA_PER.indexOf(tab.slice(7)) >= 0)) tab = 'General';
+    var tabMenu = tab.indexOf('Diario:') === 0 ? 'Diarios' : tab;
     var ICO = { Diarios: 'var(--dorado)', General: 'var(--guinda)', Calendario: 'var(--dorado)', Indicadores: 'var(--verde)', Documentos: 'var(--azul)', Pendientes: 'var(--rojo)', 'Bitácora': 'var(--guinda-osc)' };
     var CORTO = { PVE: 'Escolar', PVJ: 'Juventud', PVG: 'Fam. y Género' };
     var nPend = pend ? (pend.pendientes || []).length + nuevasAbiertas().length : 0;
@@ -2649,7 +2653,7 @@ body{font-weight:500}
       if (sub) { var nd = diarEntradas().filter(function (e) { return e.persona === n.slice(7); }).length;
         return '<button type="button" data-tab="' + esc(n) + '" data-l="' + esc(lab) + '" class="nv sub' + (n === tab ? ' on' : '') + '"' + (n === tab ? ' aria-current="page"' : '') + '><span class="ic av2" aria-hidden="true">' + esc(iniDe(lab)) + '</span><span class="lb">' + esc(lab) + '</span>' + (nd ? '<span class="ct n0" title="entradas">' + nd + '</span>' : '') + '</button>'; }
       var ct = p ? p.vencidas : n === 'Pendientes' ? nPend : 0;
-      return '<button type="button" data-tab="' + esc(n) + '" data-l="' + esc(lab) + '" class="nv' + (n === tab ? ' on' : '') + '"' + (n === tab ? ' aria-current="page"' : '') + '>' +
+      return '<button type="button" data-tab="' + esc(n) + '" data-l="' + esc(lab) + '" class="nv' + (n === tabMenu ? ' on' : '') + '"' + (n === tabMenu ? ' aria-current="page"' : '') + '>' +
              '<span class="ic" aria-hidden="true">' + (ICON[p ? p.sigla : n] || '') + '</span><span class="lb">' + esc(lab) + '</span>' + (ct ? '<span class="ct" title="' + (p ? 'vencidas' : 'pendientes') + '">' + ct + '</span>' : '') + '</button>';
     }
     var foco = menuAbierto && document.activeElement && $('tabs').contains(document.activeElement) ? document.activeElement.getAttribute('data-tab') : null;
