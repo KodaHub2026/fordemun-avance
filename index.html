@@ -2210,7 +2210,8 @@ body{font-weight:500}
     }).join('');
     return card('Avance por secuencia', '<span class="mut">pasos hechos / pasos totales (Cal ' + esc(p.proyecto) + '; «Cancelado» no cuenta)</span>', h, 'c2v sqc');
   }
-  function diarEntradas() { return (diarVivo && !diarVivo.error && diarVivo.entradas ? diarVivo.entradas : (diarJ && diarJ.entradas) || []).filter(function (e) { return !(typeof diaBorradas !== 'undefined' && diaBorradas[e.id]); }); }
+  function diarEntradas() { var vivo = diarVivo && !diarVivo.error && diarVivo.entradas, docE = ((diarJ && diarJ.entradas) || []).filter(function (e) { return e.origen === 'doc'; });   // 21-10-2026: entradas escritas directo en los Docs (vía diarios.json)
+    return (vivo ? diarVivo.entradas.concat(docE.filter(function (d) { var k = String(d.notas || '').slice(0, 80); return !diarVivo.entradas.some(function (h) { return h.persona === d.persona && String(h.notas || '').slice(0, 80) === k; }); })) : (diarJ && diarJ.entradas) || []).filter(function (e) { return !(typeof diaBorradas !== 'undefined' && diaBorradas[e.id]); }); }
   function diarDocs(per, sig) { return ((diarJ && diarJ.docs) || []).filter(function (d) { return d.persona === per && (!sig || d.proyecto === sig); }); }
   var DIA_PER = ['Jesús Anselmo', 'Tulio Aguilar', 'Isaac De León'];
   var DIA_UNI = [['PVE-P1M', 'Eutimio Mtz Lara mat.'], ['PVE-P1V', 'Eutimio Mtz Lara vesp.'], ['PVE-P2', 'Luis Torres Vázquez'], ['PVE-P3', 'Luis Lauro Rendón'], ['PVE-P4', 'República de México'],
@@ -2261,7 +2262,7 @@ body{font-weight:500}
             if (fOn && diaForm.id === e.id) return formDiario(per, sig, e);
             var nt = e.notas.length > 260 ? e.notas.slice(0, 260) + '…' : e.notas;
             return '<div class="die"><div class="dh2"><b>' + esc(fechaCorta(e.fecha)) + '</b><span>' + esc(e.actividad || '—') + '</span><small class="mut">' + esc(e.id || '') + '</small>' +
-              (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(sig) + '">Editar</button><button type="button" class="lnk dia-del" data-dia-del="' + esc(e.id) + '" data-dia-per="' + esc(per) + '">Borrar</button>' : '') + '</div>' +
+              (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(sig) + '">Editar</button><button type="button" class="lnk dia-del" data-dia-del="' + esc(e.id) + '" data-dia-per="' + esc(per) + '">Borrar</button>' : e.origen === 'doc' ? '<span class="mut" title="Se edita en el Google Doc">escrita en el Doc</span>' : '') + '</div>' +
               '<div class="dn">' + esc(nt) + '</div>' + (e.incidentes ? '<div class="di2"><small>' + esc(e.incidentes) + '</small></div>' : '') + '</div>'; }).join('') +
             (es.length > 5 && !diaAbre[k + '|mas'] ? '<button type="button" class="lnk" data-sq="' + esc(k + '|mas') + '">Ver las ' + es.length + ' entradas</button>' : '')
           : '<p class="nota">Sin entradas todavía.</p>');
@@ -2295,7 +2296,7 @@ body{font-weight:500}
     h += es.length ? es.map(function (e) {
       if (fOn && diaForm.id === e.id) return formDiario(per, e.proyecto, e, true);
       return '<div class="die"><div class="dh2"><b>' + esc(fechaCorta(e.fecha)) + '</b><span class="pz" style="--c:' + (PROY_COLOR[e.proyecto] || 'var(--guinda)') + '">' + esc(e.proyecto) + '</span><span>' + esc(e.actividad || '—') + '</span><small class="mut">' + esc(e.id || '') + '</small>' +
-        (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(e.proyecto) + '">Editar</button><button type="button" class="lnk dia-del" data-dia-del="' + esc(e.id) + '" data-dia-per="' + esc(per) + '">Borrar</button>' : '') + '</div>' +
+        (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(e.proyecto) + '">Editar</button><button type="button" class="lnk dia-del" data-dia-del="' + esc(e.id) + '" data-dia-per="' + esc(per) + '">Borrar</button>' : e.origen === 'doc' ? '<span class="mut" title="Se edita en el Google Doc">escrita en el Doc</span>' : '') + '</div>' +
         '<div class="dn">' + esc(e.notas) + '</div>' + (e.incidentes ? '<div class="di2"><small>' + esc(e.incidentes) + '</small></div>' : '') +
         (e.fotos && e.fotos.length ? '<div class="dfo">' + e.fotos.map(function (u, i) { return '<a href="' + esc(u) + '" target="_blank" rel="noopener" title="Abrir foto ' + (i + 1) + ' en Drive"><img loading="lazy" alt="Foto ' + (i + 1) + '" src="https://drive.google.com/thumbnail?id=' + esc(fotoId(u)) + '&sz=w240" onerror="this.replaceWith(document.createTextNode(\'📷 Foto ' + (i + 1) + '\'))"></a>'; }).join('') + '</div>' : '') + '</div>'; }).join('') : '<p class="nota">Sin entradas' + (diaFil ? ' en ' + diaFil : '') + ' todavía.</p>';
     return h + '</section></div>';
