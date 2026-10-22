@@ -1303,6 +1303,9 @@ body[data-vista="cal"] .mes-nav .vmenu .o.sel,.mes-nav .vmenu .o.sel{background:
     .dia-add:hover{background:var(--guinda-osc)}.dia-add:focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
     .dia-add svg{width:16px;height:16px;flex:none}
     .dia-fab{display:none}
+    .dia-volver{display:inline-flex;align-items:center;gap:8px;min-height:44px;padding:9px 18px 9px 14px;margin:0 0 12px;border:2px solid #8c1d40;border-radius:999px;background:#fff;color:#8c1d40;font:inherit;font-size:15px;font-weight:700;cursor:pointer}
+    .dia-volver svg{width:18px;height:18px;flex:none}.dia-volver:hover{background:#8c1d40;color:#fff}.dia-volver:focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
+    @media (max-width:600px){.dia-volver{display:flex;width:100%;justify-content:center;font-size:16px}}
     .lnk.dia-del{color:var(--mut,#6b6b6b);margin-left:10px}.lnk.dia-del:hover{color:#8c1d40}
     .dmodal{position:fixed;inset:0;background:rgba(20,10,14,.45);display:flex;align-items:center;justify-content:center;z-index:90;padding:16px}
     .dmodal .dbox{background:#fff;border-radius:16px;max-width:420px;width:100%;padding:22px 22px 18px;box-shadow:0 18px 50px -12px rgba(0,0,0,.35)}
@@ -2282,7 +2285,7 @@ body{font-weight:500}
     var per = t.slice(7), es = todas.filter(function (e) { return e.persona === per && (!diaFil || e.proyecto === diaFil); }).sort(function (a, b) { return String(b.fecha).localeCompare(String(a.fecha)) || String(b.id).localeCompare(String(a.id)); });
     var tot = todas.filter(function (e) { return e.persona === per; });
     var sigN = diaFil || 'PVE', fOn = diaForm && diaForm.per === per;
-    var h = '<div class="c2v"><div class="fbar dpsel"><button type="button" class="chip" data-tab-ir="Diarios">‹ Diarios</button>' + DIA_PER.map(function (x) {
+    var h = '<div class="c2v"><button type="button" class="dia-volver" data-tab-ir="Diarios"><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M19 12H5M11 6l-6 6 6 6"/></svg>Volver a Diarios de campo</button><div class="fbar dpsel">' + DIA_PER.map(function (x) {
         return '<button type="button" class="chip' + (x === per ? ' on' : '') + '" data-tab-ir="Diario:' + esc(x) + '">' + esc(x) + '</button>'; }).join('') + '</div><div class="fbar">' + [['', 'Todos'], ['PVE', 'PVE'], ['PVJ', 'PVJ'], ['PVG', 'PVG']].map(function (o) {
         return '<button type="button" class="chip' + (diaFil === o[0] ? ' on' : '') + '" data-dia-fil="' + o[0] + '">' + o[1] + ' <b>' + tot.filter(function (e) { return !o[0] || e.proyecto === o[0]; }).length + '</b></button>'; }).join('') +
       '<span class="sp"></span>' + diarDocs(per).map(function (d) { return '<a class="lnk" href="' + esc(d.url) + '" target="_blank" rel="noopener">Doc ' + esc(d.proyecto) + ' ↗</a>'; }).join(' ') + '</div>';
