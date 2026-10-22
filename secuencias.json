@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "2026-10-21T19:44-05:00",
+ "generado": "2026-10-21T20:12-05:00",
  "regla": "pasos hechos / pasos totales por código ACT (sección 4 de Cal A/B/C); hecho = estado que empieza con Hecho o Terminado; Cancelado no cuenta.",
  "proyectos": [
   {
@@ -220,7 +220,7 @@
        "fila": 56,
        "paso": "Grupo focal de jóvenes en CE Estudiantil y CL Luis Echeverría, 16:00 (lugar por confirmar), con lista de asistencia (FMT-ASIS-01)",
        "fecha": "21/10/2026",
-       "estado": "En proceso (campo 21/10)",
+       "estado": "Realizado sin asistencia (0 jóvenes) 21/10 — reprogramar",
        "hecho": false
       }
      ],
