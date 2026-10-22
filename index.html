@@ -1295,6 +1295,15 @@ body[data-vista="cal"] .mes-nav .vmenu .o.sel,.mes-nav .vmenu .o.sel{background:
     .dia-add:hover{background:var(--guinda-osc)}.dia-add:focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
     .dia-add svg{width:16px;height:16px;flex:none}
     .dia-fab{display:none}
+    .lnk.dia-del{color:var(--mut,#6b6b6b);margin-left:10px}.lnk.dia-del:hover{color:#8c1d40}
+    .dmodal{position:fixed;inset:0;background:rgba(20,10,14,.45);display:flex;align-items:center;justify-content:center;z-index:90;padding:16px}
+    .dmodal .dbox{background:#fff;border-radius:16px;max-width:420px;width:100%;padding:22px 22px 18px;box-shadow:0 18px 50px -12px rgba(0,0,0,.35)}
+    .dmodal h3{margin:0 0 6px;font-size:18px}.dmodal p{margin:0 0 14px;color:#444;line-height:1.45}
+    .dmodal label{display:block;font-size:13px;margin:0 0 10px}.dmodal input{display:block;width:100%;box-sizing:border-box;margin-top:4px;padding:9px 10px;border:1px solid #ddd;border-radius:10px;font:inherit}
+    .dmodal .acc{display:flex;gap:10px;justify-content:flex-end;margin-top:6px}
+    .dmodal .acc button{border-radius:999px;padding:10px 18px;font:inherit;font-weight:600;cursor:pointer;border:1px solid #ddd;background:#fff;color:#333}
+    .dmodal .acc .si{background:#8c1d40;border-color:#8c1d40;color:#fff}.dmodal .acc .si:disabled{opacity:.6}
+    .dmodal .est{font-size:13px;min-height:18px;margin-top:8px}.dmodal .est.err{color:#b3261e}
     @media (max-width:600px){.dia-fab{display:flex;position:fixed;right:18px;bottom:calc(20px + env(safe-area-inset-bottom));width:56px;height:56px;border-radius:50%;background:#8c1d40;color:#fff;border:0;padding:0;align-items:center;justify-content:center;box-shadow:0 4px 12px rgba(90,15,36,.35);z-index:40;cursor:pointer}.dia-fab svg{width:24px;height:24px}
       body.open .dia-fab,body.search .dia-fab{display:none}}
   </style>
@@ -2190,7 +2199,7 @@ body{font-weight:500}
     }).join('');
     return card('Avance por secuencia', '<span class="mut">pasos hechos / pasos totales (Cal ' + esc(p.proyecto) + '; «Cancelado» no cuenta)</span>', h, 'c2v sqc');
   }
-  function diarEntradas() { return diarVivo && !diarVivo.error && diarVivo.entradas ? diarVivo.entradas : (diarJ && diarJ.entradas) || []; }
+  function diarEntradas() { return (diarVivo && !diarVivo.error && diarVivo.entradas ? diarVivo.entradas : (diarJ && diarJ.entradas) || []).filter(function (e) { return !(typeof diaBorradas !== 'undefined' && diaBorradas[e.id]); }); }
   function diarDocs(per, sig) { return ((diarJ && diarJ.docs) || []).filter(function (d) { return d.persona === per && (!sig || d.proyecto === sig); }); }
   var DIA_PER = ['Jesús Anselmo', 'Tulio Aguilar', 'Isaac De León'];
   var DIA_UNI = [['PVE-P1M', 'Eutimio Mtz Lara mat.'], ['PVE-P1V', 'Eutimio Mtz Lara vesp.'], ['PVE-P2', 'Luis Torres Vázquez'], ['PVE-P3', 'Luis Lauro Rendón'], ['PVE-P4', 'República de México'],
@@ -2241,7 +2250,7 @@ body{font-weight:500}
             if (fOn && diaForm.id === e.id) return formDiario(per, sig, e);
             var nt = e.notas.length > 260 ? e.notas.slice(0, 260) + '…' : e.notas;
             return '<div class="die"><div class="dh2"><b>' + esc(fechaCorta(e.fecha)) + '</b><span>' + esc(e.actividad || '—') + '</span><small class="mut">' + esc(e.id || '') + '</small>' +
-              (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(sig) + '">Editar</button>' : '') + '</div>' +
+              (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(sig) + '">Editar</button><button type="button" class="lnk dia-del" data-dia-del="' + esc(e.id) + '" data-dia-per="' + esc(per) + '">Borrar</button>' : '') + '</div>' +
               '<div class="dn">' + esc(nt) + '</div>' + (e.incidentes ? '<div class="di2"><small>' + esc(e.incidentes) + '</small></div>' : '') + '</div>'; }).join('') +
             (es.length > 5 && !diaAbre[k + '|mas'] ? '<button type="button" class="lnk" data-sq="' + esc(k + '|mas') + '">Ver las ' + es.length + ' entradas</button>' : '')
           : '<p class="nota">Sin entradas todavía.</p>');
@@ -2275,7 +2284,7 @@ body{font-weight:500}
     h += es.length ? es.map(function (e) {
       if (fOn && diaForm.id === e.id) return formDiario(per, e.proyecto, e, true);
       return '<div class="die"><div class="dh2"><b>' + esc(fechaCorta(e.fecha)) + '</b><span class="pz" style="--c:' + (PROY_COLOR[e.proyecto] || 'var(--guinda)') + '">' + esc(e.proyecto) + '</span><span>' + esc(e.actividad || '—') + '</span><small class="mut">' + esc(e.id || '') + '</small>' +
-        (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(e.proyecto) + '">Editar</button>' : '') + '</div>' +
+        (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(e.proyecto) + '">Editar</button><button type="button" class="lnk dia-del" data-dia-del="' + esc(e.id) + '" data-dia-per="' + esc(per) + '">Borrar</button>' : '') + '</div>' +
         '<div class="dn">' + esc(e.notas) + '</div>' + (e.incidentes ? '<div class="di2"><small>' + esc(e.incidentes) + '</small></div>' : '') +
         (e.fotos && e.fotos.length ? '<div class="dfo">' + e.fotos.map(function (u, i) { return '<a href="' + esc(u) + '" target="_blank" rel="noopener" title="Abrir foto ' + (i + 1) + ' en Drive"><img loading="lazy" alt="Foto ' + (i + 1) + '" src="https://drive.google.com/thumbnail?id=' + esc(fotoId(u)) + '&sz=w240" onerror="this.replaceWith(document.createTextNode(\'📷 Foto ' + (i + 1) + '\'))"></a>'; }).join('') + '</div>' : '') + '</div>'; }).join('') : '<p class="nota">Sin entradas' + (diaFil ? ' en ' + diaFil : '') + ' todavía.</p>';
     return h + '</section></div>';
@@ -2294,6 +2303,7 @@ body{font-weight:500}
     if ((b = t.closest('[data-dia-nueva]'))) { diaForm = { per: b.getAttribute('data-dia-nueva'), sig: b.getAttribute('data-dia-proy'), id: '' }; render();
       var nf = document.querySelector('form.diaf'); if (nf) { nf.scrollIntoView({ behavior: 'smooth', block: 'start' }); var ta = nf.querySelector('textarea[name=notas]'); if (ta) setTimeout(function () { ta.focus({ preventScroll: true }); }, 350); } return; }
     if ((b = t.closest('[data-dia-edit]'))) { diaForm = { per: b.getAttribute('data-dia-per'), sig: b.getAttribute('data-dia-proy'), id: b.getAttribute('data-dia-edit') }; render(); return; }
+    if ((b = t.closest('[data-dia-del]'))) { abreBorrar(b.getAttribute('data-dia-del'), b.getAttribute('data-dia-per')); return; }
     if (t.closest('[data-dia-cancel]')) { diaForm = null; render(); return; }
     if ((b = t.closest('[data-dia-fil]'))) { diaFil = b.getAttribute('data-dia-fil'); render(); return; }
     if (t.closest('form.diaf')) return;
@@ -2324,6 +2334,32 @@ body{font-weight:500}
       })
       .catch(function (er) { diaEst[sk] = { cls: 'err', txt: 'No se guardó: ' + (er && er.message ? er.message : er) }; repinta(); });
   });
+
+  // 21-10-2026: borrado suave de entradas (deleteDiario en Apps Script; la fila queda con Estado «Borrada»)
+  var diaBorradas = {};
+  function abreBorrar(id, per) {
+    var m = document.createElement('div'); m.className = 'dmodal'; m.setAttribute('role', 'dialog'); m.setAttribute('aria-modal', 'true');
+    m.innerHTML = '<div class="dbox"><h3>Borrar entrada ' + esc(id) + '</h3><p>¿Seguro que quieres borrar esta entrada? Esta acción no se puede deshacer.</p>' +
+      '<label>Su nombre<input name="nombre" maxlength="60" value="' + esc(ls('fordemun_nombre') || '') + '"></label>' +
+      '<label>Clave del equipo<input name="clave" type="password" value="' + esc(ls('fordemun_clave') || '') + '"></label>' +
+      '<div class="acc"><button type="button" class="no">Cancelar</button><button type="button" class="si">Borrar</button></div><div class="est" aria-live="polite"></div></div>';
+    document.body.appendChild(m);
+    var q = function (s) { return m.querySelector(s); }, est = q('.est'), cierra = function () { document.removeEventListener('keydown', esc1); m.remove(); };
+    var esc1 = function (ev) { if (ev.key === 'Escape') cierra(); }; document.addEventListener('keydown', esc1);
+    m.addEventListener('click', function (ev) { ev.stopPropagation(); if (ev.target === m || ev.target.closest('.no')) cierra(); });
+    q('.no').focus();
+    q('.si').addEventListener('click', function () {
+      var nom = q('[name=nombre]').value.trim(), cl = q('[name=clave]').value.trim();
+      if (nom.length < 2) { est.className = 'est err'; est.textContent = 'Escriba su nombre.'; return; }
+      if (!cl) { est.className = 'est err'; est.textContent = 'Escriba la clave del equipo.'; return; }
+      ls('fordemun_nombre', nom); ls('fordemun_clave', cl);
+      var bt = q('.si'); bt.disabled = true; bt.textContent = 'Borrando…'; est.className = 'est'; est.textContent = '';
+      postApi({ action: 'deleteDiario', id: id, persona: per, nombre: nom, clave: cl, cliente: cliente(), web: '' }).then(function (j) {
+        if (!j || !j.ok) throw new Error(j && j.error ? (/acci[oó]n no v[aá]lida/i.test(j.error) ? 'Borrar todavía no está activo en la app web (falta publicar la nueva versión). No se borró nada.' : j.error) : 'respuesta vacía');
+        diaBorradas[id] = 1; cierra(); toast('Entrada ' + id + ' borrada'); pidiendo = false; cargar(); render();
+      }).catch(function (er) { bt.disabled = false; bt.textContent = 'Borrar'; est.className = 'est err'; est.textContent = 'No se borró: ' + (er && er.message ? er.message : er); });
+    });
+  }
 
   function progBottom(p) {
     var d = datos, gr = {}, ordG = [];
