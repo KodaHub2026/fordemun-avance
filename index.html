@@ -1286,6 +1286,9 @@ body[data-vista="cal"] .mes-nav .vmenu .o.sel,.mes-nav .vmenu .o.sel{background:
     .diaf .r2{display:grid;grid-template-columns:1fr 2fr;gap:8px}.diaf .r3{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.diaf .est.err{color:var(--rojo)}.diaf .est.ok{color:var(--verde)}
     .diac .dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 16px}.diac .dgrid b{display:block}
     @media (max-width:640px){.diaf .r2{grid-template-columns:1fr}.sqc .sqr{grid-template-columns:auto 1fr auto}.sqc .sqr .sqb{grid-column:1/-1}.diac .dpb{padding-left:4px}}
+    nav.menu button.nv.sub{padding-left:34px;font-size:13px}nav.menu .av2{width:22px;height:22px;border-radius:50%;background:var(--crema);color:var(--guinda-osc);font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
+    .diac .pz{font-size:11px;font-weight:700;color:#fff;background:var(--c);border-radius:6px;padding:1px 6px}.diaf select{font:inherit;font-size:14px;padding:6px 8px;border:1px solid #d9cdb9;border-radius:8px;background:#fff}
+    #diarios .diac .dpr{cursor:pointer}
   </style>
   <style id="c2-legible">
 /* FORDEMUN · C2 legible: solo letras. Fondos, layout, guinda #8c1d40 y dorado decorativo #b8913f NO cambian. */
@@ -1454,6 +1457,7 @@ body{font-weight:500}
 
     <section id="docs" class="oculto" aria-label="Documentos"></section>
     <section id="bitacora" class="oculto" aria-label="Bitácora"></section>
+    <section id="diarios" class="oculto" aria-label="Diarios de campo"></section>
     <section id="pend" class="oculto" aria-label="Pendientes por persona"></section>
 
 
@@ -2179,9 +2183,10 @@ body{font-weight:500}
   function diarDocs(per, sig) { return ((diarJ && diarJ.docs) || []).filter(function (d) { return d.persona === per && (!sig || d.proyecto === sig); }); }
   var DIA_PER = ['Jesús Anselmo', 'Tulio Aguilar', 'Isaac De León'];
   function fechaCorta(iso) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? +m[3] + ' ' + MESES[+m[2] - 1] + ' ' + m[1] : (iso || 'sin fecha'); }
-  function formDiario(per, sig, e) {
+  function formDiario(per, sig, e, conProy) {
     var st = diaEst[per + '|' + sig] || {};
     return '<form class="diaf" data-dia-form="' + esc(per) + '" data-dia-proy="' + esc(sig) + '" data-dia-id="' + esc(e ? e.id : '') + '">' +
+      (conProy ? '<label>Proyecto<select name="proyecto">' + ['PVE', 'PVJ', 'PVG'].map(function (x) { return '<option' + (x === sig ? ' selected' : '') + '>' + x + '</option>'; }).join('') + '</select></label>' : '') +
       '<div class="r2"><label>Fecha<input type="date" name="fecha" required value="' + esc(e ? e.fecha : isoDe(isoDia(datos.corte))) + '"></label>' +
       '<label>Actividad / instrumento<input name="actividad" maxlength="160" value="' + esc(e ? e.actividad : '') + '"></label></div>' +
       '<label>Descripción<textarea name="notas" rows="4" maxlength="6000" required>' + esc(e ? e.notas : '') + '</textarea></label>' +
@@ -2217,6 +2222,31 @@ body{font-weight:500}
     }).join('');
     return card('Diarios de campo', '<span class="mut">' + esc(sig) + ' · Jesús Anselmo, Tulio Aguilar e Isaac De León</span>', h, 'c2v diac');
   }
+  var diaFil = '';
+  function vistaDiarios(t) {
+    var todas = diarEntradas();
+    if (t === 'Diarios') {
+      return '<section class="card c2v diac"><div class="sh"><h2>Diarios de campo</h2><span class="mut">fuente: pestaña «Diarios» de la hoja' + (diarVivo && !diarVivo.error ? ' (en vivo)' : ' (copia)') + '</span></div>' +
+        DIA_PER.map(function (per) { var es = todas.filter(function (e) { return e.persona === per; }).sort(function (a, b) { return String(b.fecha).localeCompare(String(a.fecha)); });
+          var pr = {}; es.forEach(function (e) { pr[e.proyecto] = (pr[e.proyecto] || 0) + 1; });
+          return '<div class="dpr" role="button" tabindex="0" data-tab-ir="Diario:' + esc(per) + '"><span class="av" style="background:var(--guinda-osc)">' + esc(iniDe(per)) + '</span><span class="nm2"><b>' + esc(per) + '</b><small class="mut">' +
+            plural(es.length, 'entrada', 'entradas') + ' · última: ' + esc(es.length ? fechaCorta(es[0].fecha) : '—') + (es.length ? ' · ' + Object.keys(pr).map(function (k) { return k + ' ' + pr[k]; }).join(', ') : '') + '</small></span><span class="chev">›</span></div>'; }).join('') + '</section>';
+    }
+    var per = t.slice(7), es = todas.filter(function (e) { return e.persona === per && (!diaFil || e.proyecto === diaFil); }).sort(function (a, b) { return String(b.fecha).localeCompare(String(a.fecha)) || String(b.id).localeCompare(String(a.id)); });
+    var tot = todas.filter(function (e) { return e.persona === per; });
+    var sigN = diaFil || 'PVE', fOn = diaForm && diaForm.per === per;
+    var h = '<div class="c2v"><div class="fbar">' + [['', 'Todos'], ['PVE', 'PVE'], ['PVJ', 'PVJ'], ['PVG', 'PVG']].map(function (o) {
+        return '<button type="button" class="chip' + (diaFil === o[0] ? ' on' : '') + '" data-dia-fil="' + o[0] + '">' + o[1] + ' <b>' + tot.filter(function (e) { return !o[0] || e.proyecto === o[0]; }).length + '</b></button>'; }).join('') +
+      '<span class="sp"></span>' + diarDocs(per).map(function (d) { return '<a class="lnk" href="' + esc(d.url) + '" target="_blank" rel="noopener">Doc ' + esc(d.proyecto) + ' ↗</a>'; }).join(' ') + '</div>';
+    h += '<section class="card c2v diac"><div class="sh"><h2>' + esc(per) + '</h2><span class="mut">' + plural(es.length, 'entrada', 'entradas') + (diaFil ? ' en ' + diaFil : '') + (diarVivo && !diarVivo.error ? ' · en vivo' : ' · copia; guardar requiere la app web') + '</span></div>';
+    h += fOn && !diaForm.id ? formDiario(per, diaForm.sig, null, true) : '<button type="button" class="gbtn on" data-dia-nueva="' + esc(per) + '" data-dia-proy="' + esc(sigN) + '">+ Agregar entrada</button>';
+    h += es.length ? es.map(function (e) {
+      if (fOn && diaForm.id === e.id) return formDiario(per, e.proyecto, e, true);
+      return '<div class="die"><div class="dh2"><b>' + esc(fechaCorta(e.fecha)) + '</b><span class="pz" style="--c:' + (PROY_COLOR[e.proyecto] || 'var(--guinda)') + '">' + esc(e.proyecto) + '</span><span>' + esc(e.actividad || '—') + '</span><small class="mut">' + esc(e.id || '') + '</small>' +
+        (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(e.proyecto) + '">Editar</button>' : '') + '</div>' +
+        '<div class="dn">' + esc(e.notas) + '</div>' + (e.incidentes ? '<div class="di2"><small>' + esc(e.incidentes) + '</small></div>' : '') + '</div>'; }).join('') : '<p class="nota">Sin entradas' + (diaFil ? ' en ' + diaFil : '') + ' todavía.</p>';
+    return h + '</section></div>';
+  }
   function diariosEnDocs() {
     var ds = (diarJ && diarJ.docs) || []; if (!ds.length) return '';
     var n = {}; diarEntradas().forEach(function (e) { var k = e.persona + '|' + e.proyecto; n[k] = (n[k] || 0) + 1; });
@@ -2231,13 +2261,15 @@ body{font-weight:500}
     if ((b = t.closest('[data-dia-nueva]'))) { diaForm = { per: b.getAttribute('data-dia-nueva'), sig: b.getAttribute('data-dia-proy'), id: '' }; render(); return; }
     if ((b = t.closest('[data-dia-edit]'))) { diaForm = { per: b.getAttribute('data-dia-per'), sig: b.getAttribute('data-dia-proy'), id: b.getAttribute('data-dia-edit') }; render(); return; }
     if (t.closest('[data-dia-cancel]')) { diaForm = null; render(); return; }
+    if ((b = t.closest('[data-dia-fil]'))) { diaFil = b.getAttribute('data-dia-fil'); render(); return; }
     if (t.closest('form.diaf')) return;
     if ((b = t.closest('[data-sq]'))) { var k = b.getAttribute('data-sq'); diaAbre[k] = !diaAbre[k]; render(); }
   });
   document.addEventListener('submit', function (e) {
     var fm = e.target; if (!fm.matches || !fm.matches('form.diaf')) return; e.preventDefault();
-    var el = fm.elements, v = function (n) { return (el[n].value || '').trim(); }, per = fm.getAttribute('data-dia-form'), sig = fm.getAttribute('data-dia-proy'), id = fm.getAttribute('data-dia-id'), sk = per + '|' + sig;
+    var el = fm.elements, v = function (n) { return (el[n].value || '').trim(); }, per = fm.getAttribute('data-dia-form'), sig = el.proyecto ? el.proyecto.value : fm.getAttribute('data-dia-proy'), id = fm.getAttribute('data-dia-id'), sk = per + '|' + sig;
     var err = !v('fecha') ? 'Indique la fecha.' : v('notas').length < 10 ? 'Escriba la descripción.' : v('nombre').length < 2 ? 'Escriba su nombre.' : !v('clave') ? 'Escriba la clave del equipo.' : '';
+    sk = per + '|' + (fm.getAttribute('data-dia-proy'));
     var keep = { fecha: v('fecha'), actividad: v('actividad'), notas: el.notas.value, incidentes: el.incidentes.value, id: id };
     var repinta = function () { render(); var f2 = document.querySelector('form.diaf'); if (f2) { ['fecha', 'actividad', 'notas', 'incidentes'].forEach(function (n) { f2.elements[n].value = keep[n]; }); } };
     if (err) { diaEst[sk] = { cls: 'err', txt: err }; repinta(); return; }
@@ -2517,7 +2549,6 @@ body{font-weight:500}
     h += '</div>' + (ds.length > 15 ? '<button type="button" class="morel ctr" data-dmas>' + (docMas ? 'Ver menos' : 'Ver ' + plural(ds.length - 15, 'documento más', 'documentos más') + ' ›') + '</button>' : '') + (ds.length ? '' : '<p class="nota">Ningún documento con estos filtros.</p>') +
       '<div class="note">Cada tarjeta abre el detalle: notas del documento y las actividades que toca (toque una actividad para ir a ella). ' + (linksVivo ? 'En vivo desde la pestaña «Documentos» de la hoja.' : 'Copia del índice «Documentos» generada el ' + esc(links.generado) + '.') + '</div></div>';
     var fq = document.activeElement && document.activeElement.id === 'qDoc' ? document.activeElement.selectionStart : null;
-    h = h.replace('<div class="c2v">', '<div class="c2v">' + diariosEnDocs());
     $('docs').innerHTML = h;
     if (fq !== null) { var e = $('qDoc'); e.focus({ preventScroll: true }); try { e.setSelectionRange(fq, fq); } catch (x) { } }
     if (tab === 'Documentos') { var ev = conDocP((datos.actividades || []).map(function (a) { return a.codigo; }));
@@ -2563,23 +2594,26 @@ body{font-weight:500}
 
   function render() {   // 21-10-2026: conserva lo escrito en el formulario de diario al refrescar
     var f0 = document.querySelector('form.diaf'), kv = null;
-    if (f0) { kv = {}; ['fecha', 'actividad', 'notas', 'incidentes', 'nombre', 'clave'].forEach(function (n) { kv[n] = f0.elements[n].value; }); }
+    if (f0) { kv = {}; ['fecha', 'actividad', 'notas', 'incidentes', 'nombre', 'clave', 'proyecto'].forEach(function (n) { if (f0.elements[n]) kv[n] = f0.elements[n].value; }); }
     render0();
-    var f1 = kv && document.querySelector('form.diaf'); if (f1) Object.keys(kv).forEach(function (n) { f1.elements[n].value = kv[n]; });
+    var f1 = kv && document.querySelector('form.diaf'); if (f1) Object.keys(kv).forEach(function (n) { if (f1.elements[n]) f1.elements[n].value = kv[n]; });
   }
   function render0() {
     if (!datos) return;
     if (ltAbierto) ltCerrar();
     var d = datos, m = d.meta || {};
     // pestañas
-    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Indicadores', 'Pendientes', 'Documentos', 'Bitácora']);
+    var nombres = ['General'].concat(d.proyectos.map(function (p) { return p.proyecto; }), ['Calendario', 'Indicadores', 'Pendientes', 'Documentos', 'Bitácora', 'Diarios'], DIA_PER.map(function (x) { return 'Diario:' + x; }));
     if (nombres.indexOf(tab) < 0) tab = 'General';
-    var ICO = { General: 'var(--guinda)', Calendario: 'var(--dorado)', Indicadores: 'var(--verde)', Documentos: 'var(--azul)', Pendientes: 'var(--rojo)', 'Bitácora': 'var(--guinda-osc)' };
+    var ICO = { Diarios: 'var(--dorado)', General: 'var(--guinda)', Calendario: 'var(--dorado)', Indicadores: 'var(--verde)', Documentos: 'var(--azul)', Pendientes: 'var(--rojo)', 'Bitácora': 'var(--guinda-osc)' };
     var CORTO = { PVE: 'Escolar', PVJ: 'Juventud', PVG: 'Fam. y Género' };
     var nPend = pend ? (pend.pendientes || []).length + nuevasAbiertas().length : 0;
     function item(n) {
       var p = d.proyectos.filter(function (x) { return x.proyecto === n; })[0];
-      var lab = n === 'General' ? 'Avance general' : p ? n + ' · ' + (CORTO[p.sigla] || nombreCorto(p.nombre)) : n;
+      var sub = n.indexOf('Diario:') === 0;
+      var lab = n === 'General' ? 'Avance general' : p ? n + ' · ' + (CORTO[p.sigla] || nombreCorto(p.nombre)) : n === 'Diarios' ? 'Diarios de campo' : sub ? n.slice(7) : n;
+      if (sub) { var nd = diarEntradas().filter(function (e) { return e.persona === n.slice(7); }).length;
+        return '<button type="button" data-tab="' + esc(n) + '" data-l="' + esc(lab) + '" class="nv sub' + (n === tab ? ' on' : '') + '"' + (n === tab ? ' aria-current="page"' : '') + '><span class="ic av2" aria-hidden="true">' + esc(iniDe(lab)) + '</span><span class="lb">' + esc(lab) + '</span>' + (nd ? '<span class="ct n0" title="entradas">' + nd + '</span>' : '') + '</button>'; }
       var ct = p ? p.vencidas : n === 'Pendientes' ? nPend : 0;
       return '<button type="button" data-tab="' + esc(n) + '" data-l="' + esc(lab) + '" class="nv' + (n === tab ? ' on' : '') + '"' + (n === tab ? ' aria-current="page"' : '') + '>' +
              '<span class="ic" aria-hidden="true">' + (ICON[p ? p.sigla : n] || '') + '</span><span class="lb">' + esc(lab) + '</span>' + (ct ? '<span class="ct" title="' + (p ? 'vencidas' : 'pendientes') + '">' + ct + '</span>' : '') + '</button>';
@@ -2589,10 +2623,11 @@ body{font-weight:500}
       nombres.slice(0, d.proyectos.length + 1).map(item).join('') +
       '<div class="grp">Consulta</div>' + nombres.slice(d.proyectos.length + 1).map(item).join('') + '</div></div>';
     if (foco) { var bf0 = $('tabs').querySelector('button[data-tab="' + foco + '"]'); if (bf0) bf0.focus({ preventScroll: true }); }
-    var vPend = tab === 'Pendientes', vBita = tab === 'Bitácora' || vPend, vDocs = tab === 'Documentos' || vBita, vCal = tab === 'Calendario', vInd = tab === 'Indicadores';
+    var vDia = tab === 'Diarios' || tab.indexOf('Diario:') === 0;
+    var vPend = tab === 'Pendientes', vBita = tab === 'Bitácora' || vPend, vDocs = tab === 'Documentos' || vBita || vDia, vCal = tab === 'Calendario', vInd = tab === 'Indicadores';
     if (calProy && !d.proyectos.some(function (p) { return p.proyecto === calProy; })) calProy = '';
     if (tab === 'Calendario') calProy = '';                 // un solo calendario: el filtro son los interruptores «Calendarios»
-    var secc = vPend ? 'Pendientes por persona' : vBita ? 'Bitácora' : vDocs ? 'Documentos' : vCal ? 'Calendario de actividades' : vInd ? 'Indicadores' : tab === 'General' ? '' : tab;
+    var secc = vDia ? (tab === 'Diarios' ? 'Diarios de campo' : 'Diario de campo · ' + tab.slice(7)) : vPend ? 'Pendientes por persona' : vBita ? 'Bitácora' : vDocs ? 'Documentos' : vCal ? 'Calendario de actividades' : vInd ? 'Indicadores' : tab === 'General' ? '' : tab;
     var pT = d.proyectos.filter(function (x) { return x.proyecto === tab; })[0];
     $('titulo').textContent = secc ? (pT ? tab + ' · ' + nombreCorto(pT.nombre) : secc) : 'Tablero de avance FORDEMUN 2026';
     $('ceja').textContent = secc ? (vCal ? 'FORDEMUN 2026 · ' + MESES_L[(calMes ? calMes.m : +d.corte.split('-')[1] - 1)] : pT ? 'Proyecto ' + pT.sigla + ' · ' + (PROY_EYE[pT.sigla] || nombreCorto(pT.nombre)) : vInd ? 'Indicadores · ' + (calProy || 'todos los proyectos') : 'FORDEMUN 2026 · Consulta') : 'Prevención social de la violencia · Victoria, Tamaulipas';
@@ -2613,9 +2648,11 @@ body{font-weight:500}
     $('tAct').textContent = vCal ? 'Calendario de actividades' : 'Avance por actividad';
     $('nAct').textContent = vCal ? 'Un solo calendario: active o desactive Escolar, Juventud, Familiar y Género, General y SEP en «Calendarios». ' + 'Barras de la fecha de inicio a la fecha fin; el relleno es el % real y la línea guinda marca hoy. Toque una barra o etiqueta para abrir la actividad en su proyecto.'
       : 'Si la actividad se repite por plantel, colonia o localidad, se muestra el promedio y el conteo. Toque una actividad para ver sus observaciones, documentos, minutas y el avance por unidad, y para agregar una nota.';
-    $('docs').classList.toggle('oculto', !vDocs || vBita);
-    if (vDocs && !vBita) renderDocs();
-    $('bitacora').classList.toggle('oculto', !vBita || vPend);
+    $('docs').classList.toggle('oculto', !vDocs || vBita || vDia);
+    if (vDocs && !vBita && !vDia) renderDocs();
+    $('diarios').classList.toggle('oculto', !vDia);
+    if (vDia) $('diarios').innerHTML = vistaDiarios(tab);
+    $('bitacora').classList.toggle('oculto', !vBita || vPend || vDia);
     if (vBita && !vPend) renderBita();
     $('pend').classList.toggle('oculto', !vPend);
     if (vPend) renderPend();
@@ -2665,7 +2702,7 @@ body{font-weight:500}
                 (acts.length ? gantt(p, acts, R) : '<p class="g-vacio">Ninguna actividad con estos filtros.</p>') + '</div>';
         return;
       }
-      if (vProg) { html += tablaProg(p, acts, x.todas) + bloqueSecuencias(p) + bloqueDiarios(p); return; }
+      if (vProg) { html += tablaProg(p, acts, x.todas) + bloqueSecuencias(p); return; }
       html += '<div class="grupo"><div class="g-cab" style="--gc:' + PROY_COLOR[p.sigla] + ';--gbg:' + (PROY_BG[p.sigla] || '#F3EEE1') + '">' +
               '<span>' + esc(p.proyecto + ' · ' + nombreCorto(p.nombre)) + '</span><small>real ' + pct(p.pct_real) + ' · prog. ' + pct(p.pct_programado) + '</small></div>';
       if (!acts.length) html += '<p class="g-vacio">' + (filtro.unidad && uFuera(filtro.unidad) ? 'Esta unidad está fuera de alcance (reposición por definir): sus filas no cuentan en el avance.' : 'Ninguna actividad con estos filtros.') + '</p>';
