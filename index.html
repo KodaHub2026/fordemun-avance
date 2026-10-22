@@ -1270,6 +1270,22 @@ body[data-vista="cal"] .mes-nav .vmenu .o.sel,.mes-nav .vmenu .o.sel{background:
 #c2bot>.card:first-child{margin-top:20px}
 .modal .row2{grid-template-columns:minmax(0,1fr) minmax(0,1fr)}.modal .row2>*{min-width:0}@media (max-width:600px){.modal .row2{grid-template-columns:minmax(0,1fr)}}
 
+    /* 21-10-2026: secuencias y diarios de campo */
+    .sqc .sqp,.sqc .sqr{display:grid;grid-template-columns:auto 1fr auto minmax(120px,200px);gap:4px 12px;align-items:center;padding:8px 2px;border-bottom:1px solid #efe7db}
+    .sqc .sqp{grid-template-columns:auto 1fr minmax(120px,200px);border-bottom:2px solid #e6dccb}
+    .sqc .sqr{cursor:pointer}.sqc .cd{font-weight:700;color:var(--guinda-osc);font-size:12px}
+    .sqb{min-width:120px}.sql{list-style:none;margin:4px 0 8px 18px;padding:0;font-size:13px}.sql li{padding:2px 0}.sql li i{font-style:normal;display:inline-block;width:18px;color:#9AA5B1}.sql li.ok i{color:var(--verde)}
+    .diac .dpr{display:flex;gap:10px;align-items:center;padding:9px 2px;border-bottom:1px solid #efe7db;cursor:pointer}
+    .diac .av{width:30px;height:30px;border-radius:50%;color:#fff;display:inline-flex;align-items:center;justify-content:center;font-size:12px;font-weight:700;flex:none}
+    .diac .nm2{flex:1;display:flex;flex-direction:column}.diac .chev{color:#8a7b80}
+    .diac .lnk{background:none;border:0;color:var(--guinda);cursor:pointer;font:inherit;font-size:13px;text-decoration:underline;padding:0 4px}
+    .diac .dpb{padding:8px 4px 12px 40px}.diac .die{border-left:3px solid var(--dorado);background:#fffdf9;padding:8px 10px;margin:8px 0;border-radius:0 8px 8px 0}
+    .diac .dh2{display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}.diac .dn{font-size:13px;margin-top:4px;white-space:pre-line}.diac .di2{color:#7A828C;margin-top:4px}
+    .diaf{display:grid;gap:8px;background:#fbf8f3;border:1px dashed #e0d5c4;border-radius:12px;padding:10px 12px;margin:8px 0}
+    .diaf label{display:flex;flex-direction:column;font-size:12px;color:#6d5f63;gap:3px}.diaf input,.diaf textarea{font:inherit;font-size:14px;padding:6px 8px;border:1px solid #d9cdb9;border-radius:8px;background:#fff}
+    .diaf .r2{display:grid;grid-template-columns:1fr 2fr;gap:8px}.diaf .r3{display:flex;gap:8px;align-items:center;flex-wrap:wrap}.diaf .est.err{color:var(--rojo)}.diaf .est.ok{color:var(--verde)}
+    .diac .dgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:8px 16px}.diac .dgrid b{display:block}
+    @media (max-width:640px){.diaf .r2{grid-template-columns:1fr}.sqc .sqr{grid-template-columns:auto 1fr auto}.sqc .sqr .sqb{grid-column:1/-1}.diac .dpb{padding-left:4px}}
   </style>
   <style id="c2-legible">
 /* FORDEMUN · C2 legible: solo letras. Fondos, layout, guinda #8c1d40 y dorado decorativo #b8913f NO cambian. */
@@ -2140,6 +2156,103 @@ body{font-weight:500}
     });
     return h + '</div>' + bloqueFuera(p.proyecto) + '</section>';
   }
+  // ---- 21-10-2026: % de avance por secuencia (secuencias.json, desde Cal A/B/C) y Diarios de campo (pestaña «Diarios»; formulario vía app web)
+  var secu = null, diarJ = null, diarVivo = null, diaForm = null, diaEst = {}, diaAbre = {};
+  function cargarSecuDiar() {
+    fetch('secuencias.json?_=' + Date.now(), { cache: 'no-store', credentials: 'omit' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { secu = j; if (datos) render(); }).catch(function () { });
+    fetch('diarios.json?_=' + Date.now(), { cache: 'no-store', credentials: 'omit' }).then(function (r) { if (!r.ok) throw 0; return r.json(); }).then(function (j) { diarJ = j; if (datos) render(); }).catch(function () { });
+  }
+  function barraSq(pc, col) { return '<div class="mp sqb"><i><b style="width:' + Math.min(100, pc * 100) + '%;background:' + col + '"></b></i><span>' + Math.round(pc * 100) + ' %</span></div>'; }
+  function bloqueSecuencias(p) {
+    if (!secu) return '';
+    var x = (secu.proyectos || []).filter(function (y) { return y.sigla === p.sigla; })[0]; if (!x) return '';
+    var col = PROY_COLOR[p.sigla];
+    var h = '<div class="sqp"><b>' + esc(p.sigla) + ' · todas las secuencias</b><span class="mut">' + x.hechos + ' de ' + x.total + ' pasos hechos</span>' + barraSq(x.pct, col) + '</div>';
+    h += x.secuencias.map(function (s) {
+      var k = 'sq|' + s.codigo, on = !!diaAbre[k];
+      return '<div class="sqr" role="button" tabindex="0" data-sq="' + esc(k) + '" aria-expanded="' + on + '"><span class="cd">' + esc(s.codigo) + '</span><span class="nm">' + esc(s.nombre) + '</span><span class="mut">' + s.hechos + '/' + s.total + '</span>' + barraSq(s.pct, col) + '</div>' +
+        (on ? '<ul class="sql">' + s.pasos.map(function (q) { return '<li class="' + (q.hecho ? 'ok' : '') + '"><i>' + (q.hecho ? '✓' : '○') + '</i>' + esc(q.paso) + ' <small class="mut">· ' + esc(q.fecha || 'sin fecha') + ' · ' + esc(q.estado) + '</small></li>'; }).join('') + '</ul>' : '');
+    }).join('');
+    return card('Avance por secuencia', '<span class="mut">pasos hechos / pasos totales (Cal ' + esc(p.proyecto) + '; «Cancelado» no cuenta)</span>', h, 'c2v sqc');
+  }
+  function diarEntradas() { return diarVivo && !diarVivo.error && diarVivo.entradas ? diarVivo.entradas : (diarJ && diarJ.entradas) || []; }
+  function diarDocs(per, sig) { return ((diarJ && diarJ.docs) || []).filter(function (d) { return d.persona === per && (!sig || d.proyecto === sig); }); }
+  var DIA_PER = ['Jesús Anselmo', 'Tulio Aguilar', 'Isaac De León'];
+  function fechaCorta(iso) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? +m[3] + ' ' + MESES[+m[2] - 1] + ' ' + m[1] : (iso || 'sin fecha'); }
+  function formDiario(per, sig, e) {
+    var st = diaEst[per + '|' + sig] || {};
+    return '<form class="diaf" data-dia-form="' + esc(per) + '" data-dia-proy="' + esc(sig) + '" data-dia-id="' + esc(e ? e.id : '') + '">' +
+      '<div class="r2"><label>Fecha<input type="date" name="fecha" required value="' + esc(e ? e.fecha : isoDe(isoDia(datos.corte))) + '"></label>' +
+      '<label>Actividad / instrumento<input name="actividad" maxlength="160" value="' + esc(e ? e.actividad : '') + '"></label></div>' +
+      '<label>Descripción<textarea name="notas" rows="4" maxlength="6000" required>' + esc(e ? e.notas : '') + '</textarea></label>' +
+      '<label>Incidentes (técnicos / destacados)<textarea name="incidentes" rows="2" maxlength="600">' + esc(e ? e.incidentes : '') + '</textarea></label>' +
+      '<div class="r2"><label>Su nombre<input name="nombre" maxlength="60" value="' + esc(ls('fordemun_nombre') || '') + '"></label>' +
+      '<label>Clave del equipo<input name="clave" type="password" value="' + esc(ls('fordemun_clave') || '') + '"></label></div>' +
+      '<input name="web" class="oculto" tabindex="-1" autocomplete="off">' +
+      '<div class="r3"><button type="submit" class="gbtn on"' + (st.enviando ? ' disabled' : '') + '>' + (st.enviando ? 'Guardando…' : e ? 'Guardar cambios' : 'Agregar entrada') + '</button>' +
+      '<button type="button" class="gbtn" data-dia-cancel>Cancelar</button><span class="est ' + (st.cls || '') + '">' + esc(st.txt || '') + '</span></div></form>';
+  }
+  function bloqueDiarios(p) {
+    var sig = p.sigla, todas = diarEntradas().filter(function (e) { return e.proyecto === sig; }), col = PROY_COLOR[sig];
+    var h = '<p class="nota">' + (diarVivo && !diarVivo.error ? 'En vivo desde la pestaña «Diarios» de la hoja.' : 'Copia de la pestaña «Diarios»' + (diarJ ? ' (' + esc(String(diarJ.generado || '').slice(0, 16).replace('T', ' ')) + ')' : '') + '. Agregar o editar requiere la app web actualizada.') + '</p>';
+    h += DIA_PER.map(function (per) {
+      var es = todas.filter(function (e) { return e.persona === per; }).sort(function (a, b) { return String(b.fecha).localeCompare(String(a.fecha)); });
+      var k = 'dp|' + per + '|' + sig, on = !!diaAbre[k], dc = diarDocs(per, sig)[0];
+      var fOn = diaForm && diaForm.per === per && diaForm.sig === sig;
+      var cuerpo = '';
+      if (on || fOn) {
+        cuerpo = (fOn && !diaForm.id ? formDiario(per, sig, null) : '<button type="button" class="gbtn" data-dia-nueva="' + esc(per) + '" data-dia-proy="' + esc(sig) + '">+ Agregar entrada</button>') +
+          (es.length ? es.slice(0, diaAbre[k + '|mas'] ? es.length : 5).map(function (e) {
+            if (fOn && diaForm.id === e.id) return formDiario(per, sig, e);
+            var nt = e.notas.length > 260 ? e.notas.slice(0, 260) + '…' : e.notas;
+            return '<div class="die"><div class="dh2"><b>' + esc(fechaCorta(e.fecha)) + '</b><span>' + esc(e.actividad || '—') + '</span><small class="mut">' + esc(e.id || '') + '</small>' +
+              (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(sig) + '">Editar</button>' : '') + '</div>' +
+              '<div class="dn">' + esc(nt) + '</div>' + (e.incidentes ? '<div class="di2"><small>' + esc(e.incidentes) + '</small></div>' : '') + '</div>'; }).join('') +
+            (es.length > 5 && !diaAbre[k + '|mas'] ? '<button type="button" class="lnk" data-sq="' + esc(k + '|mas') + '">Ver las ' + es.length + ' entradas</button>' : '')
+          : '<p class="nota">Sin entradas todavía.</p>');
+      }
+      return '<div class="dpr" role="button" tabindex="0" data-sq="' + esc(k) + '" aria-expanded="' + (on || fOn) + '"><span class="av" style="background:' + col + '">' + esc(iniDe(per)) + '</span><span class="nm2"><b>' + esc(per) + '</b><small class="mut">' +
+        plural(es.length, 'entrada', 'entradas') + ' · última: ' + esc(es.length ? fechaCorta(es[0].fecha) : '—') + '</small></span>' +
+        (dc ? '<a class="lnk" href="' + esc(dc.url) + '" target="_blank" rel="noopener" data-noprop>Doc ↗</a>' : '') + '<span class="chev">' + (on || fOn ? '▾' : '▸') + '</span></div>' + (cuerpo ? '<div class="dpb">' + cuerpo + '</div>' : '');
+    }).join('');
+    return card('Diarios de campo', '<span class="mut">' + esc(sig) + ' · Jesús Anselmo, Tulio Aguilar e Isaac De León</span>', h, 'c2v diac');
+  }
+  function diariosEnDocs() {
+    var ds = (diarJ && diarJ.docs) || []; if (!ds.length) return '';
+    var n = {}; diarEntradas().forEach(function (e) { var k = e.persona + '|' + e.proyecto; n[k] = (n[k] || 0) + 1; });
+    return '<section class="card c2v diac"><div class="sh"><h2>Diarios de campo</h2><span class="mut">Docs originales (solo lectura) · las entradas nuevas se capturan en cada proyecto › Diarios de campo</span></div><div class="dgrid">' +
+      DIA_PER.map(function (per) { return '<div><b>' + esc(per) + '</b>' + ds.filter(function (d) { return d.persona === per; }).map(function (d) {
+        return '<a class="lnk" href="' + esc(d.url) + '" target="_blank" rel="noopener">' + esc(d.proyecto) + ' ↗</a><small class="mut"> ' + (n[per + '|' + d.proyecto] || 0) + '</small>'; }).join(' · ') + '</div>'; }).join('') + '</div></section>';
+  }
+  document.addEventListener('click', function (e) {
+    var t = e.target;
+    if (t.closest('[data-noprop]')) return;
+    var b;
+    if ((b = t.closest('[data-dia-nueva]'))) { diaForm = { per: b.getAttribute('data-dia-nueva'), sig: b.getAttribute('data-dia-proy'), id: '' }; render(); return; }
+    if ((b = t.closest('[data-dia-edit]'))) { diaForm = { per: b.getAttribute('data-dia-per'), sig: b.getAttribute('data-dia-proy'), id: b.getAttribute('data-dia-edit') }; render(); return; }
+    if (t.closest('[data-dia-cancel]')) { diaForm = null; render(); return; }
+    if (t.closest('form.diaf')) return;
+    if ((b = t.closest('[data-sq]'))) { var k = b.getAttribute('data-sq'); diaAbre[k] = !diaAbre[k]; render(); }
+  });
+  document.addEventListener('submit', function (e) {
+    var fm = e.target; if (!fm.matches || !fm.matches('form.diaf')) return; e.preventDefault();
+    var el = fm.elements, v = function (n) { return (el[n].value || '').trim(); }, per = fm.getAttribute('data-dia-form'), sig = fm.getAttribute('data-dia-proy'), id = fm.getAttribute('data-dia-id'), sk = per + '|' + sig;
+    var err = !v('fecha') ? 'Indique la fecha.' : v('notas').length < 10 ? 'Escriba la descripción.' : v('nombre').length < 2 ? 'Escriba su nombre.' : !v('clave') ? 'Escriba la clave del equipo.' : '';
+    var keep = { fecha: v('fecha'), actividad: v('actividad'), notas: el.notas.value, incidentes: el.incidentes.value, id: id };
+    var repinta = function () { render(); var f2 = document.querySelector('form.diaf'); if (f2) { ['fecha', 'actividad', 'notas', 'incidentes'].forEach(function (n) { f2.elements[n].value = keep[n]; }); } };
+    if (err) { diaEst[sk] = { cls: 'err', txt: err }; repinta(); return; }
+    ls('fordemun_nombre', v('nombre')); ls('fordemun_clave', v('clave'));
+    diaEst[sk] = { enviando: true, txt: 'Guardando en la hoja…' }; repinta();
+    var cuerpo = { action: id ? 'editDiario' : 'addDiario', id: id, persona: per, proyecto: sig, fecha: v('fecha'), actividad: v('actividad'), notas: el.notas.value.trim(), incidentes: el.incidentes.value.trim(), nombre: v('nombre'), clave: v('clave'), cliente: cliente(), web: el.web.value };
+    fetch(API, { method: 'POST', body: JSON.stringify(cuerpo), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit', redirect: 'follow', cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+      .then(function (j) {
+        if (!j || !j.ok) throw new Error(j && j.error ? (/acci[oó]n no v[aá]lida/i.test(j.error) ? 'la app web todavía no tiene la función de diarios (falta actualizar la implementación)' : j.error) : 'respuesta vacía');
+        diaEst[sk] = { cls: 'ok', txt: 'Guardada ✓ ' + j.id }; diaForm = null; toast('Diario guardado ✓ ' + j.id); pidiendo = false; cargar(); render();
+      })
+      .catch(function (er) { diaEst[sk] = { cls: 'err', txt: 'No se guardó: ' + (er && er.message ? er.message : er) }; repinta(); });
+  });
+
   function progBottom(p) {
     var d = datos, gr = {}, ordG = [];
     d.actividades.filter(function (a) { return a.proyecto === p.proyecto; }).forEach(function (a) {
@@ -2404,6 +2517,7 @@ body{font-weight:500}
     h += '</div>' + (ds.length > 15 ? '<button type="button" class="morel ctr" data-dmas>' + (docMas ? 'Ver menos' : 'Ver ' + plural(ds.length - 15, 'documento más', 'documentos más') + ' ›') + '</button>' : '') + (ds.length ? '' : '<p class="nota">Ningún documento con estos filtros.</p>') +
       '<div class="note">Cada tarjeta abre el detalle: notas del documento y las actividades que toca (toque una actividad para ir a ella). ' + (linksVivo ? 'En vivo desde la pestaña «Documentos» de la hoja.' : 'Copia del índice «Documentos» generada el ' + esc(links.generado) + '.') + '</div></div>';
     var fq = document.activeElement && document.activeElement.id === 'qDoc' ? document.activeElement.selectionStart : null;
+    h = h.replace('<div class="c2v">', '<div class="c2v">' + diariosEnDocs());
     $('docs').innerHTML = h;
     if (fq !== null) { var e = $('qDoc'); e.focus({ preventScroll: true }); try { e.setSelectionRange(fq, fq); } catch (x) { } }
     if (tab === 'Documentos') { var ev = conDocP((datos.actividades || []).map(function (a) { return a.codigo; }));
@@ -2447,7 +2561,13 @@ body{font-weight:500}
       setHero('Notas fechadas de seguimiento y avance', 'Bitácora', bigH('Notas de seguimiento', ns.length, 'Periodo', d0 + (d1 ? ' – ' + d1 : ''), 1, 'La más reciente primero · acuerdo del 30/09/2026')); }
   }
 
-  function render() {
+  function render() {   // 21-10-2026: conserva lo escrito en el formulario de diario al refrescar
+    var f0 = document.querySelector('form.diaf'), kv = null;
+    if (f0) { kv = {}; ['fecha', 'actividad', 'notas', 'incidentes', 'nombre', 'clave'].forEach(function (n) { kv[n] = f0.elements[n].value; }); }
+    render0();
+    var f1 = kv && document.querySelector('form.diaf'); if (f1) Object.keys(kv).forEach(function (n) { f1.elements[n].value = kv[n]; });
+  }
+  function render0() {
     if (!datos) return;
     if (ltAbierto) ltCerrar();
     var d = datos, m = d.meta || {};
@@ -2545,7 +2665,7 @@ body{font-weight:500}
                 (acts.length ? gantt(p, acts, R) : '<p class="g-vacio">Ninguna actividad con estos filtros.</p>') + '</div>';
         return;
       }
-      if (vProg) { html += tablaProg(p, acts, x.todas); return; }
+      if (vProg) { html += tablaProg(p, acts, x.todas) + bloqueSecuencias(p) + bloqueDiarios(p); return; }
       html += '<div class="grupo"><div class="g-cab" style="--gc:' + PROY_COLOR[p.sigla] + ';--gbg:' + (PROY_BG[p.sigla] || '#F3EEE1') + '">' +
               '<span>' + esc(p.proyecto + ' · ' + nombreCorto(p.nombre)) + '</span><small>real ' + pct(p.pct_real) + ' · prog. ' + pct(p.pct_programado) + '</small></div>';
       if (!acts.length) html += '<p class="g-vacio">' + (filtro.unidad && uFuera(filtro.unidad) ? 'Esta unidad está fuera de alcance (reposición por definir): sus filas no cuentan en el avance.' : 'Ninguna actividad con estos filtros.') + '</p>';
@@ -2615,6 +2735,7 @@ body{font-weight:500}
   function ok(res) {
     pidiendo = false; datos = res; ultimaOk = Date.now(); $('msg').innerHTML = '';
     if (res.pendientesVivo && !res.pendientesVivo.error && res.pendientesVivo.pendientes) { pend = res.pendientesVivo; pendVivo = true; pendErr = ''; }
+    diarVivo = res.diariosVivo || null; if (!secu && !diarJ) cargarSecuDiar();
     cargarSnap(); if (!eventosCal.length) cargarEventos();
     if (res.vinculos && res.vinculos.documentos) { links = fixLinks(res.vinculos); linksVivo = true; linksErr = ''; }  // en vivo
     else if (linksVivo) { linksVivo = false; cargarLinks(); }                                             // respaldo
