@@ -131,34 +131,6 @@
    "fuente": "Minuta 18-oct v2"
   },
   {
-   "fecha": "2026-10-21",
-   "texto": "contextualización y línea base PVJ-LJ con los enlaces en CE Estudiantil y CL Luis Echeverría (PVJ-ACT01; en campo)",
-   "proyectos": [
-    "B-PVJ"
-   ],
-   "fuente": "Cal B-PVJ fila 47 · reprogramado 21/10",
-   "p": "PVJ"
-  },
-  {
-   "fecha": "2026-10-21",
-   "texto": "impresión y difusión del volante v3 (PVJ-ACT03)",
-   "proyectos": [
-    "B-PVJ"
-   ],
-   "fuente": "Minuta 18-oct v2; reprogramado 21/10 por Paul",
-   "p": "PVJ"
-  },
-  {
-   "fecha": "2026-10-21",
-   "texto": "entrega de materiales en PDF",
-   "proyectos": [
-    "A-PVE",
-    "B-PVJ",
-    "C-PVG"
-   ],
-   "fuente": "Minuta 18-oct v2; reprogramado 21/10 por Paul"
-  },
-  {
    "fecha": "2026-10-20",
    "texto": "visita: mecánica de niños mediadores (PVE-ACT05)",
    "proyectos": [
@@ -198,6 +170,34 @@
   },
   {
    "fecha": "2026-10-21",
+   "texto": "contextualización y línea base PVJ-LJ con los enlaces en CE Estudiantil y CL Luis Echeverría (PVJ-ACT01; en campo)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "Cal B-PVJ fila 47 · reprogramado 21/10",
+   "p": "PVJ"
+  },
+  {
+   "fecha": "2026-10-21",
+   "texto": "impresión y difusión del volante v3 (PVJ-ACT03)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "Minuta 18-oct v2; reprogramado 21/10 por Paul",
+   "p": "PVJ"
+  },
+  {
+   "fecha": "2026-10-21",
+   "texto": "entrega de materiales en PDF",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Minuta 18-oct v2; reprogramado 21/10 por Paul"
+  },
+  {
+   "fecha": "2026-10-21",
    "texto": "convocatoria del enlace a grupo diverso (PVG-ACT03; por confirmar)",
    "proyectos": [
     "C-PVG"
@@ -207,21 +207,67 @@
   },
   {
    "fecha": "2026-10-21",
-   "texto": "grupo focal, lista de asistencia (PVG-ACT03)",
+   "texto": "grupo focal de género en CE Estudiantil y CL Luis Echeverría, lista de asistencia (PVG-ACT03; en campo)",
    "proyectos": [
     "C-PVG"
    ],
-   "fuente": "Propuesta de calendario dinámico (checklist v3) + Minuta 18-oct v2",
+   "fuente": "Cal C-PVG fila 47 · reprogramación 21/10",
+   "p": "PVG"
+  },
+  {
+   "fecha": "2026-10-21",
+   "texto": "marcha exploratoria (MES) exterior de primarias y 5-6 cuadras en CE Estudiantil y CL Luis Echeverría (PVG-ACT05 / PVE-ACT04; en campo)",
+   "proyectos": [
+    "A-PVE",
+    "C-PVG"
+   ],
+   "fuente": "Cal C-PVG fila 48 + Cal A-PVE fila 62 · reprogramación 21/10",
+   "p": "PVG"
+  },
+  {
+   "fecha": "2026-10-21",
+   "texto": "grupo focal de jóvenes en CE Estudiantil y CL Luis Echeverría, 16:00, lista de asistencia (PVJ-ACT02; en campo)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "Cal B-PVJ fila 56 · reprogramación 21/10",
+   "p": "PVJ"
+  },
+  {
+   "fecha": "2026-10-22",
+   "texto": "grupo focal en CS San Marcos 2; lugar y hora por confirmar (PVJ-ACT02)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "Cal B-PVJ fila 51 · reprogramación 21/10",
+   "p": "PVJ"
+  },
+  {
+   "fecha": "2026-10-22",
+   "texto": "contextualización y línea base PVJ-LJ con el enlace de CS San Marcos 2 (PVJ-ACT01; por confirmar)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "Cal B-PVJ fila 58 · reprogramación 21/10",
+   "p": "PVJ"
+  },
+  {
+   "fecha": "2026-10-22",
+   "texto": "marcha exploratoria (MES) en CS San Marcos 2 (PVG-ACT05; por confirmar)",
+   "proyectos": [
+    "C-PVG"
+   ],
+   "fuente": "Cal C-PVG fila 53 · reprogramación 21/10",
    "p": "PVG"
   },
   {
    "fecha": "2026-10-22",
-   "texto": "grupo focal en CL, CE y CS San Marcos 2; lugar y hora por confirmar (PVJ-ACT02)",
+   "texto": "10:00 reunión de Isaac con la directora de Mediación del Estado (PVE-ACT05)",
    "proyectos": [
-    "B-PVJ"
+    "A-PVE"
    ],
-   "fuente": "Propuesta de calendario dinámico (checklist v3) + Minuta 18-oct v2",
-   "p": "PVJ"
+   "fuente": "Cal A-PVE fila 63 · WA Isaac 21-oct 16:59",
+   "p": "PVE"
   },
   {
    "fecha": "2026-10-23",
@@ -234,12 +280,12 @@
   },
   {
    "fecha": "2026-10-23",
-   "texto": "marcha exploratoria, MES (PVG-ACT05)",
+   "texto": "Isaac: localizar y pedir audiencia a CIJ, Lic. Laura Gaiter (PVE-ACT05)",
    "proyectos": [
-    "C-PVG"
+    "A-PVE"
    ],
-   "fuente": "Propuesta de calendario dinámico (checklist v3) + Minuta 18-oct v2",
-   "p": "PVG"
+   "fuente": "Cal A-PVE fila 64 · WA Doc 21-oct",
+   "p": "PVE"
   },
   {
    "fecha": "2026-10-24",
