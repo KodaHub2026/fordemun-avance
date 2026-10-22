@@ -1291,6 +1291,12 @@ body[data-vista="cal"] .mes-nav .vmenu .o.sel,.mes-nav .vmenu .o.sel{background:
     #diarios .diac .dpr{cursor:pointer}#diarios .dpsel{margin-bottom:6px}
     .diac .dfo{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.diac .dfo img{width:96px;height:72px;object-fit:cover;border-radius:6px;border:1px solid #e0d5c4;display:block}.diac .dfo a{font-size:13px;color:var(--guinda)}
     .diaf input[type=file]{font-size:13px;padding:6px;background:#fff}
+    .dia-add{display:inline-flex;align-items:center;gap:10px;background:#8c1d40;color:#fff;border:0;border-radius:14px;padding:12px 20px 12px 12px;font:inherit;font-size:16px;font-weight:700;cursor:pointer;box-shadow:0 8px 20px -10px #8c1d40;margin:4px 0 10px}
+    .dia-add:hover{background:var(--guinda-osc)}.dia-add:focus-visible{outline:3px solid var(--dorado);outline-offset:2px}
+    .dia-add .pl{width:30px;height:30px;border-radius:50%;background:#fff;color:#8c1d40;display:inline-flex;align-items:center;justify-content:center;font-size:24px;font-weight:800;line-height:1}
+    .dia-fab{display:none}
+    @media (max-width:600px){.dia-fab{display:flex;position:fixed;right:18px;bottom:calc(20px + env(safe-area-inset-bottom));width:60px;height:60px;border-radius:50%;background:#8c1d40;color:#fff;border:3px solid #fff;font-size:34px;font-weight:700;line-height:1;align-items:center;justify-content:center;box-shadow:0 10px 24px -8px #5a0f24;z-index:40;cursor:pointer}
+      body.open .dia-fab,body.search .dia-fab{display:none}}
   </style>
   <style id="c2-legible">
 /* FORDEMUN · C2 legible: solo letras. Fondos, layout, guinda #8c1d40 y dorado decorativo #b8913f NO cambian. */
@@ -2264,7 +2270,8 @@ body{font-weight:500}
         return '<button type="button" class="chip' + (diaFil === o[0] ? ' on' : '') + '" data-dia-fil="' + o[0] + '">' + o[1] + ' <b>' + tot.filter(function (e) { return !o[0] || e.proyecto === o[0]; }).length + '</b></button>'; }).join('') +
       '<span class="sp"></span>' + diarDocs(per).map(function (d) { return '<a class="lnk" href="' + esc(d.url) + '" target="_blank" rel="noopener">Doc ' + esc(d.proyecto) + ' ↗</a>'; }).join(' ') + '</div>';
     h += '<section class="card c2v diac"><div class="sh"><h2>' + esc(per) + '</h2><span class="mut">' + plural(es.length, 'entrada', 'entradas') + (diaFil ? ' en ' + diaFil : '') + (diarVivo && !diarVivo.error ? ' · en vivo' : ' · copia; guardar requiere la app web') + '</span></div>';
-    h += fOn && !diaForm.id ? formDiario(per, diaForm.sig, null, true) : '<button type="button" class="gbtn on" data-dia-nueva="' + esc(per) + '" data-dia-proy="' + esc(sigN) + '">+ Agregar entrada</button>';
+    h += fOn && !diaForm.id ? formDiario(per, diaForm.sig, null, true) : '<button type="button" class="dia-add" data-dia-nueva="' + esc(per) + '" data-dia-proy="' + esc(sigN) + '"><span class="pl" aria-hidden="true">+</span>Agregar entrada</button>' +
+      '<button type="button" class="dia-fab" data-dia-nueva="' + esc(per) + '" data-dia-proy="' + esc(sigN) + '" aria-label="Agregar entrada al diario de ' + esc(per) + '">+</button>';
     h += es.length ? es.map(function (e) {
       if (fOn && diaForm.id === e.id) return formDiario(per, e.proyecto, e, true);
       return '<div class="die"><div class="dh2"><b>' + esc(fechaCorta(e.fecha)) + '</b><span class="pz" style="--c:' + (PROY_COLOR[e.proyecto] || 'var(--guinda)') + '">' + esc(e.proyecto) + '</span><span>' + esc(e.actividad || '—') + '</span><small class="mut">' + esc(e.id || '') + '</small>' +
@@ -2284,7 +2291,8 @@ body{font-weight:500}
     var t = e.target;
     if (t.closest('[data-noprop]')) return;
     var b;
-    if ((b = t.closest('[data-dia-nueva]'))) { diaForm = { per: b.getAttribute('data-dia-nueva'), sig: b.getAttribute('data-dia-proy'), id: '' }; render(); return; }
+    if ((b = t.closest('[data-dia-nueva]'))) { diaForm = { per: b.getAttribute('data-dia-nueva'), sig: b.getAttribute('data-dia-proy'), id: '' }; render();
+      var nf = document.querySelector('form.diaf'); if (nf) { nf.scrollIntoView({ behavior: 'smooth', block: 'start' }); var ta = nf.querySelector('textarea[name=notas]'); if (ta) setTimeout(function () { ta.focus({ preventScroll: true }); }, 350); } return; }
     if ((b = t.closest('[data-dia-edit]'))) { diaForm = { per: b.getAttribute('data-dia-per'), sig: b.getAttribute('data-dia-proy'), id: b.getAttribute('data-dia-edit') }; render(); return; }
     if (t.closest('[data-dia-cancel]')) { diaForm = null; render(); return; }
     if ((b = t.closest('[data-dia-fil]'))) { diaFil = b.getAttribute('data-dia-fil'); render(); return; }
