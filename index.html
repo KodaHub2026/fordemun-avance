@@ -8,6 +8,7 @@
   <meta name="apple-mobile-web-app-capable" content="yes">
   <meta name="apple-mobile-web-app-title" content="Avance FORDEMUN">
   <title>Avance FORDEMUN 2026</title>
+  <link rel="icon" type="image/svg+xml" href="img/favicon.svg">
   <link rel="icon" type="image/png" sizes="32x32" href="img/favicon-32.png">
   <link rel="apple-touch-icon" sizes="180x180" href="img/apple-touch-icon.png">
   <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -498,7 +499,8 @@
     .side .x, .mbar, .scrim { display: none; }
     .mono { width: 46px; height: 46px; border-radius: 14px; background: linear-gradient(135deg, #8c1d40, #6e1430); display: grid; place-items: center; flex: none; position: relative; box-shadow: inset 0 0 0 2px #b8913f, 0 8px 18px -10px #8c1d40; }
     .mono span { font: 800 26px Poppins, sans-serif; line-height: 1; background: linear-gradient(180deg, #f0d58f, #b8913f); -webkit-background-clip: text; background-clip: text; color: transparent; margin-top: 2px; }
-    .mono:after { content: ""; position: absolute; right: 7px; bottom: 7px; width: 6px; height: 6px; border-radius: 50%; background: #e6c98a; }
+    .mono img { width: 72%; height: 72%; object-fit: contain; display: block; }
+    .mono:after { display:none;  content: ""; position: absolute; right: 7px; bottom: 7px; width: 6px; height: 6px; border-radius: 50%; background: #e6c98a; }
     .slogo b, .mt2 b { font: 700 16px Poppins, sans-serif; color: #8c1d40; display: block; white-space: nowrap; }
     .slogo small, .mt2 small { color: var(--c2-oro-txt); font-size:13px; font-weight:600; letter-spacing: .04em; }
     .slogo { display: flex; gap: 12px; align-items: center; padding: 0 6px 20px; border-bottom: 1px solid var(--borde); margin-bottom: 18px; }
@@ -1428,7 +1430,7 @@ body{font-weight:500}
 <div class="app">
   <aside class="side" id="side" aria-label="Menú del tablero">
     <button class="x" id="btnX" type="button" aria-label="Cerrar el menú">✕</button>
-    <div class="slogo"><div class="mono"><span>F</span></div><div><b>FORDEMUN 2026</b><small>Tablero de avance</small></div></div>
+    <div class="slogo"><div class="mono"><img src="img/fortasec_simbolo_crema.png" alt="Fortasec"></div><div><b>FORDEMUN 2026</b><small>Tablero de avance</small></div></div>
     <nav class="menu" id="tabs" aria-label="Secciones del tablero" hidden></nav>
     <div class="sfoot" id="sfoot"></div>
   </aside>
@@ -1436,7 +1438,7 @@ body{font-weight:500}
   <div class="principal">
   <div class="mbar">
     <button class="hamb" id="btnMenu" type="button" aria-expanded="false" aria-controls="side" aria-label="Abrir el menú de secciones" title="Secciones"><span aria-hidden="true">☰</span></button>
-    <div class="mono"><span>F</span></div><div class="mt2"><b>FORDEMUN 2026</b><small>Tablero de avance</small></div>
+    <div class="mono"><img src="img/fortasec_simbolo_crema.png" alt="Fortasec"></div><div class="mt2"><b>FORDEMUN 2026</b><small>Tablero de avance</small></div>
     <button class="ib" id="btnBuscar" type="button" aria-label="Buscar en el tablero" aria-expanded="false" aria-controls="spanel"><svg viewBox="0 0 24 24" width="20" height="20" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" aria-hidden="true"><circle cx="11" cy="11" r="7"/><path d="M20 20l-3.5-3.5"/></svg></button>
   </div>
   <div class="sbar" role="search"><button class="bk" id="sBack" type="button" aria-label="Cerrar la búsqueda">‹</button><div class="in"><input id="sQ" type="search" enterkeyhint="search" autocomplete="off" placeholder="Buscar actividad, documento, nota…" aria-label="Buscar en el tablero" aria-controls="spanel"><button class="x" id="sClr" type="button" aria-label="Borrar la búsqueda">✕</button></div></div>
