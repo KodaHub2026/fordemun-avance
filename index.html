@@ -1289,6 +1289,8 @@ body[data-vista="cal"] .mes-nav .vmenu .o.sel,.mes-nav .vmenu .o.sel{background:
     nav.menu button.nv.sub{padding-left:34px;font-size:13px}#tabs button.nv.sub.on .av2{background:#fff;color:#8c1d40}#tabs button.nv.sub .ct{background:#f1ebe2;color:#6d5f63}nav.menu .av2{width:22px;height:22px;border-radius:50%;background:var(--crema);color:var(--guinda-osc);font-size:10px;font-weight:700;display:inline-flex;align-items:center;justify-content:center}
     .diac .pz{font-size:11px;font-weight:700;color:#fff;background:var(--c);border-radius:6px;padding:1px 6px}.diaf select{font:inherit;font-size:14px;padding:6px 8px;border:1px solid #d9cdb9;border-radius:8px;background:#fff}
     #diarios .diac .dpr{cursor:pointer}
+    .diac .dfo{display:flex;gap:6px;flex-wrap:wrap;margin-top:6px}.diac .dfo img{width:96px;height:72px;object-fit:cover;border-radius:6px;border:1px solid #e0d5c4;display:block}.diac .dfo a{font-size:13px;color:var(--guinda)}
+    .diaf input[type=file]{font-size:13px;padding:6px;background:#fff}
   </style>
   <style id="c2-legible">
 /* FORDEMUN · C2 legible: solo letras. Fondos, layout, guinda #8c1d40 y dorado decorativo #b8913f NO cambian. */
@@ -2183,6 +2185,21 @@ body{font-weight:500}
   function diarEntradas() { return diarVivo && !diarVivo.error && diarVivo.entradas ? diarVivo.entradas : (diarJ && diarJ.entradas) || []; }
   function diarDocs(per, sig) { return ((diarJ && diarJ.docs) || []).filter(function (d) { return d.persona === per && (!sig || d.proyecto === sig); }); }
   var DIA_PER = ['Jesús Anselmo', 'Tulio Aguilar', 'Isaac De León'];
+  var DIA_UNI = [['PVE-P1M', 'Eutimio Mtz Lara mat.'], ['PVE-P1V', 'Eutimio Mtz Lara vesp.'], ['PVE-P2', 'Luis Torres Vázquez'], ['PVE-P3', 'Luis Lauro Rendón'], ['PVE-P4', 'República de México'],
+                 ['PVJ-CE', 'Col. Estudiantil'], ['PVJ-CL', 'Col. Luis Echeverría'], ['PVJ-CS', 'Col. San Marcos 2']];
+  function fotoJpeg(file) {                  // reduce a 1600 px JPEG (~0.82) antes de subir
+    return new Promise(function (ok, ko) {
+      var rd = new FileReader(); rd.onerror = function () { ko(new Error('no se pudo leer la foto')); };
+      rd.onload = function () { var im = new Image(); im.onerror = function () { ko(new Error('formato de foto no compatible')); };
+        im.onload = function () { var k = Math.min(1, 1600 / Math.max(im.width, im.height)), c = document.createElement('canvas'); c.width = Math.round(im.width * k); c.height = Math.round(im.height * k);
+          c.getContext('2d').drawImage(im, 0, 0, c.width, c.height); var u = c.toDataURL('image/jpeg', 0.82);
+          if (u.length * 0.75 > 10 * 1024 * 1024) return ko(new Error('la foto pasa de 10 MB')); ok(u); };
+        im.src = rd.result; };
+      rd.readAsDataURL(file); });
+  }
+  function postApi(cuerpo) { return fetch(API, { method: 'POST', body: JSON.stringify(cuerpo), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit', redirect: 'follow', cache: 'no-store' })
+      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); }); }
+  function fotoId(u) { var m = /\/d\/([\w-]+)/.exec(u || ''); return m ? m[1] : ''; }
   function fechaCorta(iso) { var m = /^(\d{4})-(\d{2})-(\d{2})$/.exec(iso || ''); return m ? +m[3] + ' ' + MESES[+m[2] - 1] + ' ' + m[1] : (iso || 'sin fecha'); }
   function formDiario(per, sig, e, conProy) {
     var st = diaEst[per + '|' + sig] || {};
@@ -2192,6 +2209,10 @@ body{font-weight:500}
       '<label>Actividad / instrumento<input name="actividad" maxlength="160" value="' + esc(e ? e.actividad : '') + '"></label></div>' +
       '<label>Descripción<textarea name="notas" rows="4" maxlength="6000" required>' + esc(e ? e.notas : '') + '</textarea></label>' +
       '<label>Incidentes (técnicos / destacados)<textarea name="incidentes" rows="2" maxlength="600">' + esc(e ? e.incidentes : '') + '</textarea></label>' +
+      '<div class="r2"><label>Unidad (para la carpeta y el nombre de la foto)<select name="unidad"><option value="">Sin unidad / general</option>' + DIA_UNI.map(function (u) { return '<option value="' + u[0] + '">' + esc(u[0] + ' · ' + u[1]) + '</option>'; }).join('') + '</select></label>' +
+      '<label>Código de actividad (opcional)<input name="codigo" maxlength="12" placeholder="p. ej. PVJ-ACT02"></label></div>' +
+      '<label>Agregar foto(s)<input type="file" name="fotos" accept="image/*" multiple></label>' +
+      (e && e.fotos && e.fotos.length ? '<small class="mut">Ya tiene ' + plural(e.fotos.length, 'foto', 'fotos') + '; las nuevas se agregan.</small>' : '') +
       '<div class="r2"><label>Su nombre<input name="nombre" maxlength="60" value="' + esc(ls('fordemun_nombre') || '') + '"></label>' +
       '<label>Clave del equipo<input name="clave" type="password" value="' + esc(ls('fordemun_clave') || '') + '"></label></div>' +
       '<input name="web" class="oculto" tabindex="-1" autocomplete="off">' +
@@ -2245,7 +2266,8 @@ body{font-weight:500}
       if (fOn && diaForm.id === e.id) return formDiario(per, e.proyecto, e, true);
       return '<div class="die"><div class="dh2"><b>' + esc(fechaCorta(e.fecha)) + '</b><span class="pz" style="--c:' + (PROY_COLOR[e.proyecto] || 'var(--guinda)') + '">' + esc(e.proyecto) + '</span><span>' + esc(e.actividad || '—') + '</span><small class="mut">' + esc(e.id || '') + '</small>' +
         (e.id ? '<button type="button" class="lnk" data-dia-edit="' + esc(e.id) + '" data-dia-per="' + esc(per) + '" data-dia-proy="' + esc(e.proyecto) + '">Editar</button>' : '') + '</div>' +
-        '<div class="dn">' + esc(e.notas) + '</div>' + (e.incidentes ? '<div class="di2"><small>' + esc(e.incidentes) + '</small></div>' : '') + '</div>'; }).join('') : '<p class="nota">Sin entradas' + (diaFil ? ' en ' + diaFil : '') + ' todavía.</p>';
+        '<div class="dn">' + esc(e.notas) + '</div>' + (e.incidentes ? '<div class="di2"><small>' + esc(e.incidentes) + '</small></div>' : '') +
+        (e.fotos && e.fotos.length ? '<div class="dfo">' + e.fotos.map(function (u, i) { return '<a href="' + esc(u) + '" target="_blank" rel="noopener" title="Abrir foto ' + (i + 1) + ' en Drive"><img loading="lazy" alt="Foto ' + (i + 1) + '" src="https://drive.google.com/thumbnail?id=' + esc(fotoId(u)) + '&sz=w240" onerror="this.replaceWith(document.createTextNode(\'📷 Foto ' + (i + 1) + '\'))"></a>'; }).join('') + '</div>' : '') + '</div>'; }).join('') : '<p class="nota">Sin entradas' + (diaFil ? ' en ' + diaFil : '') + ' todavía.</p>';
     return h + '</section></div>';
   }
   function diariosEnDocs() {
@@ -2276,12 +2298,18 @@ body{font-weight:500}
     if (err) { diaEst[sk] = { cls: 'err', txt: err }; repinta(); return; }
     ls('fordemun_nombre', v('nombre')); ls('fordemun_clave', v('clave'));
     diaEst[sk] = { enviando: true, txt: 'Guardando en la hoja…' }; repinta();
-    var cuerpo = { action: id ? 'editDiario' : 'addDiario', id: id, persona: per, proyecto: sig, fecha: v('fecha'), actividad: v('actividad'), notas: el.notas.value.trim(), incidentes: el.incidentes.value.trim(), nombre: v('nombre'), clave: v('clave'), cliente: cliente(), web: el.web.value };
-    fetch(API, { method: 'POST', body: JSON.stringify(cuerpo), headers: { 'Content-Type': 'text/plain;charset=utf-8' }, credentials: 'omit', redirect: 'follow', cache: 'no-store' })
-      .then(function (r) { if (!r.ok) throw new Error('HTTP ' + r.status); return r.json(); })
+    var cuerpo = { action: id ? 'editDiario' : 'addDiario', id: id, persona: per, proyecto: sig, fecha: v('fecha'), actividad: v('actividad'), notas: el.notas.value.trim(), incidentes: el.incidentes.value.trim(), nombre: v('nombre'), clave: v('clave'), cliente: cliente(), web: el.web.value, fotos: [] };
+    var files = el.fotos && el.fotos.files ? [].slice.call(el.fotos.files, 0, 6) : [], uni = el.unidad && el.unidad.value.indexOf(sig + '-') === 0 ? el.unidad.value : '', cod = el.codigo ? v('codigo').toUpperCase() : '', avisoF = '';
+    var sube = files.reduce(function (pr, f, i) { return pr.then(function () {
+        if (avisoF) return; diaEst[sk] = { enviando: true, txt: 'Subiendo foto ' + (i + 1) + ' de ' + files.length + '…' }; repinta();
+        return fotoJpeg(f).then(function (b64) { return postApi({ action: 'uploadFoto', clave: cuerpo.clave, persona: per, proyecto: sig, unidad: uni, codigo: cod, fecha: cuerpo.fecha, mime: 'image/jpeg', base64: b64, web: '' }); })
+          .then(function (j) { if (j && j.ok) cuerpo.fotos.push(j.url); else avisoF = j && j.error && /acci[oó]n no v[aá]lida/i.test(j.error) ? 'las fotos todavía no están activas en la app web; se guardó la entrada sin fotos' : 'foto no subida: ' + (j && j.error || 'error'); },
+                function (er) { avisoF = 'foto no subida: ' + (er && er.message ? er.message : er); });
+      }); }, Promise.resolve());
+    sube.then(function () { diaEst[sk] = { enviando: true, txt: 'Guardando en la hoja…' }; repinta(); return postApi(cuerpo); })
       .then(function (j) {
         if (!j || !j.ok) throw new Error(j && j.error ? (/acci[oó]n no v[aá]lida/i.test(j.error) ? 'la app web todavía no tiene la función de diarios (falta actualizar la implementación)' : j.error) : 'respuesta vacía');
-        diaEst[sk] = { cls: 'ok', txt: 'Guardada ✓ ' + j.id }; diaForm = null; toast('Diario guardado ✓ ' + j.id); pidiendo = false; cargar(); render();
+        diaEst[sk] = { cls: avisoF ? 'err' : 'ok', txt: 'Guardada ✓ ' + j.id + (cuerpo.fotos.length ? ' con ' + plural(cuerpo.fotos.length, 'foto', 'fotos') : '') + (avisoF ? ' · ' + avisoF : '') }; diaForm = null; toast(diaEst[sk].txt); pidiendo = false; cargar(); render();
       })
       .catch(function (er) { diaEst[sk] = { cls: 'err', txt: 'No se guardó: ' + (er && er.message ? er.message : er) }; repinta(); });
   });
@@ -2597,7 +2625,12 @@ body{font-weight:500}
     var f0 = document.querySelector('form.diaf'), kv = null;
     if (f0) { kv = {}; ['fecha', 'actividad', 'notas', 'incidentes', 'nombre', 'clave', 'proyecto'].forEach(function (n) { if (f0.elements[n]) kv[n] = f0.elements[n].value; }); }
     render0();
-    var f1 = kv && document.querySelector('form.diaf'); if (f1) Object.keys(kv).forEach(function (n) { if (f1.elements[n]) f1.elements[n].value = kv[n]; });
+    var f1 = kv && document.querySelector('form.diaf');
+    if (f1 && f0 && f1.getAttribute('data-dia-id') === f0.getAttribute('data-dia-id') && f1.getAttribute('data-dia-form') === f0.getAttribute('data-dia-form')) {
+      var e0 = f0.querySelector('.est'), e1 = f1.querySelector('.est'), b0 = f0.querySelector('button[type=submit]'), b1 = f1.querySelector('button[type=submit]');
+      if (e0 && e1) { e0.className = e1.className; e0.textContent = e1.textContent; } if (b0 && b1) { b0.disabled = b1.disabled; b0.textContent = b1.textContent; }
+      f1.parentNode.replaceChild(f0, f1);              // conserva el formulario tal cual (texto y fotos elegidas) al refrescar
+    } else if (f1) Object.keys(kv).forEach(function (n) { if (f1.elements[n]) f1.elements[n].value = kv[n]; });
   }
   function render0() {
     if (!datos) return;
