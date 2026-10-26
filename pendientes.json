@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "26/10/2026 15:26",
+ "generado": "2026-10-26T15:32:09-05:00",
  "corte": "2026-10-26",
  "nota": "Copia de la pestaña «Pendientes» de la hoja de control (abiertos al 26/10/2026 15:26). No es en vivo; el tablero lee la hoja en vivo.",
  "personas": [
@@ -537,7 +537,7 @@
    "proyecto": "PVE",
    "codigo": "PVE-ACT05",
    "tarea": "Pasar datos para los oficios de Mediación (cuándo, hora, duración) para elaborarlos a la brevedad",
-   "falta": "datos para oficio (formato DOC-LOG-CHARLAS: institución, titular, talleres, fecha y hora por escuela, duración)",
+   "falta": "datos para oficio (formato DOC-LOG-CHARLAS: institución, titular, talleres, fecha y hora por escuela, duración). 26/10 15:24: oficio general de Mediación ya entregado y recibido 23/10/2026 (ver fila 69); falta confirmar con el Doc si se requieren oficios adicionales con hora/duración.",
    "vence": "2026-10-30",
    "vencida": false,
    "dias": 4,
@@ -563,13 +563,13 @@
    "proyecto": "PVE",
    "codigo": "PVE-ACT05",
    "tarea": "Pláticas con Mediación del Estado: 2 por escuela (República de México/San Marcos 2, Eutimio Martínez Lara/Luis Echeverría, Luis Torres Vázquez/Estudiantil), tentativas 1a semana de noviembre, ~1 h. Oficio entregado. Afecta Prev. violencia escolar/niños mediadores",
-   "falta": "logística por confirmar: lugares, fechas, horario, temas y quién imparte (regla del Doc, DOC-LOG-CHARLAS «NOTA DE STATUS 25/10/26»). Al confirmarse → Completado y pasa a «Cotejar carga de evidencias» (fotos, registros de asistencia, etc.). 26/10 (WA Isaac 14:52): CONFIRMADO Prim. Luis Torres Vázquez (PVE-P2): jue 05/11 1.º y 2.º, cuento «La Paloma de la Paz y las Palabras Mágicas»; vie 06/11 3.º a 6.º, plática «Tus Palabras, tu Super Poder»; imparte Dirección de Mediación. Faltan hora y duración. Según Isaac con esto se cumple la meta de niños mediadores (Doc 15:09 / Isaac 15:10). Faltan fechas de República de México y Eutimio Martínez Lara. Nota del Doc: cuidar conformación de niños por escuela, constancias/estímulo (gorra/playera) y dinámica final de caso de mediación como evidencia.",
+   "falta": "logística por confirmar: lugares, fechas, horario, temas y quién imparte (regla del Doc, DOC-LOG-CHARLAS «NOTA DE STATUS 25/10/26»). Al confirmarse → Completado y pasa a «Cotejar carga de evidencias» (fotos, registros de asistencia, etc.). OFICIO ENTREGADO Y RECIBIDO 23/10/2026 12:36 (sello «Recibido»): oficio de Jesús Benjamín Avalos Bustos (Coord. de Enlace Ciudadano) a Mtro. Jorge Luis Reas Gámez, atn. Lic. Ana Karin Barrientos Lumbreras (Dir. de Capacitación en Mediación del Estado), cubre Eutimio Martínez Lara, Luis Torres Vázquez y República de México; evidencia en Drive (Liga). 26/10 (WA Isaac 14:52): CONFIRMADO Prim. Luis Torres Vázquez (PVE-P2): jue 05/11 1.º y 2.º, cuento «La Paloma de la Paz y las Palabras Mágicas»; vie 06/11 3.º a 6.º, plática «Tus Palabras, tu Super Poder»; imparte Dirección de Mediación. Faltan hora y duración. Según Isaac con esto se cumple la meta de niños mediadores (Doc 15:09 / Isaac 15:10). Faltan fechas de República de México y Eutimio Martínez Lara. Nota del Doc: cuidar conformación de niños por escuela, constancias/estímulo (gorra/playera) y dinámica final de caso de mediación como evidencia.",
    "vence": "2026-11-10",
    "vencida": false,
    "dias": 15,
-   "liga": "https://docs.google.com/document/d/1IAz_zsXmutPQcOMEHIT65UK9Roiwmg_iLvrzM2hKohc/edit",
-   "fuente": "DOC-LOG-CHARLAS status 25/10/26; WA grupo 22-oct; alta 25/10 Paul Ulises Del Ángel Franco (con Fortasec); act. 26/10 WA grupo FORTASEC Tam 14:52–15:16 (Isaac/Doc), Paul Ulises Del Ángel Franco (con Fortasec)",
-   "estado": "En proceso (Luis Torres confirmado 05–06/11; faltan hora y duración)"
+   "liga": "https://drive.google.com/file/d/1eQjAp6aKmylwAEJgDfJ1HrlPtOALRe7Z/view",
+   "fuente": "DOC-LOG-CHARLAS status 25/10/26; WA grupo 22-oct; alta 25/10 Paul Ulises Del Ángel Franco (con Fortasec); act. 26/10 WA grupo FORTASEC Tam 14:52–15:16 (Isaac/Doc), Paul Ulises Del Ángel Franco (con Fortasec); act. 26/10 foto oficio recibido WA FORTASEC Tam 15:24 (Isaac: «El de mediación ya quedó cubierto»), Paul Ulises Del Ángel Franco (con Fortasec)",
+   "estado": "En proceso (oficio recibido 23/10; Luis Torres confirmado 05–06/11; faltan hora y duración)"
   },
   {
    "persona": "Isaac De León",
