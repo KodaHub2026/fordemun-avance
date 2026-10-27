@@ -1,8 +1,8 @@
 {
  "version": 1,
- "generado": "2026-10-26T15:32:09-05:00",
- "corte": "2026-10-26",
- "nota": "Copia de la pestaña «Pendientes» de la hoja de control (abiertos al 26/10/2026 15:26). No es en vivo; el tablero lee la hoja en vivo.",
+ "generado": "2026-10-27T15:05:15-05:00",
+ "corte": "2026-10-27",
+ "nota": "Copia de la pestaña «Pendientes» de la hoja de control (abiertos al 27/10/2026 15:10). No es en vivo; el tablero lee la hoja en vivo.",
  "personas": [
   "Doc José Juan",
   "Paul",
@@ -20,7 +20,7 @@
    "falta": "OCR/análisis",
    "vence": "2026-10-13",
    "vencida": true,
-   "dias": -13,
+   "dias": -14,
    "liga": "https://docs.google.com/spreadsheets/d/1ArG_-sUFlO7FluUHCl1XM-qH2nyn8kWamu0gDvJGAA8/edit",
    "fuente": "DM Doc 12/10",
    "estado": "Pendiente"
@@ -33,7 +33,7 @@
    "falta": "instrumento. 19/10 (WA): volante v3 ya impreso por Isaac; falta incentivo, guía de sesión y roles (el Doc está definiendo roles)",
    "vence": "2026-10-21",
    "vencida": true,
-   "dias": -5,
+   "dias": -6,
    "liga": "https://drive.google.com/drive/folders/1aS31Gj1pW067nw_Ba1z9xIYA8Z9Gpx0d",
    "fuente": "Logística de los diagnósticos (Doc 17/10); WA 19/10",
    "estado": "Pendiente"
@@ -46,7 +46,7 @@
    "falta": "guion. Base: borrador «Línea de diálogo» del 19/10",
    "vence": "2026-10-25",
    "vencida": true,
-   "dias": -1,
+   "dias": -2,
    "liga": "https://drive.google.com/file/d/1lCicw6jJgnt6p-GgrK5NC4hanwPRCmzZ/view",
    "fuente": "Minuta 19-10 (v1)",
    "estado": "Pendiente"
@@ -59,7 +59,7 @@
    "falta": "reporte. 19/10 (minuta): entrega la semana del 26 al 30/10, una vez que el equipo suba la información de campo",
    "vence": "2026-10-30",
    "vencida": false,
-   "dias": 4,
+   "dias": 3,
    "liga": "https://kodahub2026.github.io/fordemun-avance/",
    "fuente": "Minuta 18-10. Minuta 19-10 (v1)",
    "estado": "Pendiente"
@@ -72,7 +72,7 @@
    "falta": "planeación",
    "vence": "2026-11-30",
    "vencida": false,
-   "dias": 35,
+   "dias": 34,
    "liga": "https://kodahub2026.github.io/fordemun-avance/?tab=B-PVJ",
    "fuente": "Grupo 06/10 (Doc: proyecciones de talleres)",
    "estado": "Pendiente"
@@ -85,7 +85,7 @@
    "falta": "planeación + campo. 19/10: Anexos 4 y 5 listos en Materiales a imprimir › 2026-10-20 Mar; Jesús Anselmo se coordinará con el área de mediación del estado (WA 19/10); 1er taller 26/10 en Cal A-PVE",
    "vence": "2026-12-31",
    "vencida": false,
-   "dias": 66,
+   "dias": 65,
    "liga": "https://kodahub2026.github.io/fordemun-avance/?tab=A-PVE",
    "fuente": "Checklist GUIA A; WA 19/10; Bitácora 19/10 22:12",
    "estado": "Pendiente"
@@ -241,7 +241,7 @@
    "falta": "reunión",
    "vence": "2026-10-24",
    "vencida": true,
-   "dias": -2,
+   "dias": -3,
    "liga": "https://kodahub2026.github.io/fordemun-avance/?tab=calendario&cv=mes",
    "fuente": "Propuesta de calendario dinámico; grupo 15/10",
    "estado": "Pendiente"
@@ -254,23 +254,10 @@
    "falta": "base de datos",
    "vence": "2026-10-30",
    "vencida": false,
-   "dias": 4,
+   "dias": 3,
    "liga": "https://docs.google.com/spreadsheets/d/1dCgkxrGTKrn_CSrikNtV5a3Hr0Wao9CrcdbczbKl2V0/edit",
    "fuente": "Minuta 18-10",
    "estado": "En revisión (Paul)"
-  },
-  {
-   "persona": "Paul",
-   "proyecto": "PVE",
-   "codigo": "PVE-ACT05",
-   "tarea": "Registrar en la matriz de seguimiento la confirmación de Mediación en Prim. Luis Torres Vázquez (05/11 1.º-2.º cuento; 06/11 3.º-6.º plática); completar hora y duración cuando lleguen",
-   "falta": "matriz. Registrado 26/10 en Pendientes fila 69; faltan hora y duración (Isaac)",
-   "vence": "2026-11-06",
-   "vencida": false,
-   "dias": 11,
-   "liga": "https://kodahub2026.github.io/fordemun-avance/?tab=A-PVE",
-   "fuente": "WA grupo FORTASEC Tam 26-oct 15:16 (Doc a Paul); alta 26/10 Paul Ulises Del Ángel Franco (con Fortasec)",
-   "estado": "En proceso"
   },
   {
    "persona": "Paul",
@@ -306,7 +293,7 @@
    "falta": "evidencia",
    "vence": "2026-09-30",
    "vencida": true,
-   "dias": -26,
+   "dias": -27,
    "liga": "https://drive.google.com/drive/folders/1h9TVyO7GEeslm-IZlG2amhodpq1TIUDB",
    "fuente": "Bitácora 30/09; reasignado a PVG 17-10 (Paul)",
    "estado": "Pendiente"
@@ -319,7 +306,7 @@
    "falta": "Ya hay entradas del 1 y 2/10 en su diario en Drive (editado 19/10 ~20:48). 19/10 (WA): no ha respondido si lo completa; faltan sus demás actividades. 19/10 (minuta): ambos integrantes registran cada actividad en su diario aunque hayan estado en el mismo lugar; subir al concluir cada actividad",
    "vence": "2026-10-20",
    "vencida": true,
-   "dias": -6,
+   "dias": -7,
    "liga": "https://drive.google.com/drive/folders/1STlHagd9GLvxuS6iw5W4oJT1-qThkYfZ",
    "fuente": "Minuta 15-09 ac. 8; recordatorio 18/10 (plazo 20/10); Drive 19/10. Minuta 19-10 (v1)",
    "estado": "En proceso"
@@ -332,7 +319,7 @@
    "falta": "evidencia + reporte. Fotos interior ya están (14/10); descripción P2 y P1M del 2/10 ya en el diario de Jesús (Bitácora 19/10 20:52). Falta formato Anexo 2 llenado y recorrido exterior. 19/10 (minuta): el recorrido exterior por las primarias se hace el mié 21/10 con equipo de campo, Isaac y Omar (sirve también para diagnósticos complementarios). contacto Omar Alejandro (enlace Ayuntamiento) +52 834 427 2577 (WA Isaac 20-oct 9:52) 21/10 (WA Isaac 15:22): recorrido exterior de las primarias y 5-6 cuadras (luminarias, bacheo, asfalto, guarniciones, banquetas) adelantado y en campo hoy en Estudiantil y Luis Echeverría; San Marcos 2 queda para el jue 22/10.",
    "vence": "2026-10-21",
    "vencida": true,
-   "dias": -5,
+   "dias": -6,
    "liga": "https://drive.google.com/drive/folders/1HH2jtEv7sxBLZ5TiKLiax2LhucEMzXPb",
    "fuente": "Bitácora 03/10 (Isaac); Bitácora 19/10 20:52. Minuta 19-10 (v1)",
    "estado": "En proceso (campo 21/10)"
@@ -345,7 +332,7 @@
    "falta": "trabajo de campo + evidencia. 19/10 (WA): Isaac ya imprimió los volantes; falta colocarlos y subir foto de cada colocación. 19/10 (minuta): entregar 10 volantes por colonia en la misma visita de contextualización, mar 20 o mié 21/10 (con Tulio)",
    "vence": "2026-10-21",
    "vencida": true,
-   "dias": -5,
+   "dias": -6,
    "liga": "https://drive.google.com/drive/folders/1aS31Gj1pW067nw_Ba1z9xIYA8Z9Gpx0d",
    "fuente": "Propuesta de calendario dinámico; WA 19/10. Minuta 19-10 (v1); Auditoría 21/10: asignada a Jesús y Tulio",
    "estado": "Pendiente"
@@ -358,21 +345,8 @@
    "falta": "aplicación en campo / evidencias. 19/10 (minuta): mar 20 o mié 21/10 según confirmen los enlaces; antes estaba a nombre de Isaac 21/10 (WA Isaac 15:22): contextualización y línea base PVJ-LJ a los enlaces en curso hoy en Estudiantil (Erika Yazmin Rangel) y Luis Echeverría (Marcela Mtz de la Cruz); San Marcos 2 (María Verdines) el jue 22/10.",
    "vence": "2026-10-21",
    "vencida": true,
-   "dias": -5,
+   "dias": -6,
    "liga": "https://drive.google.com/file/d/1G_KeLW2NbxYcIofWW-dZcZRBvzKS-smY/view",
-   "fuente": "Minuta 18-10. Minuta 19-10 (v1)",
-   "estado": "En proceso (campo 21/10)"
-  },
-  {
-   "persona": "Lic. Jesús (Anselmo) Peña",
-   "proyecto": "PVG",
-   "codigo": "PVG-ACT05",
-   "tarea": "Marcha Exploratoria de Seguridad PVG el viernes 23/10 con el instrumento PVG-MES (responsable por confirmar)",
-   "falta": "trabajo de campo + evidencia. 19/10 (minuta): responsable equipo de campo (con Isaac y Omar); vie 23/10 21/10 (WA Isaac 15:22): marchas exploratorias exteriores adelantadas al 21/10 en Estudiantil y Luis Echeverría (en campo hoy); San Marcos 2 pasa al jue 22/10 (por confirmar).",
-   "vence": "2026-10-22",
-   "vencida": true,
-   "dias": -4,
-   "liga": "https://docs.google.com/document/d/10T9Hb55nO1qOEM6CyY5EG0iPBajq29zLlcUpD_hET3w/edit",
    "fuente": "Minuta 18-10. Minuta 19-10 (v1)",
    "estado": "En proceso (campo 21/10)"
   },
@@ -381,10 +355,10 @@
    "proyecto": "PVG",
    "codigo": "PVG-ACT03 / PVE-ACT04",
    "tarea": "Subir documentos escaneados, fotos del grupo focal (PVG CL y CE) y fotos de la marcha exploratoria afuera de las primarias Eutimio y Luis Torres",
-   "falta": "evidencia (escaneos + fotos). Audios en PVG-CL https://drive.google.com/drive/folders/14cGPwnj5VQx1KDcIEGltnsVsBHJvMM6Z y PVG-CE https://drive.google.com/drive/folders/1Xrn6uu7Y4jEyV2ZmwvbUb3n_mxyR58da",
+   "falta": "evidencia (escaneos + fotos). Audios en PVG-CL https://drive.google.com/drive/folders/14cGPwnj5VQx1KDcIEGltnsVsBHJvMM6Z y PVG-CE https://drive.google.com/drive/folders/1Xrn6uu7Y4jEyV2ZmwvbUb3n_mxyR58da. 26/10: ya subió escaneos de listas y consentimientos (CL y CE) y PDFs de marcha exploratoria PVG; faltan fotos del grupo focal y fotos de la marcha exploratoria afuera de las primarias Eutimio y Luis Torres.",
    "vence": "2026-10-22",
    "vencida": true,
-   "dias": -4,
+   "dias": -5,
    "liga": "https://drive.google.com/drive/folders/14cGPwnj5VQx1KDcIEGltnsVsBHJvMM6Z",
    "fuente": "WA grupo FORTASEC Tam 21-oct 21:07–21:08 (Jesús: mañana al mediodía)",
    "estado": "Pendiente"
@@ -397,7 +371,7 @@
    "falta": "trabajo de campo + evidencia",
    "vence": "2026-09-30",
    "vencida": true,
-   "dias": -26,
+   "dias": -27,
    "liga": "https://drive.google.com/drive/folders/1WfCZnFojsW7o2MztBlVzkX8wO7vEaKgZ",
    "fuente": "Checklist GUIA A; Auditoría 21/10: asignada a Jesús y Tulio",
    "estado": "Pendiente"
@@ -407,12 +381,12 @@
    "proyecto": "PVG",
    "codigo": "PVG-ACT02/03/04",
    "tarea": "Aplicar cuestionarios, grupos focales y entrevistas en las localidades PVG",
-   "falta": "trabajo de campo. 21/10 (WA Jesús 21:05): grupos focales PVG realizados en Col. Echeverría (PVG-CL) y Col. Estudiantil (PVG-CE); faltan cuestionarios y entrevistas",
+   "falta": "trabajo de campo. 21/10 (WA Jesús 21:05): grupos focales PVG realizados en Col. Echeverría (PVG-CL) y Col. Estudiantil (PVG-CE); faltan cuestionarios y entrevistas. 25/10: Jesús subió audios PVG-CL, PVG-CE y San Marcos 2; 26/10: transcripciones automáticas (borrador) subidas junto a cada audio. 26/10 (~17:35, Drive): Jesús subió las listas de asistencia y consentimientos de Echeverría (PVG-CL › Grupos focales) y Estudiantil (raíz de PVG-CE), ya renombradas con código; la copia de Estudiantil en «colonia san marcos 2» es duplicado (mismo tamaño). Falta la lista de San Marcos 2. 26/10 (noche): transcripciones reemplazadas por versión con etiquetas de hablante (CE 7 voces, CL 4, San Marcos 2 6; Fem/Masc por tono). 26/10 19:29 Doc: ideal identificar quién es persona 1/2; si no, así funciona.",
    "vence": "2026-09-30",
    "vencida": true,
-   "dias": -26,
+   "dias": -27,
    "liga": "https://kodahub2026.github.io/fordemun-avance/?tab=C-PVG",
-   "fuente": "Checklist GUIA C; Auditoría 21/10: grupo focal de género en curso 21/10 (WA Isaac 15:22)",
+   "fuente": "Checklist GUIA C; Auditoría 21/10: grupo focal de género en curso 21/10 (WA Isaac 15:22); act. 27/10 Paul Ulises Del Ángel Franco (con Fortasec)",
    "estado": "En proceso (campo 21/10)"
   },
   {
@@ -423,7 +397,7 @@
    "falta": "evidencia",
    "vence": "2026-10-07",
    "vencida": true,
-   "dias": -19,
+   "dias": -20,
    "liga": "https://drive.google.com/drive/folders/1U2YyRhrWY6dpVjL2oqA1Pqm2wpV0XChG",
    "fuente": "Bitácora 06/10",
    "estado": "Pendiente"
@@ -436,7 +410,7 @@
    "falta": "evidencia",
    "vence": "2026-10-08",
    "vencida": true,
-   "dias": -18,
+   "dias": -19,
    "liga": "https://drive.google.com/drive/folders/1wPstUuMGYFr5MT6Rg3cWNyZJkB1QX0zx",
    "fuente": "Bitácora 06/10",
    "estado": "Pendiente"
@@ -449,7 +423,7 @@
    "falta": "19/10 (WA): dijo que lo va a subir; revisado en Drive 19/10 ~22:45: su diario sigue vacío. 19/10 (minuta): ambos integrantes registran cada actividad en su diario aunque hayan estado en el mismo lugar; subir al concluir cada actividad",
    "vence": "2026-10-20",
    "vencida": true,
-   "dias": -6,
+   "dias": -7,
    "liga": "https://drive.google.com/drive/folders/1STlHagd9GLvxuS6iw5W4oJT1-qThkYfZ",
    "fuente": "Minuta 15-09 ac. 8; recordatorio 18/10 (plazo 20/10); WA 19/10. Minuta 19-10 (v1)",
    "estado": "Pendiente"
@@ -462,7 +436,7 @@
    "falta": "trabajo de campo + evidencia. 19/10 (minuta): grupo focal de jóvenes jue 22/10 por confirmar; meta 25 jóvenes 21/10 (WA Isaac 15:22): diagnóstico/grupo focal de jóvenes en curso hoy en Estudiantil y Luis Echeverría (en paralelo con el de género, con listas de asistencia); San Marcos 2 sigue el jue 22/10.",
    "vence": "2026-10-22",
    "vencida": true,
-   "dias": -4,
+   "dias": -5,
    "liga": "https://drive.google.com/drive/folders/1aS31Gj1pW067nw_Ba1z9xIYA8Z9Gpx0d",
    "fuente": "Propuesta de calendario dinámico. Minuta 19-10 (v1)",
    "estado": "Pendiente (no se juntó el grupo 21/10; Isaac decide 22/10, fila 66)"
@@ -475,7 +449,7 @@
    "falta": "decisión. 21/10: PVG-CL (Echeverría) y PVG-CE (Estudiantil) creadas por decisión de Paul; falta confirmar si hay más localidades PVG (p. ej. San Marcos 2)",
    "vence": "2026-09-30",
    "vencida": true,
-   "dias": -26,
+   "dias": -27,
    "liga": "https://kodahub2026.github.io/fordemun-avance/?tab=C-PVG",
    "fuente": "C-PVG notas",
    "estado": "En proceso"
@@ -488,7 +462,7 @@
    "falta": "compra",
    "vence": "2026-10-20",
    "vencida": true,
-   "dias": -6,
+   "dias": -7,
    "liga": "https://drive.google.com/file/d/1E8ytqIC7E__i4j3bU2xQup-s08AP4CTa/view",
    "fuente": "Minuta 19-10 (v1)",
    "estado": "Pendiente"
@@ -501,7 +475,7 @@
    "falta": "logística",
    "vence": "2026-10-22",
    "vencida": true,
-   "dias": -4,
+   "dias": -5,
    "liga": "https://drive.google.com/drive/folders/1aS31Gj1pW067nw_Ba1z9xIYA8Z9Gpx0d",
    "fuente": "Logística de los diagnósticos (Doc 17/10); Auditoría 21/10: Hecho CE/CL (en campo 21/10); falta San Marcos 2 jue 22/10",
    "estado": "En proceso"
@@ -514,7 +488,7 @@
    "falta": "decisión + reprogramación",
    "vence": "2026-10-22",
    "vencida": true,
-   "dias": -4,
+   "dias": -5,
    "liga": "https://drive.google.com/drive/folders/1aS31Gj1pW067nw_Ba1z9xIYA8Z9Gpx0d",
    "fuente": "WA grupo FORTASEC Tam 21-oct 21:05 (Jesús) y 21:07 (Doc: «eso ya lo va a ver Isaac mañana»)",
    "estado": "Pendiente"
@@ -527,22 +501,9 @@
    "falta": "gestión",
    "vence": "2026-10-23",
    "vencida": true,
-   "dias": -3,
+   "dias": -4,
    "liga": "https://kodahub2026.github.io/fordemun-avance/?tab=A-PVE",
    "fuente": "WA Doc 21-oct (grupo 15:51–15:58; DM 16:39)",
-   "estado": "Pendiente"
-  },
-  {
-   "persona": "Isaac De León",
-   "proyecto": "PVE",
-   "codigo": "PVE-ACT05",
-   "tarea": "Pasar datos para los oficios de Mediación (cuándo, hora, duración) para elaborarlos a la brevedad",
-   "falta": "datos para oficio (formato DOC-LOG-CHARLAS: institución, titular, talleres, fecha y hora por escuela, duración). 26/10 15:24: oficio general de Mediación ya entregado y recibido 23/10/2026 (ver fila 69); falta confirmar con el Doc si se requieren oficios adicionales con hora/duración.",
-   "vence": "2026-10-30",
-   "vencida": false,
-   "dias": 4,
-   "liga": "https://docs.google.com/document/d/1IAz_zsXmutPQcOMEHIT65UK9Roiwmg_iLvrzM2hKohc/edit",
-   "fuente": "WA grupo FORTASEC Tam 26-oct 15:16 (Doc); alta 26/10 Paul Ulises Del Ángel Franco (con Fortasec)",
    "estado": "Pendiente"
   },
   {
@@ -553,23 +514,10 @@
    "falta": "gestión con instituciones. Oficios modelo listos en Ejecución › OFICIOS; temas por público en DOC-LOG-CHARLAS (visto bueno de Isaac)",
    "vence": "2026-11-10",
    "vencida": false,
-   "dias": 15,
+   "dias": 14,
    "liga": "https://drive.google.com/drive/folders/1Plrq9EoWyLQqghPp1mFlA310N1CLdo7_",
    "fuente": "WA grupo FORTASEC Tam 21-oct 21:00–21:02 (Doc: límite 10/11); DM Doc 21-oct 20:47–20:52",
    "estado": "Pendiente"
-  },
-  {
-   "persona": "Isaac De León",
-   "proyecto": "PVE",
-   "codigo": "PVE-ACT05",
-   "tarea": "Pláticas con Mediación del Estado: 2 por escuela (República de México/San Marcos 2, Eutimio Martínez Lara/Luis Echeverría, Luis Torres Vázquez/Estudiantil), tentativas 1a semana de noviembre, ~1 h. Oficio entregado. Afecta Prev. violencia escolar/niños mediadores",
-   "falta": "logística por confirmar: lugares, fechas, horario, temas y quién imparte (regla del Doc, DOC-LOG-CHARLAS «NOTA DE STATUS 25/10/26»). Al confirmarse → Completado y pasa a «Cotejar carga de evidencias» (fotos, registros de asistencia, etc.). OFICIO ENTREGADO Y RECIBIDO 23/10/2026 12:36 (sello «Recibido»): oficio de Jesús Benjamín Avalos Bustos (Coord. de Enlace Ciudadano) a Mtro. Jorge Luis Reas Gámez, atn. Lic. Ana Karin Barrientos Lumbreras (Dir. de Capacitación en Mediación del Estado), cubre Eutimio Martínez Lara, Luis Torres Vázquez y República de México; evidencia en Drive (Liga). 26/10 (WA Isaac 14:52): CONFIRMADO Prim. Luis Torres Vázquez (PVE-P2): jue 05/11 1.º y 2.º, cuento «La Paloma de la Paz y las Palabras Mágicas»; vie 06/11 3.º a 6.º, plática «Tus Palabras, tu Super Poder»; imparte Dirección de Mediación. Faltan hora y duración. Según Isaac con esto se cumple la meta de niños mediadores (Doc 15:09 / Isaac 15:10). Faltan fechas de República de México y Eutimio Martínez Lara. Nota del Doc: cuidar conformación de niños por escuela, constancias/estímulo (gorra/playera) y dinámica final de caso de mediación como evidencia.",
-   "vence": "2026-11-10",
-   "vencida": false,
-   "dias": 15,
-   "liga": "https://drive.google.com/file/d/1eQjAp6aKmylwAEJgDfJ1HrlPtOALRe7Z/view",
-   "fuente": "DOC-LOG-CHARLAS status 25/10/26; WA grupo 22-oct; alta 25/10 Paul Ulises Del Ángel Franco (con Fortasec); act. 26/10 WA grupo FORTASEC Tam 14:52–15:16 (Isaac/Doc), Paul Ulises Del Ángel Franco (con Fortasec); act. 26/10 foto oficio recibido WA FORTASEC Tam 15:24 (Isaac: «El de mediación ya quedó cubierto»), Paul Ulises Del Ángel Franco (con Fortasec)",
-   "estado": "En proceso (oficio recibido 23/10; Luis Torres confirmado 05–06/11; faltan hora y duración)"
   },
   {
    "persona": "Isaac De León",
@@ -579,7 +527,7 @@
    "falta": "ubicar proyecto de cada una + lugares, fechas, horario, temas y quién imparte. Al confirmarse → Completado y pasa a «Cotejar carga de evidencias». Según DOC-LOG-CHARLAS 25/10: SIPINNA + SSP (delitos cibernéticos) → PVE-ACT16 talleres y actividades lúdicas (fila nueva); Instituto de la Mujer → PVG-ACT07 sensibilización (fila nueva); Fiscalía sin proyecto asignado. 26/10 (WA Isaac 14:54): SIPINNA fuera de tiempo, posiblemente hasta diciembre; el Doc busca «bateador emergente» (otra institución).",
    "vence": "2026-11-10",
    "vencida": false,
-   "dias": 15,
+   "dias": 14,
    "liga": "https://docs.google.com/document/d/1IAz_zsXmutPQcOMEHIT65UK9Roiwmg_iLvrzM2hKohc/edit",
    "fuente": "WA grupo 23-oct (Isaac 15:46/16:15); DOC-LOG-CHARLAS; alta 25/10 Paul Ulises Del Ángel Franco (con Fortasec); act. 26/10 WA grupo 14:54–14:56",
    "estado": "Pendiente (SIPINNA posible dic.; buscando alternativa)"
@@ -589,13 +537,13 @@
    "proyecto": "PVE",
    "codigo": "PVE-ACT16",
    "tarea": "SIPINNA + Seguridad Pública (delitos cibernéticos): 2 pláticas para Prev. violencia escolar/talleres y actividades lúdicas. Tema sugerido por el Doc (uno): 1) sensibilización sobre violencia entre pares; 2) resiliencia y habilidades asertivas",
-   "falta": "status pending hasta confirmar logística (lugares, fechas, horario, temas, quién imparte). 26/10: SIPINNA posiblemente hasta diciembre; el Doc busca alternativa",
+   "falta": "status pending hasta confirmar logística (lugares, fechas, horario, temas, quién imparte). 26/10: SIPINNA posiblemente hasta diciembre; el Doc busca alternativa. 27/10 12:31: Isaac tiene fechas tentativas de SIPINNA; las cruza con las primarias. 27/10 ~15:00: formato de solicitud con membrete enviado al grupo (Bitácora 27/10).",
    "vence": "2026-11-10",
    "vencida": false,
-   "dias": 15,
+   "dias": 14,
    "liga": "https://docs.google.com/document/d/1IAz_zsXmutPQcOMEHIT65UK9Roiwmg_iLvrzM2hKohc/edit",
-   "fuente": "DOC-LOG-CHARLAS NOTA DE STATUS 25/10/26 punto 2.1; WA 26-oct 14:54; código propuesto (no está en el libro); alta 26/10 Paul Ulises Del Ángel Franco (con Fortasec)",
-   "estado": "Pendiente (logística por confirmar)"
+   "fuente": "DOC-LOG-CHARLAS NOTA DE STATUS 25/10/26 punto 2.1; WA 26-oct 14:54; código propuesto (no está en el libro); alta 26/10 Paul Ulises Del Ángel Franco (con Fortasec); act. 27/10 Paul Ulises Del Ángel Franco (con Fortasec)",
+   "estado": "Pendiente (fechas tentativas; Isaac las cruza con primarias)"
   },
   {
    "persona": "Isaac De León",
@@ -605,7 +553,7 @@
    "falta": "status pending hasta confirmar logística (lugares, fechas, horario, temas, quién imparte)",
    "vence": "2026-11-10",
    "vencida": false,
-   "dias": 15,
+   "dias": 14,
    "liga": "https://docs.google.com/document/d/1IAz_zsXmutPQcOMEHIT65UK9Roiwmg_iLvrzM2hKohc/edit",
    "fuente": "DOC-LOG-CHARLAS 25/10/26 punto 2.2; código propuesto; alta 26/10 Paul Ulises Del Ángel Franco (con Fortasec)",
    "estado": "Pendiente (logística por confirmar)"
@@ -618,7 +566,7 @@
    "falta": "planeación",
    "vence": "2026-11-14",
    "vencida": false,
-   "dias": 19,
+   "dias": 18,
    "liga": "https://kodahub2026.github.io/fordemun-avance/?tab=A-PVE",
    "fuente": "Checklist OBS",
    "estado": "Pendiente"
@@ -631,7 +579,7 @@
    "falta": "planeación",
    "vence": "2026-11-14",
    "vencida": false,
-   "dias": 19,
+   "dias": 18,
    "liga": "https://kodahub2026.github.io/fordemun-avance/?tab=C-PVG",
    "fuente": "Checklist OBS BS",
    "estado": "Pendiente"
@@ -752,6 +700,19 @@
    "liga": "https://docs.google.com/document/d/1IAz_zsXmutPQcOMEHIT65UK9Roiwmg_iLvrzM2hKohc/edit",
    "fuente": "DOC-LOG-CHARLAS 25/10/26 punto 4; alta 26/10 Paul Ulises Del Ángel Franco (con Fortasec)",
    "estado": "Pendiente (logística por confirmar)"
+  },
+  {
+   "persona": "Isaac De León",
+   "proyecto": "PVE",
+   "codigo": "PVE-ACT16",
+   "tarea": "Pasar fechas de las pláticas de SIPINNA por primaria (tentativas; cruzarlas con las escuelas) y tramitar con el formato de solicitud de apoyo por escuela",
+   "falta": "fechas + solicitud por escuela",
+   "vence": "",
+   "vencida": false,
+   "dias": null,
+   "liga": "https://drive.google.com/file/d/1wtSveXsqcMpsg7GucN0xMVjBWnCNpgAd/view",
+   "fuente": "WA grupo FORTASEC Tam 27-oct 12:31 y 14:54 (Isaac); alta 27/10 Paul Ulises Del Ángel Franco (con Fortasec)",
+   "estado": "Pendiente"
   },
   {
    "persona": "Equipo de Victoria",
