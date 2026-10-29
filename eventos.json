@@ -288,6 +288,15 @@
    "p": "PVE"
   },
   {
+   "fecha": "2026-10-23",
+   "texto": "oficio de Mediación recibido (PVE-ACT05; hecho)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
+  },
+  {
    "fecha": "2026-10-24",
    "texto": "reunión seg.",
    "proyectos": [
@@ -315,6 +324,15 @@
     "C-PVG"
    ],
    "fuente": "Minuta 18-oct v2"
+  },
+  {
+   "fecha": "2026-10-29",
+   "texto": "formatos SIPINNA enviados a Isaac, «Ok» (PVE-ACT16; hecho)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
   },
   {
    "fecha": "2026-10-30",
@@ -349,6 +367,69 @@
    "tipo": "sep"
   },
   {
+   "fecha": "2026-11-04",
+   "texto": "charla SIPINNA en P1M, 9:00–12:00 (PVE-ACT16; programada)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-11-05",
+   "texto": "charla Mediación en P2, 9:30–12:00 (PVE-ACT05; programada)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-11-06",
+   "texto": "charla Mediación en P2, 9:30–12:00 (PVE-ACT05; programada; choca con SIPINNA P4)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-11-06",
+   "texto": "charla SIPINNA en P4, 9:00–12:00 (PVE-ACT16; programada; choca con Mediación P2)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-11-09",
+   "texto": "charla Mediación en P1M, 9:30–12:00 (PVE-ACT05; programada)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-11-10",
+   "texto": "charla Mediación en P1M, 9:30–12:00 (PVE-ACT05; programada)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-11-11",
+   "texto": "charla SIPINNA en P2, 9:00–12:00 (PVE-ACT16; programada)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
+  },
+  {
    "fecha": "2026-11-16",
    "texto": "SEP: suspensión de labores docentes (sin clases)",
    "proyectos": [
@@ -358,6 +439,24 @@
    ],
    "fuente": "SEP · Calendario Escolar 2026-2027, Educación Básica · https://calendarioescolar.sep.gob.mx/ (consultado 18/10/2026)",
    "tipo": "sep"
+  },
+  {
+   "fecha": "2026-11-18",
+   "texto": "charla Mediación en P4, 9:30–12:00 (PVE-ACT05; programada; después del límite 10–15/11)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
+  },
+  {
+   "fecha": "2026-11-19",
+   "texto": "charla Mediación en P4, 9:30–12:00 (PVE-ACT05; programada; después del límite 10–15/11)",
+   "proyectos": [
+    "A-PVE"
+   ],
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "p": "PVE"
   },
   {
    "fecha": "2026-11-27",

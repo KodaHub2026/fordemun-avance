@@ -1,14 +1,14 @@
 {
  "version": 1,
- "generado": "2026-10-21T20:12-05:00",
+ "generado": "2026-10-29T16:17-05:00",
  "regla": "pasos hechos / pasos totales por código ACT (sección 4 de Cal A/B/C); hecho = estado que empieza con Hecho o Terminado; Cancelado no cuenta.",
  "proyectos": [
   {
    "tab": "A-PVE",
    "sigla": "PVE",
-   "total": 15,
-   "hechos": 5,
-   "pct": 0.3333,
+   "total": 26,
+   "hechos": 13,
+   "pct": 0.5,
    "secuencias": [
     {
      "codigo": "PVE-ACT02",
@@ -47,8 +47,8 @@
        "fila": 41,
        "paso": "Marcha exploratoria en P4 con subdirección y docentes",
        "fecha": "01/10/2026",
-       "estado": "Programada",
-       "hecho": false
+       "estado": "Hecho (fotos MES P4 en Drive 14/10)",
+       "hecho": true
       },
       {
        "fila": 43,
@@ -68,14 +68,14 @@
        "fila": 62,
        "paso": "MES: recorrido exterior de las primarias y 5-6 cuadras (luminarias, bacheo, asfalto, guarniciones, banquetas) en CE Estudiantil y CL Luis Echeverría, con Isaac y Omar",
        "fecha": "21/10/2026",
-       "estado": "En proceso (campo 21/10)",
-       "hecho": false
+       "estado": "Hecho (recorrido 21/10; PDF MES CE y CL en Drive)",
+       "hecho": true
       }
      ],
      "nombre": "Marcha Exploratoria de Seguridad (MES)",
      "total": 4,
-     "hechos": 2,
-     "pct": 0.5
+     "hechos": 4,
+     "pct": 1.0
     },
     {
      "codigo": "PVE-ACT05",
@@ -84,22 +84,22 @@
        "fila": 52,
        "paso": "Visita a escuelas: mecánica de niños mediadores y selección de participantes",
        "fecha": "20/10/2026",
-       "estado": "Pendiente",
-       "hecho": false
+       "estado": "Hecho (Anexo 4 en Drive)",
+       "hecho": true
       },
       {
        "fila": 53,
        "paso": "Formatos de niños mediadores y carta modelo de reconocimiento",
        "fecha": "20/10/2026",
-       "estado": "Pendiente",
-       "hecho": false
+       "estado": "Hecho (pendiente fila 47)",
+       "hecho": true
       },
       {
        "fila": 56,
        "paso": "Recepción de las listas de niños mediadores",
        "fecha": "23/10/2026",
-       "estado": "Pendiente",
-       "hecho": false
+       "estado": "Hecho (Anexo 4 selección NM P1M, P2, P4 en Drive)",
+       "hecho": true
       },
       {
        "fila": 58,
@@ -112,8 +112,8 @@
        "fila": 63,
        "paso": "Reunión de Isaac con la directora de Mediación del Estado (charlas lúdicas, 2-3 pláticas; posible SIPINNA), 10:00",
        "fecha": "22/10/2026",
-       "estado": "Programada",
-       "hecho": false
+       "estado": "Hecho (oficio de Mediación recibido 23/10)",
+       "hecho": true
       },
       {
        "fila": 64,
@@ -121,12 +121,61 @@
        "fecha": "23/10/2026",
        "estado": "Pendiente",
        "hecho": false
+      },
+      {
+       "fila": 65,
+       "paso": "Oficio de Mediación del Estado recibido (charlas por escuela)",
+       "fecha": "23/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      },
+      {
+       "fila": 68,
+       "paso": "Charla Mediación en P2 Luis Torres Vázquez, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "fecha": "05/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 69,
+       "paso": "Charla Mediación en P2 Luis Torres Vázquez, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · CHOCA con SIPINNA P4 mismo día",
+       "fecha": "06/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 71,
+       "paso": "Charla Mediación en P1M Eutimio Martínez Lara, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "fecha": "09/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 72,
+       "paso": "Charla Mediación en P1M Eutimio Martínez Lara, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "fecha": "10/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 74,
+       "paso": "Charla Mediación en P4 República de México, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del límite 10–15/11",
+       "fecha": "18/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 75,
+       "paso": "Charla Mediación en P4 República de México, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del límite 10–15/11",
+       "fecha": "19/11/2026",
+       "estado": "Programada",
+       "hecho": false
       }
      ],
      "nombre": "Red de niños mediadores",
-     "total": 6,
-     "hechos": 0,
-     "pct": 0.0
+     "total": 13,
+     "hechos": 5,
+     "pct": 0.3846
     },
     {
      "codigo": "PVE-ACT14",
@@ -159,6 +208,43 @@
      "total": 1,
      "hechos": 0,
      "pct": 0.0
+    },
+    {
+     "codigo": "PVE-ACT16",
+     "pasos": [
+      {
+       "fila": 66,
+       "paso": "Formatos de solicitud SIPINNA (FORTAMUN) enviados a Isaac; respondió «Ok»",
+       "fecha": "29/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      },
+      {
+       "fila": 67,
+       "paso": "Charla SIPINNA en P1M Eutimio Martínez Lara, 9:00–12:00 (asisten Jesús Peña y Alejandro Aguilar: fotos con lonas y recabar información; organiza Isaac)",
+       "fecha": "04/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 70,
+       "paso": "Charla SIPINNA en P4 República de México, 9:00–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · CHOCA con Mediación P2 mismo día",
+       "fecha": "06/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 73,
+       "paso": "Charla SIPINNA en P2 Luis Torres Vázquez, 9:00–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "fecha": "11/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      }
+     ],
+     "nombre": "PVE-ACT16",
+     "total": 4,
+     "hechos": 1,
+     "pct": 0.25
     }
    ]
   },
