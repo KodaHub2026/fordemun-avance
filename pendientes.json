@@ -147,13 +147,13 @@
    "proyecto": "PVE",
    "codigo": "PVE-ACT04",
    "tarea": "MES: subir formatos Anexo 2 llenados (escaneo), recorrido exterior y descripción; fotos interior ya están (14/10)",
-   "falta": "evidencia + reporte. Fotos interior ya están (14/10); descripción P2 y P1M del 2/10 ya en el diario de Jesús (Bitácora 19/10 20:52). Falta formato Anexo 2 llenado y recorrido exterior. 19/10 (minuta): el recorrido exterior por las primarias se hace el mié 21/10 con equipo de campo, Isaac y Omar (sirve también para diagnósticos complementarios). contacto Omar Alejandro (enlace Ayuntamiento) +52 834 427 2577 (WA Isaac 20-oct 9:52) 21/10 (WA Isaac 15:22): recorrido exterior de las primarias y 5-6 cuadras (luminarias, bacheo, asfalto, guarniciones, banquetas) adelantado y en campo hoy en Estudiantil y Luis Echeverría; San Marcos 2 queda para el jue 22/10.",
+   "falta": "solo escaneo de Anexo 2. Fotos: P1M https://drive.google.com/drive/folders/1HH2jtEv7sxBLZ5TiKLiax2LhucEMzXPb · P2 https://drive.google.com/drive/folders/1GjW7Nh780GhNRAm_Pn93NWPJWMyON6Uw · P4 https://drive.google.com/drive/folders/1ae2IJRaif0RPGyvOEOCC6X7VVSGf60sO (subidas 14/10; recorrido 02/10).",
    "vence": "2026-10-21",
-   "vencida": true,
+   "vencida": false,
    "dias": -8,
    "liga": "https://drive.google.com/drive/folders/1HH2jtEv7sxBLZ5TiKLiax2LhucEMzXPb",
    "fuente": "Bitácora 03/10 (Isaac); Bitácora 19/10 20:52. Minuta 19-10 (v1)",
-   "estado": "En proceso (campo 21/10)"
+   "estado": "Hecho (MES terminada; queda escaneo Anexo 2)"
   },
   {
    "persona": "Lic. Jesús (Anselmo) Peña",
@@ -771,13 +771,13 @@
    "proyecto": "PVE",
    "codigo": "PVE-ACT04",
    "tarea": "Subir/pasar link de fotos de la Marcha Exploratoria de Seguridad (MES) PVE",
-   "falta": "link de fotos + Anexo 2",
+   "falta": "solo escaneo de Anexo 2. Fotos: P1M https://drive.google.com/drive/folders/1HH2jtEv7sxBLZ5TiKLiax2LhucEMzXPb · P2 https://drive.google.com/drive/folders/1GjW7Nh780GhNRAm_Pn93NWPJWMyON6Uw · P4 https://drive.google.com/drive/folders/1ae2IJRaif0RPGyvOEOCC6X7VVSGf60sO (subidas 14/10; recorrido 02/10).",
    "vence": "",
    "vencida": false,
    "dias": null,
    "liga": "",
    "fuente": "Guía final Doc 29/10; alta 29/10 Paul Ulises Del Ángel Franco (con Fortasec)",
-   "estado": "Pendiente"
+   "estado": "Hecho (MES terminada; queda escaneo Anexo 2)"
   },
   {
    "persona": "Isaac De León",
@@ -927,13 +927,13 @@
    "proyecto": "PVE",
    "codigo": "PVE-ACT04",
    "tarea": "Confirmar carpeta de fotos MES por escuela",
-   "falta": "Validar link por escuela",
+   "falta": "solo escaneo de Anexo 2. Fotos: P1M https://drive.google.com/drive/folders/1HH2jtEv7sxBLZ5TiKLiax2LhucEMzXPb · P2 https://drive.google.com/drive/folders/1GjW7Nh780GhNRAm_Pn93NWPJWMyON6Uw · P4 https://drive.google.com/drive/folders/1ae2IJRaif0RPGyvOEOCC6X7VVSGf60sO (subidas 14/10; recorrido 02/10).",
    "vence": "2026-11-02",
    "vencida": false,
    "dias": null,
    "liga": "",
    "fuente": "Grupo WA 29/10",
-   "estado": "Pendiente"
+   "estado": "Hecho (MES terminada; queda escaneo Anexo 2)"
   }
  ]
 }

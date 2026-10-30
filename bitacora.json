@@ -1,10 +1,10 @@
 {
  "version": 1,
- "generado": "11/10/2026 19:23",
+ "generado": "2026-10-30T14:05-05:00",
  "nota": "Copia estática de la pestaña «Bitácora» de la hoja de control (no es en vivo). Teléfonos y ligas de Meet omitidos en la versión pública.",
- "total": 77,
+ "total": 78,
  "desde": "2026-09-07",
- "hasta": "29/10/2026",
+ "hasta": "30/10/2026",
  "notas": [
   {
    "fecha": "11/10/2026",
@@ -1083,6 +1083,20 @@
    "uso": "Informe",
    "fila": 234,
    "iso": "2026-10-29T23:40"
+  },
+  {
+   "fecha": "30/10/2026",
+   "hora": "14:05",
+   "autor": "Paul Ulises Del Ángel Franco (con Fortasec)",
+   "proyecto": "A-PVE",
+   "sede": "P1M, P2, P4",
+   "tipo": "Seguimiento",
+   "nota": "PVE-ACT04 (MES) pasa a Terminado: recorrido interior 02/10/2026 y fotos de P1M, P2 y P4 en Drive el 14/10; falta escanear Anexo 2. Fase A 6/10 (PVE 3/4, PVJ 1/3, PVG 2/3); B 0/11; C 0/6. Presentación ejecutiva lista.",
+   "fuente": "Diario de campo Jesús + carpetas de fotos",
+   "estado": "Registrado",
+   "uso": "Informe",
+   "fila": 235,
+   "iso": "2026-10-30T14:05"
   }
  ]
 }

@@ -14,16 +14,16 @@
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "fuente": "Bitácora (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
    "fecha": "2026-10-01",
-   "texto": "marcha exploratoria en P4 (PVE-ACT04; programada)",
+   "texto": "marcha exploratoria en P4 (PVE-ACT04; realizada, recorrido interior 02/10)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "fuente": "Bitácora (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
@@ -32,16 +32,16 @@
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "fuente": "Bitácora (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
    "fecha": "2026-10-03",
-   "texto": "campo reporta MES hechas; falta subirlas (PVE-ACT04)",
+   "texto": "campo reporta MES hechas (PVE-ACT04; hecho)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "fuente": "Bitácora (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
@@ -50,7 +50,7 @@
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "fuente": "Bitácora (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
@@ -59,7 +59,7 @@
    "proyectos": [
     "B-PVJ"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "fuente": "Bitácora (Control_FORTAMUN_2026)",
    "p": "PVJ"
   },
   {
@@ -70,7 +70,7 @@
     "B-PVJ",
     "C-PVG"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)"
+   "fuente": "Bitácora (Control_FORTAMUN_2026)"
   },
   {
    "fecha": "2026-10-11",
@@ -78,7 +78,7 @@
    "proyectos": [
     "B-PVJ"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "fuente": "Bitácora (Control_FORTAMUN_2026)",
    "p": "PVJ"
   },
   {
@@ -89,7 +89,7 @@
     "B-PVJ",
     "C-PVG"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)"
+   "fuente": "Bitácora (Control_FORTAMUN_2026)"
   },
   {
    "fecha": "2026-10-14",
@@ -99,15 +99,15 @@
     "B-PVJ",
     "C-PVG"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)"
+   "fuente": "Bitácora (Control_FORTAMUN_2026)"
   },
   {
    "fecha": "2026-10-14",
-   "texto": "fotos de la MES de P1M, P2 y P4 en Drive (PVE-ACT04)",
+   "texto": "fotos de la MES de P1M, P2 y P4 en Drive (PVE-ACT04 terminada; falta escanear Anexo 2)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "Bitácora (Control_FORDEMUN_2026)",
+   "fuente": "Bitácora (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
@@ -344,6 +344,17 @@
    ],
    "fuente": "SEP · Calendario Escolar 2026-2027, Educación Básica · https://calendarioescolar.sep.gob.mx/ (consultado 18/10/2026)",
    "tipo": "sep"
+  },
+  {
+   "fecha": "2026-10-30",
+   "texto": "reunión de seguimiento 15:00 (Victoria): presentación ejecutiva A/B/C",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Bitácora (Control_FORTAMUN_2026) fila 235",
+   "p": "General"
   },
   {
    "fecha": "2026-10-31",
