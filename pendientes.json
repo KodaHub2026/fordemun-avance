@@ -843,6 +843,97 @@
    "liga": "",
    "fuente": "WA grupo FORTASEC Tam 29-oct (Doc); alta 29/10 Paul Ulises Del Ángel Franco (con Fortasec)",
    "estado": "Pendiente"
+  },
+  {
+   "persona": "Jesús Peña",
+   "proyecto": "PVE",
+   "codigo": "PVE-ACT05",
+   "tarea": "Lista de niños mediadores y permisos de padres",
+   "falta": "Avisar fechas a directores y recabar permisos",
+   "vence": "2026-11-04",
+   "vencida": false,
+   "dias": null,
+   "liga": "",
+   "fuente": "Grupo WA 29/10",
+   "estado": "Pendiente"
+  },
+  {
+   "persona": "Isaac De León",
+   "proyecto": "PVE",
+   "codigo": "PVE-ACT06",
+   "tarea": "Notificar fechas a SIPINNA",
+   "falta": "Aviso formal de fechas",
+   "vence": "2026-10-30",
+   "vencida": false,
+   "dias": null,
+   "liga": "",
+   "fuente": "Grupo WA 29/10",
+   "estado": "Pendiente"
+  },
+  {
+   "persona": "Isaac De León",
+   "proyecto": "PVJ",
+   "codigo": "PVJ-ACT10",
+   "tarea": "CECATI: evidencia de capacitación para el trabajo",
+   "falta": "Relación, convenios, fotos y becas",
+   "vence": "2026-11-10",
+   "vencida": false,
+   "dias": null,
+   "liga": "",
+   "fuente": "Grupo WA 29/10",
+   "estado": "Pendiente"
+  },
+  {
+   "persona": "Isaac De León",
+   "proyecto": "PVJ",
+   "codigo": "PVJ-ACT10",
+   "tarea": "Capacitaciones del municipio como evidencia",
+   "falta": "Información y fotos",
+   "vence": "2026-11-10",
+   "vencida": false,
+   "dias": null,
+   "liga": "",
+   "fuente": "Grupo WA 29/10",
+   "estado": "Pendiente"
+  },
+  {
+   "persona": "Isaac De León",
+   "proyecto": "PVJ",
+   "codigo": "PVJ-ACT02/ACT04",
+   "tarea": "RIESGO: sin acceso a secundarias y torneo de fútbol no realizado",
+   "falta": "Vía alterna y fecha de torneo",
+   "vence": "2026-11-10",
+   "vencida": false,
+   "dias": null,
+   "liga": "",
+   "fuente": "Grupo WA 29/10",
+   "estado": "Pendiente"
+  },
+  {
+   "persona": "Equipo",
+   "proyecto": "General",
+   "codigo": "RUTA-CRIT",
+   "tarea": "Reunión checklist 30/10 15:00–16:00",
+   "falta": "Revisar avance",
+   "vence": "2026-10-30",
+   "vencida": false,
+   "dias": null,
+   "liga": "",
+   "fuente": "Grupo WA 29/10",
+   "estado": "Pendiente"
+  },
+  {
+   "persona": "Jesús Peña",
+   "proyecto": "PVE",
+   "codigo": "PVE-ACT04",
+   "tarea": "Confirmar carpeta de fotos MES por escuela",
+   "falta": "Validar link por escuela",
+   "vence": "2026-11-02",
+   "vencida": false,
+   "dias": null,
+   "liga": "",
+   "fuente": "Grupo WA 29/10",
+   "estado": "Pendiente"
   }
  ]
 }
