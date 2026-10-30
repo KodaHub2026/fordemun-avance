@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "2026-10-29T16:50:00-05:00",
+ "generado": "2026-10-29T22:20:00-05:00",
  "corte": "2026-10-29",
  "nota": "Copia de la pestaña «Pendientes» de la hoja de control (abiertos al 29/10/2026 16:50). No es en vivo; el tablero lee la hoja en vivo.",
  "personas": [
@@ -205,7 +205,7 @@
    "dias": -29,
    "liga": "https://drive.google.com/drive/folders/1WfCZnFojsW7o2MztBlVzkX8wO7vEaKgZ",
    "fuente": "Checklist GUIA A; Auditoría 21/10: asignada a Jesús y Tulio",
-   "estado": "Pendiente"
+   "estado": "No aplica (guía final Doc 29/10: PVE sin grupos focales)"
   },
   {
    "persona": "Tulio Alejandro Aguilar",
@@ -765,6 +765,32 @@
    "liga": "",
    "fuente": "WA grupo FORTASEC Tam 29-oct; alta 29/10 Paul Ulises Del Ángel Franco (con Fortasec)",
    "estado": "Programada"
+  },
+  {
+   "persona": "Lic. Jesús (Anselmo) Peña",
+   "proyecto": "PVE",
+   "codigo": "PVE-ACT04",
+   "tarea": "Subir/pasar link de fotos de la Marcha Exploratoria de Seguridad (MES) PVE",
+   "falta": "link de fotos + Anexo 2",
+   "vence": "",
+   "vencida": false,
+   "dias": null,
+   "liga": "",
+   "fuente": "Guía final Doc 29/10; alta 29/10 Paul Ulises Del Ángel Franco (con Fortasec)",
+   "estado": "Pendiente"
+  },
+  {
+   "persona": "Isaac De León",
+   "proyecto": "PVG",
+   "codigo": "PVG-ACT03",
+   "tarea": "Grupo focal PVG en Colonia San Marcos 2",
+   "falta": "programar y realizar (8–10 participantes, ≥1.5 h)",
+   "vence": "",
+   "vencida": false,
+   "dias": null,
+   "liga": "",
+   "fuente": "Guía final Doc 29/10; alta 29/10 Paul Ulises Del Ángel Franco (con Fortasec)",
+   "estado": "Pendiente"
   }
  ]
 }
