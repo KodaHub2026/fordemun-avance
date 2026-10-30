@@ -2,7 +2,7 @@
  "version": 1,
  "generado": "11/10/2026 19:23",
  "nota": "Copia estática de la pestaña «Bitácora» de la hoja de control (no es en vivo). Teléfonos y ligas de Meet omitidos en la versión pública.",
- "total": 75,
+ "total": 76,
  "desde": "2026-09-07",
  "hasta": "29/10/2026",
  "notas": [
@@ -1054,6 +1054,20 @@
    "estado": "Confirmado",
    "uso": "Por definir",
    "fila": 232,
+   "iso": "2026-10-29"
+  },
+  {
+   "fecha": "29/10/2026",
+   "hora": "22:45",
+   "autor": "Paul Ulises Del Ángel Franco (con Fortasec)",
+   "proyecto": "General",
+   "sede": "General",
+   "tipo": "Entregable",
+   "nota": "Borrador de notas de lo realizado (PVE, PVJ, PVG) y hoja de evidencias de difusión en redes creados en Informes FORTAMUN; recolección de capturas/URL el 02/11.",
+   "fuente": "WA grupo FORTASEC Tam 29-oct (Doc)",
+   "estado": "Hecho",
+   "uso": "Por definir",
+   "fila": 233,
    "iso": "2026-10-29"
   }
  ]
