@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "2026-10-29T16:17-05:00",
+ "generado": "2026-10-31T20:06-05:00",
  "regla": "pasos hechos / pasos totales por código ACT (sección 4 de Cal A/B/C); hecho = estado que empieza con Hecho o Terminado; Cancelado no cuenta.",
  "proyectos": [
   {
@@ -131,42 +131,42 @@
       },
       {
        "fila": 68,
-       "paso": "Charla Mediación en P2 Luis Torres Vázquez, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "paso": "Charla Mediación del Estado en P2 Luis Torres Vázquez, 1.º–2.º, cuento «La Paloma de la Paz y las Palabras Mágicas», 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
        "fecha": "05/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 69,
-       "paso": "Charla Mediación en P2 Luis Torres Vázquez, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · CHOCA con SIPINNA P4 mismo día",
+       "paso": "Charla Mediación del Estado en P2 Luis Torres Vázquez, 3.º–6.º, plática «Tus Palabras, tu Súper Poder», 9:30–12:00 · mismo día que SIPINNA P4: escuelas distintas; Jesús Peña y Alejandro Aguilar se dividen (aclarado con Isaac 31-oct)",
        "fecha": "06/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 71,
-       "paso": "Charla Mediación en P1M Eutimio Martínez Lara, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "paso": "Charla Mediación del Estado en P1M Eutimio Martínez Lara, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
        "fecha": "09/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 72,
-       "paso": "Charla Mediación en P1M Eutimio Martínez Lara, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "paso": "Charla Mediación del Estado en P1M Eutimio Martínez Lara, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
        "fecha": "10/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 74,
-       "paso": "Charla Mediación en P4 República de México, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del límite 10–15/11",
+       "paso": "Charla Mediación del Estado en P4 República de México, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del cierre de pláticas del Doc (10/11)",
        "fecha": "18/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 75,
-       "paso": "Charla Mediación en P4 República de México, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del límite 10–15/11",
+       "paso": "Charla Mediación del Estado en P4 República de México, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del cierre de pláticas del Doc (10/11)",
        "fecha": "19/11/2026",
        "estado": "Programada",
        "hecho": false
@@ -228,14 +228,14 @@
       },
       {
        "fila": 70,
-       "paso": "Charla SIPINNA en P4 República de México, 9:00–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · CHOCA con Mediación P2 mismo día",
+       "paso": "Charla SIPINNA en P4 República de México, 9:00–12:00 · mismo día que Mediación P2: escuelas distintas; Jesús Peña y Alejandro Aguilar se dividen (aclarado con Isaac 31-oct)",
        "fecha": "06/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 73,
-       "paso": "Charla SIPINNA en P2 Luis Torres Vázquez, 9:00–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "paso": "Charla SIPINNA en P2 Luis Torres Vázquez, 9:00–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del cierre de pláticas del Doc (10/11)",
        "fecha": "11/11/2026",
        "estado": "Programada",
        "hecho": false
@@ -351,8 +351,8 @@
    "tab": "C-PVG",
    "sigla": "PVG",
    "total": 4,
-   "hechos": 0,
-   "pct": 0.0,
+   "hechos": 1,
+   "pct": 0.25,
    "secuencias": [
     {
      "codigo": "PVG-ACT03",
@@ -391,14 +391,14 @@
        "fila": 53,
        "paso": "Marcha exploratoria de seguridad (MES) en CS San Marcos 2",
        "fecha": "22/10/2026",
-       "estado": "Por confirmar",
-       "hecho": false
+       "estado": "Hecho (PDF «Marcha exploratoria san marcos 2» en Drive, carpeta PVG-CS; Bitácora filas 222 y 238)",
+       "hecho": true
       }
      ],
      "nombre": "Marchas exploratorias de seguridad",
      "total": 2,
-     "hechos": 0,
-     "pct": 0.0
+     "hechos": 1,
+     "pct": 0.5
     }
    ]
   }

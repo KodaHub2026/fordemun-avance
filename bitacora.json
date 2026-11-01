@@ -1,10 +1,10 @@
 {
  "version": 1,
- "generado": "2026-10-30T14:05-05:00",
+ "generado": "2026-10-31T20:20-05:00",
  "nota": "Copia estática de la pestaña «Bitácora» de la hoja de control (no es en vivo). Teléfonos y ligas de Meet omitidos en la versión pública.",
- "total": 78,
+ "total": 79,
  "desde": "2026-09-07",
- "hasta": "30/10/2026",
+ "hasta": "31/10/2026",
  "notas": [
   {
    "fecha": "11/10/2026",
@@ -1097,6 +1097,19 @@
    "uso": "Informe",
    "fila": 235,
    "iso": "2026-10-30T14:05"
+  },
+  {
+   "fecha": "31/10/2026",
+   "hora": "~20:20",
+   "autor": "Paul Ulises Del Ángel Franco (con Fortasec)",
+   "proyecto": "General",
+   "sede": "General",
+   "tipo": "Tablero",
+   "nota": "Calendario: Mediación del Estado (fuente WA 27-oct, Isaac) y SIPINNA (WA 28-oct, Isaac) corregidos; el vie 06/11 ya no marca choque: escuelas distintas, Jesús Peña y Alejandro Aguilar se dividen (aclarado con Isaac 31-oct). SIPINNA P2 11/11 y Mediación P4 18–19/11 siguen después del cierre 10/11. Ruta crítica del Doc agregada al calendario (02/11 parón técnico; 10/11 cierre de pláticas y talleres; 10–15/11 encuestas de salida PVE-FA, PVE-FP, PVJ-SJ; entregable a Isaac fin de noviembre; cierre a más tardar 01/12). MES San Marcos 2 marcada como hecha. Nombre FORTAMUN en todo el tablero.",
+   "fuente": "Indicación de Paul 31-oct; WA FORTASEC Tam",
+   "estado": "Hecho",
+   "uso": "Tablero",
+   "fila": 243
   }
  ]
 }

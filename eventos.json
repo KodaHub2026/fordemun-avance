@@ -1,6 +1,6 @@
 {
  "version": 2,
- "fuente": "GUIA CHECK LIST FORTA 2026 v3 códigos libro.xlsx · «Propuesta de calendario dinámico» + minuta 18-oct v2 + Bitácora (actualizado 18/10/2026)",
+ "fuente": "Control_FORTAMUN_2026 (Cal A/B/C) + WA FORTASEC Tam + Bitácora (actualizado 31/10/2026)",
  "url": "https://docs.google.com/spreadsheets/d/1xjtfcTHu4Et8PKNJdB9Vv2J4ZXxQY8Zo/edit?gid=596670020#gid=596670020",
  "sep": {
   "fuente": "SEP · Calendario Escolar 2026-2027, Educación Básica · https://calendarioescolar.sep.gob.mx/ (consultado 18/10/2026)",
@@ -253,7 +253,7 @@
   },
   {
    "fecha": "2026-10-22",
-   "texto": "marcha exploratoria (MES) en CS San Marcos 2 (PVG-ACT05; por confirmar)",
+   "texto": "marcha exploratoria (MES) en CS San Marcos 2 (PVG-ACT05; hecha, PDF en Drive)",
    "proyectos": [
     "C-PVG"
    ],
@@ -378,67 +378,111 @@
    "tipo": "sep"
   },
   {
+   "fecha": "2026-11-02",
+   "texto": "parón técnico del equipo: no se trabaja en campo (aprovechar para capturas y URL de notas de divulgación)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Ruta crítica del Doc, WA FORTASEC Tam 29-oct 21:14 (Control_FORTAMUN_2026, Bitácora fila 232)",
+   "p": "General"
+  },
+  {
    "fecha": "2026-11-04",
    "texto": "charla SIPINNA en P1M, 9:00–12:00 (PVE-ACT16; programada)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "fuente": "WA FORTASEC Tam 28-oct 12:25 (Isaac) (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
    "fecha": "2026-11-05",
-   "texto": "charla Mediación en P2, 9:30–12:00 (PVE-ACT05; programada)",
+   "texto": "charla Mediación del Estado en P2, 1.º–2.º, cuento «La Paloma de la Paz y las Palabras Mágicas», 9:30–12:00 (PVE-ACT05; programada)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "fuente": "WA FORTASEC Tam 27-oct (Isaac) (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
    "fecha": "2026-11-06",
-   "texto": "charla Mediación en P2, 9:30–12:00 (PVE-ACT05; programada; choca con SIPINNA P4)",
+   "texto": "charla Mediación del Estado en P2, 3.º–6.º, plática «Tus Palabras, tu Súper Poder», 9:30–12:00 (PVE-ACT05; programada) — escuelas distintas; Jesús Peña y Alejandro Aguilar se dividen (aclarado con Isaac 31-oct)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "fuente": "WA FORTASEC Tam 27-oct (Isaac) (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
    "fecha": "2026-11-06",
-   "texto": "charla SIPINNA en P4, 9:00–12:00 (PVE-ACT16; programada; choca con Mediación P2)",
+   "texto": "charla SIPINNA en P4, 9:00–12:00 (PVE-ACT16; programada) — escuelas distintas; Jesús Peña y Alejandro Aguilar se dividen (aclarado con Isaac 31-oct)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "fuente": "WA FORTASEC Tam 28-oct 12:25 (Isaac) (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
    "fecha": "2026-11-09",
-   "texto": "charla Mediación en P1M, 9:30–12:00 (PVE-ACT05; programada)",
+   "texto": "charla Mediación del Estado en P1M, 9:30–12:00 (PVE-ACT05; programada)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "fuente": "WA FORTASEC Tam 27-oct (Isaac) (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
    "fecha": "2026-11-10",
-   "texto": "charla Mediación en P1M, 9:30–12:00 (PVE-ACT05; programada)",
+   "texto": "charla Mediación del Estado en P1M, 9:30–12:00 (PVE-ACT05; programada)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "fuente": "WA FORTASEC Tam 27-oct (Isaac) (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
+   "fecha": "2026-11-10",
+   "texto": "meta del Doc: cierre de pláticas y talleres (PVE, PVJ, PVG)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Ruta crítica del Doc, WA FORTASEC Tam 29-oct 21:14 (Control_FORTAMUN_2026, Bitácora fila 232)",
+   "p": "General"
+  },
+  {
+   "fecha": "2026-11-10",
+   "texto": "inicio de encuestas de salida PVE-FA, PVE-FP y PVJ-SJ (10–15/11)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Ruta crítica del Doc, WA FORTASEC Tam 29-oct 21:14 (Control_FORTAMUN_2026, Bitácora fila 232)",
+   "p": "General"
+  },
+  {
    "fecha": "2026-11-11",
-   "texto": "charla SIPINNA en P2, 9:00–12:00 (PVE-ACT16; programada)",
+   "texto": "charla SIPINNA en P2, 9:00–12:00 (PVE-ACT16; programada; después del cierre de pláticas 10/11)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "fuente": "WA FORTASEC Tam 28-oct 12:25 (Isaac) (Control_FORTAMUN_2026)",
    "p": "PVE"
+  },
+  {
+   "fecha": "2026-11-15",
+   "texto": "fin de encuestas de salida PVE-FA, PVE-FP y PVJ-SJ",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Ruta crítica del Doc, WA FORTASEC Tam 29-oct 21:14 (Control_FORTAMUN_2026, Bitácora fila 232)",
+   "p": "General"
   },
   {
    "fecha": "2026-11-16",
@@ -453,20 +497,20 @@
   },
   {
    "fecha": "2026-11-18",
-   "texto": "charla Mediación en P4, 9:30–12:00 (PVE-ACT05; programada; después del límite 10–15/11)",
+   "texto": "charla Mediación del Estado en P4, 9:30–12:00 (PVE-ACT05; programada; después del cierre de pláticas 10/11)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "fuente": "WA FORTASEC Tam 27-oct (Isaac) (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
    "fecha": "2026-11-19",
-   "texto": "charla Mediación en P4, 9:30–12:00 (PVE-ACT05; programada; después del límite 10–15/11)",
+   "texto": "charla Mediación del Estado en P4, 9:30–12:00 (PVE-ACT05; programada; después del cierre de pláticas 10/11)",
    "proyectos": [
     "A-PVE"
    ],
-   "fuente": "WA grupo FORTASEC Tam 29-oct (Control_FORTAMUN_2026)",
+   "fuente": "WA FORTASEC Tam 27-oct (Isaac) (Control_FORTAMUN_2026)",
    "p": "PVE"
   },
   {
@@ -479,6 +523,28 @@
    ],
    "fuente": "SEP · Calendario Escolar 2026-2027, Educación Básica · https://calendarioescolar.sep.gob.mx/ (consultado 18/10/2026)",
    "tipo": "sep"
+  },
+  {
+   "fecha": "2026-11-30",
+   "texto": "entregable a Isaac (fin de noviembre)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Ruta crítica del Doc, WA FORTASEC Tam 29-oct 21:14 (Control_FORTAMUN_2026, Bitácora fila 232)",
+   "p": "General"
+  },
+  {
+   "fecha": "2026-12-01",
+   "texto": "cierre del proyecto FORTAMUN 2026 (a más tardar)",
+   "proyectos": [
+    "A-PVE",
+    "B-PVJ",
+    "C-PVG"
+   ],
+   "fuente": "Ruta crítica del Doc, WA FORTASEC Tam 29-oct 21:14 (Control_FORTAMUN_2026, Bitácora fila 232)",
+   "p": "General"
   }
  ]
 }

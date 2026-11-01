@@ -1,8 +1,8 @@
 {
  "version": 1,
- "generado": "2026-10-29T22:30:00-05:00",
- "corte": "2026-10-29",
- "nota": "Copia de la pestaña «Pendientes» de la hoja de control (abiertos al 29/10/2026 16:50). No es en vivo; el tablero lee la hoja en vivo.",
+ "generado": "2026-10-31T20:20:00-05:00",
+ "corte": "2026-10-31",
+ "nota": "Copia de la pestaña «Pendientes» de la hoja de control (abiertos al 31/10/2026 20:20). No es en vivo; el tablero lee la hoja en vivo.",
  "personas": [
   "Doc José Juan",
   "Paul",
@@ -699,19 +699,6 @@
    "dias": null,
    "liga": "https://docs.google.com/document/d/1IAz_zsXmutPQcOMEHIT65UK9Roiwmg_iLvrzM2hKohc/edit",
    "fuente": "WA grupo FORTASEC Tam 26-oct 9:08 (Doc); alta 26/10 Paul Ulises Del Ángel Franco (con Fortasec)",
-   "estado": "Pendiente"
-  },
-  {
-   "persona": "Isaac De León",
-   "proyecto": "PVE",
-   "codigo": "PVE-ACT05/ACT16",
-   "tarea": "Choque vie 06/11: charla de Mediación en P2 (9:30–12:00) y de SIPINNA en P4 (9:00–12:00) a la misma hora",
-   "falta": "Repartir a los asistentes (Jesús Peña a una escuela, Alejandro Aguilar a la otra) o mover una charla",
-   "vence": "2026-11-05",
-   "vencida": false,
-   "dias": 7,
-   "liga": "",
-   "fuente": "WA grupo FORTASEC Tam 29-oct; alta 29/10 Paul Ulises Del Ángel Franco (con Fortasec)",
    "estado": "Pendiente"
   },
   {
