@@ -1,31 +1,406 @@
 {
  "version": 1,
- "generado": "2026-11-03T10:12-06:00",
+ "generado": "2026-10-31T20:06-05:00",
  "regla": "pasos hechos / pasos totales por código ACT (sección 4 de Cal A/B/C); hecho = estado que empieza con Hecho o Terminado; Cancelado no cuenta.",
  "proyectos": [
   {
    "tab": "A-PVE",
    "sigla": "PVE",
-   "total": 0,
-   "hechos": 0,
-   "pct": 0,
-   "secuencias": []
+   "total": 26,
+   "hechos": 13,
+   "pct": 0.5,
+   "secuencias": [
+    {
+     "codigo": "PVE-ACT02",
+     "pasos": [
+      {
+       "fila": 40,
+       "paso": "Encuestas PVE-LA en Rep. de México (P4)",
+       "fecha": "01/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      },
+      {
+       "fila": 42,
+       "paso": "Encuestas PVE-LA en Eutimio Martínez Lara (P1M) y Luis Torres (P2)",
+       "fecha": "02/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      },
+      {
+       "fila": 44,
+       "paso": "PDF de encuestas P1M, P2 y P4 en Drive; captura OCR de P4",
+       "fecha": "05/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      }
+     ],
+     "nombre": "Encuestas",
+     "total": 3,
+     "hechos": 3,
+     "pct": 1.0
+    },
+    {
+     "codigo": "PVE-ACT04",
+     "pasos": [
+      {
+       "fila": 41,
+       "paso": "Marcha exploratoria en P4 con subdirección y docentes",
+       "fecha": "01/10/2026",
+       "estado": "Hecho (fotos MES P4 en Drive 14/10)",
+       "hecho": true
+      },
+      {
+       "fila": 43,
+       "paso": "Campo reporta marchas exploratorias hechas; falta subirlas",
+       "fecha": "03/10/2026",
+       "estado": "Hecho (falta subir)",
+       "hecho": true
+      },
+      {
+       "fila": 48,
+       "paso": "Fotos de la MES de P1M, P2 y P4 en Drive",
+       "fecha": "14/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      },
+      {
+       "fila": 62,
+       "paso": "MES: recorrido exterior de las primarias y 5-6 cuadras (luminarias, bacheo, asfalto, guarniciones, banquetas) en CE Estudiantil y CL Luis Echeverría, con Isaac y Omar",
+       "fecha": "21/10/2026",
+       "estado": "Hecho (recorrido 21/10; PDF MES CE y CL en Drive)",
+       "hecho": true
+      }
+     ],
+     "nombre": "Marcha Exploratoria de Seguridad (MES)",
+     "total": 4,
+     "hechos": 4,
+     "pct": 1.0
+    },
+    {
+     "codigo": "PVE-ACT05",
+     "pasos": [
+      {
+       "fila": 52,
+       "paso": "Visita a escuelas: mecánica de niños mediadores y selección de participantes",
+       "fecha": "20/10/2026",
+       "estado": "Hecho (Anexo 4 en Drive)",
+       "hecho": true
+      },
+      {
+       "fila": 53,
+       "paso": "Formatos de niños mediadores y carta modelo de reconocimiento",
+       "fecha": "20/10/2026",
+       "estado": "Hecho (pendiente fila 47)",
+       "hecho": true
+      },
+      {
+       "fila": 56,
+       "paso": "Recepción de las listas de niños mediadores",
+       "fecha": "23/10/2026",
+       "estado": "Hecho (Anexo 4 selección NM P1M, P2, P4 en Drive)",
+       "hecho": true
+      },
+      {
+       "fila": 58,
+       "paso": "1er taller de niños mediadores (primer tema)",
+       "fecha": "26/10/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 63,
+       "paso": "Reunión de Isaac con la directora de Mediación del Estado (charlas lúdicas, 2-3 pláticas; posible SIPINNA), 10:00",
+       "fecha": "22/10/2026",
+       "estado": "Hecho (oficio de Mediación recibido 23/10)",
+       "hecho": true
+      },
+      {
+       "fila": 64,
+       "paso": "Localizar y pedir audiencia a CIJ (Lic. Laura Gaiter) para charlas a niños fuera de niños mediadores (Isaac)",
+       "fecha": "23/10/2026",
+       "estado": "Pendiente",
+       "hecho": false
+      },
+      {
+       "fila": 65,
+       "paso": "Oficio de Mediación del Estado recibido (charlas por escuela)",
+       "fecha": "23/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      },
+      {
+       "fila": 68,
+       "paso": "Charla Mediación del Estado en P2 Luis Torres Vázquez, 1.º–2.º, cuento «La Paloma de la Paz y las Palabras Mágicas», 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "fecha": "05/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 69,
+       "paso": "Charla Mediación del Estado en P2 Luis Torres Vázquez, 3.º–6.º, plática «Tus Palabras, tu Súper Poder», 9:30–12:00 · mismo día que SIPINNA P4: escuelas distintas; Jesús Peña y Alejandro Aguilar se dividen (aclarado con Isaac 31-oct)",
+       "fecha": "06/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 71,
+       "paso": "Charla Mediación del Estado en P1M Eutimio Martínez Lara, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "fecha": "09/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 72,
+       "paso": "Charla Mediación del Estado en P1M Eutimio Martínez Lara, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "fecha": "10/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 74,
+       "paso": "Charla Mediación del Estado en P4 República de México, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del cierre de pláticas del Doc (10/11)",
+       "fecha": "18/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 75,
+       "paso": "Charla Mediación del Estado en P4 República de México, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del cierre de pláticas del Doc (10/11)",
+       "fecha": "19/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      }
+     ],
+     "nombre": "Red de niños mediadores",
+     "total": 13,
+     "hechos": 5,
+     "pct": 0.3846
+    },
+    {
+     "codigo": "PVE-ACT14",
+     "pasos": [
+      {
+       "fila": 45,
+       "paso": "Feria Lúdica en P4",
+       "fecha": "07/10/2026",
+       "estado": "Programada",
+       "hecho": false
+      }
+     ],
+     "nombre": "PVE-ACT14",
+     "total": 1,
+     "hechos": 0,
+     "pct": 0.0
+    },
+    {
+     "codigo": "PVE-ACT15",
+     "pasos": [
+      {
+       "fila": 46,
+       "paso": "Teatro Guiñol y Actividades Lúdicas en P1M",
+       "fecha": "08/10/2026",
+       "estado": "Programada",
+       "hecho": false
+      }
+     ],
+     "nombre": "PVE-ACT15",
+     "total": 1,
+     "hechos": 0,
+     "pct": 0.0
+    },
+    {
+     "codigo": "PVE-ACT16",
+     "pasos": [
+      {
+       "fila": 66,
+       "paso": "Formatos de solicitud SIPINNA (FORTAMUN) enviados a Isaac; respondió «Ok»",
+       "fecha": "29/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      },
+      {
+       "fila": 67,
+       "paso": "Charla SIPINNA en P1M Eutimio Martínez Lara, 9:00–12:00 (asisten Jesús Peña y Alejandro Aguilar: fotos con lonas y recabar información; organiza Isaac)",
+       "fecha": "04/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 70,
+       "paso": "Charla SIPINNA en P4 República de México, 9:00–12:00 · mismo día que Mediación P2: escuelas distintas; Jesús Peña y Alejandro Aguilar se dividen (aclarado con Isaac 31-oct)",
+       "fecha": "06/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      },
+      {
+       "fila": 73,
+       "paso": "Charla SIPINNA en P2 Luis Torres Vázquez, 9:00–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del cierre de pláticas del Doc (10/11)",
+       "fecha": "11/11/2026",
+       "estado": "Programada",
+       "hecho": false
+      }
+     ],
+     "nombre": "PVE-ACT16",
+     "total": 4,
+     "hechos": 1,
+     "pct": 0.25
+    }
+   ]
   },
   {
    "tab": "B-PVJ",
    "sigla": "PVJ",
-   "total": 0,
-   "hechos": 0,
-   "pct": 0,
-   "secuencias": []
+   "total": 9,
+   "hechos": 3,
+   "pct": 0.3333,
+   "secuencias": [
+    {
+     "codigo": "PVJ-ACT01",
+     "pasos": [
+      {
+       "fila": 40,
+       "paso": "Instrumentos propuestos de contextualización al Doc",
+       "fecha": "05/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      },
+      {
+       "fila": 41,
+       "paso": "Se autoriza el instrumento de campo PVJ-LJ",
+       "fecha": "11/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      },
+      {
+       "fila": 47,
+       "paso": "Contextualización con los enlaces (instrumento PVJ-LJ) y línea base de jóvenes en CE Estudiantil y CL Luis Echeverría (San Marcos 2 el 22/10, fila 58)",
+       "fecha": "21/10/2026",
+       "estado": "En proceso (campo 21/10)",
+       "hecho": false
+      },
+      {
+       "fila": 58,
+       "paso": "Contextualización y línea base (PVJ-LJ) con el enlace de CS San Marcos 2 (María Verdines), junto con el grupo focal del jueves",
+       "fecha": "22/10/2026",
+       "estado": "Por confirmar",
+       "hecho": false
+      }
+     ],
+     "nombre": "Contextualización de las problemáticas",
+     "total": 4,
+     "hechos": 2,
+     "pct": 0.5
+    },
+    {
+     "codigo": "PVJ-ACT02",
+     "pasos": [
+      {
+       "fila": 51,
+       "paso": "Grupo focal en CS San Marcos 2, con lista de asistencia (FMT-ASIS-01); lugar y hora por confirmar",
+       "fecha": "22/10/2026",
+       "estado": "Por confirmar",
+       "hecho": false
+      },
+      {
+       "fila": 56,
+       "paso": "Grupo focal de jóvenes en CE Estudiantil y CL Luis Echeverría, 16:00 (lugar por confirmar), con lista de asistencia (FMT-ASIS-01)",
+       "fecha": "21/10/2026",
+       "estado": "Realizado sin asistencia (0 jóvenes) 21/10 — reprogramar",
+       "hecho": false
+      }
+     ],
+     "nombre": "Diagnósticos participativos",
+     "total": 2,
+     "hechos": 0,
+     "pct": 0.0
+    },
+    {
+     "codigo": "PVJ-ACT03",
+     "pasos": [
+      {
+       "fila": 43,
+       "paso": "Volante del Doc «a modificar»",
+       "fecha": "17/10/2026",
+       "estado": "Hecho",
+       "hecho": true
+      },
+      {
+       "fila": 46,
+       "paso": "Publicación de la convocatoria; impresión del volante v3 (Isaac, lun 19/10, con lugar, fecha y hora en blanco); la versión digital para WhatsApp sale cuando se confirmen lugar y hora",
+       "fecha": "21/10/2026",
+       "estado": "Pendiente",
+       "hecho": false
+      },
+      {
+       "fila": 57,
+       "paso": "Versión digital del volante para WhatsApp (Paul/Fortasec), cuando se confirmen lugar y hora",
+       "fecha": "Por definir",
+       "estado": "Pendiente",
+       "hecho": false
+      }
+     ],
+     "nombre": "Convocatoria",
+     "total": 3,
+     "hechos": 1,
+     "pct": 0.3333
+    }
+   ]
   },
   {
    "tab": "C-PVG",
    "sigla": "PVG",
-   "total": 0,
-   "hechos": 0,
-   "pct": 0,
-   "secuencias": []
+   "total": 4,
+   "hechos": 1,
+   "pct": 0.25,
+   "secuencias": [
+    {
+     "codigo": "PVG-ACT03",
+     "pasos": [
+      {
+       "fila": 46,
+       "paso": "Convocatoria con el enlace (el mismo para las 3 colonias) a un grupo diverso: 8 a 10 personas para el grupo focal de género",
+       "fecha": "21/10/2026",
+       "estado": "Por confirmar",
+       "hecho": false
+      },
+      {
+       "fila": 47,
+       "paso": "Grupo focal (diagnóstico participativo), con lista de asistencia",
+       "fecha": "21/10/2026",
+       "estado": "En proceso (campo 21/10)",
+       "hecho": false
+      }
+     ],
+     "nombre": "Grupos focales",
+     "total": 2,
+     "hechos": 0,
+     "pct": 0.0
+    },
+    {
+     "codigo": "PVG-ACT05",
+     "pasos": [
+      {
+       "fila": 48,
+       "paso": "Marcha exploratoria de seguridad (MES) exterior en CE Estudiantil y CL Luis Echeverría: primarias y 5-6 cuadras (luminarias, bacheo, asfalto, guarniciones, banquetas)",
+       "fecha": "21/10/2026",
+       "estado": "En proceso (campo 21/10)",
+       "hecho": false
+      },
+      {
+       "fila": 53,
+       "paso": "Marcha exploratoria de seguridad (MES) en CS San Marcos 2",
+       "fecha": "22/10/2026",
+       "estado": "Hecho (PDF «Marcha exploratoria san marcos 2» en Drive, carpeta PVG-CS; Bitácora filas 222 y 238)",
+       "hecho": true
+      }
+     ],
+     "nombre": "Marchas exploratorias de seguridad",
+     "total": 2,
+     "hechos": 1,
+     "pct": 0.5
+    }
+   ]
   }
  ]
 }
