@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "2026-11-03T13:08-06:00",
+ "generado": "2026-11-03T14:03-06:00",
  "regla": "pasos hechos / pasos totales por código ACT (sección 4 de Cal A/B/C); hecho = estado que empieza con Hecho o Terminado; Cancelado no cuenta.",
  "proyectos": [
   {
@@ -131,42 +131,42 @@
       },
       {
        "fila": 68,
-       "paso": "Charla Mediación del Estado en P2 Luis Torres Vázquez, 1.º–2.º, cuento «La Paloma de la Paz y las Palabras Mágicas», 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "paso": "Charla Mediación del Estado en P2 Luis Torres Vázquez, 1.º–2.º, cuento «La Paloma de la Paz y las Palabras Mágicas» (resolver conflictos de manera pacífica), 11:00–12:30 (antes 9:30–12:00; cambio de horario 03-nov) (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
        "fecha": "05/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 69,
-       "paso": "Charla Mediación del Estado en P2 Luis Torres Vázquez, 3.º–6.º, plática «Tus Palabras, tu Súper Poder», 9:30–12:00 · mismo día que SIPINNA P4: escuelas distintas; Jesús Peña y Alejandro Aguilar se dividen (aclarado con Isaac 31-oct)",
+       "paso": "Charla Mediación del Estado en P2 Luis Torres Vázquez, 3.º–6.º, plática «Tus Palabras, tu Súper Poder» (solucionar conflictos escuchando y dialogando), 11:00–12:30 (antes 9:30–12:00; cambio de horario 03-nov) · mismo día que SIPINNA P4: escuelas distintas; Jesús Peña y Alejandro Aguilar se dividen (aclarado con Isaac 31-oct)",
        "fecha": "06/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 71,
-       "paso": "Charla Mediación del Estado en P1M Eutimio Martínez Lara, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "paso": "Charla Mediación del Estado en P1M Eutimio Martínez Lara, 11:00–12:30 (antes 9:30–12:00; cambio de horario 03-nov) (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
        "fecha": "09/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 72,
-       "paso": "Charla Mediación del Estado en P1M Eutimio Martínez Lara, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac)",
+       "paso": "Charla Mediación del Estado en P1M Eutimio Martínez Lara, 11:00–12:30 (antes 9:30–12:00; cambio de horario 03-nov) (Jesús Peña y Alejandro Aguilar; organiza Isaac) · cae el día del cierre de pláticas del Doc (10/11)",
        "fecha": "10/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 74,
-       "paso": "Charla Mediación del Estado en P4 República de México, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del cierre de pláticas del Doc (10/11)",
+       "paso": "Charla Mediación del Estado en P4 República de México, 11:00–12:30 (antes 9:30–12:00; cambio de horario 03-nov) (Jesús Peña y Alejandro Aguilar; organiza Isaac) · ⚠ después del cierre de pláticas del Doc (10/11) y de las encuestas de salida (10–15/11); mismo día que SIPINNA P2 (escuelas distintas)",
        "fecha": "18/11/2026",
        "estado": "Programada",
        "hecho": false
       },
       {
        "fila": 75,
-       "paso": "Charla Mediación del Estado en P4 República de México, 9:30–12:00 (Jesús Peña y Alejandro Aguilar; organiza Isaac) · después del cierre de pláticas del Doc (10/11)",
+       "paso": "Charla Mediación del Estado en P4 República de México, 11:00–12:30 (antes 9:30–12:00; cambio de horario 03-nov) (Jesús Peña y Alejandro Aguilar; organiza Isaac) · ⚠ después del cierre de pláticas del Doc (10/11) y de las encuestas de salida (10–15/11)",
        "fecha": "19/11/2026",
        "estado": "Programada",
        "hecho": false
