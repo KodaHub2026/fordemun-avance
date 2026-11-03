@@ -1123,6 +1123,19 @@
    "estado": "Confirmado",
    "uso": "Evidencia PVJ-ACT04",
    "fila": 244
+  },
+  {
+   "fecha": "03/11/2026",
+   "hora": "12:26",
+   "autor": "Paul Ulises Del Ángel Franco (con Fortasec)",
+   "proyecto": "PVJ",
+   "sede": "PVJ-CL Colonia Luis Echeverría Álvarez",
+   "tipo": "Agenda",
+   "nota": "Cambio de horario torneo PVJ-ACT04: jueves 05/11/2026 5:30 p.m. (antes 4:30), Campo Índigo",
+   "fuente": "WhatsApp · grupo FORTASEC Tam (Isaac, 03-nov 12:25–12:26)",
+   "estado": "Confirmado",
+   "uso": "Evidencia PVJ-ACT04",
+   "fila": 245
   }
  ]
 }
