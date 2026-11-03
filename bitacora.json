@@ -2,7 +2,7 @@
  "version": 1,
  "generado": "2026-11-03T10:12-06:00",
  "nota": "Copia estática de la pestaña «Bitácora» de la hoja de control (no es en vivo). Teléfonos y ligas de Meet omitidos en la versión pública.",
- "total": 80,
+ "total": 82,
  "desde": "2026-09-07",
  "hasta": "03/11/2026",
  "notas": [
@@ -1136,6 +1136,19 @@
    "estado": "Confirmado",
    "uso": "Evidencia PVJ-ACT04",
    "fila": 245
+  },
+  {
+   "fecha": "03/11/2026",
+   "hora": "12:42",
+   "autor": "Paul Ulises Del Ángel Franco (con Fortasec)",
+   "proyecto": "PVE",
+   "sede": "PVE-P2 Prim. Luis Torres Vázquez",
+   "tipo": "Agenda",
+   "nota": "Isaac: «Primaria Luis Torres, se cambia fecha 18 de noviembre» (Paul dio 👍). No dice qué actividad ni la fecha original. En P2 hay 3 charlas programadas: Mediación del Estado 05/11 (1.º–2.º) y 06/11 (3.º–6.º), PVE-ACT05; y SIPINNA 11/11 9:00–12:00, PVE-ACT16. Probablemente es la SIPINNA del 11/11 → 18/11/2026 (fecha única y ya fuera del cierre), POR CONFIRMAR con Isaac; fechas en Cal A-PVE y Pendientes sin cambiar hasta confirmar. ⚠ 18/11 queda después del cierre de pláticas/talleres del Doc (10/11) y de las encuestas de salida (10–15/11).",
+   "fuente": "WhatsApp · grupo FORTASEC Tam (Isaac, 03-nov 12:42)",
+   "estado": "Por confirmar",
+   "uso": "Agenda PVE-P2",
+   "fila": 246
   }
  ]
 }
