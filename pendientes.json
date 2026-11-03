@@ -586,7 +586,7 @@
    "dias": 16,
    "liga": "https://drive.google.com/file/d/1eQjAp6aKmylwAEJgDfJ1HrlPtOALRe7Z/view",
    "fuente": "DOC-LOG-CHARLAS status 25/10/26; WA grupo 22-oct; alta 25/10 Paul Ulises Del Ángel Franco (con Fortasec); act. 26/10 WA grupo FORTASEC Tam 14:52–15:16 (Isaac/Doc); act. 26/10 foto oficio recibido WA FORTASEC Tam 15:24 (Isaac: «El de mediación ya quedó cubierto»), Paul Ulises Del Ángel Franco (con Fortasec); act. 27/10 WA grupo FORTASEC Tam 14:49–14:52 (Isaac), Paul Ulises Del Ángel Franco (con Fortasec)",
-   "estado": "Completado (logística confirmada 27/10; fechas 05–19/11, 9:30–12:00)"
+   "estado": "Completado (logística confirmada 27/10; fechas 05–19/11; horario 11:00–12:30 desde 03-nov)"
   },
   {
    "persona": "Isaac De León",
@@ -722,8 +722,8 @@
    "persona": "Isaac De León",
    "proyecto": "PVE",
    "codigo": "PVE-ACT05",
-   "tarea": "Charlas de Mediación en P4 (18 y 19/11) quedan después del límite 10–15/11",
-   "falta": "Confirmar si se aceptan fuera de plazo o adelantarlas; Doc 29/10: pláticas y talleres cierran 10/11",
+   "tarea": "Charlas de Mediación en P4 República de México (mié 18 y jue 19/11, 11:00–12:30) quedan después del cierre de pláticas 10/11 y de las encuestas de salida 10–15/11",
+   "falta": "Confirmar excepción con el Doc o adelantarlas; Isaac 03-nov 13:41 confirma que las fechas no cambian (solo horario 11:00–12:30). Mismo riesgo que SIPINNA P2 18/11",
    "vence": "2026-11-10",
    "vencida": false,
    "dias": 7,
@@ -762,7 +762,7 @@
    "proyecto": "PVE",
    "codigo": "PVE-ACT05/ACT16",
    "tarea": "Asistir con Alejandro Aguilar a las 9 charlas (04–19/11): fotos con lonas y recabar información",
-   "falta": "Subir fotos y datos al Drive después de cada charla; ⚠ fechas 18/11 (SIPINNA P2, antes 11/11) y 18–19/11 (Mediación P4) después del cierre 10/11",
+   "falta": "Subir fotos y datos al Drive después de cada charla. Mediación (PVE-ACT05) 11:00–12:30 en cada escuela (cambio 03-nov): P2 jue 05/11 (1.º–2.º) y vie 06/11 (3.º–6.º); P1M lun 09/11 y mar 10/11; P4 mié 18/11 y jue 19/11. ⚠ 18/11 (SIPINNA P2 y Mediación P4) y 19/11 (Mediación P4) después del cierre 10/11",
    "vence": "2026-11-19",
    "vencida": false,
    "dias": 16,
