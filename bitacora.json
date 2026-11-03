@@ -2,7 +2,7 @@
  "version": 1,
  "generado": "2026-11-03T10:12-06:00",
  "nota": "Copia estática de la pestaña «Bitácora» de la hoja de control (no es en vivo). Teléfonos y ligas de Meet omitidos en la versión pública.",
- "total": 82,
+ "total": 83,
  "desde": "2026-09-07",
  "hasta": "03/11/2026",
  "notas": [
@@ -1149,6 +1149,19 @@
    "estado": "Por confirmar",
    "uso": "Agenda PVE-P2",
    "fila": 246
+  },
+  {
+   "fecha": "03/11/2026",
+   "hora": "12:45",
+   "autor": "Paul Ulises Del Ángel Franco (con Fortasec)",
+   "proyecto": "PVE",
+   "sede": "PVE-P2 Prim. Luis Torres Vázquez",
+   "tipo": "Agenda",
+   "nota": "Resuelve el «Por confirmar» de la fila 246: Isaac aclaró «Para platica sipinna». La Plática SIPINNA en P2 (PVE-ACT16, 9:00–12:00) pasa del 11/11 al 18/11/2026. Mediación (PVE-ACT05, 05 y 06/11) no cambia. ⚠ 18/11 queda después del cierre de pláticas/talleres del Doc (10/11) y de las encuestas de salida (10–15/11): confirmar excepción con el Doc.",
+   "fuente": "WhatsApp · grupo FORTASEC Tam (Isaac, 03-nov 12:42 y 12:45)",
+   "estado": "Confirmado",
+   "uso": "Agenda PVE-P2",
+   "fila": 247
   }
  ]
 }
