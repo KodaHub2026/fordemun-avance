@@ -1,10 +1,10 @@
 {
  "version": 1,
- "generado": "2026-10-31T20:20-05:00",
+ "generado": "2026-11-03T10:40-06:00",
  "nota": "Copia estática de la pestaña «Bitácora» de la hoja de control (no es en vivo). Teléfonos y ligas de Meet omitidos en la versión pública.",
- "total": 79,
+ "total": 80,
  "desde": "2026-09-07",
- "hasta": "31/10/2026",
+ "hasta": "03/11/2026",
  "notas": [
   {
    "fecha": "11/10/2026",
@@ -1110,6 +1110,19 @@
    "estado": "Hecho",
    "uso": "Tablero",
    "fila": 243
+  },
+  {
+   "fecha": "03/11/2026",
+   "hora": "10:03",
+   "autor": "Paul Ulises Del Ángel Franco (con Fortasec)",
+   "proyecto": "PVJ",
+   "sede": "PVJ-CL Colonia Luis Echeverría Álvarez",
+   "tipo": "Agenda",
+   "nota": "Torneo de fútbol (PVJ-ACT04, actividad deportiva de jóvenes): jueves 05/11/2026, 4:30 p.m., Campo Índigo, atrás del CEDIF, Col. Luis Echeverría. Cubre el riesgo «torneo de fútbol no realizado» (Pendientes filas 100 y 106).",
+   "fuente": "WhatsApp · grupo FORTASEC Tam (Isaac, 03-nov 10:03)",
+   "estado": "Confirmado",
+   "uso": "Evidencia PVJ-ACT04",
+   "fila": 244
   }
  ]
 }

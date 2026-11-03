@@ -1,6 +1,6 @@
 {
  "version": 2,
- "fuente": "Control_FORTAMUN_2026 (Cal A/B/C) + WA FORTASEC Tam + Bitácora (actualizado 31/10/2026)",
+ "fuente": "Control_FORTAMUN_2026 (Cal A/B/C) + WA FORTASEC Tam + Bitácora (actualizado 03/11/2026)",
  "url": "https://docs.google.com/spreadsheets/d/1xjtfcTHu4Et8PKNJdB9Vv2J4ZXxQY8Zo/edit?gid=596670020#gid=596670020",
  "sep": {
   "fuente": "SEP · Calendario Escolar 2026-2027, Educación Básica · https://calendarioescolar.sep.gob.mx/ (consultado 18/10/2026)",
@@ -405,6 +405,15 @@
    ],
    "fuente": "WA FORTASEC Tam 27-oct (Isaac) (Control_FORTAMUN_2026)",
    "p": "PVE"
+  },
+  {
+   "fecha": "2026-11-05",
+   "texto": "torneo de fútbol 4:30 p.m., Campo Índigo atrás del CEDIF, Col. Luis Echeverría (PVJ-ACT04, PVJ-CL)",
+   "proyectos": [
+    "B-PVJ"
+   ],
+   "fuente": "WA FORTASEC Tam 03/11 (Isaac)",
+   "p": "PVJ"
   },
   {
    "fecha": "2026-11-06",
