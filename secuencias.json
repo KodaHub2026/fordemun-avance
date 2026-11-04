@@ -1,6 +1,6 @@
 {
  "version": 1,
- "generado": "2026-11-03T14:03-06:00",
+ "generado": "2026-11-04T10:24-06:00",
  "regla": "pasos hechos / pasos totales por código ACT (sección 4 de Cal A/B/C); hecho = estado que empieza con Hecho o Terminado; Cancelado no cuenta.",
  "proyectos": [
   {
@@ -251,9 +251,9 @@
   {
    "tab": "B-PVJ",
    "sigla": "PVJ",
-   "total": 9,
+   "total": 11,
    "hechos": 3,
-   "pct": 0.3333,
+   "pct": 0.2727,
    "secuencias": [
     {
      "codigo": "PVJ-ACT01",
@@ -344,6 +344,29 @@
      "total": 3,
      "hechos": 1,
      "pct": 0.3333
+    },
+    {
+     "codigo": "PVJ-ACT04",
+     "pasos": [
+      {
+       "fila": 59,
+       "paso": "Torneo de fútbol de jóvenes, 5:30 p.m., Campo Índigo (Río Álamo 1148, Amp. Luis Echeverría Álvarez); se aplican encuesta de línea final PVJ-SJ, lista FMT-ASIS-01 y grupo focal GUI-PVJ-02/03",
+       "fecha": "05/11/2026",
+       "estado": "Programado",
+       "hecho": false
+      },
+      {
+       "fila": 60,
+       "paso": "Plática SIPINNA para jóvenes al terminar el torneo",
+       "fecha": "05/11/2026",
+       "estado": "Por confirmar (Isaac)",
+       "hecho": false
+      }
+     ],
+     "nombre": "Actividades de los jóvenes en favor de su comunidad a partir de alguna habilidad técnica, artística, cultural y deportiva",
+     "total": 2,
+     "hechos": 0,
+     "pct": 0.0
     }
    ]
   },
