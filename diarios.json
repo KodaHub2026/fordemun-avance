@@ -1,6 +1,6 @@
 {
  "version": 2,
- "generado": "2026-10-21T20:48-05:00",
+ "generado": "2026-11-09T00:13-06:00",
  "fuente": "pestaña «Diarios» de Control_FORDEMUN_2026",
  "personas": [
   "Jesús Anselmo",
@@ -55,6 +55,30 @@
   }
  ],
  "entradas": [
+  {
+   "id": "DC-004",
+   "persona": "Jesús Anselmo",
+   "proyecto": "PVG",
+   "fecha": "2026-10-21",
+   "actividad": "Descripción: Grupos focales Colonias Echeverria y Estudiantil",
+   "notas": "El día de la actividad, mi compañero Tulio y yo arribamos aproximadamente a las 4:30 p. m. a la colonia Echeverría, con la finalidad de llevar a cabo un acercamiento con las habitantes del sector y generar un espacio de diálogo que nos permitiera conocer de primera mano las principales problemáticas y necesidades que enfrentan dentro de su comunidad.\nAl llegar al lugar, inicialmente nos encontramos con un grupo de aproximadamente cinco mujeres, cuyas edades oscilaban alrededor de los 35 años en adelante. Posteriormente, conforme transcurrieron los minutos, fueron incorporándose de manera paulatina más mujeres interesadas en participar en la actividad, lo que permitió ampliar el número de participantes y enriquecer el intercambio de experiencias y opiniones.\nUna vez reunido el grupo, dimos inicio a la dinámica de grupo focal, procurando generar un ambiente de confianza, respeto y participación, en el que cada una de las asistentes tuviera la oportunidad de expresar libremente sus inquietudes, experiencias y puntos de vista respecto a las condiciones en las que viven dentro de la colonia.\nCabe señalar que las problemáticas y testimonios expresados durante el grupo focal quedaron registrados en los audios correspondientes, los cuales servirán como material de referencia para recuperar con mayor precisión la información proporcionada por las participantes y complementar el análisis de las necesidades identificadas en el sector.\nFinalmente, una vez concluida la dinámica, procedimos a agradecer a las mujeres por su tiempo, disposición y participación. Como parte del cierre de la actividad, les ofrecimos un pequeño aperitivo consistente en pan y refresco Coca-Cola, como una atención y muestra de agradecimiento por haberse integrado al ejercicio.",
+   "incidentes": "Incidentes técnicos: Falta de mujere Incidentes destacados: El enlace no logro juntar mas mujeres",
+   "registro": "Jesús Anselmo (en el Doc)",
+   "editado": "",
+   "doc": "https://docs.google.com/document/d/1ETHsF9BMfsGGfkGc5tAdU8CkAKPmZ8zHtoIfD7_JgBM/edit"
+  },
+  {
+   "id": "DC-003",
+   "persona": "Jesús Anselmo",
+   "proyecto": "PVG",
+   "fecha": "2026-10-21",
+   "actividad": "Descripción: Grupos focales Colonias Echeverria y Estudiantil",
+   "notas": "Siendo las",
+   "incidentes": "Incidentes técnicos: Incidentes destacados:",
+   "registro": "Jesús Anselmo (en el Doc)",
+   "editado": "",
+   "doc": "https://docs.google.com/document/d/1ETHsF9BMfsGGfkGc5tAdU8CkAKPmZ8zHtoIfD7_JgBM/edit"
+  },
   {
    "id": "DC-002",
    "persona": "Jesús Anselmo",
